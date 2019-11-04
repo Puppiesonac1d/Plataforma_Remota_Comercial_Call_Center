@@ -77,6 +77,7 @@ public class Menu extends javax.swing.JFrame {
         btnClientesRecientes1 = new javax.swing.JButton();
         btnClientesRecientes = new javax.swing.JButton();
         btnStatus = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -188,6 +189,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnStatus);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/mercado-público_.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/exit_icon-icons.com_70975.png"))); // NOI18N
@@ -362,7 +372,7 @@ public class Menu extends javax.swing.JFrame {
             pst2.setInt(1, id);
             ResultSet rs2 = pst2.executeQuery();
             llamado.tblNoLlamadosSinRespuesta.setModel(DbUtils.resultSetToTableModel(rs2));
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
@@ -406,6 +416,23 @@ public class Menu extends javax.swing.JFrame {
         reciente.LlenarTabla();
         reciente.setVisible(true);
     }//GEN-LAST:event_btnClientesRecientes1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            JOptionPane.showMessageDialog(null, "Cargando Información");
+            HistorialOC HISTORIALOC = new HistorialOC();
+            HISTORIALOC.setVisible(true);
+            String query = "Select idOrden as 'ID ORDEN',nombre_proveedor as 'Nombre de Proveedor', codigoOrdenCompra as 'Código de Orden de Compra', rutCliente as 'Rut de Cliente' from ordendecompra";
+            PreparedStatement pst;
+            pst = cn.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            HISTORIALOC.tblHistorialOC3.setModel(DbUtils.resultSetToTableModel(rs));
+            this.setTitle("Consultar Mercado Público");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,6 +482,7 @@ public class Menu extends javax.swing.JFrame {
     public javax.swing.JMenu codigoMenu;
     public javax.swing.JMenu credencialMenu;
     public javax.swing.JMenu idMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

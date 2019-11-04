@@ -116,7 +116,6 @@ public class ConsultarOrdenCompra extends javax.swing.JFrame {
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1280, 686));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1280, 686));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1280, 686));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
