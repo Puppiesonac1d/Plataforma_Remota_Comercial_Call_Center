@@ -147,6 +147,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtOC">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnConsultaOC">
               <Properties>
