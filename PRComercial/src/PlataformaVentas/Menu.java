@@ -110,6 +110,7 @@ public class Menu extends javax.swing.JFrame {
         b_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         b_Titulo.setText("<html> <p align=\"center\">Menú<br/>Principal</p>  </html>");
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setMaximumSize(new java.awt.Dimension(100, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -264,6 +265,7 @@ public class Menu extends javax.swing.JFrame {
         credencialMenu.setVisible(false);
         jMenuBar1.add(credencialMenu);
 
+        idMenu.setVisible(false);
         idMenu.setText("0");
         jMenuBar1.add(idMenu);
 
