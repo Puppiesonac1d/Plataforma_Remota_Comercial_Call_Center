@@ -421,13 +421,14 @@ public class Menu extends javax.swing.JFrame {
         try {
             JOptionPane.showMessageDialog(null, "Cargando Información");
             HistorialOC HISTORIALOC = new HistorialOC();
-            HISTORIALOC.lblCodigoMenu.setText(codigoMenu.getText());
             HISTORIALOC.setVisible(true);
             String query = "Select idOrden as 'ID ORDEN',nombre_proveedor as 'Nombre de Proveedor', codigoOrdenCompra as 'Código de Orden de Compra', rutCliente as 'Rut de Cliente' from ordendecompra";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             HISTORIALOC.tblHistorialOC3.setModel(DbUtils.resultSetToTableModel(rs));
+            this.setTitle("Consultar Mercado Público");
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

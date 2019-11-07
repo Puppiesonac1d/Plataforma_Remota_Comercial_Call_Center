@@ -6,7 +6,6 @@
 package PlataformaVentas;
 
 import clases.Conexion;
-import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,9 +22,6 @@ public class HistorialOC extends javax.swing.JFrame {
 
     public HistorialOC() {
         initComponents();
-        jPanel1.setBackground(new Color(0, 0, 0, 30));
-        jPanel1.revalidate();
-        jPanel1.repaint();
     }
 
     /**
@@ -38,27 +34,17 @@ public class HistorialOC extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane22 = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
         jPanel46 = new javax.swing.JPanel();
         jScrollPane22 = new javax.swing.JScrollPane();
         tblHistorialOC3 = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         btnVolverMenu9 = new javax.swing.JButton();
         btnCrearOT = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        b_Titulo = new javax.swing.JLabel();
-        lblCodigoMenu = new javax.swing.JLabel();
         lblFondoHistorialOC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 685));
-        setMinimumSize(new java.awt.Dimension(1280, 685));
-        setPreferredSize(new java.awt.Dimension(1280, 685));
+        setPreferredSize(new java.awt.Dimension(1280, 686));
         setResizable(false);
-
-        jLayeredPane22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel46.setBackground(new java.awt.Color(0, 0, 0));
 
         tblHistorialOC3 = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int celIndex){
@@ -95,7 +81,7 @@ public class HistorialOC extends javax.swing.JFrame {
         });
 
         btnCrearOT.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnCrearOT.setText("Crear Nota de Venta");
+        btnCrearOT.setText("Crear orden de Trabajo");
         btnCrearOT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearOTActionPerformed(evt);
@@ -121,7 +107,7 @@ public class HistorialOC extends javax.swing.JFrame {
             .addGroup(jPanel46Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addGroup(jPanel46Layout.createSequentialGroup()
                         .addComponent(jButton11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,59 +118,26 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/acima-logo-200p.png"))); // NOI18N
-
-        b_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        b_Titulo.setText("Historial de Ordenes de Compra");
-
-        lblCodigoMenu.setVisible(false);
-        lblCodigoMenu.setText("0");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(b_Titulo)
-                .addGap(83, 83, 83)
-                .addComponent(lblCodigoMenu)
-                .addContainerGap(229, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+        javax.swing.GroupLayout jLayeredPane22Layout = new javax.swing.GroupLayout(jLayeredPane22);
+        jLayeredPane22.setLayout(jLayeredPane22Layout);
+        jLayeredPane22Layout.setHorizontalGroup(
+            jLayeredPane22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblFondoHistorialOC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(b_Titulo)
-                            .addComponent(lblCodigoMenu))))
-                .addContainerGap(463, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(181, Short.MAX_VALUE)
-                    .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(24, 24, 24)))
+        jLayeredPane22Layout.setVerticalGroup(
+            jLayeredPane22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane22Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jPanel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addComponent(lblFondoHistorialOC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jLayeredPane22.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1240, 640));
-
-        lblFondoHistorialOC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
-        lblFondoHistorialOC.setMaximumSize(new java.awt.Dimension(1280, 685));
-        lblFondoHistorialOC.setMinimumSize(new java.awt.Dimension(1280, 685));
-        lblFondoHistorialOC.setPreferredSize(new java.awt.Dimension(1280, 685));
-        jLayeredPane22.add(lblFondoHistorialOC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLayeredPane22.setLayer(jPanel46, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane22.setLayer(lblFondoHistorialOC, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,14 +159,12 @@ public class HistorialOC extends javax.swing.JFrame {
         if (tblHistorialOC3.getSelectionModel().isSelectionEmpty() == true) {
             ConsultaMP consultar = new ConsultaMP();
             consultar.setVisible(true);
-            consultar.lblCodigo.setText(lblCodigoMenu.getText());
             this.dispose();
         } else {
             int row = tblHistorialOC3.getSelectedRow();
             TableModel historialModel = tblHistorialOC3.getModel();
             ConsultaMP consulta = new ConsultaMP();
             consulta.setVisible(true);
-            consulta.lblCodigo.setText(lblCodigoMenu.getText());
             consulta.txtOC.setText(historialModel.getValueAt(row, 2).toString());
             this.dispose();
         }
@@ -233,7 +184,6 @@ public class HistorialOC extends javax.swing.JFrame {
 
             CrearOT ot = new CrearOT();
             this.dispose();
-            ot.lblCodigo.setText(lblCodigoMenu.getText());
             ot.txtConsultarOC.setText(Integer.toString(seleccion));
             ot.setVisible(true);
 
@@ -278,16 +228,12 @@ public class HistorialOC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnCrearOT;
     private javax.swing.JButton btnVolverMenu9;
     private javax.swing.JButton jButton11;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane22;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JScrollPane jScrollPane22;
-    public javax.swing.JLabel lblCodigoMenu;
     private javax.swing.JLabel lblFondoHistorialOC;
     public javax.swing.JTable tblHistorialOC3;
     // End of variables declaration//GEN-END:variables
