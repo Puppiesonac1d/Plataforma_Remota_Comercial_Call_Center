@@ -572,7 +572,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
                 tblresultado.setModel(DbUtils.resultSetToTableModel(rs));
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error en comuna todas las comunas: " +ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } else {
             try {
@@ -583,7 +583,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
                         + " `Ciudad`, `Direccion`, `fechaIngreso`  AS 'Ingreso' FROM `cliente` join region on cliente.IDRegion = region.IDRegion \n"
                         + " join comuna on comuna.IDComuna = cliente.IDComuna join organizacion o on cliente.idOrganizacion = o.idOrganizacion \n"
                         + " join unidaddecompra on unidaddecompra.idunidadcompra=cliente.idunidadcompra\n"
-                        + "where comuna.NombreComuna = ? \n"
+                        + "where com.NombreComuna = ? \n"
                         + "group by cliente.idCliente";
                 String param = cboComuna4.getSelectedItem().toString();
                 PreparedStatement pst = cn.prepareStatement(query);
@@ -592,7 +592,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
                 tblresultado.setModel(DbUtils.resultSetToTableModel(rs));
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,"Error en comuna especifica: " +ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
     }//GEN-LAST:event_cboComuna4ItemStateChanged
