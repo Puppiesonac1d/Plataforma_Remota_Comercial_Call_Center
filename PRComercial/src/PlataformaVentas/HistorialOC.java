@@ -46,7 +46,7 @@ public class HistorialOC extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 686));
         setResizable(false);
 
-        tblHistorialOC3 = new javax.swing.JTable(){
+        tblHistorialOC = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int celIndex){
                 return false;
             }
@@ -107,7 +107,7 @@ public class HistorialOC extends javax.swing.JFrame {
             .addGroup(jPanel46Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                     .addGroup(jPanel46Layout.createSequentialGroup()
                         .addComponent(jButton11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,16 +156,16 @@ public class HistorialOC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        if (tblHistorialOC3.getSelectionModel().isSelectionEmpty() == true) {
-            ConsultaMP consultar = new ConsultaMP();
-            consultar.setVisible(true);
+        if (tblHistorialOC.getSelectionModel().isSelectionEmpty() == true) {
+            ConsultaMP consultaMP = new ConsultaMP();
+            consultaMP.setVisible(true);
             this.dispose();
         } else {
-            int row = tblHistorialOC3.getSelectedRow();
-            TableModel historialModel = tblHistorialOC3.getModel();
-            ConsultaMP consulta = new ConsultaMP();
-            consulta.setVisible(true);
-            consulta.txtOC.setText(historialModel.getValueAt(row, 2).toString());
+            int row = tblHistorialOC.getSelectedRow();
+            TableModel historialModel = tblHistorialOC.getModel();
+            ConsultaMP consultaMP = new ConsultaMP();
+            consultaMP.setVisible(true);
+            // txtOC.setText(historialModel.getValueAt(row, 2).toString());
             this.dispose();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -230,11 +230,26 @@ public class HistorialOC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearOT;
     private javax.swing.JButton btnVolverMenu9;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLayeredPane jLayeredPane19;
+    private javax.swing.JLayeredPane jLayeredPane20;
+    private javax.swing.JLayeredPane jLayeredPane21;
     private javax.swing.JLayeredPane jLayeredPane22;
+    private javax.swing.JPanel jPanel43;
+    private javax.swing.JPanel jPanel44;
+    private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
+    private javax.swing.JScrollPane jScrollPane19;
+    private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JLabel lblFondoHistorialOC;
+    private javax.swing.JTable tblHistorialOC;
+    private javax.swing.JTable tblHistorialOC1;
+    private javax.swing.JTable tblHistorialOC2;
     public javax.swing.JTable tblHistorialOC3;
     // End of variables declaration//GEN-END:variables
 }

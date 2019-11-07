@@ -1,22 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package PlataformaVentas;
-
-
-import clases.Conexion;
-import org.w3c.dom.Element;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 /**
  *
@@ -24,9 +11,9 @@ import org.xml.sax.InputSource;
  */
 public class ConsultaMP extends javax.swing.JFrame {
 
-    Conexion con = new Conexion();
-    Connection cn = con.conecta();
-
+    /**
+     * Creates new form ConsultaMP
+     */
     public ConsultaMP() {
         initComponents();
     }
@@ -677,154 +664,154 @@ public class ConsultaMP extends javax.swing.JFrame {
             System.out.println("Código de Respuesta : " + responseCode);
             StringBuffer response;
             try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
-                String inputLine;
-                response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
+                new InputStreamReader(con.getInputStream()))) {
+            String inputLine;
+            response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+        }
+        //print in String
+        // System.out.println(response.toString());
+        org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
+        //Aqui segun el TAG del XML va a poder obtener los elementos...
+        //Obedeciendo el orden del documento, los tags son los siguientes...
+
+        NodeList ordenes = doc.getElementsByTagName("Ordenes");
+        if (ordenes.getLength() > 0) {
+            Element err = (Element) ordenes.item(0);
+            lblFechaCreacionOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
+            lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
+            lblUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
+
+        } else {
+            // success
+        }
+
+        NodeList comprador = doc.getElementsByTagName("Comprador");
+        if (comprador.getLength() > 0) {
+            Element err = (Element) comprador.item(0);
+            lblRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
+            lblDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
+            lblNombreDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
+            lblTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+        } else {
+            // success
+        }
+
+        NodeList proveedor = doc.getElementsByTagName("Proveedor");
+        if (proveedor.getLength() > 0) {
+            Element err = (Element) proveedor.item(0);
+            lblProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+            lblDireccionEmpresa.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
+            lblRutEmpresa.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
+            lblNombreContacto.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+            lblFono.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+        } else {
+            // success
+        }
+
+        NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
+        if (detalleOrden.getLength() > 0) {
+            Element err = (Element) detalleOrden.item(0);
+            lblNombreOrdenCompra.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+            lblDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+            lblDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
+                + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+            lblMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
+            lblContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
+                + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
+                + err.getElementsByTagName("MailContacto").item(0).getTextContent());
+            lblFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
+            lblContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+            lblEmailEnvioFactura.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
+
+        } else {
+            // success
+        }
+        DefaultTableModel model = (DefaultTableModel) tblMP.getModel();
+        NodeList flowList = doc.getElementsByTagName("Item");
+        for (int i = 0; i < flowList.getLength(); i++) {
+            model.setRowCount(flowList.getLength());
+            tblMP.setModel(model);
+            NodeList childList = flowList.item(i).getChildNodes();
+            for (int j = 0; j < childList.getLength(); j++) {
+                Node childNode = childList.item(j);
+                if ("CodigoProducto".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 0);
                 }
-            }
-            //print in String
-            // System.out.println(response.toString());
-            org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
-            //Aqui segun el TAG del XML va a poder obtener los elementos...
-            //Obedeciendo el orden del documento, los tags son los siguientes...
-
-            NodeList ordenes = doc.getElementsByTagName("Ordenes");
-            if (ordenes.getLength() > 0) {
-                Element err = (Element) ordenes.item(0);
-                lblFechaCreacionOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
-                lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
-                lblUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
-
-            } else {
-                // success
-            }
-
-            NodeList comprador = doc.getElementsByTagName("Comprador");
-            if (comprador.getLength() > 0) {
-                Element err = (Element) comprador.item(0);
-                lblRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
-                lblDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
-                lblNombreDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
-                lblTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-            } else {
-                // success
-            }
-
-            NodeList proveedor = doc.getElementsByTagName("Proveedor");
-            if (proveedor.getLength() > 0) {
-                Element err = (Element) proveedor.item(0);
-                lblProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-                lblDireccionEmpresa.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
-                lblRutEmpresa.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
-                lblNombreContacto.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-                lblFono.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-            } else {
-                // success
-            }
-
-            NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
-            if (detalleOrden.getLength() > 0) {
-                Element err = (Element) detalleOrden.item(0);
-                lblNombreOrdenCompra.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-                lblDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-                lblDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-                lblMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
-                lblContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("MailContacto").item(0).getTextContent());
-                lblFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
-                lblContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-                lblEmailEnvioFactura.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
-
-            } else {
-                // success
-            }
-            DefaultTableModel model = (DefaultTableModel) tblMP.getModel();
-            NodeList flowList = doc.getElementsByTagName("Item");
-            for (int i = 0; i < flowList.getLength(); i++) {
-                model.setRowCount(flowList.getLength());
-                tblMP.setModel(model);
-                NodeList childList = flowList.item(i).getChildNodes();
-                for (int j = 0; j < childList.getLength(); j++) {
-                    Node childNode = childList.item(j);
-                    if ("CodigoProducto".equals(childNode.getNodeName())) {
+                if (null != childNode.getNodeName()) {
+                    switch (childNode.getNodeName()) {
+                        case "Producto":
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 0);
-                    }
-                    if (null != childNode.getNodeName()) {
-                        switch (childNode.getNodeName()) {
-                            case "Producto":
-                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                        .trim(), i, 1);
-                                break;
-                            case "EspecificacionComprador":
-                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                        .trim(), i, 1);
-                                break;
-                        }
-                    }
-                    if ("Cantidad".equals(childNode.getNodeName())) {
+                            .trim(), i, 1);
+                        break;
+                        case "EspecificacionComprador":
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 2);
-                    }
-                    if ("EspecificacionComprador".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 3);
-                    }
-                    if ("EspecificacionProveedor".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 4);
-                    }
-                    if ("Moneda".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 5);
-                    }
-                    if ("PrecioNeto".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 6);
-                    }
-                    if ("TotalDescuentos".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 7);
-                    }
-                    if ("TotalCargos".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 8);
-                    }
-                    if ("Total".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 9);
+                            .trim(), i, 1);
+                        break;
                     }
                 }
+                if ("Cantidad".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 2);
+                }
+                if ("EspecificacionComprador".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 3);
+                }
+                if ("EspecificacionProveedor".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 4);
+                }
+                if ("Moneda".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 5);
+                }
+                if ("PrecioNeto".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 6);
+                }
+                if ("TotalDescuentos".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 7);
+                }
+                if ("TotalCargos".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 8);
+                }
+                if ("Total".equals(childNode.getNodeName())) {
+                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                        .trim(), i, 9);
+                }
             }
+        }
 
-            NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
-            if (detalleMontos.getLength() > 0) {
-                Element err = (Element) detalleMontos.item(0);
-                lblTotalNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
-                lblTotalDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
-                lblTotalCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-                //setSubTotal(Integer.parseInt(getTotalNeto()) -Integer.parseInt(getTotalDcto()));
-                lblIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
-                lblImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
-                lblTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+        NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
+        if (detalleMontos.getLength() > 0) {
+            Element err = (Element) detalleMontos.item(0);
+            lblTotalNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+            lblTotalDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+            lblTotalCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+            //setSubTotal(Integer.parseInt(getTotalNeto()) -Integer.parseInt(getTotalDcto()));
+            lblIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+            lblImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+            lblTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
 
-            } else {
-                // success
-            }
-            NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
-            if (descripcion.getLength() > 0) {
-                Element err = (Element) descripcion.item(0);
-                lblDescripcionOrden.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
-            } else {
-                // success
-            }
-            System.out.println("La consulta fue realizada con éxito");
+        } else {
+            // success
+        }
+        NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
+        if (descripcion.getLength() > 0) {
+            Element err = (Element) descripcion.item(0);
+            lblDescripcionOrden.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
+        } else {
+            // success
+        }
+        System.out.println("La consulta fue realizada con éxito");
 
         } catch (Exception e) {
             System.out.println(e);
@@ -833,25 +820,22 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnGuardarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOrdenActionPerformed
         try {
-            if (!"Aceptada".equals(lblEstadoOrdenCompra.getText())) {
-                JOptionPane.showMessageDialog(null, "La orden de compra no se encuentra aceptada");
+            if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
             } else {
-
-                if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
-                } else {
-                    String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
-                    String validar = msgConfirmacion;
+                String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
+                String validar = msgConfirmacion;
+                if (validar.equals(codigoAutorizacionMenuTag.getText()) && lblEstadoOrdenCompra.getText().equals("Aceptada")) {
                     int selectedRows = tblMP.getRowCount();
                     String query = "INSERT INTO `acimabasededatos`.`ordendecompra` "
-                            + "(`codigoOrdenCompra`,`nombre_proveedor`, "
-                            + "`rutCliente`, `DireccionDemandante`, "
-                            + "`Telefono`, `Demandante`,"
-                            + " `UnidadCompra`, `fechaEnvioOC`, `codigoEstado`, `nombreOrdenCompra`, "
-                            + "`fechaEntregaProductos`, `direccionesDespacho`, `direccionEnvioFactura`,"
-                            + "`idtipoDespacho`, `contactoPago`, `idformaPago`, `contactoOC`,`emailEnvioFactura`,`moneda`,`neto`,"
-                            + " `dcto`, `subtotal`,`iva`, `impuestoEspecifico`, `total`,`observacionDespacho`,`codigo_autorizacion`) "
-                            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "(`codigoOrdenCompra`,`nombre_proveedor`, "
+                    + "`rutCliente`, `DireccionDemandante`, "
+                    + "`Telefono`, `Demandante`,"
+                    + " `UnidadCompra`, `fechaEnvioOC`, `codigoEstado`, `nombreOrdenCompra`, "
+                    + "`fechaEntregaProductos`, `direccionesDespacho`, `direccionEnvioFactura`,"
+                    + "`idtipoDespacho`, `contactoPago`, `idformaPago`, `contactoOC`,`emailEnvioFactura`,`moneda`,`neto`,"
+                    + " `dcto`, `subtotal`,`iva`, `impuestoEspecifico`, `total`,`observacionDespacho`,`codigo_autorizacion`) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pst;
                     pst = cn.prepareStatement(query);
                     pst.setString(1, txtOC.getText().toUpperCase());
@@ -924,16 +908,24 @@ public class ConsultaMP extends javax.swing.JFrame {
                     lblIva.setText("");
                     lblImpuestoEspecifico.setText("");
                     lblTotal.setText("");
+                } else if (validar == null ? codigoAutorizacionMenuTag.getText() != null : !validar.equals(codigoAutorizacionMenuTag.getText())) {
+                    JOptionPane.showMessageDialog(null, "Código No Válido");
 
+                } else if (lblEstadoOrdenCompra.getText() != "Aceptada") {
+                    JOptionPane.showMessageDialog(null, "La orden de compra no se encuentra aceptada");
                 }
             }
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error " + ex);
+            Logger.getLogger(Login.class
+                .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarOrdenActionPerformed
 
     private void btnVolver7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver7ActionPerformed
-        this.dispose();
+        consultaMPFrame.dispose();
+        this.setTitle("Menú Principal");
+        menuFrame.setVisible(true);
     }//GEN-LAST:event_btnVolver7ActionPerformed
 
     /**
@@ -950,21 +942,16 @@ public class ConsultaMP extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1053,7 +1040,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JPanel panelConsultaMP;
     private javax.swing.JLayeredPane panelConsultaMPFrame;
     private javax.swing.JTable tblMP;
-    public javax.swing.JTextField txtOC;
+    private javax.swing.JTextField txtOC;
     private javax.swing.JTextField txtObservacionDespacho;
     // End of variables declaration//GEN-END:variables
 }
