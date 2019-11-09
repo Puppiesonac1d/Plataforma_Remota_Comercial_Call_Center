@@ -28,6 +28,9 @@ public class CrearOT extends javax.swing.JFrame {
 
     public CrearOT() {
         initComponents();
+        jPanel1.setBackground(new Color(0, 0, 0, 30));
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
 
     /**
@@ -75,7 +78,9 @@ public class CrearOT extends javax.swing.JFrame {
         btnBorrarProducto1 = new javax.swing.JButton();
         btnAgregarProdOT = new javax.swing.JButton();
         jLabel65 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLayeredPane4 = new javax.swing.JLayeredPane();
+        jPanel1 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         btnVolver4 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -156,6 +161,9 @@ public class CrearOT extends javax.swing.JFrame {
         txtConsultarOC = new javax.swing.JTextField();
         btnConsultarOC = new javax.swing.JButton();
         jLabel56 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        b_Titulo = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         lblFondoOrdenTrabajo = new javax.swing.JLabel();
 
         AgregarProductoOT.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -552,8 +560,10 @@ public class CrearOT extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLayeredPane4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jPanel33.setBackground(new Color(0, 0, 0, 0));
-        jPanel33.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel33.setBackground(new java.awt.Color(51, 51, 51));
 
         btnVolver4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnVolver4.setText("Volver");
@@ -563,12 +573,14 @@ public class CrearOT extends javax.swing.JFrame {
             }
         });
 
+        jTabbedPane3.setBackground(new java.awt.Color(51, 51, 51));
         jTabbedPane3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
-        jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jPanel12.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel12.setBackground(new java.awt.Color(51, 51, 51));
 
         jPanel21.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -624,7 +636,7 @@ public class CrearOT extends javax.swing.JFrame {
         });
 
         btnGenerarOrden1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnGenerarOrden1.setText("Guardar Orden de Compra");
+        btnGenerarOrden1.setText("Guardar Nota de Venta");
         btnGenerarOrden1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarOrden1ActionPerformed(evt);
@@ -995,6 +1007,7 @@ public class CrearOT extends javax.swing.JFrame {
         jPanel38.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         rdbOCMP.setSelected(true);
+        buttonGroup1.add(rdbOCMP);
         rdbOCMP.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rdbOCMP.setText("Orden para Mercado Público");
         rdbOCMP.addItemListener(new java.awt.event.ItemListener() {
@@ -1008,6 +1021,7 @@ public class CrearOT extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rdbOCOtro);
         rdbOCOtro.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rdbOCOtro.setText("Orden para otras entidades");
         rdbOCOtro.addItemListener(new java.awt.event.ItemListener() {
@@ -1095,7 +1109,7 @@ public class CrearOT extends javax.swing.JFrame {
 
         jScrollPane7.setViewportView(jPanel12);
 
-        jTabbedPane3.addTab("Generar orden de trabajo", jScrollPane7);
+        jTabbedPane3.addTab("Generar Nota de Venta", jScrollPane7);
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -1116,36 +1130,67 @@ public class CrearOT extends javax.swing.JFrame {
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVolver4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(459, Short.MAX_VALUE))
             .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
                     .addGap(46, 46, 46)
-                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
-        lblFondoOrdenTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/acima-logo-200p.png"))); // NOI18N
 
-        javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
-        jLayeredPane4.setLayout(jLayeredPane4Layout);
-        jLayeredPane4Layout.setHorizontalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblFondoOrdenTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
+        b_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        b_Titulo.setText("Crear Nota de Venta");
+
+        lblCodigo.setVisible(false);
+        lblCodigo.setText("0");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
-        );
-        jLayeredPane4Layout.setVerticalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblFondoOrdenTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(259, 259, 259)
+                        .addComponent(b_Titulo)
+                        .addGap(59, 59, 59)
+                        .addComponent(lblCodigo)
+                        .addGap(0, 351, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jLayeredPane4.setLayer(jPanel33, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(lblFondoOrdenTrabajo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(b_Titulo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblCodigo)
+                        .addGap(56, 56, 56)))
+                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jLayeredPane4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1270, 670));
+
+        lblFondoOrdenTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFondoOrdenTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
+        lblFondoOrdenTrabajo.setMaximumSize(new java.awt.Dimension(1280, 685));
+        lblFondoOrdenTrabajo.setMinimumSize(new java.awt.Dimension(1280, 685));
+        lblFondoOrdenTrabajo.setPreferredSize(new java.awt.Dimension(1280, 685));
+        jLayeredPane4.add(lblFondoOrdenTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1286, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1254,7 +1299,7 @@ public class CrearOT extends javax.swing.JFrame {
             } else {
                 String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
                 String validar = msgConfirmacion;
-                if (validar.equals("1")) {
+                if (validar.equals(lblCodigo.getText())) {
                     if (rdbOCMP.isSelected()) {
                         try {
                             String query = "INSERT INTO `acimabasededatos`.`ordentrabajo` (`idOrden`,`codigoOrdenCompra`,`nombre_proveedor` ,`rutCliente`,"
@@ -1311,8 +1356,8 @@ public class CrearOT extends javax.swing.JFrame {
                                 int upDetalle = pstDetalle.executeUpdate();
 
                             }
-                            JOptionPane.showMessageDialog(null, "Se ha ingresado la orden de trabajo para la Orden de Compra");
-                            JOptionPane.showMessageDialog(null, "Orden de Trabajo almacenada");
+                            JOptionPane.showMessageDialog(null, "Se ha ingresado la nota de venta para la Orden de Compra");
+                            JOptionPane.showMessageDialog(null, "Nota de Venta almacenada");
                         } catch (SQLException | NumberFormatException | HeadlessException ex) {
                             JOptionPane.showMessageDialog(null, ex);
                         }
@@ -1370,9 +1415,9 @@ public class CrearOT extends javax.swing.JFrame {
                                 pstDetalle.setString(6, (tblProductosOrdenCompra.getValueAt(i, 6).toString()));
                                 pstDetalle.setString(7, (tblProductosOrdenCompra.getValueAt(i, 7).toString()));
                                 int upDetalle = pstDetalle.executeUpdate();
-                                JOptionPane.showMessageDialog(null, "Se ha ingresado la orden de trabajo para la Orden de Compra");
+                                JOptionPane.showMessageDialog(null, "Se ha ingresado la Nota de Venta para la Orden de Compra");
                             }
-                            JOptionPane.showMessageDialog(null, "Orden de Trabajo almacenada");
+                            JOptionPane.showMessageDialog(null, "Nota de Venta almacenada");
                         } catch (SQLException | NumberFormatException | HeadlessException ex) {
                             JOptionPane.showMessageDialog(null, ex);
                         }
@@ -2066,6 +2111,7 @@ public class CrearOT extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame AgregarProductoOT;
+    private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnAddProductoOT;
     private javax.swing.JButton btnAgregarProdOT;
     private javax.swing.JButton btnBorrarProducto;
@@ -2075,6 +2121,8 @@ public class CrearOT extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultarOC;
     private javax.swing.JButton btnGenerarOrden1;
     private javax.swing.JButton btnVolver4;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -2117,6 +2165,7 @@ public class CrearOT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel99;
     private javax.swing.JLayeredPane jLayeredPane13;
     private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
@@ -2138,6 +2187,7 @@ public class CrearOT extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane17;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane9;
+    public javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigoOCTitulo;
     private javax.swing.JLabel lblFondoOrdenTrabajo;
     private javax.swing.JLabel lblNombreProducto;

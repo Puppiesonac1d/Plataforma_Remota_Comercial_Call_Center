@@ -1,9 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PlataformaVentas;
+
+import clases.Conexion;
+import java.awt.Color;
+import org.w3c.dom.Element;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 /**
  *
@@ -11,11 +24,15 @@ package PlataformaVentas;
  */
 public class ConsultaMP extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaMP
-     */
+    Conexion con = new Conexion();
+    Connection cn = con.conecta();
+
     public ConsultaMP() {
         initComponents();
+        jPanel3.setBackground(new Color(0, 0, 0, 30));
+        jPanel2.revalidate();
+        jPanel3.repaint();
+
     }
 
     /**
@@ -28,6 +45,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private void initComponents() {
 
         panelConsultaMPFrame = new javax.swing.JLayeredPane();
+        jPanel3 = new javax.swing.JPanel();
         panelConsultaMP = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtOC = new javax.swing.JTextField();
@@ -104,9 +122,14 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         lblEstadoOrdenCompra = new javax.swing.JLabel();
         jLabel167 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        b_Titulo = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         lblFondoConsultaMP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelConsultaMPFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelConsultaMP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -268,7 +291,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImpuestoEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 908, Short.MAX_VALUE))
+                .addGap(121, 1517, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,15 +598,15 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(545, 545, 545)
-                                .addComponent(btnVolver7))
+                                .addGap(514, 514, 514)
+                                .addComponent(btnVolver7)
+                                .addGap(34, 34, 34))
                             .addGroup(panelConsultaMPLayout.createSequentialGroup()
                                 .addComponent(jLabel167)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(3, 3, 3)))
-                .addGap(3, 3, 3))
+                        .addContainerGap())))
         );
         panelConsultaMPLayout.setVerticalGroup(
             panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,47 +614,80 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVolver7)
-                            .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))))
+                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelConsultaMPLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConsultaOC)
                     .addComponent(jLabel167))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(74, 74, 74))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/acima-logo-200p.png"))); // NOI18N
+
+        b_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        b_Titulo.setText("Consultar Mercado Público");
+
+        lblCodigo.setVisible(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(181, 181, 181)
+                .addComponent(b_Titulo)
+                .addGap(69, 69, 69)
+                .addComponent(lblCodigo)
+                .addContainerGap(303, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelConsultaMP, javax.swing.GroupLayout.PREFERRED_SIZE, 1235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(13, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(b_Titulo))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(lblCodigo)))
+                .addContainerGap(546, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(130, Short.MAX_VALUE)
+                    .addComponent(panelConsultaMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        panelConsultaMPFrame.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 670));
 
         lblFondoConsultaMP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout panelConsultaMPFrameLayout = new javax.swing.GroupLayout(panelConsultaMPFrame);
-        panelConsultaMPFrame.setLayout(panelConsultaMPFrameLayout);
-        panelConsultaMPFrameLayout.setHorizontalGroup(
-            panelConsultaMPFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelConsultaMPFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelConsultaMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(lblFondoConsultaMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        panelConsultaMPFrameLayout.setVerticalGroup(
-            panelConsultaMPFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblFondoConsultaMP, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultaMPFrameLayout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(panelConsultaMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelConsultaMPFrame.setLayer(panelConsultaMP, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelConsultaMPFrame.setLayer(lblFondoConsultaMP, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lblFondoConsultaMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
+        lblFondoConsultaMP.setMaximumSize(new java.awt.Dimension(1280, 685));
+        lblFondoConsultaMP.setMinimumSize(new java.awt.Dimension(1280, 685));
+        lblFondoConsultaMP.setPreferredSize(new java.awt.Dimension(1280, 685));
+        panelConsultaMPFrame.add(lblFondoConsultaMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -664,154 +720,154 @@ public class ConsultaMP extends javax.swing.JFrame {
             System.out.println("Código de Respuesta : " + responseCode);
             StringBuffer response;
             try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()))) {
-            String inputLine;
-            response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-        }
-        //print in String
-        // System.out.println(response.toString());
-        org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
-        //Aqui segun el TAG del XML va a poder obtener los elementos...
-        //Obedeciendo el orden del documento, los tags son los siguientes...
-
-        NodeList ordenes = doc.getElementsByTagName("Ordenes");
-        if (ordenes.getLength() > 0) {
-            Element err = (Element) ordenes.item(0);
-            lblFechaCreacionOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
-            lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
-            lblUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
-
-        } else {
-            // success
-        }
-
-        NodeList comprador = doc.getElementsByTagName("Comprador");
-        if (comprador.getLength() > 0) {
-            Element err = (Element) comprador.item(0);
-            lblRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
-            lblDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
-            lblNombreDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
-            lblTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-        } else {
-            // success
-        }
-
-        NodeList proveedor = doc.getElementsByTagName("Proveedor");
-        if (proveedor.getLength() > 0) {
-            Element err = (Element) proveedor.item(0);
-            lblProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-            lblDireccionEmpresa.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
-            lblRutEmpresa.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
-            lblNombreContacto.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-            lblFono.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-        } else {
-            // success
-        }
-
-        NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
-        if (detalleOrden.getLength() > 0) {
-            Element err = (Element) detalleOrden.item(0);
-            lblNombreOrdenCompra.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-            lblDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-            lblDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
-                + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-            lblMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
-            lblContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
-                + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
-                + err.getElementsByTagName("MailContacto").item(0).getTextContent());
-            lblFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
-            lblContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-            lblEmailEnvioFactura.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
-
-        } else {
-            // success
-        }
-        DefaultTableModel model = (DefaultTableModel) tblMP.getModel();
-        NodeList flowList = doc.getElementsByTagName("Item");
-        for (int i = 0; i < flowList.getLength(); i++) {
-            model.setRowCount(flowList.getLength());
-            tblMP.setModel(model);
-            NodeList childList = flowList.item(i).getChildNodes();
-            for (int j = 0; j < childList.getLength(); j++) {
-                Node childNode = childList.item(j);
-                if ("CodigoProducto".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 0);
+                    new InputStreamReader(con.getInputStream()))) {
+                String inputLine;
+                response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
                 }
-                if (null != childNode.getNodeName()) {
-                    switch (childNode.getNodeName()) {
-                        case "Producto":
+            }
+            //print in String
+            // System.out.println(response.toString());
+            org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
+            //Aqui segun el TAG del XML va a poder obtener los elementos...
+            //Obedeciendo el orden del documento, los tags son los siguientes...
+
+            NodeList ordenes = doc.getElementsByTagName("Ordenes");
+            if (ordenes.getLength() > 0) {
+                Element err = (Element) ordenes.item(0);
+                lblFechaCreacionOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
+                lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
+                lblUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
+
+            } else {
+                // success
+            }
+
+            NodeList comprador = doc.getElementsByTagName("Comprador");
+            if (comprador.getLength() > 0) {
+                Element err = (Element) comprador.item(0);
+                lblRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
+                lblDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
+                lblNombreDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
+                lblTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+            } else {
+                // success
+            }
+
+            NodeList proveedor = doc.getElementsByTagName("Proveedor");
+            if (proveedor.getLength() > 0) {
+                Element err = (Element) proveedor.item(0);
+                lblProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                lblDireccionEmpresa.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
+                lblRutEmpresa.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
+                lblNombreContacto.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                lblFono.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+            } else {
+                // success
+            }
+
+            NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
+            if (detalleOrden.getLength() > 0) {
+                Element err = (Element) detalleOrden.item(0);
+                lblNombreOrdenCompra.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                lblDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                lblDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
+                        + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                lblMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
+                lblContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
+                        + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
+                        + err.getElementsByTagName("MailContacto").item(0).getTextContent());
+                lblFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
+                lblContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                lblEmailEnvioFactura.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
+
+            } else {
+                // success
+            }
+            DefaultTableModel model = (DefaultTableModel) tblMP.getModel();
+            NodeList flowList = doc.getElementsByTagName("Item");
+            for (int i = 0; i < flowList.getLength(); i++) {
+                model.setRowCount(flowList.getLength());
+                tblMP.setModel(model);
+                NodeList childList = flowList.item(i).getChildNodes();
+                for (int j = 0; j < childList.getLength(); j++) {
+                    Node childNode = childList.item(j);
+                    if ("CodigoProducto".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                            .trim(), i, 1);
-                        break;
-                        case "EspecificacionComprador":
+                                .trim(), i, 0);
+                    }
+                    if (null != childNode.getNodeName()) {
+                        switch (childNode.getNodeName()) {
+                            case "Producto":
+                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                        .trim(), i, 1);
+                                break;
+                            case "EspecificacionComprador":
+                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                        .trim(), i, 1);
+                                break;
+                        }
+                    }
+                    if ("Cantidad".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                            .trim(), i, 1);
-                        break;
+                                .trim(), i, 2);
+                    }
+                    if ("EspecificacionComprador".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 3);
+                    }
+                    if ("EspecificacionProveedor".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 4);
+                    }
+                    if ("Moneda".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 5);
+                    }
+                    if ("PrecioNeto".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 6);
+                    }
+                    if ("TotalDescuentos".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 7);
+                    }
+                    if ("TotalCargos".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 8);
+                    }
+                    if ("Total".equals(childNode.getNodeName())) {
+                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
+                                .trim(), i, 9);
                     }
                 }
-                if ("Cantidad".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 2);
-                }
-                if ("EspecificacionComprador".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 3);
-                }
-                if ("EspecificacionProveedor".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 4);
-                }
-                if ("Moneda".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 5);
-                }
-                if ("PrecioNeto".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 6);
-                }
-                if ("TotalDescuentos".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 7);
-                }
-                if ("TotalCargos".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 8);
-                }
-                if ("Total".equals(childNode.getNodeName())) {
-                    tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                        .trim(), i, 9);
-                }
             }
-        }
 
-        NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
-        if (detalleMontos.getLength() > 0) {
-            Element err = (Element) detalleMontos.item(0);
-            lblTotalNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
-            lblTotalDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
-            lblTotalCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-            //setSubTotal(Integer.parseInt(getTotalNeto()) -Integer.parseInt(getTotalDcto()));
-            lblIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
-            lblImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
-            lblTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+            NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
+            if (detalleMontos.getLength() > 0) {
+                Element err = (Element) detalleMontos.item(0);
+                lblTotalNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                lblTotalDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                lblTotalCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                //setSubTotal(Integer.parseInt(getTotalNeto()) -Integer.parseInt(getTotalDcto()));
+                lblIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                lblImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                lblTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
 
-        } else {
-            // success
-        }
-        NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
-        if (descripcion.getLength() > 0) {
-            Element err = (Element) descripcion.item(0);
-            lblDescripcionOrden.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
-        } else {
-            // success
-        }
-        System.out.println("La consulta fue realizada con éxito");
+            } else {
+                // success
+            }
+            NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
+            if (descripcion.getLength() > 0) {
+                Element err = (Element) descripcion.item(0);
+                lblDescripcionOrden.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
+            } else {
+                // success
+            }
+            System.out.println("La consulta fue realizada con éxito");
 
         } catch (Exception e) {
             System.out.println(e);
@@ -820,112 +876,107 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnGuardarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOrdenActionPerformed
         try {
-            if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
+            if (!"Aceptada".equals(lblEstadoOrdenCompra.getText())) {
+                JOptionPane.showMessageDialog(null, "La orden de compra no se encuentra aceptada");
             } else {
-                String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
-                String validar = msgConfirmacion;
-                if (validar.equals(codigoAutorizacionMenuTag.getText()) && lblEstadoOrdenCompra.getText().equals("Aceptada")) {
-                    int selectedRows = tblMP.getRowCount();
-                    String query = "INSERT INTO `acimabasededatos`.`ordendecompra` "
-                    + "(`codigoOrdenCompra`,`nombre_proveedor`, "
-                    + "`rutCliente`, `DireccionDemandante`, "
-                    + "`Telefono`, `Demandante`,"
-                    + " `UnidadCompra`, `fechaEnvioOC`, `codigoEstado`, `nombreOrdenCompra`, "
-                    + "`fechaEntregaProductos`, `direccionesDespacho`, `direccionEnvioFactura`,"
-                    + "`idtipoDespacho`, `contactoPago`, `idformaPago`, `contactoOC`,`emailEnvioFactura`,`moneda`,`neto`,"
-                    + " `dcto`, `subtotal`,`iva`, `impuestoEspecifico`, `total`,`observacionDespacho`,`codigo_autorizacion`) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    PreparedStatement pst;
-                    pst = cn.prepareStatement(query);
-                    pst.setString(1, txtOC.getText().toUpperCase());
-                    pst.setString(2, lblProveedor.getText());
-                    pst.setString(3, lblRutComprador.getText());
-                    pst.setString(4, lblDireccionDemandante.getText());
-                    pst.setString(5, lblTelefonoDemandante.getText());
-                    pst.setString(6, lblNombreDemandante.getText());
-                    pst.setString(7, lblUnidadCompra.getText());
-                    pst.setString(8, lblFechaCreacionOC.getText());
-                    pst.setString(9, lblEstadoOrdenCompra.getText());
-                    pst.setString(10, lblNombreOrdenCompra.getText());
-                    pst.setString(11, lblFechaEntregaProducto.getText());
-                    pst.setString(12, lblDireccionDespacho.getText());
-                    pst.setString(13, lblDireccionEnvioFactura.getText());
-                    pst.setString(14, lblMetodoDespacho.getText());
-                    pst.setString(15, lblContactoPago.getText());
-                    pst.setString(16, lblFormaPago.getText());
-                    pst.setString(17, lblContactoOC.getText());
-                    pst.setString(18, lblEmailEnvioFactura.getText());
-                    pst.setString(19, (tblMP.getValueAt(0, 5).toString()));
-                    pst.setString(20, lblTotalNeto.getText());
-                    pst.setString(21, lblTotalDcto.getText());
-                    pst.setString(22, lblSubTotal.getText());
-                    pst.setString(23, lblIva.getText());
-                    pst.setString(24, lblImpuestoEspecifico.getText());
-                    pst.setString(25, lblTotal.getText());
-                    pst.setString(26, txtObservacionDespacho.getText());
-                    pst.setInt(27, Integer.parseInt(validar));
-                    int up = pst.executeUpdate();
-                    for (int i = 0; i < selectedRows; i++) {
-                        String sub = tblMP.getValueAt(i, 1).toString();
-                        sub = sub.substring(sub.indexOf("(") + 1);
-                        sub = sub.substring(0, sub.indexOf(")"));
-                        System.out.println(sub);
-                        String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordencompra` (`codigoOrdenCompra`,`codigoProducto`,`nombreProducto`,`cantidad`,`precioUnitario`,`descuento`,`cargos`,`valorTotal`) VALUES(?,?,?,?,?,?,?,?);";
-                        PreparedStatement pstDetalle = cn.prepareStatement(queryDetalle);
-                        pstDetalle.setString(1, txtOC.getText().toUpperCase());
-                        pstDetalle.setString(2, sub);
-                        pstDetalle.setString(3, (tblMP.getValueAt(i, 1).toString()));
-                        pstDetalle.setString(4, (tblMP.getValueAt(i, 2).toString()));
-                        pstDetalle.setString(5, (tblMP.getValueAt(i, 6).toString()));
-                        pstDetalle.setString(6, (tblMP.getValueAt(i, 7).toString()));
-                        pstDetalle.setString(7, (tblMP.getValueAt(i, 8).toString()));
-                        pstDetalle.setString(8, (tblMP.getValueAt(i, 9).toString()));
-                        int upDetalle = pstDetalle.executeUpdate();
+                if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
+                } else {
+                    String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
+                    String validar = msgConfirmacion;
+                    if (validar.equals(lblCodigo.getText())) {
+                        int selectedRows = tblMP.getRowCount();
+                        String query = "INSERT INTO `acimabasededatos`.`ordendecompra` "
+                                + "(`codigoOrdenCompra`,`nombre_proveedor`, "
+                                + "`rutCliente`, `DireccionDemandante`, "
+                                + "`Telefono`, `Demandante`,"
+                                + " `UnidadCompra`, `fechaEnvioOC`, `codigoEstado`, `nombreOrdenCompra`, "
+                                + "`fechaEntregaProductos`, `direccionesDespacho`, `direccionEnvioFactura`,"
+                                + "`idtipoDespacho`, `contactoPago`, `idformaPago`, `contactoOC`,`emailEnvioFactura`,`moneda`,`neto`,"
+                                + " `dcto`, `subtotal`,`iva`, `impuestoEspecifico`, `total`,`observacionDespacho`,`codigo_autorizacion`) "
+                                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        PreparedStatement pst;
+                        pst = cn.prepareStatement(query);
+                        pst.setString(1, txtOC.getText().toUpperCase());
+                        pst.setString(2, lblProveedor.getText());
+                        pst.setString(3, lblRutComprador.getText());
+                        pst.setString(4, lblDireccionDemandante.getText());
+                        pst.setString(5, lblTelefonoDemandante.getText());
+                        pst.setString(6, lblNombreDemandante.getText());
+                        pst.setString(7, lblUnidadCompra.getText());
+                        pst.setString(8, lblFechaCreacionOC.getText());
+                        pst.setString(9, lblEstadoOrdenCompra.getText());
+                        pst.setString(10, lblNombreOrdenCompra.getText());
+                        pst.setString(11, lblFechaEntregaProducto.getText());
+                        pst.setString(12, lblDireccionDespacho.getText());
+                        pst.setString(13, lblDireccionEnvioFactura.getText());
+                        pst.setString(14, lblMetodoDespacho.getText());
+                        pst.setString(15, lblContactoPago.getText());
+                        pst.setString(16, lblFormaPago.getText());
+                        pst.setString(17, lblContactoOC.getText());
+                        pst.setString(18, lblEmailEnvioFactura.getText());
+                        pst.setString(19, (tblMP.getValueAt(0, 5).toString()));
+                        pst.setString(20, lblTotalNeto.getText());
+                        pst.setString(21, lblTotalDcto.getText());
+                        pst.setString(22, lblSubTotal.getText());
+                        pst.setString(23, lblIva.getText());
+                        pst.setString(24, lblImpuestoEspecifico.getText());
+                        pst.setString(25, lblTotal.getText());
+                        pst.setString(26, txtObservacionDespacho.getText());
+                        pst.setInt(27, Integer.parseInt(validar));
+                        int up = pst.executeUpdate();
+                        for (int i = 0; i < selectedRows; i++) {
+                            String sub = tblMP.getValueAt(i, 1).toString();
+                            sub = sub.substring(sub.indexOf("(") + 1);
+                            sub = sub.substring(0, sub.indexOf(")"));
+                            System.out.println(sub);
+                            String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordencompra` (`codigoOrdenCompra`,`codigoProducto`,`nombreProducto`,`cantidad`,`precioUnitario`,`descuento`,`cargos`,`valorTotal`) VALUES(?,?,?,?,?,?,?,?);";
+                            PreparedStatement pstDetalle = cn.prepareStatement(queryDetalle);
+                            pstDetalle.setString(1, txtOC.getText().toUpperCase());
+                            pstDetalle.setString(2, sub);
+                            pstDetalle.setString(3, (tblMP.getValueAt(i, 1).toString()));
+                            pstDetalle.setString(4, (tblMP.getValueAt(i, 2).toString()));
+                            pstDetalle.setString(5, (tblMP.getValueAt(i, 6).toString()));
+                            pstDetalle.setString(6, (tblMP.getValueAt(i, 7).toString()));
+                            pstDetalle.setString(7, (tblMP.getValueAt(i, 8).toString()));
+                            pstDetalle.setString(8, (tblMP.getValueAt(i, 9).toString()));
+                            int upDetalle = pstDetalle.executeUpdate();
 
+                        }
+                        JOptionPane.showMessageDialog(null, "Se ha ingresado la siguiente orden de compra: " + txtOC.getText().toUpperCase());
+
+                        lblFechaCreacionOC.setText("");
+                        lblEstadoOrdenCompra.setText("");
+                        lblUnidadCompra.setText("");
+                        lblRutComprador.setText("");
+                        lblDireccionDemandante.setText("");
+                        lblNombreDemandante.setText("");
+                        lblTelefonoDemandante.setText("");
+                        lblNombreOrdenCompra.setText("");
+                        lblDireccionDespacho.setText("");
+                        lblDireccionEnvioFactura.setText("");
+                        lblMetodoDespacho.setText("");
+                        lblContactoPago.setText("");
+                        lblFormaPago.setText("");
+                        lblContactoOC.setText("");
+                        lblEmailEnvioFactura.setText("");
+                        lblTotalNeto.setText("");
+                        lblTotalDcto.setText("");
+                        lblTotalCargos.setText("");
+                        lblSubTotal.setText("");
+                        lblIva.setText("");
+                        lblImpuestoEspecifico.setText("");
+                        lblTotal.setText("");
                     }
-                    JOptionPane.showMessageDialog(null, "Se ha ingresado la siguiente orden de compra: " + txtOC.getText().toUpperCase());
-
-                    lblFechaCreacionOC.setText("");
-                    lblEstadoOrdenCompra.setText("");
-                    lblUnidadCompra.setText("");
-                    lblRutComprador.setText("");
-                    lblDireccionDemandante.setText("");
-                    lblNombreDemandante.setText("");
-                    lblTelefonoDemandante.setText("");
-                    lblNombreOrdenCompra.setText("");
-                    lblDireccionDespacho.setText("");
-                    lblDireccionEnvioFactura.setText("");
-                    lblMetodoDespacho.setText("");
-                    lblContactoPago.setText("");
-                    lblFormaPago.setText("");
-                    lblContactoOC.setText("");
-                    lblEmailEnvioFactura.setText("");
-                    lblTotalNeto.setText("");
-                    lblTotalDcto.setText("");
-                    lblTotalCargos.setText("");
-                    lblSubTotal.setText("");
-                    lblIva.setText("");
-                    lblImpuestoEspecifico.setText("");
-                    lblTotal.setText("");
-                } else if (validar == null ? codigoAutorizacionMenuTag.getText() != null : !validar.equals(codigoAutorizacionMenuTag.getText())) {
-                    JOptionPane.showMessageDialog(null, "Código No Válido");
-
-                } else if (lblEstadoOrdenCompra.getText() != "Aceptada") {
-                    JOptionPane.showMessageDialog(null, "La orden de compra no se encuentra aceptada");
                 }
             }
-
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class
-                .getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error " + ex);
         }
     }//GEN-LAST:event_btnGuardarOrdenActionPerformed
 
     private void btnVolver7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver7ActionPerformed
-        consultaMPFrame.dispose();
-        this.setTitle("Menú Principal");
-        menuFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolver7ActionPerformed
 
     /**
@@ -942,16 +993,21 @@ public class ConsultaMP extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaMP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaMP.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -964,6 +1020,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnConsultaOC;
     private javax.swing.JButton btnGuardarOrden;
     private javax.swing.JButton btnVolver7;
@@ -999,14 +1056,17 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblContactoOC;
     private javax.swing.JLabel lblContactoPago;
     private javax.swing.JLabel lblDescripcionOrden;
@@ -1040,7 +1100,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JPanel panelConsultaMP;
     private javax.swing.JLayeredPane panelConsultaMPFrame;
     private javax.swing.JTable tblMP;
-    private javax.swing.JTextField txtOC;
+    public javax.swing.JTextField txtOC;
     private javax.swing.JTextField txtObservacionDespacho;
     // End of variables declaration//GEN-END:variables
 }
