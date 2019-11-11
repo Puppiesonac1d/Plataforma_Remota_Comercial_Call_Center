@@ -1351,20 +1351,20 @@ public class BuscarProducto extends javax.swing.JFrame {
                     //Extraer valores de la Jtable al PDF
                     for (int rows = 0; rows < tblCotizacion.getRowCount(); rows++) {
                         for (int cols = 0; cols < tblCotizacion.getColumnCount(); cols++) {
-                            if (cols == 4) {
-                                pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion.getModel().getValueAt(rows, 4).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion.getModel().getValueAt(rows, 6).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion.getModel().getValueAt(rows, 8).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                                pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion.getModel().getValueAt(rows, 10).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-
-                            } else {
-                                pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, cols).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                            }
+                            pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, cols).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         }
                     }
+                //Metodo antiguo, porfavor no borrar
+                /* pdfTable.setTotalWidth(PageSize.A3.getWidth());
+                     pdfTable.setLockedWidth(true);
+                     PdfContentByte canvas = writer.getDirectContent();
+                     PdfTemplate template = canvas.createTemplate(
+                     pdfTable.getTotalWidth(), pdfTable.getTotalHeight());
+                     pdfTable.writeSelectedRows(0, -1, 0, pdfTable.getTotalHeight(), template);
+                     Image img = Image.getInstance(template);
+                     img.scaleToFit(PageSize.A3.getWidth(), PageSize.A3.getHeight());
+                     img.setAbsolutePosition(1, (PageSize.A3.getHeight() - pdfTable.getTotalHeight()) / 1.6f);
+                     */
                     doc.add(pdfTable);
                 } catch (DocumentException ex) {
 
