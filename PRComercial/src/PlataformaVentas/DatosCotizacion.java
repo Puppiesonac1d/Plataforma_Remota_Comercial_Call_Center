@@ -48,7 +48,7 @@ public class DatosCotizacion extends javax.swing.JFrame {
 
     public DatosCotizacion() {
         initComponents();
-     //   BtnGuardar.setEnabled(false);
+        //   BtnGuardar.setEnabled(false);
         //  btnImprimir.setEnabled(false);
         lblCiudad.setVisible(false);
         lblCorreoUsuario.setVisible(false);
@@ -294,7 +294,6 @@ public class DatosCotizacion extends javax.swing.JFrame {
         getContentPane().add(lblIDUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, -1, -1));
 
         txtID.setEditable(false);
-        txtID.setText("jTextField1");
         getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 0, 0));
 
         pack();
@@ -350,25 +349,24 @@ public class DatosCotizacion extends javax.swing.JFrame {
             String query = "Select producto.ID AS 'ID de Producto',\n"
                     + "conveniomarco.NombreConvenio AS 'Convenio Marco',\n"
                     + "producto.categoria AS 'Nombre Producto',\n"
-                    + "producto.SKU AS 'SKU',\n"
-                    + "cotizacion.Precio AS 'Precio',\n"
-                    + "cotizacion.Cantidad AS 'Cantidad',\n"
-                    + "cotizacion.Descuento AS 'Descuento',\n"
-                    + "cotizacion.Cargo AS 'Cargo'\n"
-                    + "FROM cotizacion JOIN producto ON cotizacion.ID = producto.ID\n"
+                    + "producto.SKU AS 'SKU',detallecotizacion.PrecioVenta AS 'Precio',\n"
+                    + "detallecotizacion.Cantidad AS 'Cantidad', detallecotizacion.Descuento AS 'Descuento',\n"
+                    + "detallecotizacion.Cargo AS 'Cargo'\n"
+                    + "FROM detallecotizacion JOIN producto ON detallecotizacion.IDProducto = producto.ID\n"
                     + "JOIN conveniomarco ON producto.CodigoConvenio = conveniomarco.codigoConvenio\n"
-                    + "WHERE cotizacion.IDCotizacion=?";
+                    + "WHERE detallecotizacion.IDCotizacion = ?";
             PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, ID);
+            pst.setInt(1, Integer.parseInt(ID));
             ResultSet rs = pst.executeQuery();
             tblRecolecionPDF.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema obteniendo datos de la tabla : " + e.getMessage());
         }
 
         //obtener datos para pdf
         try {
             String ID = txtID.getText();
+            System.out.println(txtID.getText());
             String query = "SELECT cliente.Nombre,\n"
                     + "usuario.NombreUsuario,\n"
                     + "usuario.CorreoUsuario,\n"
@@ -377,9 +375,9 @@ public class DatosCotizacion extends javax.swing.JFrame {
                     + "cliente.Ciudad\n"
                     + "from cotizacion JOIN usuario ON cotizacion.IDUsuario = usuario.IDUsuario\n"
                     + "JOIN cliente ON cotizacion.IDCliente = cliente.IDCliente\n"
-                    + "WHERE cotizacion.IDCotizacion = ? ";
+                    + "WHERE cotizacion.IDCotizacion = ?;";
             PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, ID);
+            pst.setInt(1, Integer.parseInt(ID));
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 lblNombre.setText(rs.getString("Nombre"));
@@ -390,6 +388,7 @@ public class DatosCotizacion extends javax.swing.JFrame {
                 lblCiudad.setText(rs.getString("Ciudad"));
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema obteniendo datos" + e.getMessage());
         }
 
         //Fecha
@@ -399,30 +398,31 @@ public class DatosCotizacion extends javax.swing.JFrame {
         //Crear PDF
         try {
             Document doc = new Document(PageSize.A4);
-            try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                Calendar calendar = Calendar.getInstance();
 
+            try {
                 Date sistHora = new Date();
                 String pmAm = "hh:mm a";
                 SimpleDateFormat format = new SimpleDateFormat(pmAm);
                 Calendar hoy = Calendar.getInstance();
                 String hora = (String.format(format.format(sistHora), hoy));
-                hora.replace(':', '-');
-
+                hora = hora.replace(":", "-");
                 PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + lblNombre.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Cotizacion_" + txtID.getText() + ".pdf"));
+
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(FormularioCotizacion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormularioCotizacion.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
+
             doc.open();
-            String input = "src\\plataformaVentas\\Imagenes\\acima-logo-200p.png";
+            Image logoAcima = null;
             try {
-                doc.add(Image.getInstance(input));
-            } catch (BadElementException ex) {
-                Logger.getLogger(FormularioCotizacion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(FormularioCotizacion.class.getName()).log(Level.SEVERE, null, ex);
+                logoAcima = Image.getInstance("src\\plataformaVentas\\Imagenes\\acima-logo-400p.png");
+            } catch (BadElementException | IOException ex) {
+                Logger.getLogger(DatosCotizacion.class.getName()).log(Level.SEVERE, null, ex);
             }
+            logoAcima.scaleAbsolute(210, 112);
+            doc.add(logoAcima);
+
             Paragraph header = new Paragraph("Para cualquier duda relacionada con la siguiente cotizacion, favor contactar a :", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
             doc.add(header);
             Paragraph header2 = new Paragraph("Ejecutivo de Cuenta: " + lblUsuario.getText() + " Correo:" + lblCorreoUsuario.getText() + " Telefono: +56 2 3210 7900", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
@@ -469,27 +469,23 @@ public class DatosCotizacion extends javax.swing.JFrame {
                 }
                 //Extraer valores de la Jtable al PDF
                 for (int rows = 0; rows < tblDetalle.getRowCount(); rows++) {
-                    for (int cols = 0; cols < tblDetalle.getColumnCount(); cols++) {
-                        pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, cols).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    }
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblDetalle.getModel().getValueAt(rows, 4).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblDetalle.getModel().getValueAt(rows, 6).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblDetalle.getModel().getValueAt(rows, 7).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(tblDetalle.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblDetalle.getModel().getValueAt(rows, 9).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                 }
-
-                //Metodo antiguo, porfavor no borrar
-                /* pdfTable.setTotalWidth(PageSize.A3.getWidth());
-                 pdfTable.setLockedWidth(true);
-                 PdfContentByte canvas = writer.getDirectContent();
-                 PdfTemplate template = canvas.createTemplate(
-                 pdfTable.getTotalWidth(), pdfTable.getTotalHeight());
-                 pdfTable.writeSelectedRows(0, -1, 0, pdfTable.getTotalHeight(), template);
-                 Image img = Image.getInstance(template);
-                 img.scaleToFit(PageSize.A3.getWidth(), PageSize.A3.getHeight());
-                 img.setAbsolutePosition(1, (PageSize.A3.getHeight() - pdfTable.getTotalHeight()) / 1.6f);
-                 */
-                Paragraph bruto = new Paragraph("Neto: $" + txtNeto.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+//.substring(3).toString()
+                Paragraph bruto = new Paragraph("Neto: " + java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(txtNeto.getText())), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 bruto.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph iva = new Paragraph("IVA: $" + txtIva.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                Paragraph iva = new Paragraph("IVA: " + java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(txtIva.getText())), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 iva.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph neto = new Paragraph("Total: $" + txtTotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                Paragraph neto = new Paragraph("Total: " + java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(txtTotal.getText())), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 neto.setAlignment(Paragraph.ALIGN_RIGHT);
                 doc.add(pdfTable);
                 doc.add(bruto);
@@ -498,12 +494,11 @@ public class DatosCotizacion extends javax.swing.JFrame {
                 Paragraph nota = new Paragraph("Esta cotización debe ser respondida dentro de 15 días hábiles", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 doc.add(nota);
                 doc.close();
+                JOptionPane.showMessageDialog(null, "PDF Generado Correctamente");
+
             } catch (DocumentException ex) {
-
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema obteniendo datos de la tabla : " + ex.getMessage());
             }
-
-            JOptionPane.showMessageDialog(null, "PDF Generado Correctamente");
-
         } catch (DocumentException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -531,7 +526,7 @@ public class DatosCotizacion extends javax.swing.JFrame {
             update.setString(4, status);
             update.setString(5, ID);
             int u = update.executeUpdate();
-
+            JOptionPane.showMessageDialog(null, "Se ha actualizado la cotización");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

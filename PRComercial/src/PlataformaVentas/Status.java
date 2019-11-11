@@ -495,7 +495,7 @@ public class Status extends javax.swing.JFrame {
         lb_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lb_Titulo.setText("Status de Cotización");
 
-        Btn_OC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/mercado-público_.png"))); // NOI18N
+        Btn_OC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/mercado-público_.png"))); // NOI18N
         Btn_OC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_OCActionPerformed(evt);
@@ -919,7 +919,7 @@ public class Status extends javax.swing.JFrame {
                 DatCot.show();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una cotización "+e.getMessage());
         }
 
     }//GEN-LAST:event_btnGestionarCotizacionActionPerformed

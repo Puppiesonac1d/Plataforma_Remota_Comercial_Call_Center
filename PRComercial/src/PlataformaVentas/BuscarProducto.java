@@ -276,15 +276,22 @@ public class BuscarProducto extends javax.swing.JFrame {
         txtFecha = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         txtRutCotizacion = new javax.swing.JFormattedTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblCotizacion = new javax.swing.JTable();
         btnGuardaPDF = new javax.swing.JButton();
         btnCalcular = new javax.swing.JButton();
         btnBorrarProducto = new javax.swing.JButton();
-        lblCredencial = new javax.swing.JLabel();
-        lblIVATotal = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblCotizacion_2 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
         lblNetoTotal = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        lblIVATotal = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         lblBrutoTotal = new javax.swing.JLabel();
+        panel_oculto = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblCotizacion = new javax.swing.JTable();
+        lblCredencial = new javax.swing.JLabel();
         lblCredencial1 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
@@ -764,6 +771,114 @@ public class BuscarProducto extends javax.swing.JFrame {
         });
         panelCotizacion.add(txtRutCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 232, -1));
 
+        btnGuardaPDF.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        btnGuardaPDF.setText("Guardar Cotización y generar PDF");
+        btnGuardaPDF.setActionCommand("");
+        btnGuardaPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardaPDFActionPerformed(evt);
+            }
+        });
+        panelCotizacion.add(btnGuardaPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, -1, -1));
+
+        btnCalcular.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        btnCalcular.setText("Calcular Precios");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+        panelCotizacion.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, -1, -1));
+
+        btnBorrarProducto.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        btnBorrarProducto.setText("Borrar Producto");
+        btnBorrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarProductoActionPerformed(evt);
+            }
+        });
+        panelCotizacion.add(btnBorrarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 239, -1));
+
+        tblCotizacion_2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblCotizacion_2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCotizacion_2MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblCotizacion_2);
+
+        panelCotizacion.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 1170, 200));
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel23.setText("Neto: $");
+
+        lblNetoTotal.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        lblNetoTotal.setText("0");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel22.setText("IVA:   $");
+
+        lblIVATotal.setVisible(true);
+        lblIVATotal.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        lblIVATotal.setText("0");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel24.setText("Total: $");
+
+        lblBrutoTotal.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        lblBrutoTotal.setText("0");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBrutoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIVATotal, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(lblNetoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23)
+                    .addComponent(lblNetoTotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(lblIVATotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel24)
+                    .addComponent(lblBrutoTotal))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        panelCotizacion.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 570, 380, 120));
+
+        panel_oculto.setVisible(false);
+
         jScrollPane3.setMaximumSize(new java.awt.Dimension(1280, 740));
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1280, 740));
 
@@ -791,36 +906,28 @@ public class BuscarProducto extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(tblCotizacion);
+        if (tblCotizacion.getColumnModel().getColumnCount() > 0) {
+            tblCotizacion.getColumnModel().getColumn(7).setHeaderValue("IVA");
+        }
 
-        panelCotizacion.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1160, 224));
+        javax.swing.GroupLayout panel_ocultoLayout = new javax.swing.GroupLayout(panel_oculto);
+        panel_oculto.setLayout(panel_ocultoLayout);
+        panel_ocultoLayout.setHorizontalGroup(
+            panel_ocultoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_ocultoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_ocultoLayout.setVerticalGroup(
+            panel_ocultoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ocultoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        btnGuardaPDF.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        btnGuardaPDF.setText("Guardar Cotización y generar PDF");
-        btnGuardaPDF.setActionCommand("");
-        btnGuardaPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardaPDFActionPerformed(evt);
-            }
-        });
-        panelCotizacion.add(btnGuardaPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, -1, -1));
-
-        btnCalcular.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        btnCalcular.setText("Calcular Precios");
-        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularActionPerformed(evt);
-            }
-        });
-        panelCotizacion.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 570, -1, -1));
-
-        btnBorrarProducto.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        btnBorrarProducto.setText("Borrar Producto");
-        btnBorrarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarProductoActionPerformed(evt);
-            }
-        });
-        panelCotizacion.add(btnBorrarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 239, -1));
+        panelCotizacion.add(panel_oculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, -1, -1));
 
         jScrollPane1.setViewportView(panelCotizacion);
 
@@ -830,15 +937,6 @@ public class BuscarProducto extends javax.swing.JFrame {
 
         lblCredencial.setVisible(false);
         lblCredencial.setText("jLabel3");
-
-        lblIVATotal.setVisible(false);
-        lblIVATotal.setText("0");
-
-        lblNetoTotal.setVisible(false);
-        lblNetoTotal.setText("0");
-
-        lblBrutoTotal.setVisible(false);
-        lblBrutoTotal.setText("0");
 
         lblCredencial1.setVisible(false);
         lblCredencial1.setText("jLabel4");
@@ -855,12 +953,6 @@ public class BuscarProducto extends javax.swing.JFrame {
                         .addComponent(lblCredencial1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblCredencial)
-                        .addGap(9, 9, 9)
-                        .addComponent(lblIVATotal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblBrutoTotal)
-                        .addGap(3, 3, 3)
-                        .addComponent(lblNetoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 288, Short.MAX_VALUE))
@@ -873,13 +965,9 @@ public class BuscarProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblBrutoTotal)
-                                .addComponent(lblCredencial)
-                                .addComponent(lblCredencial1)
-                                .addComponent(lblIVATotal))
-                            .addComponent(lblNetoTotal))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCredencial)
+                            .addComponent(lblCredencial1))
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1007,6 +1095,15 @@ public class BuscarProducto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    public void BorrarColumnas() {
+        DefaultTableModel modeloNuevo = (DefaultTableModel) tblCotizacion.getModel();
+        tblCotizacion_2.setModel(modeloNuevo);
+        tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(7));
+        tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(8));
+        tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(9));
+        System.out.println("se han quitado columnas");
+    }
+
     private void btnRealizarCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCotizacionActionPerformed
 
         try {
@@ -1030,11 +1127,21 @@ public class BuscarProducto extends javax.swing.JFrame {
                 row[2] = cotizacion.getValueAt(indexs[i], 3);
                 row[3] = cotizacion.getValueAt(indexs[i], 1);
                 row[4] = cotizacion.getValueAt(indexs[i], 6);
-
                 modeloNuevo.addRow(row);
             }
             JOptionPane.showMessageDialog(null, "Producto agregado a Cotizacion");
             btnBorrarProducto.setEnabled(true);
+            tblCotizacion_2.setModel(modeloNuevo);
+            System.out.println(tblCotizacion.getColumnCount());
+            if (tblCotizacion.getColumnCount() >= 10) {
+                System.out.println("Se han quitado columnas");
+                tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(9));
+                tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(8));
+                tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(7));
+            } else {
+                System.out.println("No se han quitado columnas");
+            }
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
@@ -1212,7 +1319,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                 //idCliente
                 pst.setInt(2, Integer.parseInt(lblIDCliente.getText()));
                 //Neto
-                pst.setInt(3, Integer.parseInt(lblTotal.getText()));
+                pst.setInt(3, Integer.parseInt(lblBrutoTotal.getText()));
                 //Estado No Respondido
                 pst.setString(4, "No Respondido");
                 pst.setInt(5, Integer.parseInt(lblNetoTotal.getText()));
@@ -1339,40 +1446,33 @@ public class BuscarProducto extends javax.swing.JFrame {
                 Paragraph tablas = new Paragraph("Información de Cotizacion ", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 doc.add(tablas);
                 try {
-
-                    PdfPTable pdfTable = new PdfPTable(tblCotizacion.getColumnCount());
+                    PdfPTable pdfTable = new PdfPTable(tblCotizacion_2.getColumnCount());
                     //Parámetros de espaciado y ancho
                     pdfTable.setSpacingBefore(15f);
                     pdfTable.setWidthPercentage(100);
                     //Añadir Valores
-                    for (int i = 0; i < tblCotizacion.getColumnCount(); i++) {
-                        pdfTable.addCell(new Phrase(tblCotizacion.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                    for (int i = 0; i < tblCotizacion_2.getColumnCount(); i++) {
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     }
                     //Extraer valores de la Jtable al PDF
-                    for (int rows = 0; rows < tblCotizacion.getRowCount(); rows++) {
-                        for (int cols = 0; cols < tblCotizacion.getColumnCount(); cols++) {
-                            pdfTable.addCell(new Phrase(tblCotizacion.getModel().getValueAt(rows, cols).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        }
+                    for (int rows = 0; rows < tblCotizacion_2.getRowCount(); rows++) {
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 4).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 6).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 10).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     }
-                //Metodo antiguo, porfavor no borrar
-                /* pdfTable.setTotalWidth(PageSize.A3.getWidth());
-                     pdfTable.setLockedWidth(true);
-                     PdfContentByte canvas = writer.getDirectContent();
-                     PdfTemplate template = canvas.createTemplate(
-                     pdfTable.getTotalWidth(), pdfTable.getTotalHeight());
-                     pdfTable.writeSelectedRows(0, -1, 0, pdfTable.getTotalHeight(), template);
-                     Image img = Image.getInstance(template);
-                     img.scaleToFit(PageSize.A3.getWidth(), PageSize.A3.getHeight());
-                     img.setAbsolutePosition(1, (PageSize.A3.getHeight() - pdfTable.getTotalHeight()) / 1.6f);
-                     */
                     doc.add(pdfTable);
                 } catch (DocumentException ex) {
-
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error: tabla" + ex.getMessage());
                 }
                 //Añadir Calculos
                 int neto_calculo = Integer.parseInt(lblNetoTotal.getText());
                 int iva_calculo = Integer.parseInt(lblIVATotal.getText());
-                int total_calculo = Integer.parseInt(lblTotal.getText());
+                int total_calculo = Integer.parseInt(lblBrutoTotal.getText());
 
                 String neto_calc = java.text.NumberFormat.getCurrencyInstance().format(neto_calculo);
                 String iva_calc = java.text.NumberFormat.getCurrencyInstance().format(iva_calculo);
@@ -1533,7 +1633,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                 sumaTotal = (int) (sumaTotal + sumaIVA);
                 lblNetoTotal.setText("" + sumaNeto);
                 lblIVATotal.setText("" + Math.round(sumaIVA));
-                lblTotal.setText("" + sumaTotal);
+                lblBrutoTotal.setText("" + sumaTotal);
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Aun faltan items en la tabla - " + ex.getMessage());
@@ -1555,8 +1655,22 @@ public class BuscarProducto extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Producto borrado de Cotizacion");
             btnBorrarProducto.setEnabled(true);
+
+            int sumaNeto = 0;
+            double sumaIVA = 0;
+            int sumaTotal = 0;
+            for (int r = 0; r < tblCotizacion.getRowCount(); r++) {
+                sumaNeto = sumaNeto + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
+                sumaTotal = sumaTotal + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
+            }
+            sumaIVA = (sumaTotal * 0.19);
+            sumaTotal = (int) (sumaTotal + sumaIVA);
+            lblNetoTotal.setText("" + sumaNeto);
+            lblIVATotal.setText("" + Math.round(sumaIVA));
+            lblBrutoTotal.setText("" + sumaTotal);
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: no hay un producto seleccionado " + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnBorrarProductoActionPerformed
@@ -1612,6 +1726,11 @@ public class BuscarProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
     }//GEN-LAST:event_cmbDistribuidorItemStateChanged
+
+    private void tblCotizacion_2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCotizacion_2MouseClicked
+        tblCotizacion.clearSelection();
+        tblCotizacion.addRowSelectionInterval(tblCotizacion_2.getSelectedRow(), tblCotizacion_2.getSelectedRow());
+    }//GEN-LAST:event_tblCotizacion_2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1680,6 +1799,9 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1690,6 +1812,7 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1703,6 +1826,7 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     public javax.swing.JLabel lbCodigo;
@@ -1736,7 +1860,9 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JPanel panelCotizacion;
     private javax.swing.JTabbedPane panelDatos;
     private javax.swing.JPanel panelProductos;
+    private javax.swing.JPanel panel_oculto;
     public javax.swing.JTable tblCotizacion;
+    private javax.swing.JTable tblCotizacion_2;
     public javax.swing.JTable tblResultado;
     private javax.swing.JLabel txtFecha;
     private javax.swing.JTextField txtIDProducto;

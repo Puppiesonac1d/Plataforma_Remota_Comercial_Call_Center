@@ -381,19 +381,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesRecientesActionPerformed
 
     private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
-
         try {
             Status stat = new Status();
             stat.lblIDUsuario.setText(idMenu.getText());
             stat.lblCredencial.setText(credencialMenu.getText());
             stat.lbCodigo.setText(codigoMenu.getText());
-            String query = "SELECT cot.IDCotizacion AS 'N° Cotizacion',\n"
-                    + "cli.Rut AS 'Rut',\n"
-                    + "org.NombreOrganizacion AS 'Organización',\n"
-                    + "cli.Nombre AS 'Contacto',\n"
-                    + "CONCAT('$',FORMAT(cot.bruto,0)) AS 'Total',\n"
-                    + "date_format(cot.FechaCotizacion,'%d-%m-%Y') AS 'Fecha Emision'\n"
-                    + "FROM cotizacion cot join usuario usr on cot.IDUsuario = usr.IDUsuario \n"
+            String query = "SELECT cot.IDCotizacion AS 'N° Cotizacion',cli.Rut AS 'Rut',\n"
+                    + "org.NombreOrganizacion AS 'Organización',cli.Nombre AS 'Contacto',\n"
+                    + "CONCAT('$',FORMAT(cot.bruto,0)) AS 'Total',date_format(cot.FechaCotizacion,'%d-%m-%Y') AS 'Fecha Emision'\n"
+                    + "FROM cotizacion cot join usuario usr on cot.IDUsuario = usr.IDUsuario\n"
                     + "join cliente cli on cli.idCliente = cot.idCliente\n"
                     + "join organizacion org ON cli.IDOrganizacion = org.IDOrganizacion\n"
                     + "where cot.idUsuario=?";
@@ -402,7 +398,6 @@ public class Menu extends javax.swing.JFrame {
             pst.setString(1, param);
             ResultSet rs = pst.executeQuery();
             stat.tblCotizacionesPendientes.setModel(DbUtils.resultSetToTableModel(rs));
-
             stat.setVisible(true);
             stat.AjusteTabla();
         } catch (Exception ex) {

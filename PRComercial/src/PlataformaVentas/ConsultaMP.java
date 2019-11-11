@@ -2,6 +2,7 @@ package PlataformaVentas;
 
 import clases.Conexion;
 import java.awt.Color;
+import java.awt.HeadlessException;
 import org.w3c.dom.Element;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -121,13 +122,12 @@ public class ConsultaMP extends javax.swing.JFrame {
         btnVolver7 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         lblEstadoOrdenCompra = new javax.swing.JLabel();
-        jLabel167 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         b_Titulo = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
         lblFondoConsultaMP = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelConsultaMPFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -291,7 +291,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImpuestoEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 1517, Short.MAX_VALUE))
+                .addGap(121, 1249, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,22 +433,20 @@ public class ConsultaMP extends javax.swing.JFrame {
                                             .addComponent(lblFono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTabbedPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel62)
-                                    .addComponent(jLabel32))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel62)
+                            .addComponent(jLabel32))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDescripcionOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtObservacionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDescripcionOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtObservacionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGuardarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(34, 34, 34))))
+                                .addComponent(btnGuardarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(469, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,9 +573,6 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         jLabel15.setText("Estado de cotización:");
 
-        jLabel167.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel167.setText("Solo se recibirán ordenes de compra en estado de \"Aceptada\"");
-
         javax.swing.GroupLayout panelConsultaMPLayout = new javax.swing.GroupLayout(panelConsultaMP);
         panelConsultaMP.setLayout(panelConsultaMPLayout);
         panelConsultaMPLayout.setHorizontalGroup(
@@ -593,17 +588,12 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnConsultaOC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelConsultaMPLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(514, 514, 514)
-                                .addComponent(btnVolver7)
-                                .addGap(34, 34, 34))
-                            .addGroup(panelConsultaMPLayout.createSequentialGroup()
-                                .addComponent(jLabel167)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(514, 514, 514)
+                        .addComponent(btnVolver7)
+                        .addGap(34, 34, 34))
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -626,9 +616,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnVolver7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConsultaOC)
-                    .addComponent(jLabel167))
+                .addComponent(btnConsultaOC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -876,103 +864,121 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnGuardarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOrdenActionPerformed
         try {
-            if (!"Aceptada".equals(lblEstadoOrdenCompra.getText())) {
-                JOptionPane.showMessageDialog(null, "La orden de compra no se encuentra aceptada");
+
+            if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
             } else {
-                if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
-                } else {
-                    String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
-                    String validar = msgConfirmacion;
-                    if (validar.equals(lblCodigo.getText())) {
-                        int selectedRows = tblMP.getRowCount();
-                        String query = "INSERT INTO `acimabasededatos`.`ordendecompra` "
-                                + "(`codigoOrdenCompra`,`nombre_proveedor`, "
-                                + "`rutCliente`, `DireccionDemandante`, "
-                                + "`Telefono`, `Demandante`,"
-                                + " `UnidadCompra`, `fechaEnvioOC`, `codigoEstado`, `nombreOrdenCompra`, "
-                                + "`fechaEntregaProductos`, `direccionesDespacho`, `direccionEnvioFactura`,"
-                                + "`idtipoDespacho`, `contactoPago`, `idformaPago`, `contactoOC`,`emailEnvioFactura`,`moneda`,`neto`,"
-                                + " `dcto`, `subtotal`,`iva`, `impuestoEspecifico`, `total`,`observacionDespacho`,`codigo_autorizacion`) "
-                                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                        PreparedStatement pst;
-                        pst = cn.prepareStatement(query);
-                        pst.setString(1, txtOC.getText().toUpperCase());
-                        pst.setString(2, lblProveedor.getText());
-                        pst.setString(3, lblRutComprador.getText());
-                        pst.setString(4, lblDireccionDemandante.getText());
-                        pst.setString(5, lblTelefonoDemandante.getText());
-                        pst.setString(6, lblNombreDemandante.getText());
-                        pst.setString(7, lblUnidadCompra.getText());
-                        pst.setString(8, lblFechaCreacionOC.getText());
-                        pst.setString(9, lblEstadoOrdenCompra.getText());
-                        pst.setString(10, lblNombreOrdenCompra.getText());
-                        pst.setString(11, lblFechaEntregaProducto.getText());
-                        pst.setString(12, lblDireccionDespacho.getText());
-                        pst.setString(13, lblDireccionEnvioFactura.getText());
-                        pst.setString(14, lblMetodoDespacho.getText());
-                        pst.setString(15, lblContactoPago.getText());
-                        pst.setString(16, lblFormaPago.getText());
-                        pst.setString(17, lblContactoOC.getText());
-                        pst.setString(18, lblEmailEnvioFactura.getText());
-                        pst.setString(19, (tblMP.getValueAt(0, 5).toString()));
-                        pst.setString(20, lblTotalNeto.getText());
-                        pst.setString(21, lblTotalDcto.getText());
-                        pst.setString(22, lblSubTotal.getText());
-                        pst.setString(23, lblIva.getText());
-                        pst.setString(24, lblImpuestoEspecifico.getText());
-                        pst.setString(25, lblTotal.getText());
-                        pst.setString(26, txtObservacionDespacho.getText());
-                        pst.setInt(27, Integer.parseInt(validar));
-                        int up = pst.executeUpdate();
-                        for (int i = 0; i < selectedRows; i++) {
-                            String sub = tblMP.getValueAt(i, 1).toString();
-                            sub = sub.substring(sub.indexOf("(") + 1);
-                            sub = sub.substring(0, sub.indexOf(")"));
-                            System.out.println(sub);
-                            String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordencompra` (`codigoOrdenCompra`,`codigoProducto`,`nombreProducto`,`cantidad`,`precioUnitario`,`descuento`,`cargos`,`valorTotal`) VALUES(?,?,?,?,?,?,?,?);";
-                            PreparedStatement pstDetalle = cn.prepareStatement(queryDetalle);
-                            pstDetalle.setString(1, txtOC.getText().toUpperCase());
-                            pstDetalle.setString(2, sub);
-                            pstDetalle.setString(3, (tblMP.getValueAt(i, 1).toString()));
-                            pstDetalle.setString(4, (tblMP.getValueAt(i, 2).toString()));
-                            pstDetalle.setString(5, (tblMP.getValueAt(i, 6).toString()));
-                            pstDetalle.setString(6, (tblMP.getValueAt(i, 7).toString()));
-                            pstDetalle.setString(7, (tblMP.getValueAt(i, 8).toString()));
-                            pstDetalle.setString(8, (tblMP.getValueAt(i, 9).toString()));
-                            int upDetalle = pstDetalle.executeUpdate();
+                String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
+                String validar = msgConfirmacion;
+                if (validar.equals(lblCodigo.getText())) {
+                    int selectedRows = tblMP.getRowCount();
 
-                        }
-                        JOptionPane.showMessageDialog(null, "Se ha ingresado la siguiente orden de compra: " + txtOC.getText().toUpperCase());
+                    String query2 = "INSERT INTO `acimabasededatos`.`ordentrabajo` ("
+                            + "`codigoOrdenCompra`,"
+                            + "`nombre_proveedor` ,"
+                            + "`rutCliente`,"
+                            + " `DireccionDemandante`,"
+                            + " `Telefono`, "
+                            + "`Demandante`,"
+                            + " `UnidadCompra`, "
+                            + "`fechaEnvioOC`,"
+                            + " `codigoEstado`, "
+                            + "`nombreOrdenCompra`,"
+                            + " `fechaEntregaProductos`,"
+                            + " `direccionesDespacho`,"
+                            + " `direccionEnvioFactura`, "
+                            + "`tipoDespacho`,"
+                            + " `contactoPago`, "
+                            + "`formaPago`, "
+                            + "`contactoOC`, "
+                            + "`emailEnvioFactura`,"
+                            + "`neto`,"
+                            + " `dcto`,"
+                            + " `subtotal`, "
+                            + "`iva`,"
+                            + " `impuestoEspecifico`,"
+                            + " `total`,"
+                            + "`codigo_autorizacion`)"
+                            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement pst2;
+                    pst2 = cn.prepareStatement(query2);
+                    pst2.setString(1, txtOC.getText().toUpperCase());
+                    pst2.setString(2, lblProveedor.getText());
+                    pst2.setString(3, lblRutComprador.getText());
+                    pst2.setString(4, lblDireccionDemandante.getText());
+                    pst2.setString(5, lblTelefonoDemandante.getText());
+                    pst2.setString(6, lblNombreDemandante.getText());
+                    pst2.setString(7, lblUnidadCompra.getText());
+                    pst2.setString(8, lblFechaCreacionOC.getText());
+                    pst2.setString(9, lblEstadoOrdenCompra.getText());
+                    pst2.setString(10, lblNombreOrdenCompra.getText());
+                    pst2.setString(11, lblFechaEntregaProducto.getText());
+                    pst2.setString(12, lblDireccionDespacho.getText());
+                    pst2.setString(13, lblDireccionEnvioFactura.getText());
+                    pst2.setString(14, lblMetodoDespacho.getText());
+                    pst2.setString(15, lblContactoPago.getText());
+                    pst2.setString(16, lblFormaPago.getText());
+                    pst2.setString(17, lblContactoOC.getText());
+                    pst2.setString(18, lblEmailEnvioFactura.getText());
+                    pst2.setString(19, lblTotalNeto.getText());
+                    pst2.setString(20, lblTotalDcto.getText());
+                    pst2.setString(21, lblSubTotal.getText());
+                    pst2.setString(22, lblIva.getText());
+                    pst2.setString(23, lblImpuestoEspecifico.getText());
+                    pst2.setString(24, lblTotal.getText());
+                    pst2.setInt(25, Integer.parseInt(validar));
+                    int up2 = pst2.executeUpdate();
 
-                        lblFechaCreacionOC.setText("");
-                        lblEstadoOrdenCompra.setText("");
-                        lblUnidadCompra.setText("");
-                        lblRutComprador.setText("");
-                        lblDireccionDemandante.setText("");
-                        lblNombreDemandante.setText("");
-                        lblTelefonoDemandante.setText("");
-                        lblNombreOrdenCompra.setText("");
-                        lblDireccionDespacho.setText("");
-                        lblDireccionEnvioFactura.setText("");
-                        lblMetodoDespacho.setText("");
-                        lblContactoPago.setText("");
-                        lblFormaPago.setText("");
-                        lblContactoOC.setText("");
-                        lblEmailEnvioFactura.setText("");
-                        lblTotalNeto.setText("");
-                        lblTotalDcto.setText("");
-                        lblTotalCargos.setText("");
-                        lblSubTotal.setText("");
-                        lblIva.setText("");
-                        lblImpuestoEspecifico.setText("");
-                        lblTotal.setText("");
+                    int selectedRows2 = tblMP.getRowCount();
+                    for (int i = 0; i < selectedRows; i++) {
+                        String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordentrabajo` (codigoOrdenCompra,`codigoProducto`, `nombreProducto`, `cantidad`,`moneda`,"
+                                + " `precioUnitario`, `descuento`, `cargos`, `valorTotal`) "
+                                + " VALUES(?,?,?,?,?,?,?,?,?);";
+                        PreparedStatement pstDetalle = cn.prepareStatement(queryDetalle);
+                        pstDetalle.setString(1, txtOC.getText());
+                        pstDetalle.setString(2, tblMP.getValueAt(i, 0).toString());
+                        pstDetalle.setString(3, (tblMP.getValueAt(i, 1).toString()));
+                        pstDetalle.setString(4, (tblMP.getValueAt(i, 2).toString()));
+                        pstDetalle.setString(5, (tblMP.getValueAt(i, 5).toString()));
+                        pstDetalle.setString(6, (tblMP.getValueAt(i, 6).toString()));
+                        pstDetalle.setString(7, (tblMP.getValueAt(i, 7).toString()));
+                        pstDetalle.setString(8, (tblMP.getValueAt(i, 8).toString()));
+                        pstDetalle.setString(9, (tblMP.getValueAt(i, 9).toString()));
+                        int upDetalle = pstDetalle.executeUpdate();
                     }
+
+                    lblFechaCreacionOC.setText("");
+                    lblEstadoOrdenCompra.setText("");
+                    lblUnidadCompra.setText("");
+                    lblRutComprador.setText("");
+                    lblDireccionDemandante.setText("");
+                    lblNombreDemandante.setText("");
+                    lblTelefonoDemandante.setText("");
+                    lblNombreOrdenCompra.setText("");
+                    lblDireccionDespacho.setText("");
+                    lblDireccionEnvioFactura.setText("");
+                    lblMetodoDespacho.setText("");
+                    lblContactoPago.setText("");
+                    lblFormaPago.setText("");
+                    lblContactoOC.setText("");
+                    lblEmailEnvioFactura.setText("");
+                    lblTotalNeto.setText("");
+                    lblTotalDcto.setText("");
+                    lblTotalCargos.setText("");
+                    lblSubTotal.setText("");
+                    lblIva.setText("");
+                    lblImpuestoEspecifico.setText("");
+                    lblTotal.setText("");
                 }
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error " + ex);
+
+            JOptionPane.showMessageDialog(null, "Se ha ingresado la nota de venta para la Orden de Compra");
+            JOptionPane.showMessageDialog(null, "Nota de Venta almacenada");
+        } catch (SQLException | NumberFormatException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
+
+
     }//GEN-LAST:event_btnGuardarOrdenActionPerformed
 
     private void btnVolver7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver7ActionPerformed
@@ -1032,7 +1038,6 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel167;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

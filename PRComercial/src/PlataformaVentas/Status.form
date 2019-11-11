@@ -858,7 +858,7 @@
                 <Component class="javax.swing.JButton" name="Btn_OC">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/PlataformaVentas/Imagenes/mercado-pu&#x301;blico_.png"/>
+                      <Image iconType="3" name="/PlataformaVentas/Imagenes/mercado-p&#xfa;blico_.png"/>
                     </Property>
                   </Properties>
                   <Events>
