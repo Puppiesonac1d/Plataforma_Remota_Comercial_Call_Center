@@ -1190,7 +1190,7 @@ public class CrearOT extends javax.swing.JFrame {
         lblFondoOrdenTrabajo.setMaximumSize(new java.awt.Dimension(1280, 685));
         lblFondoOrdenTrabajo.setMinimumSize(new java.awt.Dimension(1280, 685));
         lblFondoOrdenTrabajo.setPreferredSize(new java.awt.Dimension(1280, 685));
-        jLayeredPane4.add(lblFondoOrdenTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1286, 720));
+        jLayeredPane4.add(lblFondoOrdenTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1286, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
