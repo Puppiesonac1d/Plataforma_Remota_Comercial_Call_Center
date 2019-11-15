@@ -12,8 +12,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.NumberFormat;
-import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -136,6 +134,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         setResizable(false);
 
         panelConsultaMPFrame.setMinimumSize(new java.awt.Dimension(1280, 720));
+        panelConsultaMPFrame.setPreferredSize(new java.awt.Dimension(1280, 720));
         panelConsultaMPFrame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelConsultaMP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -209,6 +208,11 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         jLabel33.setText("Unidad de Compra:");
 
+        tblMP = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int celIndex){
+                return false;
+            }
+        };
         tblMP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null}
@@ -547,8 +551,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(txtContactoOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFechaEnvioOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtFechaEnvioOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jScrollPane3.setViewportView(jPanel1);
@@ -597,12 +602,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                         .addComponent(btnVolver7))
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel15)
-                                .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))
+                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaOC)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -812,43 +816,21 @@ public class ConsultaMP extends javax.swing.JFrame {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
                                 .trim(), i, 5);
                     }
-
                     if ("PrecioNeto".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
                                 .trim(), i, 6);
-                        int row4 = 0;
-                        row4 = Integer.parseInt(tblMP.getValueAt(i, 6).toString());
-                        String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
-                        tblMP.setValueAt(rows.substring(2), i, 6);
                     }
                     if ("TotalDescuentos".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
                                 .trim(), i, 7);
-                        int row4 = 0;
-                        row4 = Integer.parseInt(tblMP.getValueAt(i, 7).toString());
-                        String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
-
-                        tblMP.setValueAt(rows.substring(2), i, 7);
-
                     }
                     if ("TotalCargos".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
                                 .trim(), i, 8);
-                        int row4 = 0;
-                        row4 = Integer.parseInt(tblMP.getValueAt(i, 8).toString());
-                        String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
-
-                        tblMP.setValueAt(rows.substring(2), i, 8);
                     }
                     if ("Total".equals(childNode.getNodeName())) {
                         tblMP.getModel().setValueAt(childList.item(j).getTextContent()
                                 .trim(), i, 9);
-
-                        int row4 = 0;
-                        row4 = Integer.parseInt(tblMP.getValueAt(i, 9).toString());
-                        String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
-
-                        tblMP.setValueAt(rows.substring(2), i, 9);
                     }
                 }
             }
