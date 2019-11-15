@@ -136,6 +136,7 @@ public class BuscarProducto extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cmbDistribuidor.addItem(rs.getString(1));
+                cmbDistribuidor1.addItem(rs.getString(1));
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
@@ -291,6 +292,8 @@ public class BuscarProducto extends javax.swing.JFrame {
         panel_oculto = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCotizacion = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
+        cmbDistribuidor1 = new javax.swing.JComboBox();
         lblCredencial = new javax.swing.JLabel();
         lblCredencial1 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
@@ -929,6 +932,14 @@ public class BuscarProducto extends javax.swing.JFrame {
 
         panelCotizacion.add(panel_oculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, -1, -1));
 
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel25.setText("Distribuidor:");
+        panelCotizacion.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        cmbDistribuidor1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbDistribuidor1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Distribuidor" }));
+        panelCotizacion.add(cmbDistribuidor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 320, -1));
+
         jScrollPane1.setViewportView(panelCotizacion);
 
         jTabbedPane2.addTab("Generar Cotización", jScrollPane1);
@@ -1328,7 +1339,7 @@ public class BuscarProducto extends javax.swing.JFrame {
             try {
                 System.out.println("Error en www: " + lblBrutoTotal.getText());
 
-                String query = "INSERT INTO cotizacion (`IDUsuario`, `IDCliente`,`Bruto`,`Respondido`,`NetoTotal`,`IvaTotal`) VALUES (?,?,?,?,?,?)";
+                String query = "INSERT INTO cotizacion (`IDUsuario`, `IDCliente`,`Bruto`,`Respondido`,`NetoTotal`,`IvaTotal`,distribuidor) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(query);
                 //idUsuario
                 pst.setInt(1, Integer.parseInt(lblIDUsuario.getText()));
@@ -1357,6 +1368,8 @@ public class BuscarProducto extends javax.swing.JFrame {
                 System.out.println("valor 6: " + valor_6);
 
                 pst.setInt(6, (int) valor_6);
+
+                pst.setInt(7, cmbDistribuidor1.getSelectedIndex());
                 int up = pst.executeUpdate();
 
             } catch (Exception ex) {
@@ -1868,6 +1881,7 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCM;
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbDistribuidor;
+    private javax.swing.JComboBox cmbDistribuidor1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1885,6 +1899,7 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
