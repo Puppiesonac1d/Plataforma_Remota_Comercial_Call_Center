@@ -621,7 +621,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
-                .addGap(358, 358, 358))
+                .addContainerGap())
         );
         panelProductosLayout.setVerticalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -639,7 +639,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                 .addComponent(jScrollPane2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRealizarCotizacion)
-                .addGap(159, 159, 159))
+                .addGap(10, 10, 10))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Buscar Por Distribuidor");
@@ -801,13 +801,13 @@ public class BuscarProducto extends javax.swing.JFrame {
 
         tblCotizacion_2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID de Producto", "Convenio Marco", "Nombre Producto", "SKU", "Precio", "Cantidad", "Neto", "Total"
             }
         ));
         tblCotizacion_2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1126,14 +1126,22 @@ public class BuscarProducto extends javax.swing.JFrame {
                 row[1] = cotizacion.getValueAt(indexs[i], 2);
                 row[2] = cotizacion.getValueAt(indexs[i], 3);
                 row[3] = cotizacion.getValueAt(indexs[i], 1);
-                row[4] = cotizacion.getValueAt(indexs[i], 6);
+
+                int row4 = 0;
+                row4 = Integer.parseInt(cotizacion.getValueAt(indexs[i], 6).toString());
+                String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
+                System.out.println(rows);
+                row[4] = rows;
                 modeloNuevo.addRow(row);
             }
+
             JOptionPane.showMessageDialog(null, "Producto agregado a Cotizacion");
             btnBorrarProducto.setEnabled(true);
+            //Se agrega el modelo nuevo
             tblCotizacion_2.setModel(modeloNuevo);
             System.out.println(tblCotizacion.getColumnCount());
-            if (tblCotizacion.getColumnCount() >= 10) {
+
+            if (tblCotizacion_2.getColumnCount() >= 10) {
                 System.out.println("Se han quitado columnas");
                 tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(9));
                 tblCotizacion_2.removeColumn(tblCotizacion_2.getColumnModel().getColumn(8));
@@ -1143,7 +1151,7 @@ public class BuscarProducto extends javax.swing.JFrame {
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnRealizarCotizacionActionPerformed
 
@@ -1281,7 +1289,9 @@ public class BuscarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRutCotizacionKeyPressed
 
     private void btnGuardaPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaPDFActionPerformed
-        //Metodo para Escoger la ruta donde se guardara el reporte
+
+        int idCot = 0;
+//Metodo para Escoger la ruta donde se guardara el reporte
         String respuesta = JOptionPane.showInputDialog(null, "Escriba Su codigo de autorización.", "Permisos de acción", JOptionPane.INFORMATION_MESSAGE);
         String idCotizacion = "";
         if (lbCodigo.getText().equals(respuesta)) {
@@ -1292,7 +1302,7 @@ public class BuscarProducto extends javax.swing.JFrame {
             try {
                 int idCliente = 0;
                 int idUsuario = 0;
-                int idCot = 0;
+
                 int up2;
                 idUsuario = Integer.parseInt(lblIDUsuario.getText());
                 String queryMovimientos = "INSERT INTO movimientosventas(`IDUsuario`, `Movimiento`) VALUES (?,'Realizar Cotización')";
@@ -1311,6 +1321,12 @@ public class BuscarProducto extends javax.swing.JFrame {
                 while (rsMax.next()) {
                     idCot = rsMax.getInt(1);
                 }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error: hhh" + ex.getMessage());
+            }
+
+            try {
+                System.out.println("Error en www: " + lblBrutoTotal.getText());
 
                 String query = "INSERT INTO cotizacion (`IDUsuario`, `IDCliente`,`Bruto`,`Respondido`,`NetoTotal`,`IvaTotal`) VALUES (?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(query);
@@ -1319,12 +1335,30 @@ public class BuscarProducto extends javax.swing.JFrame {
                 //idCliente
                 pst.setInt(2, Integer.parseInt(lblIDCliente.getText()));
                 //Neto
-                pst.setInt(3, Integer.parseInt(lblBrutoTotal.getText()));
+
+                double valor_3 = Double.parseDouble(lblBrutoTotal.getText());
+                valor_3 = valor_3 * 1000;
+                System.out.println("valor 3: " + valor_3);
+
+                pst.setInt(3, (int) valor_3);
+
                 //Estado No Respondido
                 pst.setString(4, "No Respondido");
-                pst.setInt(5, Integer.parseInt(lblNetoTotal.getText()));
-                pst.setInt(6, Integer.parseInt(lblIVATotal.getText()));
+
+                double valor_5 = Double.parseDouble(lblNetoTotal.getText());
+                valor_5 = valor_5 * 1000;
+                System.out.println("valor 5: " + valor_5);
+
+                pst.setInt(5, (int) valor_5);
+
+                double valor_6 = Double.parseDouble(lblIVATotal.getText());
+
+                valor_6 = valor_6 * 1000;
+                System.out.println("valor 6: " + valor_6);
+
+                pst.setInt(6, (int) valor_6);
                 int up = pst.executeUpdate();
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error: www" + ex.getMessage());
             }
@@ -1348,15 +1382,49 @@ public class BuscarProducto extends javax.swing.JFrame {
                 for (int i = 0; i < selectedRows; i++) {
                     String queryDetalle = "insert into detallecotizacion (idCotizacion, idProducto, precioVenta, cantidad, iva_debito, neto, cargo, descuento,total)\n"
                             + "values((select idCotizacion from cotizacion order by idCotizacion DESC limit 1),(select p.id from producto p join distribuidor d on p.idDistribuidor = d.idDistribuidor where p.sku = ?),?,?,?,?,?,?,?)";
+
                     PreparedStatement pst4 = cn.prepareStatement(queryDetalle);
+
+                    String valor3 = tblCotizacion.getValueAt(i, 4).toString().substring(3);
+                    double valor_3 = Double.parseDouble(valor3);
+                    valor_3 = valor_3 * 1000;
+                    System.out.println("valor 3 en bbb: " + valor_3);
+
+                    String valor6 = tblCotizacion.getValueAt(i, 6).toString().substring(3);
+                    double valor_6 = Double.parseDouble(valor6);
+                    valor_6 = valor_6 * 1000;
+
+                    System.out.println("valor 6 en bbb: " + valor_6);
+
+                    String valor7 = tblCotizacion.getValueAt(i, 8).toString();
+                    double valor_7 = Double.parseDouble(valor7.substring(3));
+
+                    valor_7 = valor_7 * 1000;
+
+                    System.out.println("valor 7 en bbb: " + valor_7);
+
+                    String valor8 = tblCotizacion.getValueAt(i, 9).toString();
+                    int valor_8 = Integer.parseInt(valor8.substring(3));
+
+                    valor_8 = valor_8 * 1000;
+
+                    System.out.println("valor 8: " + valor_8);
+
+                    String valor9 = tblCotizacion.getValueAt(i, 10).toString();
+                    double valor_9 = Double.parseDouble(valor9.substring(3));
+
+                    valor_9 = valor_9 * 1000;
+
+                    System.out.println("valor 9: " + valor_9);
+
                     pst4.setInt(1, Integer.parseInt(tblCotizacion.getValueAt(i, 3).toString()));
-                    pst4.setFloat(2, Float.parseFloat(tblCotizacion.getValueAt(i, 4).toString()));
+                    pst4.setInt(2, (int) valor_3);
                     pst4.setInt(3, Integer.parseInt(tblCotizacion.getValueAt(i, 5).toString()));
                     pst4.setInt(4, Integer.parseInt(tblCotizacion.getValueAt(i, 7).toString()));
-                    pst4.setInt(5, Integer.parseInt(tblCotizacion.getValueAt(i, 6).toString()));
-                    pst4.setInt(6, Integer.parseInt(tblCotizacion.getValueAt(i, 8).toString()));
-                    pst4.setDouble(7, Double.parseDouble(tblCotizacion.getValueAt(i, 9).toString()));
-                    pst4.setDouble(8, Integer.parseInt(tblCotizacion.getValueAt(i, 10).toString()));
+                    pst4.setInt(5, (int) valor_6);
+                    pst4.setDouble(6, valor_7);
+                    pst4.setDouble(7, valor_8);
+                    pst4.setDouble(8, valor_9);
 
                     int detalle = pst4.executeUpdate();
                 }
@@ -1460,29 +1528,21 @@ public class BuscarProducto extends javax.swing.JFrame {
                         pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 4).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 6).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        pdfTable.addCell(new Phrase(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblCotizacion_2.getModel().getValueAt(rows, 10).toString())), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        pdfTable.addCell(new Phrase(tblCotizacion_2.getModel().getValueAt(rows, 10).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     }
                     doc.add(pdfTable);
                 } catch (DocumentException ex) {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error: tabla" + ex.getMessage());
                 }
-                //Añadir Calculos
-                int neto_calculo = Integer.parseInt(lblNetoTotal.getText());
-                int iva_calculo = Integer.parseInt(lblIVATotal.getText());
-                int total_calculo = Integer.parseInt(lblBrutoTotal.getText());
 
-                String neto_calc = java.text.NumberFormat.getCurrencyInstance().format(neto_calculo);
-                String iva_calc = java.text.NumberFormat.getCurrencyInstance().format(iva_calculo);
-                String total_calc = java.text.NumberFormat.getCurrencyInstance().format(total_calculo);
-
-                Paragraph neto = new Paragraph("Neto: $" + neto_calc.substring(3).toString(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                Paragraph neto = new Paragraph("Neto: " + lblNetoTotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 neto.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph iva = new Paragraph("IVA: $" + iva_calc.substring(3).toString(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                Paragraph iva = new Paragraph("IVA: " + lblIVATotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 iva.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph total = new Paragraph("Total: $" + total_calc.substring(3).toString(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                Paragraph total = new Paragraph("Total: " + lblBrutoTotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                 total.setAlignment(Paragraph.ALIGN_RIGHT);
                 doc.add(neto);
                 doc.add(iva);
@@ -1529,117 +1589,135 @@ public class BuscarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardaPDFActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        int selectedRows[] = tblCotizacion.getSelectedRows();
-        /*
-         Calculos Diego
-         */
-        int cantidad;
-        /*descuento del precio total en double*/
-        double descuento = 0;
-
-        /*Cargo que se le hara al totalFinal*/
-        int cargo;
-
-        /*descuento en numeros entre 0=0descuento y 1=100 por ciento de descuento*/
-        double descuentoPorcentaje;
-
-        /*precio que sera descontado*/
-        double precioDescuento;
-
-        /*precio que sera descontado*/
-        int precioDescuento_Entero;
-
-        /*Precio Producto*/
-        double precio;
-
-        /*Cantidad * Precio*/
-        int Neto = 0;
-
-        /*Total con descuento = Neto-precioDescuento_Entero */
-        int precioConDescuento = 0;
-        /*Neto*0.19*/
-        double IVA;
-        /*Neto*0.19*/
-        int IVA_entero = 0;
-        /*Neto+iva+cargo+precioDescuento*/
-        int TotalFinal = 0;
-        /*
-         Fin Calculos Diego
-         */
-
         try {
+            int selectedRows[] = tblCotizacion_2.getSelectedRows();
+            /*
+             Calculos Diego
+             */
+            int cantidad = 0;
+            /*descuento del precio total en double*/
+            double descuento = 0;
+
+            /*Cargo que se le hara al totalFinal*/
+            int cargo = 0;
+
+            /*descuento en numeros entre 0=0descuento y 1=100 por ciento de descuento*/
+            double descuentoPorcentaje;
+
+            /*precio que sera descontado*/
+            double precioDescuento;
+
+            /*precio que sera descontado*/
+            int precioDescuento_Entero;
+
+            /*Precio Producto*/
+            double precio;
+
+            /*Cantidad * Precio*/
+            int Neto = 0;
+
+            /*Total con descuento = Neto-precioDescuento_Entero */
+            int precioConDescuento = 0;
+            /*Neto*0.19*/
+            double IVA;
+            /*Neto*0.19*/
+            int IVA_entero = 0;
+            /*Neto+iva+cargo+precioDescuento*/
+            int TotalFinal = 0;
+            /*
+             Fin Calculos Diego
+             */
+
             for (int i : selectedRows) {
-                String cant = JOptionPane.showInputDialog("Ingrese Cantidad para Producto: ");
-                cantidad = Integer.parseInt(cant);
-                tblCotizacion.getModel().setValueAt(cantidad, tblCotizacion.getSelectedRow(), 5);
+                int resp = JOptionPane.showConfirmDialog(null, "¿Desea ingresar cantidad?", "", JOptionPane.YES_NO_OPTION);
+                if (resp == 0) {
+                    String cant = JOptionPane.showInputDialog("Ingrese Cantidad para Producto: ");
+                    cantidad = Integer.parseInt(cant);
+                    tblCotizacion.getModel().setValueAt(cantidad, tblCotizacion.getSelectedRow(), 5);
+                } else {
+                    tblCotizacion.getModel().setValueAt(0, tblCotizacion.getSelectedRow(), 5);
+                }
 
-                //Metodo para Descuento
-                String dcto = JOptionPane.showInputDialog("Ingrese Descuento: ");
-                descuento = Double.parseDouble(dcto);
-                tblCotizacion.getModel().setValueAt(descuento, tblCotizacion.getSelectedRow(), 9);
+                int resp_2 = JOptionPane.showConfirmDialog(null, "¿Desea ingresar descuento?", "", JOptionPane.YES_NO_OPTION);
+                if (resp_2 == 0) {
+                    //Metodo para Descuento
+                    String dcto = JOptionPane.showInputDialog("Ingrese Descuento: ");
+                    descuento = Double.parseDouble(dcto);
+                    tblCotizacion.getModel().setValueAt(descuento, tblCotizacion.getSelectedRow(), 9);
+                } else {
+                    tblCotizacion.getModel().setValueAt(0, tblCotizacion.getSelectedRow(), 9);
+                }
 
-                //Metodo para Cargo
-                String carg = JOptionPane.showInputDialog("Ingrese Cargo: ");
-                cargo = Integer.parseInt(carg);
-                tblCotizacion.getModel().setValueAt(cargo, tblCotizacion.getSelectedRow(), 8);
-
-                /*
-                 precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString());
-
-                 descuentoPorcentaje = descuento / 100;
-
-                 precioDescuento = precio * descuentoPorcentaje;
-                 precioDescuento_Entero = (int) precioDescuento;
-                 precioConDescuento = (int) (precio - precioDescuento_Entero);
-
-                 Neto = precioConDescuento * cantidad;
-
-                 IVA = Neto * 0.19;
-                 IVA_entero = (int) IVA;
-
-                 */
+                int resp_3 = JOptionPane.showConfirmDialog(null, "¿Desea ingresar cargo?", "", JOptionPane.YES_NO_OPTION);
+                if (resp_3 == 0) {
+                    //Metodo para Cargo
+                    String carg = JOptionPane.showInputDialog("Ingrese Cargo: ");
+                    cargo = Integer.parseInt(carg);
+                    tblCotizacion.getModel().setValueAt(cargo, tblCotizacion.getSelectedRow(), 8);
+                } else {
+                    tblCotizacion.getModel().setValueAt(0, tblCotizacion.getSelectedRow(), 8);
+                }
                 if (descuento == 0) {
-                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString());
+                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString().substring(3)) * 1000;
                     Neto = (int) (precio * cantidad);
                     TotalFinal = Neto + cargo;
                 } else {
-                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString());
+                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString().substring(3)) * 1000;
                     descuentoPorcentaje = descuento / 100;
                     Neto = (int) (precio * cantidad);
-                    // IVA = Neto * 0.19;
-                    //IVA_entero = (int) ((int) Neto + IVA);
                     TotalFinal = Neto + cargo;
                     TotalFinal = (int) ((int) TotalFinal - (TotalFinal * descuentoPorcentaje));
                 }
 
-                //java.text.NumberFormat.getCurrencyInstance().format(
-                tblCotizacion.setValueAt(Neto, i, 6);
-                tblCotizacion.setValueAt(19, i, 7);
-                tblCotizacion.setValueAt(cargo, i, 8);
-                tblCotizacion.setValueAt(descuento, i, 9);
-                tblCotizacion.setValueAt(TotalFinal, i, 10);
+                System.out.println(precio);
+                System.out.println(Neto);
+                System.out.println(cargo);
+                System.out.println(descuento);
+                System.out.println(TotalFinal);
 
+                //java.text.NumberFormat.getCurrencyInstance().format(
+                String neto_format = java.text.NumberFormat.getCurrencyInstance().format(Neto);
+                String cargo_format = java.text.NumberFormat.getCurrencyInstance().format(cargo);
+                String descuento_format = java.text.NumberFormat.getCurrencyInstance().format(descuento);
+                String TotalFinal_format = java.text.NumberFormat.getCurrencyInstance().format(TotalFinal);
+                tblCotizacion.setValueAt(neto_format, i, 6);
+                tblCotizacion.setValueAt(19, i, 7);
+                tblCotizacion.setValueAt(cargo_format, i, 8);
+                tblCotizacion.setValueAt(descuento_format, i, 9);
+                tblCotizacion.setValueAt(TotalFinal_format, i, 10);
             }
             int sumaNeto = 0;
             double sumaIVA = 0;
             int sumaTotal = 0;
 
-            try {
-                for (int r = 0; r < tblCotizacion.getRowCount(); r++) {
-                    sumaNeto = sumaNeto + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
-                    sumaTotal = sumaTotal + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
-                }
-                sumaIVA = (sumaTotal * 0.19);
-                sumaTotal = (int) (sumaTotal + sumaIVA);
-                lblNetoTotal.setText("" + sumaNeto);
-                lblIVATotal.setText("" + Math.round(sumaIVA));
-                lblBrutoTotal.setText("" + sumaTotal);
+            for (int r = 0; r < tblCotizacion.getRowCount(); r++) {
 
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Aun faltan items en la tabla - " + ex.getMessage());
+                String total_dummy_1 = tblCotizacion.getValueAt(r, 10).toString().substring(3);
+                double total_dummy_2 = Double.parseDouble(total_dummy_1);
+                total_dummy_2 = Math.round(total_dummy_2 * 1000);
+
+                System.out.println(total_dummy_1);
+                System.out.println(total_dummy_2);
+
+                sumaNeto = (int) (sumaNeto + total_dummy_2);
+                sumaTotal = (int) (sumaTotal + total_dummy_2);
             }
-        } catch (HeadlessException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+
+            System.out.println(sumaNeto);
+            System.out.println(sumaTotal);
+            sumaIVA = (sumaTotal * 0.19);
+            sumaTotal = (int) (sumaTotal + sumaIVA);
+
+            lblNetoTotal.setText("" + java.text.NumberFormat.getCurrencyInstance().format(sumaNeto));
+            lblIVATotal.setText("" + java.text.NumberFormat.getCurrencyInstance().format(Math.round(sumaIVA)));
+            lblBrutoTotal.setText("" + java.text.NumberFormat.getCurrencyInstance().format(sumaTotal));
+
+            lblNetoTotal.setText(lblNetoTotal.getText().substring(3));
+            lblIVATotal.setText(lblIVATotal.getText().substring(3));
+            lblBrutoTotal.setText(lblBrutoTotal.getText().substring(3));
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: Aún faltan productos por seleccionar " + ex.getMessage());
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -1653,26 +1731,31 @@ public class BuscarProducto extends javax.swing.JFrame {
             if (tblCotizacion.getRowCount() == 0) {
                 btnBorrarProducto.setEnabled(false);
             }
-            JOptionPane.showMessageDialog(null, "Producto borrado de Cotizacion");
-            btnBorrarProducto.setEnabled(true);
-
             int sumaNeto = 0;
             double sumaIVA = 0;
             int sumaTotal = 0;
             for (int r = 0; r < tblCotizacion.getRowCount(); r++) {
-                sumaNeto = sumaNeto + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
-                sumaTotal = sumaTotal + Integer.parseInt(tblCotizacion.getValueAt(r, 10).toString());
+                String total_dummy_1 = tblCotizacion.getValueAt(r, 10).toString().substring(3);
+                double total_dummy_2 = Double.parseDouble(total_dummy_1);
+                total_dummy_2 = Math.round(total_dummy_2 * 1000);
+
+                System.out.println(total_dummy_1);
+                System.out.println(total_dummy_2);
+
+                sumaNeto = (int) (sumaNeto + total_dummy_2);
+                sumaTotal = (int) (sumaTotal + total_dummy_2);
             }
             sumaIVA = (sumaTotal * 0.19);
             sumaTotal = (int) (sumaTotal + sumaIVA);
             lblNetoTotal.setText("" + sumaNeto);
             lblIVATotal.setText("" + Math.round(sumaIVA));
             lblBrutoTotal.setText("" + sumaTotal);
+            JOptionPane.showMessageDialog(null, "Producto borrado de Cotizacion");
+            btnBorrarProducto.setEnabled(true);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: no hay un producto seleccionado " + ex.getMessage());
         }
-
     }//GEN-LAST:event_btnBorrarProductoActionPerformed
 
     private void cmbCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriaItemStateChanged
@@ -1860,7 +1943,7 @@ public class BuscarProducto extends javax.swing.JFrame {
     private javax.swing.JPanel panelCotizacion;
     private javax.swing.JTabbedPane panelDatos;
     private javax.swing.JPanel panelProductos;
-    private javax.swing.JPanel panel_oculto;
+    public javax.swing.JPanel panel_oculto;
     public javax.swing.JTable tblCotizacion;
     private javax.swing.JTable tblCotizacion_2;
     public javax.swing.JTable tblResultado;
