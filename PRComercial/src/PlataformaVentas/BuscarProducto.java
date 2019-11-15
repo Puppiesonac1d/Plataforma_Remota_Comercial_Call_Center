@@ -106,6 +106,11 @@ public class BuscarProducto extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             tblResultado.setModel(DbUtils.resultSetToTableModel(rs));
 
+            for (int i = 0; i < tblResultado.getRowCount(); i++) {
+                String resultado = java.text.NumberFormat.getCurrencyInstance().format(tblResultado.getModel().getValueAt(i, 6));
+                System.out.println(resultado.substring(3));
+                tblResultado.getModel().setValueAt(resultado.substring(2), i, 6);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
@@ -1137,12 +1142,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                 row[1] = cotizacion.getValueAt(indexs[i], 2);
                 row[2] = cotizacion.getValueAt(indexs[i], 3);
                 row[3] = cotizacion.getValueAt(indexs[i], 1);
-
-                int row4 = 0;
-                row4 = Integer.parseInt(cotizacion.getValueAt(indexs[i], 6).toString());
-                String rows = java.text.NumberFormat.getCurrencyInstance().format(row4);
-                System.out.println(rows);
-                row[4] = rows;
+                row[4] = cotizacion.getValueAt(indexs[i], 6).toString();
                 modeloNuevo.addRow(row);
             }
 
@@ -1162,7 +1162,7 @@ public class BuscarProducto extends javax.swing.JFrame {
             }
 
         } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnRealizarCotizacionActionPerformed
 
@@ -1671,15 +1671,17 @@ public class BuscarProducto extends javax.swing.JFrame {
                     tblCotizacion.getModel().setValueAt(0, tblCotizacion.getSelectedRow(), 8);
                 }
                 if (descuento == 0) {
-                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString().substring(3)) * 1000;
+                    precio = Double.parseDouble(tblCotizacion.getValueAt(i, 4).toString().substring(1));
                     Neto = (int) (precio * cantidad);
                     TotalFinal = Neto + cargo;
+                    System.out.println("Precio calculado: " + precio);
                 } else {
-                    precio = Double.valueOf(tblCotizacion.getValueAt(i, 4).toString().substring(3)) * 1000;
+                    precio = Double.parseDouble(tblCotizacion.getValueAt(i, 4).toString().substring(1));
                     descuentoPorcentaje = descuento / 100;
                     Neto = (int) (precio * cantidad);
                     TotalFinal = Neto + cargo;
                     TotalFinal = (int) ((int) TotalFinal - (TotalFinal * descuentoPorcentaje));
+
                 }
 
                 System.out.println(precio);
