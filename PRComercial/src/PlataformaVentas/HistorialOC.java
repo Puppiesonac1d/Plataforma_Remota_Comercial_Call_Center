@@ -435,7 +435,7 @@ public class HistorialOC extends javax.swing.JFrame {
             String query = "select idOrdenTrabajo as 'N° Nota de Venta', codigoOrdenCompra as 'Orden de Compra', rutCliente as 'Rut', demandante as 'Demandante',unidadCompra as 'Unidad de Compra',\n"
                     + "contactoOC as 'Nombre', ordentrabajo.emailEnvioFactura as 'Mail' ,ordentrabajo.telefono as 'Teléfono', neto as 'Neto', fechaEnvioOC as 'Fecha de Envío',fechaAceptacion as 'Fecha de Aceptación' ,usuario.nombreUsuario as 'Ejecutivo' \n"
                     + "from ordenTrabajo join usuario on ordenTrabajo.codigo_autorizacion = usuario.codigo_autorizacion "
-                    + "WHERE ordenTrabajo.demandante LIKE ?";
+                    + "WHERE ordenTrabajo.demandante RLIKE ?";
             String param = txtNombreDemandante.getText();
             PreparedStatement pst = cn.prepareStatement(query);
             pst.setString(1, param);
@@ -451,7 +451,7 @@ public class HistorialOC extends javax.swing.JFrame {
             String query = "select idOrdenTrabajo as 'N° Nota de Venta', codigoOrdenCompra as 'Orden de Compra', rutCliente as 'Rut', demandante as 'Demandante',unidadCompra as 'Unidad de Compra',\n"
                     + "contactoOC as 'Nombre', ordentrabajo.emailEnvioFactura as 'Mail' ,ordentrabajo.telefono as 'Teléfono', neto as 'Neto', fechaEnvioOC as 'Fecha de Envío',fechaAceptacion as 'Fecha de Aceptación' ,usuario.nombreUsuario as 'Ejecutivo' \n"
                     + "from ordenTrabajo join usuario on ordenTrabajo.codigo_autorizacion = usuario.codigo_autorizacion "
-                    + "WHERE usuario.nombreUsuario LIKE ?";
+                    + "WHERE usuario.nombreUsuario RLIKE ?";
             String param = txtNombreEjecutivo.getText();
             PreparedStatement pst = cn.prepareStatement(query);
             pst.setString(1, param);

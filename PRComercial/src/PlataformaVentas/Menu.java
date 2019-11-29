@@ -419,8 +419,9 @@ public class Menu extends javax.swing.JFrame {
             HISTORIALOC.lblCodigoMenu.setText(codigoMenu.getText());
             HISTORIALOC.setVisible(true);
             String query = "select idOrdenTrabajo as 'N° Nota de Venta', codigoOrdenCompra as 'Orden de Compra', rutCliente as 'Rut', demandante as 'Demandante',unidadCompra as 'Unidad de Compra',\n"
-                    + "contactoOC as 'Nombre', ordentrabajo.emailEnvioFactura as 'Mail' ,ordentrabajo.telefono as 'Teléfono', neto as 'Neto', fechaEnvioOC as 'Fecha de Envío',fechaAceptacion as 'Fecha de Aceptación' ,usuario.nombreUsuario as 'Ejecutivo' \n"
-                    + "from ordenTrabajo join usuario on ordenTrabajo.codigo_autorizacion = usuario.codigo_autorizacion ;";
+                    + "contactoOC as 'Nombre', ordentrabajo.emailEnvioFactura as 'Mail' ,ordentrabajo.telefono as 'Teléfono', neto as 'Neto', fechaEnvioOC as 'Fecha de Envío',fechaAceptacion as 'Fecha de Aceptación' ,\n"
+                    + "usuario.nombreUsuario as 'Ejecutivo' from ordenTrabajo join usuario on ordenTrabajo.codigo_autorizacion = usuario.codigo_autorizacion \n"
+                    + "ORDER BY idOrden;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();

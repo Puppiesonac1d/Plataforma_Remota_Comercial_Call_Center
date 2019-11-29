@@ -334,7 +334,6 @@ public class BuscarProducto extends javax.swing.JFrame {
         setBackground(java.awt.Color.white);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -740,7 +739,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         panelProductosLayout.setVerticalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1165,7 +1164,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         lblFondo.setToolTipText("");
         lblFondo.setMinimumSize(new java.awt.Dimension(0, 0));
         lblFondo.setPreferredSize(new java.awt.Dimension(100, 100));
-        jLayeredPane1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 780));
+        jLayeredPane1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
