@@ -78,6 +78,7 @@ public class Menu extends javax.swing.JFrame {
         btnClientesRecientes = new javax.swing.JButton();
         btnStatus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnSeguimiento = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -116,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(100, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel2.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
+        jPanel2.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
 
         btnListaContactos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnListaContactos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/android-contacts_icon-icons.com_50530.png"))); // NOI18N
@@ -199,6 +200,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1);
 
+        btnSeguimiento.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnSeguimiento.setText("Seguimiento de OC");
+        btnSeguimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeguimientoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSeguimiento);
+
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/exit_icon-icons.com_70975.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -234,11 +244,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(b_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 590));
+        jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 620));
 
         lblFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
@@ -431,6 +441,31 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSeguimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguimientoActionPerformed
+        /*
+         SELECT CODIGOORDENCOMPRA AS  
+         'Código de Orden de Compra'
+         from ordenTrabajo;
+         */
+        try {
+            Seguimiento seguimiento = new Seguimiento();
+            seguimiento.setVisible(true);
+            String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte;";
+            PreparedStatement pst;
+            pst = cn.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            seguimiento.tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnSeguimientoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,6 +509,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnClientesRecientes1;
     private javax.swing.JButton btnListaContactos;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSeguimiento;
     private javax.swing.JButton btnSeleccionaCotizacion;
     private javax.swing.JButton btnStatus;
     public javax.swing.JMenu codigoMenu;
