@@ -99,6 +99,14 @@ public class Login extends javax.swing.JFrame {
                         menu.codigoMenu.setText(Integer.toString(codigo));
                         Usuario usr = new Usuario();
                         usr.setCorreo(nombre);
+
+                        String queryMovimiento = "INSERT INTO actividad (idUsuario,accion,tiempoAccion) "
+                                + "VALUES(?,?,Now())";
+                        PreparedStatement pstMovimiento;
+                        pstMovimiento = cn.prepareStatement(queryMovimiento);
+                        pstMovimiento.setInt(1, Integer.parseInt(id));
+                        pstMovimiento.setString(2, "Inicio de Sesión");
+                        int up = pstMovimiento.executeUpdate();
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuario Inválido");

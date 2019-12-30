@@ -9,8 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import net.proteanit.sql.DbUtils;
@@ -23,6 +27,7 @@ public class Menu extends javax.swing.JFrame {
 
     Conexion con = new Conexion();
     Connection cn = con.conecta();
+    LocalDate sistFecha = LocalDate.now();
 
     public Menu() {
         initComponents();
@@ -31,10 +36,8 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBackground(new Color(0, 0, 0, 30));
         jPanel1.revalidate();
         jPanel1.repaint();
-        //Fecha
-        Date sistFecha = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MMM/YYYY");
-        menuFecha.setText(formato.format(sistFecha));
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
+        menuFecha.setText(" Fecha: " + sistFecha.getDayOfMonth() + "/" + sistFecha.getMonthValue() + "/" + sistFecha.getYear());
 
         //Hora
         Timer tiempo = new Timer(100, new Menu.horas());
@@ -341,7 +344,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        try {
+            String queryMovimiento = "UPDATE ACTIVIDAD SET ACCION2 = 'Cerrar Sesión', tiempoAccion2 = NOW() WHERE IDUSUARIO = ? and DATE(tiempoaccion) = ? and accion = 'Inicio de Sesión';";
+            PreparedStatement pstMovimiento;
+            pstMovimiento = cn.prepareStatement(queryMovimiento);
+            pstMovimiento.setInt(1, Integer.parseInt(idMenu.getText()));
+            pstMovimiento.setString(2, sistFecha.getYear() + "-" + sistFecha.getMonthValue() + "-" + sistFecha.getDayOfMonth());
+            int up = pstMovimiento.executeUpdate();
+            System.exit(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnClientesRecientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesRecientesActionPerformed
