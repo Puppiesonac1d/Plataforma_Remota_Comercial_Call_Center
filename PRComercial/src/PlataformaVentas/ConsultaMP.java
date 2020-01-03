@@ -12,6 +12,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -599,12 +601,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConsultaMPLayout.createSequentialGroup()
-                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel15)
-                                .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))
+                        .addGroup(panelConsultaMPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultaOC))
                     .addComponent(btnVolver7))
@@ -832,6 +833,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .trim(), i, 9);
                     }
                 }
+                String str = tblMP.getValueAt(i, 1).toString();
+                String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
+                tblMP.setValueAt(answer, i, 0);
             }
 
             NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
@@ -868,7 +872,6 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnGuardarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOrdenActionPerformed
         try {
-
             if (txtObservacionDespacho.getText().equals(null) || txtObservacionDespacho.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Observación de despacho se encuentra vacía.");
             } else {

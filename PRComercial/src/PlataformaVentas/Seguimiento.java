@@ -26,6 +26,10 @@ public class Seguimiento extends javax.swing.JFrame {
 
     Conexion con = new Conexion();
     Connection cn = con.conecta();
+    public boolean boolnv = false;
+    public boolean boolcotizacion = false;
+    public boolean boolingreso = false;
+    public boolean boolsalida = false;
 
     public Seguimiento() {
         initComponents();
@@ -109,6 +113,10 @@ public class Seguimiento extends javax.swing.JFrame {
         lblFechaNotaCompra = new javax.swing.JLabel();
         lblFechaIngreso = new javax.swing.JLabel();
         lblFechaSalidaSeguimiento = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        barraProgreso = new javax.swing.JProgressBar();
+        jLabel37 = new javax.swing.JLabel();
+        lblPorcentaje = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNV = new javax.swing.JTable();
@@ -583,45 +591,75 @@ public class Seguimiento extends javax.swing.JFrame {
 
         lblFechaSalidaSeguimiento.setText("-");
 
+        jLabel35.setText("Progreso general de la orden de compra");
+        jLabel35.setToolTipText("");
+
+        barraProgreso.setToolTipText("");
+
+        jLabel37.setText("%");
+
+        lblPorcentaje.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCotizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
-                    .addComponent(btnNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnIngreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCotizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                    .addComponent(btnNV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblFechaNotaCompra))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblFechaIngreso))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblFechaSalidaSeguimiento)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFechaNV))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFechaNotaCompra))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFechaIngreso))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFechaSalidaSeguimiento)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblFechaNV)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(lblPorcentaje)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel37)))
+                        .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28)
-                    .addComponent(lblFechaNV))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel28)
+                        .addComponent(lblFechaNV))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblPorcentaje)
+                                .addComponent(jLabel37)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCotizacion)
@@ -904,7 +942,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -924,6 +962,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
     private void tblNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNVMouseClicked
         try {
+
             int index = tblNV.getSelectedRow();
             String oc = tblNV.getValueAt(index, 0).toString();
             System.out.println(oc);
@@ -933,129 +972,166 @@ public class Seguimiento extends javax.swing.JFrame {
             String salida = "";
 
             //Nota de Venta
-            String queryNV = "SELECT CODIGOORDENCOMPRA,  LEFT(fechaenvioOC,10) from ordenTrabajo where codigoOrdenCompra = ?;";
-            PreparedStatement pstNV = cn.prepareStatement(queryNV);
-            pstNV.setString(1, oc);
-            ResultSet rsNV = pstNV.executeQuery();
-            while (rsNV.next()) {
-                nv = rsNV.getString(1);
-                lblFechaNV.setText(rsNV.getString(2));
-            }
+            try {
+                String queryNV = "SELECT CODIGOORDENCOMPRA,  LEFT(fechaenvioOC,10) from ordenTrabajo where codigoOrdenCompra = ?;";
+                PreparedStatement pstNV = cn.prepareStatement(queryNV);
+                pstNV.setString(1, oc);
+                ResultSet rsNV = pstNV.executeQuery();
+                while (rsNV.next()) {
+                    nv = rsNV.getString(1);
+                    lblFechaNV.setText(rsNV.getString(2));
+                }
+                if (lblFechaNV.getText().equals("-")) {
+                    lblFechaNV.setText("-");
+                } else {
+                    String anio_1 = lblFechaNV.getText().substring(0, 4);
+                    String mes_1 = lblFechaNV.getText().substring(5, 7);
+                    String dia_1 = lblFechaNV.getText().substring(8, 10);
 
-            if (lblFechaNV.getText().equals("-")) {
-                lblFechaNV.setText("-");
-            } else {
+                    String fecha_1 = dia_1 + "/" + mes_1 + "/" + anio_1;
 
-                String anio_1 = lblFechaNV.getText().substring(0, 4);
-                String mes_1 = lblFechaNV.getText().substring(5, 7);
-                String dia_1 = lblFechaNV.getText().substring(8, 10);
+                    lblFechaNV.setText(fecha_1);
+                }
 
-                String fecha_1 = dia_1 + "/" + mes_1 + "/" + anio_1;
-                System.out.println(fecha_1);
-                lblFechaNV.setText(fecha_1);
-
-            }
-            if (nv.equalsIgnoreCase(oc)) {
-                btnNV.setEnabled(true);
-                btnNV.setBackground(Color.GREEN);
-            } else {
-                btnNV.setEnabled(false);
-                btnNV.setBackground(Color.RED);
-                lblFechaNV.setText("-");
+                if (nv.equalsIgnoreCase(oc)) {
+                    btnNV.setEnabled(true);
+                    boolnv = true;
+                    btnNV.setBackground(Color.GREEN);
+                } else {
+                    btnNV.setEnabled(false);
+                    boolnv = false;
+                    btnNV.setBackground(Color.RED);
+                    lblFechaNV.setText("-");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Nota de Venta: " + ex.getMessage());
             }
             //Cotizaciones
-            String queryCotizaciones = "SELECT CODIGOORDENCOMPRA,fecha from ABASTECIMIENTO where codigoOrdenCompra = ?;";
-            PreparedStatement pstCotizaciones = cn.prepareStatement(queryCotizaciones);
-            pstCotizaciones.setString(1, oc);
-            ResultSet rsCotizaciones = pstCotizaciones.executeQuery();
-            while (rsCotizaciones.next()) {
-                cotizacion = rsCotizaciones.getString(1);
-                lblFechaNotaCompra.setText(rsCotizaciones.getDate(2).toString());
-            }
+            try {
+                String queryCotizaciones = "SELECT CODIGOORDENCOMPRA,fecha from ABASTECIMIENTO where codigoOrdenCompra = ?;";
+                PreparedStatement pstCotizaciones = cn.prepareStatement(queryCotizaciones);
+                pstCotizaciones.setString(1, oc);
+                ResultSet rsCotizaciones = pstCotizaciones.executeQuery();
+                while (rsCotizaciones.next()) {
+                    cotizacion = rsCotizaciones.getString(1);
+                    lblFechaNotaCompra.setText(rsCotizaciones.getDate(2).toString());
+                }
 
-            if (lblFechaNotaCompra.getText().equals("-")) {
-                lblFechaNotaCompra.setText("-");
-            } else {
+                if (lblFechaNotaCompra.getText().equals("-")) {
+                    lblFechaNotaCompra.setText("-");
+                } else {
+                    String anio_2 = lblFechaNotaCompra.getText().substring(0, 4);
+                    String mes_2 = lblFechaNotaCompra.getText().substring(5, 7);
+                    String dia_2 = lblFechaNotaCompra.getText().substring(8, 10);
+                    String fecha_2 = dia_2 + "/" + mes_2 + "/" + anio_2;
+                    lblFechaNotaCompra.setText(fecha_2);
+                }
 
-                String anio_2 = lblFechaNotaCompra.getText().substring(0, 4);
-                String mes_2 = lblFechaNotaCompra.getText().substring(5, 7);
-                String dia_2 = lblFechaNotaCompra.getText().substring(8, 10);
+                if (cotizacion.equalsIgnoreCase(oc)) {
+                    btnCotizacion.setEnabled(true);
+                    boolcotizacion = true;
+                    btnCotizacion.setBackground(Color.GREEN);
+                } else {
+                    btnCotizacion.setEnabled(false);
+                    boolcotizacion = false;
+                    btnCotizacion.setBackground(Color.RED);
+                    lblFechaNotaCompra.setText("-");
+                }
 
-                String fecha_2 = dia_2 + "/" + mes_2 + "/" + anio_2;
-                System.out.println(fecha_2);
-                lblFechaNotaCompra.setText(fecha_2);
-            }
-            if (cotizacion.equalsIgnoreCase(oc)) {
-                btnCotizacion.setEnabled(true);
-                btnCotizacion.setBackground(Color.GREEN);
-            } else {
-                btnCotizacion.setEnabled(false);
-                btnCotizacion.setBackground(Color.RED);
-                lblFechaNotaCompra.setText("-");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Cotizacion: " + ex.getMessage());
             }
 
             //Ingreso
-            String queryIngreso = "SELECT cotizacion.codigoOrdenCompra, LEFT(fechaIngreso,10) FROM ingreso i  join abastecimiento cotizacion on i.numeroCotizacion=cotizacion.numeroCotizacion where ?;";
-            PreparedStatement pstIngreso = cn.prepareStatement(queryIngreso);
-            pstIngreso.setString(1, oc);
-            ResultSet rsIngreso = pstIngreso.executeQuery();
-            while (rsIngreso.next()) {
-                ingreso = rsIngreso.getString(1);
-                lblFechaIngreso.setText(rsIngreso.getTimestamp(2).toString().substring(0, 10));
-            }
+            try {
+                String queryIngreso = "SELECT cotizacion.codigoOrdenCompra, LEFT(fechaIngreso,10) FROM ingreso i  join abastecimiento cotizacion on i.numeroCotizacion=cotizacion.numeroCotizacion where ?;";
+                PreparedStatement pstIngreso = cn.prepareStatement(queryIngreso);
+                pstIngreso.setString(1, oc);
+                ResultSet rsIngreso = pstIngreso.executeQuery();
+                while (rsIngreso.next()) {
+                    ingreso = rsIngreso.getString(1);
+                    lblFechaIngreso.setText(rsIngreso.getTimestamp(2).toString().substring(0, 10));
+                }
 
-            if (lblFechaIngreso.getText().equals("-")) {
-                lblFechaIngreso.setText("-");
-            } else {
+                System.out.println(lblFechaIngreso.getText());
 
-                String anio_3 = lblFechaIngreso.getText().substring(0, 4);
-                String mes_3 = lblFechaIngreso.getText().substring(5, 7);
-                String dia_3 = lblFechaIngreso.getText().substring(8, 10);
+                if (ingreso.equalsIgnoreCase(oc)) {
+                    btnIngreso.setEnabled(true);
+                    boolingreso = true;
+                    btnIngreso.setBackground(Color.GREEN);
+                } else {
+                    btnIngreso.setEnabled(false);
+                    boolingreso = false;
+                    lblFechaIngreso.setText("-");
+                    btnIngreso.setBackground(Color.RED);
+                }
 
-                String fecha_3 = dia_3 + "/" + mes_3 + "/" + anio_3;
-                System.out.println(fecha_3);
-                lblFechaIngreso.setText(fecha_3);
-            }
+                if (lblFechaIngreso.getText().equals("-")) {
+                    lblFechaIngreso.setText("-");
+                } else {
+                    String anio_3 = lblFechaIngreso.getText().substring(0, 2);
+                    String mes_3 = lblFechaIngreso.getText().substring(5, 7);
+                    String dia_3 = lblFechaIngreso.getText().substring(8, 10);
 
-            if (ingreso.equalsIgnoreCase(oc)) {
-                btnIngreso.setEnabled(true);
-                btnIngreso.setBackground(Color.GREEN);
-            } else {
-                btnIngreso.setEnabled(false);
-                lblFechaIngreso.setText("-");
-                btnIngreso.setBackground(Color.RED);
+                    String fecha_3 = dia_3 + "/" + mes_3 + "/" + anio_3;
+                    System.out.println(fecha_3);
+                    lblFechaIngreso.setText(fecha_3);
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Ingreso de Mercadería: " + ex.getMessage());
             }
 
             //Salida
-            String querySalida = "SELECT codigoOrdenCompra,fechaSalida FROM salida s join ordenTrabajo ot  on s.idOrdenTrabajo = ot.idOrdenTrabajo where ot.codigoOrdenCompra = ?;";
-            PreparedStatement pstSalida = cn.prepareStatement(querySalida);
-            pstSalida.setString(1, oc);
-            ResultSet rsSalida = pstSalida.executeQuery();
-            while (rsSalida.next()) {
-                salida = rsSalida.getString(1);
-                lblFechaSalidaSeguimiento.setText(rsSalida.getTimestamp(2).toString().substring(0, 10));
-            }
+            try {
+                String querySalida = "SELECT codigoOrdenCompra,fechaSalida FROM salida s join ordenTrabajo ot  on s.idOrdenTrabajo = ot.idOrdenTrabajo where ot.codigoOrdenCompra = ?;";
+                PreparedStatement pstSalida = cn.prepareStatement(querySalida);
+                pstSalida.setString(1, oc);
+                ResultSet rsSalida = pstSalida.executeQuery();
+                while (rsSalida.next()) {
+                    salida = rsSalida.getString(1);
+                    lblFechaSalidaSeguimiento.setText(rsSalida.getTimestamp(2).toString().substring(0, 10));
+                }
 
-            if (lblFechaSalidaSeguimiento.getText().equals("-")) {
-                lblFechaSalidaSeguimiento.setText("-");
-            } else {
-                String anio_4 = lblFechaSalidaSeguimiento.getText().substring(0, 4);
-                String mes_4 = lblFechaSalidaSeguimiento.getText().substring(5, 7);
-                String dia_4 = lblFechaSalidaSeguimiento.getText().substring(8, 10);
+                if (salida.equalsIgnoreCase(oc)) {
+                    btnSalida.setEnabled(true);
+                    boolsalida = true;
+                    btnSalida.setBackground(Color.GREEN);
 
-                String fecha_4 = dia_4 + "/" + mes_4 + "/" + anio_4;
-                System.out.println(fecha_4);
-                lblFechaSalidaSeguimiento.setText(fecha_4);
-            }
+                } else {
+                    btnSalida.setEnabled(false);
+                    boolsalida = false;
+                    btnSalida.setBackground(Color.RED);
+                    lblFechaSalidaSeguimiento.setText("-");
+                }
+                if (lblFechaSalidaSeguimiento.getText().equals("-")) {
+                    lblFechaSalidaSeguimiento.setText("-");
+                } else {
+                    String anio_4 = lblFechaSalidaSeguimiento.getText().substring(0, 3);
+                    String mes_4 = lblFechaSalidaSeguimiento.getText().substring(5, 7);
+                    String dia_4 = lblFechaSalidaSeguimiento.getText().substring(8, 10);
 
-            if (salida.equalsIgnoreCase(oc)) {
-                btnSalida.setEnabled(true);
-                btnSalida.setBackground(Color.GREEN);
-            } else {
-                btnSalida.setEnabled(false);
-                btnSalida.setBackground(Color.RED);
-                lblFechaSalidaSeguimiento.setText("-");
+                    String fecha_4 = dia_4 + "/" + mes_4 + "/" + anio_4;
+                    System.out.println(fecha_4);
+                    lblFechaSalidaSeguimiento.setText(fecha_4);
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Nota de Venta: " + ex.getMessage());
             }
+            barraProgreso.setValue(0);
+            lblPorcentaje.setText(Integer.toString(barraProgreso.getValue()));
+            if (boolnv == true) {
+                barraProgreso.setValue(barraProgreso.getValue() + 25);
+            }
+            if (boolcotizacion == true) {
+                barraProgreso.setValue(barraProgreso.getValue() + 25);
+            }
+            if (boolingreso == true) {
+                barraProgreso.setValue(barraProgreso.getValue() + 25);
+            }
+            if (boolsalida == true) {
+                barraProgreso.setValue(barraProgreso.getValue() + 25);
+            }
+            lblPorcentaje.setText(Integer.toString(barraProgreso.getValue()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -1292,12 +1368,12 @@ public class Seguimiento extends javax.swing.JFrame {
         if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("ACIMA GLOBAL SPA")) {
             try {
                 String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-                + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-                + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
+                        + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                        + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                        + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                        + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                        + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                        + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
                 PreparedStatement pst;
                 pst = cn.prepareStatement(query);
                 pst.setString(1, jComboBox1.getSelectedItem().toString());
@@ -1309,12 +1385,12 @@ public class Seguimiento extends javax.swing.JFrame {
         } else {
             try {
                 String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-                + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-                + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
+                        + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                        + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                        + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                        + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                        + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                        + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
                 PreparedStatement pst;
                 pst = cn.prepareStatement(query);
                 pst.setString(1, jComboBox1.getSelectedItem().toString());
@@ -1329,12 +1405,12 @@ public class Seguimiento extends javax.swing.JFrame {
     private void btnBuscarOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOCActionPerformed
         try {
             String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-            + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-            + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-            + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-            + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-            + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-            + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.codigoOrdenCompra RLIKE ?;";
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.codigoOrdenCompra RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtCodigoOrdenCompra.getText());
@@ -1348,12 +1424,12 @@ public class Seguimiento extends javax.swing.JFrame {
     private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacturaActionPerformed
         try {
             String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-            + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-            + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-            + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-            + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-            + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-            + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.numFactura RLIKE ?;";
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.numFactura RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtNumFactura.getText());
@@ -1367,12 +1443,12 @@ public class Seguimiento extends javax.swing.JFrame {
     private void btnOrdenTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenTransporteActionPerformed
         try {
             String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-            + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-            + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-            + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-            + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-            + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-            + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.ordenTransporte RLIKE ?;";
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.ordenTransporte RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtOrdenTransporte.getText());
@@ -1398,15 +1474,15 @@ public class Seguimiento extends javax.swing.JFrame {
             String recons = anio + "-" + mes + "-" + dia;
             System.out.println(recons);
             String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra'\n"
-            + ", ot.nombre_proveedor as 'Empresa',\n"
-            + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-            + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' \n"
-            + "from ordenTrabajo ot\n"
-            + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-            + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-            + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-            + "left join transporte tr on tr.idTransporte = sal.idTransporte \n"
-            + "WHERE LEFT(OT.FECHAENVIOOC,10) LIKE ?;";
+                    + ", ot.nombre_proveedor as 'Empresa',\n"
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' \n"
+                    + "from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte \n"
+                    + "WHERE LEFT(OT.FECHAENVIOOC,10) LIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, recons);
@@ -1454,6 +1530,7 @@ public class Seguimiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar barraProgreso;
     private javax.swing.JButton btnBuscarFactura;
     private javax.swing.JButton btnBuscarFecha;
     private javax.swing.JButton btnBuscarOC;
@@ -1495,6 +1572,8 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1533,6 +1612,7 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumeroIngreso;
     private javax.swing.JLabel lblNumeroNVSalida;
     private javax.swing.JLabel lblOrdenTransporte;
+    private javax.swing.JLabel lblPorcentaje;
     public javax.swing.JLabel lblTipoIngreso;
     private javax.swing.JLabel lblTotalTransporte;
     private javax.swing.JLabel lblTransporte;
