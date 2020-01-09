@@ -468,7 +468,7 @@ public class Menu extends javax.swing.JFrame {
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);

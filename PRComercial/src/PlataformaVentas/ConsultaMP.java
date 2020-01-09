@@ -12,8 +12,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -217,7 +218,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         };
         tblMP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código / ID Licitación CM", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
@@ -776,75 +777,51 @@ public class ConsultaMP extends javax.swing.JFrame {
             } else {
                 // success
             }
-            DefaultTableModel model = (DefaultTableModel) tblMP.getModel();
-            NodeList flowList = doc.getElementsByTagName("Item");
-            for (int i = 0; i < flowList.getLength(); i++) {
-                model.setRowCount(flowList.getLength());
-                tblMP.setModel(model);
-                NodeList childList = flowList.item(i).getChildNodes();
-                for (int j = 0; j < childList.getLength(); j++) {
-                    Node childNode = childList.item(j);
-                    if ("CodigoProducto".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 0);
-                    }
-                    if (null != childNode.getNodeName()) {
-                        switch (childNode.getNodeName()) {
-                            case "Producto":
-                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                        .trim(), i, 1);
-                                break;
-                            case "EspecificacionComprador":
-                                tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                        .trim(), i, 1);
-                                break;
-                        }
-                    }
-                    if ("Cantidad".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 2);
-                    }
-                    if ("EspecificacionComprador".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 3);
-                    }
-                    if ("EspecificacionProveedor".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 4);
-                    }
-                    if ("Moneda".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 5);
-                    }
-                    if ("PrecioNeto".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 6);
-                    }
-                    if ("TotalDescuentos".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 7);
-                    }
-                    if ("TotalCargos".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 8);
-                    }
-                    if ("Total".equals(childNode.getNodeName())) {
-                        tblMP.getModel().setValueAt(childList.item(j).getTextContent()
-                                .trim(), i, 9);
+
+            try {
+                NodeList flowList0 = doc.getElementsByTagName("Listado");
+                Element err1 = (Element) flowList0.item(0);
+                int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
+                System.out.println(num + "");
+                NodeList flowList1 = doc.getElementsByTagName("Listado");
+                DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
+
+                for (int m = 0; m < tblMP.getRowCount(); m++) {
+                    modelo.removeRow(m);
+                }
+                modelo.setRowCount(num);
+                for (int x = 0; x < num; x++) {
+                    System.out.println("Listado " + flowList1.getLength());
+
+                    NodeList flowList = doc.getElementsByTagName("Item");
+                    for (int i = 0; i < flowList.getLength(); i++) {
+                        Element err = (Element) flowList.item(x);
+                        String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
+                        String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
+                        modelo.setValueAt(answer, x, 0);
+                        modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
+                        modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
+                        modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
+                        modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
+                        modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
+                        modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
+                        modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
+                        modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
+                        modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
                     }
                 }
-                String str = tblMP.getValueAt(i, 1).toString();
-                String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
-                tblMP.setValueAt(answer, i, 0);
+            } catch (Exception ex) {
+                System.out.println("Ha ocurrido un error: " + ex);
             }
-
             NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
-            if (detalleMontos.getLength() > 0) {
+
+            if (detalleMontos.getLength()
+                    > 0) {
                 Element err = (Element) detalleMontos.item(0);
                 txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
                 txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
                 txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-                txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText()) - Integer.parseInt(txtDcto.getText())));
+                txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
                 txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
                 txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
                 txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
@@ -853,13 +830,16 @@ public class ConsultaMP extends javax.swing.JFrame {
                 // success
             }
             NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
-            if (descripcion.getLength() > 0) {
+
+            if (descripcion.getLength()
+                    > 0) {
                 Element err = (Element) descripcion.item(0);
                 txtObservacion.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
             } else {
                 // success
             }
-            System.out.println("La consulta fue realizada con éxito");
+            System.out.println(
+                    "La consulta fue realizada con éxito");
 
         } catch (Exception e) {
             System.out.println(e);
@@ -950,7 +930,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                         pstDetalle.setString(6, (tblMP.getValueAt(i, 6).toString()));
                         pstDetalle.setString(7, (tblMP.getValueAt(i, 7).toString()));
                         pstDetalle.setString(8, (tblMP.getValueAt(i, 8).toString()));
-                        pstDetalle.setString(9, (tblMP.getValueAt(i, 9).toString()));
+                        pstDetalle.setString(9, tblMP.getValueAt(i, 9).toString());
                         int x2 = pstDetalle.executeUpdate();
                     }
                     JOptionPane.showMessageDialog(null, "Se ha ingresado la nota de venta para la Orden de Compra");

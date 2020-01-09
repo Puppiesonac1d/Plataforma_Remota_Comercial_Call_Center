@@ -115,14 +115,16 @@ public class Seguimiento extends javax.swing.JFrame {
         lblFechaSalidaSeguimiento = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         barraProgreso = new javax.swing.JProgressBar();
-        jLabel37 = new javax.swing.JLabel();
         lblPorcentaje = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNV = new javax.swing.JTable();
         btnVolver = new javax.swing.JButton();
         btnReiniciar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel7 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         txtCodigoOrdenCompra = new javax.swing.JTextField();
@@ -139,8 +141,6 @@ public class Seguimiento extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         txtFechaOC = new javax.swing.JFormattedTextField();
         btnBuscarFecha = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
 
         detalleIngreso.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -596,9 +596,9 @@ public class Seguimiento extends javax.swing.JFrame {
 
         barraProgreso.setToolTipText("");
 
-        jLabel37.setText("%");
-
         lblPorcentaje.setText("0");
+
+        jLabel37.setText("%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -606,66 +606,65 @@ public class Seguimiento extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnIngreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCotizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                    .addComponent(btnNV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel29)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblFechaNotaCompra))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblFechaIngreso))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblFechaSalidaSeguimiento)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCotizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFechaNV)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(lblPorcentaje)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel37)))
-                        .addGap(31, 31, 31))))
+                        .addComponent(lblFechaNV))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFechaNotaCompra))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFechaIngreso))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFechaSalidaSeguimiento)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(lblPorcentaje)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel37)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28)
-                        .addComponent(lblFechaNV))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28)
+                            .addComponent(lblFechaNV))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCotizacion)
+                            .addComponent(jLabel29)
+                            .addComponent(lblFechaNotaCompra))
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblPorcentaje)
-                                .addComponent(jLabel37)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCotizacion)
-                    .addComponent(jLabel29)
-                    .addComponent(lblFechaNotaCompra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel37)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngreso)
                     .addComponent(jLabel30)
@@ -724,6 +723,33 @@ public class Seguimiento extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acima Global SPA", "Acima Soluciones", "Importadora Vive Mas" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(877, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Buscar por ACIMA GLOBAL / ACIMA SOLUCIONES / Vive Más", jPanel3);
+
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel27.setText("Código de Orden de Compra:");
 
@@ -748,7 +774,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtCodigoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarOC)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -787,7 +813,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtNumFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarFactura)
-                .addContainerGap(699, Short.MAX_VALUE))
+                .addContainerGap(675, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -826,7 +852,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtOrdenTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrdenTransporte)
-                .addContainerGap(640, Short.MAX_VALUE))
+                .addContainerGap(616, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -870,7 +896,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtFechaOC, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarFecha)
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(597, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,33 +911,6 @@ public class Seguimiento extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Buscar por Fecha", jPanel10);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acima Global SPA", "Acima Soluciones", "Importadora Vive Mas" }));
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(901, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Buscar por ACIMA GLOBAL / ACIMA SOLUCIONES / Vive Más", jPanel3);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -919,46 +918,254 @@ public class Seguimiento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnReiniciar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnVolver))
-                    .addComponent(jScrollPane1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnReiniciar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jTabbedPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(btnReiniciar)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btnVolver)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 1240, 690));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 1240, 700));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        detalleSalida.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        detalleIngreso.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNVActionPerformed
+        int index = tblNV.getSelectedRow();
+        String valor = tblNV.getValueAt(index, 0).toString();
+        OrdenTrabajo ordenTrabajo = new OrdenTrabajo();
+        ordenTrabajo.setVisible(true);
+        ordenTrabajo.txtConsultarOC.setText(valor);
+        try {
+            String tipoOrden = "";
+            //JOptionPane.showMessageDialog(null, "La Orden de Compra se encuentra en la base de datos");
+            //Consulta de BD
+            String query = "SELECT * FROM acimabasededatos.ordentrabajo oc join detalleordentrabajo doc on oc.codigoordencompra = doc.codigoordencompra\n"
+                    + "where oc.codigoOrdenCompra=?;";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, valor);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ordenTrabajo.txtProveedorOC.setText(rs.getString("nombre_proveedor"));
+                ordenTrabajo.txtRutCompradorOC.setText(rs.getString("rutCliente"));
+                ordenTrabajo.txtDireccionDemandanteOC.setText(rs.getString("direcciondemandante"));
+                ordenTrabajo.txtTelefonoComprador.setText(rs.getString("telefono"));
+                ordenTrabajo.txtNombreDemandanteOC.setText(rs.getString("demandante"));
+                ordenTrabajo.txtUnidadCompraCliente.setText(rs.getString("unidadcompra"));
+                ordenTrabajo.txtFechaEnvioOc.setText(rs.getString("fechaenviooc"));
+                ordenTrabajo.txtEstadoOC.setText(rs.getString("codigoestado"));
+                ordenTrabajo.txtCodigoOCOT.setText(rs.getString("codigoordencompra"));
+                ordenTrabajo.txtNombreOrdenCompra.setText(rs.getString("nombreordencompra"));
+                ordenTrabajo.txtFechaEntregaProductoOC.setText(rs.getString("fechaAceptacion"));
+                ordenTrabajo.txtDireccionesDespachoOC.setText(rs.getString("direccionesdespacho"));
+                ordenTrabajo.txtDireccionEnvioFacturaOC.setText(rs.getString("direccionEnvioFactura"));
+                ordenTrabajo.txtMetodoDespachoOC.setText(rs.getString("tipoDespacho"));
+                ordenTrabajo.txtContactoPagoOC.setText(rs.getString("contactoPago"));
+                ordenTrabajo.txtFormaPagoOC.setText(rs.getString("FormaPago"));
+                ordenTrabajo.txtContactoOC.setText(rs.getString("contactoOC"));
+                ordenTrabajo.txtMailEnvioFactura.setText(rs.getString("emailEnvioFactura"));
+                ordenTrabajo.txtCargosOC.setText(rs.getString("doc.cargos"));
+                ordenTrabajo.txtNetoOC.setText(rs.getString("neto"));
+                ordenTrabajo.txtDCTOOC.setText(rs.getString("dcto"));
+                ordenTrabajo.txtSubtotalOC.setText(rs.getString("subtotal"));
+                ordenTrabajo.txtIVAOC.setText(rs.getString("iva"));
+                ordenTrabajo.txtImpuestoEspecifico.setText(rs.getString("impuestoEspecifico"));
+                ordenTrabajo.txtTotalOC.setText(rs.getString("total"));
+            }
+            String queryProducto = "Select doc.codigoProducto as 'Código de Producto',\n"
+                    + "SUBSTRING_INDEX(doc.nombreProducto, ')', -1) as 'Nombre de Producto',doc.cantidad as 'Cantidad',\n"
+                    + "oc.especificacionComprador as 'Especificación de Comprador',oc.especificacionProveedor as 'Especificación de Proveedor',\n"
+                    + "oc.moneda,doc.precioUnitario as 'Precio Unitario', doc.descuento as 'Descuento',\n"
+                    + "doc.cargos as 'Cargos', doc.valorTotal as 'Valor Total' from detalleordentrabajo doc\n"
+                    + "join ordentrabajo oc on doc.codigoordencompra = oc.codigoordencompra\n"
+                    + "where oc.CodigoOrdenCompra=?";
+            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
+            pstProd.setString(1, valor);
+            ResultSet rsProd = pstProd.executeQuery();
+            ordenTrabajo.tblProductosOrdenCompra.setModel(DbUtils.resultSetToTableModel(rsProd));
+            System.out.println("La consulta fue realizada con éxito");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnNVActionPerformed
+
+    private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
+        try {
+            int index = tblNV.getSelectedRow();
+            String cotizacion = tblNV.getValueAt(index, 0).toString();
+            DetalleNotaCompra detalle = new DetalleNotaCompra();
+            detalle.setVisible(true);
+            String query = "select * from abastecimiento c join ordentrabajo ot on c.codigoOrdenCompra = ot.codigoOrdenCompra where ot.codigoOrdenCompra = ?;";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, cotizacion);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                detalle.lblNumeroCotizacion.setText(rs.getString("c.numeroCotizacion"));
+                detalle.lblCodigoOC.setText(rs.getString("c.codigoOrdenCompra"));
+                detalle.lblDistribuidor.setText(rs.getString("c.distribuidor"));
+                detalle.lblFecha.setText(rs.getString("c.fecha"));
+                detalle.lblProveedor.setText(rs.getString("c.proveedor"));
+                detalle.lblContacto.setText(rs.getString("c.Contacto"));
+                detalle.lblMail.setText(rs.getString("c.Mail"));
+                detalle.lblNumero.setText(rs.getString("c.Numero"));
+                detalle.lblIva.setText(rs.getString("c.iva"));
+                detalle.lblTotal.setText(rs.getString("c.total"));
+                detalle.lblCondicionDespacho.setText(rs.getString("c.condicionDespacho"));
+                detalle.lblDemoraDespacho.setText(rs.getString("c.DemoraDespacho"));
+                detalle.lblFormaPago.setText(rs.getString("c.FormaPago"));
+                detalle.lblObservaciones.setText(rs.getString("c.observaciones"));
+                detalle.lblEstado.setText(rs.getString("c.estado"));
+            }
+
+            detalle.lblIva.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblIva.getText())));
+            detalle.lblTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblTotal.getText())));
+
+            String query2 = "SELECT SKU, CODIGOPRODUCTO AS 'CODIGO DE PRODUCTO', CATEGORIA AS 'CATEGORÍA', NOMBRE AS 'NOMBRE DE PRODUCTO',CANTIDAD AS 'CANTIDAD',PRECIOUNITARIO AS 'PRECIOUNITARIO',PRECIOTOTALNETO AS 'PRECIO TOTAL NETO'\n"
+                    + "FROM detalle_abastecimiento WHERE IDABASTECIMIENTO = ?;";
+            PreparedStatement pst2 = cn.prepareStatement(query2);
+            pst2.setInt(1, Integer.parseInt(detalle.lblNumeroCotizacion.getText()));
+            ResultSet rs2 = pst2.executeQuery();
+            detalle.tblProductos.setModel(DbUtils.resultSetToTableModel(rs2));
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCotizacionActionPerformed
+
+    private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
+        try {
+            int index = tblNV.getSelectedRow();
+            String valor = tblNV.getValueAt(index, 0).toString();
+
+            detalleIngreso.setVisible(true);
+            String query = "SELECT * FROM ingreso ing join abastecimiento ab on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra \n"
+                    + "join bodega bo on bo.idBodega = ing.idBodega where ot.codigoOrdenCompra = ? ";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, valor);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                lblNumeroIngreso.setText(Integer.toString(rs.getInt("ing.idIngreso")));
+                lblNumeroCotizacion.setText(Integer.toString(rs.getInt("ab.numeroCotizacion")));
+                lblCodigoOrdenCompra.setText(rs.getString("ot.codigoOrdenCompra"));
+                lblDistribuidor.setText(rs.getString("ing.nombreDistribuidor"));
+                lblTransporte.setText(rs.getString("ing.tipoTransporte"));
+                lblBodega.setText(rs.getString("bo.nombreBodega"));
+                lblFecha.setText(rs.getString("ing.fechaIngreso"));
+                lblTipoIngreso.setText(rs.getString("ing.tipoIngreso"));
+            }
+
+            String queryProducto = "SELECT inv.idProducto as 'ID de Producto', inv.SKU, inv.nombreProducto as 'Nombre de Producto',inv.PrecioVenta as 'Precio de Venta',\n"
+                    + "inv.precioCosto as 'PrecioCosto', ing.stockIngresado as 'Stock Ingresado',inv.stock as 'Stock en Bodega', \n"
+                    + "pro.nombre_proveedor as 'Proveedor'\n"
+                    + "FROM ingreso ing left join inventario inv on ing.idProducto = inv.IDproducto\n"
+                    + "left join proveedores pro on pro.cod_proveedor = inv.cod_proveedor\n"
+                    + "left join abastecimiento ab on ab.numeroCotizacion = ing.numeroCotizacion\n"
+                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "where ot.codigoOrdenCompra = ?;";
+            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
+            pstProd.setString(1, valor);
+            ResultSet rsProd = pstProd.executeQuery();
+            tblProductosIngreso.setModel(DbUtils.resultSetToTableModel(rsProd));
+            System.out.println("La consulta fue realizada con éxito");
+
+            int rowCount = tblProductosIngreso.getRowCount();
+            for (int i = 0; i < rowCount; i++) {
+                String precioVenta = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 3).toString()));
+                tblProductosIngreso.setValueAt(precioVenta, i, 3);
+                String precioCosto = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 4).toString()));
+                tblProductosIngreso.setValueAt(precioVenta, i, 4);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnIngresoActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        try {
+            detalleSalida.setVisible(true);
+            int index = tblNV.getSelectedRow();
+            String valor = tblNV.getValueAt(index, 0).toString();
+
+            String query = "SELECT * FROM salida sa left join ordenTrabajo ot on ot.idOrdenTrabajo = sa.idOrdenTrabajo\n"
+                    + "left join transporte ta on ta.idTransporte = sa.idTransporte where ot.codigoOrdenCompra = ?;";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, valor);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                lblNumeroNVSalida.setText(Integer.toString(rs.getInt("ot.codigoOrdenCompra")));
+                lblTransporteSalida.setText(rs.getString("ta.transporte"));
+                lblDetalleTransporte.setText(rs.getString("sa.TipoTransporte"));
+                lblOrdenTransporte.setText(rs.getString("sa.ordenTransporte"));
+                lblIVATransporte.setText(rs.getString("sa.IVATransporte"));
+                lblNetoTransporte.setText(rs.getString("SA.NetoTransporte"));
+                lblTotalTransporte.setText(rs.getString("sa.TotalTransporte"));
+                lblFechaSalida.setText(rs.getString("sa.FechaSalida"));
+                lblNumeroFacturaSalida.setText(Integer.toString(rs.getInt("sa.NumFactura")));
+            }
+            String queryProducto = "SELECT inv.idProducto as 'ID de Producto',INV.SKU,INV.NOMBREPRODUCTO as 'Nombre de Producto',\n"
+                    + "             BU.CODIGOBULTO AS 'Código de Bulto', bu.cantidad as 'Cantidad de Producto en Bulto', bu.largo as 'Largo',bu.ancho as 'Ancho',bu.alto as 'Alto',bu.peso as 'Peso'\n"
+                    + "             from detalleSalida ds left join inventario inv on inv.IDproducto = ds.idProducto\n"
+                    + "             left join ordentrabajo ot on ot.codigoOrdenCompra = ds.codigoOrdenCompra\n"
+                    + "             left join salida sa on sa.codigoOrdenCompra = ot.codigoOrdenCompra\n"
+                    + "             left join bulto bu on bu.codigoOrdenCompra = ot.codigoOrdenCompra\n"
+                    + "             where ot.codigoOrdenCompra = ?;";
+            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
+            pstProd.setString(1, valor);
+            ResultSet rsProd = pstProd.executeQuery();
+            tblProductosSalida.setModel(DbUtils.resultSetToTableModel(rsProd));
+            System.out.println("La consulta fue realizada con éxito");
+
+            lblIVATransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblIVATransporte.getText())));
+            lblNetoTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblNetoTransporte.getText())));
+            lblTotalTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblTotalTransporte.getText())));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSalidaActionPerformed
 
     private void tblNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNVMouseClicked
         try {
@@ -1083,7 +1290,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
             //Salida
             try {
-                String querySalida = "SELECT codigoOrdenCompra,fechaSalida FROM salida s join ordenTrabajo ot  on s.idOrdenTrabajo = ot.idOrdenTrabajo where ot.codigoOrdenCompra = ?;";
+                String querySalida = "SELECT ot.codigoOrdenCompra,fechaSalida FROM salida s join ordenTrabajo ot  on s.codigoOrdenCompra = ot.codigoOrdenCompra where ot.codigoOrdenCompra = ?;";
                 PreparedStatement pstSalida = cn.prepareStatement(querySalida);
                 pstSalida.setString(1, oc);
                 ResultSet rsSalida = pstSalida.executeQuery();
@@ -1115,7 +1322,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     lblFechaSalidaSeguimiento.setText(fecha_4);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Nota de Venta: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Salida: " + ex.getMessage());
             }
             barraProgreso.setValue(0);
             lblPorcentaje.setText(Integer.toString(barraProgreso.getValue()));
@@ -1141,215 +1348,14 @@ public class Seguimiento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
-        try {
-            int index = tblNV.getSelectedRow();
-            String cotizacion = tblNV.getValueAt(index, 0).toString();
-            DetalleNotaCompra detalle = new DetalleNotaCompra();
-            detalle.setVisible(true);
-            String query = "select * from abastecimiento c join ordentrabajo ot on c.codigoOrdenCompra = ot.codigoOrdenCompra where ot.codigoOrdenCompra = ?;";
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, cotizacion);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                detalle.lblNumeroCotizacion.setText(rs.getString("c.numeroCotizacion"));
-                detalle.lblCodigoOC.setText(rs.getString("c.codigoOrdenCompra"));
-                detalle.lblDistribuidor.setText(rs.getString("c.distribuidor"));
-                detalle.lblFecha.setText(rs.getString("c.fecha"));
-                detalle.lblProveedor.setText(rs.getString("c.proveedor"));
-                detalle.lblContacto.setText(rs.getString("c.Contacto"));
-                detalle.lblMail.setText(rs.getString("c.Mail"));
-                detalle.lblNumero.setText(rs.getString("c.Numero"));
-                detalle.lblIva.setText(rs.getString("c.iva"));
-                detalle.lblTotal.setText(rs.getString("c.total"));
-                detalle.lblCondicionDespacho.setText(rs.getString("c.condicionDespacho"));
-                detalle.lblDemoraDespacho.setText(rs.getString("c.DemoraDespacho"));
-                detalle.lblFormaPago.setText(rs.getString("c.FormaPago"));
-                detalle.lblObservaciones.setText(rs.getString("c.observaciones"));
-                detalle.lblEstado.setText(rs.getString("c.estado"));
-            }
-
-            detalle.lblIva.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblIva.getText())));
-            detalle.lblTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblTotal.getText())));
-
-            String query2 = "SELECT SKU, CODIGOPRODUCTO AS 'CODIGO DE PRODUCTO', CATEGORIA AS 'CATEGORÍA', NOMBRE AS 'NOMBRE DE PRODUCTO',CANTIDAD AS 'CANTIDAD',PRECIOUNITARIO AS 'PRECIOUNITARIO',PRECIOTOTALNETO AS 'PRECIO TOTAL NETO'\n"
-                    + "FROM detalle_abastecimiento WHERE IDABASTECIMIENTO = ?;";
-            PreparedStatement pst2 = cn.prepareStatement(query2);
-            pst2.setInt(1, Integer.parseInt(detalle.lblNumeroCotizacion.getText()));
-            ResultSet rs2 = pst2.executeQuery();
-            detalle.tblProductos.setModel(DbUtils.resultSetToTableModel(rs2));
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnCotizacionActionPerformed
-
-    private void btnNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNVActionPerformed
-        int index = tblNV.getSelectedRow();
-        String valor = tblNV.getValueAt(index, 0).toString();
-        OrdenTrabajo ordenTrabajo = new OrdenTrabajo();
-        ordenTrabajo.setVisible(true);
-        ordenTrabajo.txtConsultarOC.setText(valor);
-        try {
-            String tipoOrden = "";
-            //JOptionPane.showMessageDialog(null, "La Orden de Compra se encuentra en la base de datos");
-            //Consulta de BD
-            String query = "SELECT * FROM acimabasededatos.ordentrabajo oc join detalleordentrabajo doc on oc.codigoordencompra = doc.codigoordencompra\n"
-                    + "where oc.codigoOrdenCompra=?;";
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, valor);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                ordenTrabajo.txtProveedorOC.setText(rs.getString("nombre_proveedor"));
-                ordenTrabajo.txtRutCompradorOC.setText(rs.getString("rutCliente"));
-                ordenTrabajo.txtDireccionDemandanteOC.setText(rs.getString("direcciondemandante"));
-                ordenTrabajo.txtTelefonoComprador.setText(rs.getString("telefono"));
-                ordenTrabajo.txtNombreDemandanteOC.setText(rs.getString("demandante"));
-                ordenTrabajo.txtUnidadCompraCliente.setText(rs.getString("unidadcompra"));
-                ordenTrabajo.txtFechaEnvioOc.setText(rs.getString("fechaenviooc"));
-                ordenTrabajo.txtEstadoOC.setText(rs.getString("codigoestado"));
-                ordenTrabajo.txtCodigoOCOT.setText(rs.getString("codigoordencompra"));
-                ordenTrabajo.txtNombreOrdenCompra.setText(rs.getString("nombreordencompra"));
-                ordenTrabajo.txtFechaEntregaProductoOC.setText(rs.getString("fechaAceptacion"));
-                ordenTrabajo.txtDireccionesDespachoOC.setText(rs.getString("direccionesdespacho"));
-                ordenTrabajo.txtDireccionEnvioFacturaOC.setText(rs.getString("direccionEnvioFactura"));
-                ordenTrabajo.txtMetodoDespachoOC.setText(rs.getString("tipoDespacho"));
-                ordenTrabajo.txtContactoPagoOC.setText(rs.getString("contactoPago"));
-                ordenTrabajo.txtFormaPagoOC.setText(rs.getString("FormaPago"));
-                ordenTrabajo.txtContactoOC.setText(rs.getString("contactoOC"));
-                ordenTrabajo.txtMailEnvioFactura.setText(rs.getString("emailEnvioFactura"));
-                ordenTrabajo.txtCargosOC.setText(rs.getString("doc.cargos"));
-                ordenTrabajo.txtNetoOC.setText(rs.getString("neto"));
-                ordenTrabajo.txtDCTOOC.setText(rs.getString("dcto"));
-                ordenTrabajo.txtSubtotalOC.setText(rs.getString("subtotal"));
-                ordenTrabajo.txtIVAOC.setText(rs.getString("iva"));
-                ordenTrabajo.txtImpuestoEspecifico.setText(rs.getString("impuestoEspecifico"));
-                ordenTrabajo.txtTotalOC.setText(rs.getString("total"));
-            }
-            String queryProducto = "Select doc.codigoProducto as 'Código de Producto',\n"
-                    + "SUBSTRING_INDEX(doc.nombreProducto, ')', -1) as 'Nombre de Producto',doc.cantidad as 'Cantidad',\n"
-                    + "oc.especificacionComprador as 'Especificación de Comprador',oc.especificacionProveedor as 'Especificación de Proveedor',\n"
-                    + "oc.moneda,doc.precioUnitario as 'Precio Unitario', doc.descuento as 'Descuento',\n"
-                    + "doc.cargos as 'Cargos', doc.valorTotal as 'Valor Total' from detalleordentrabajo doc\n"
-                    + "join ordentrabajo oc on doc.codigoordencompra = oc.codigoordencompra\n"
-                    + "where oc.CodigoOrdenCompra=?";
-            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
-            pstProd.setString(1, valor);
-            ResultSet rsProd = pstProd.executeQuery();
-            ordenTrabajo.tblProductosOrdenCompra.setModel(DbUtils.resultSetToTableModel(rsProd));
-            System.out.println("La consulta fue realizada con éxito");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_btnNVActionPerformed
-
-    private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
-        try {
-            int index = tblNV.getSelectedRow();
-            String valor = tblNV.getValueAt(index, 0).toString();
-
-            detalleIngreso.setVisible(true);
-            String query = "SELECT * FROM ingreso ing join abastecimiento ab on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra \n"
-                    + "join bodega bo on bo.idBodega = ing.idBodega where ot.codigoOrdenCompra = ? ";
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, valor);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                lblNumeroIngreso.setText(Integer.toString(rs.getInt("ing.idIngreso")));
-                lblNumeroCotizacion.setText(Integer.toString(rs.getInt("ab.numeroCotizacion")));
-                lblCodigoOrdenCompra.setText(rs.getString("ot.codigoOrdenCompra"));
-                lblDistribuidor.setText(rs.getString("ing.nombreDistribuidor"));
-                lblTransporte.setText(rs.getString("ing.tipoTransporte"));
-                lblBodega.setText(rs.getString("bo.nombreBodega"));
-                lblFecha.setText(rs.getString("ing.fechaIngreso"));
-                lblTipoIngreso.setText(rs.getString("ing.tipoIngreso"));
-            }
-
-            String queryProducto = "SELECT inv.idProducto as 'ID de Producto', inv.SKU, inv.nombreProducto as 'Nombre de Producto',inv.PrecioVenta as 'Precio de Venta',\n"
-                    + "inv.precioCosto as 'PrecioCosto', ing.stockIngresado as 'Stock Ingresado',inv.stock as 'Stock en Bodega', \n"
-                    + "pro.nombre_proveedor as 'Proveedor'\n"
-                    + "FROM ingreso ing left join inventario inv on ing.idProducto = inv.IDproducto\n"
-                    + "left join proveedores pro on pro.cod_proveedor = inv.cod_proveedor\n"
-                    + "left join abastecimiento ab on ab.numeroCotizacion = ing.numeroCotizacion\n"
-                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "where ot.codigoOrdenCompra = ?;";
-            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
-            pstProd.setString(1, valor);
-            ResultSet rsProd = pstProd.executeQuery();
-            tblProductosIngreso.setModel(DbUtils.resultSetToTableModel(rsProd));
-            System.out.println("La consulta fue realizada con éxito");
-
-            int rowCount = tblProductosIngreso.getRowCount();
-            for (int i = 0; i < rowCount; i++) {
-                String precioVenta = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 3).toString()));
-                tblProductosIngreso.setValueAt(precioVenta, i, 3);
-                String precioCosto = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 4).toString()));
-                tblProductosIngreso.setValueAt(precioVenta, i, 4);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnIngresoActionPerformed
-
-    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
-        try {
-            detalleSalida.setVisible(true);
-            int index = tblNV.getSelectedRow();
-            String valor = tblNV.getValueAt(index, 0).toString();
-
-            String query = "SELECT * FROM salida sa left join ordenTrabajo ot on ot.idOrdenTrabajo = sa.idOrdenTrabajo\n"
-                    + "left join transporte ta on ta.idTransporte = sa.idTransporte where ot.codigoOrdenCompra = ?;";
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, valor);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                lblNumeroNVSalida.setText(Integer.toString(rs.getInt("ot.codigoOrdenCompra")));
-                lblTransporteSalida.setText(rs.getString("ta.transporte"));
-                lblDetalleTransporte.setText(rs.getString("sa.TipoTransporte"));
-                lblOrdenTransporte.setText(rs.getString("sa.ordenTransporte"));
-                lblIVATransporte.setText(rs.getString("sa.IVATransporte"));
-                lblNetoTransporte.setText(rs.getString("SA.NetoTransporte"));
-                lblTotalTransporte.setText(rs.getString("sa.TotalTransporte"));
-                lblFechaSalida.setText(rs.getString("sa.FechaSalida"));
-                lblNumeroFacturaSalida.setText(Integer.toString(rs.getInt("sa.NumFactura")));
-            }
-            String queryProducto = "SELECT inv.idProducto as 'ID de Producto',INV.SKU,INV.NOMBREPRODUCTO as 'Nombre de Producto',\n"
-                    + "             BU.CODIGOBULTO AS 'Código de Bulto', bu.cantidad as 'Cantidad de Producto en Bulto', bu.largo as 'Largo',bu.ancho as 'Ancho',bu.alto as 'Alto',bu.peso as 'Peso'\n"
-                    + "             from detalleSalida ds left join inventario inv on inv.IDproducto = ds.idProducto\n"
-                    + "             left join ordentrabajo ot on ot.idOrdenTrabajo = ds.idOrdenTrabajo\n"
-                    + "             left join salida sa on sa.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                    + "             left join bulto bu on bu.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                    + "             where ot.codigoOrdenCompra = ?;";
-            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
-            pstProd.setString(1, valor);
-            ResultSet rsProd = pstProd.executeQuery();
-            tblProductosSalida.setModel(DbUtils.resultSetToTableModel(rsProd));
-            System.out.println("La consulta fue realizada con éxito");
-
-            lblIVATransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblIVATransporte.getText())));
-            lblNetoTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblNetoTransporte.getText())));
-            lblTotalTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblTotalTransporte.getText())));
-        } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnSalidaActionPerformed
-
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        detalleSalida.dispose();
-    }//GEN-LAST:event_btnCerrarActionPerformed
-
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
-
         try {
             String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
@@ -1360,45 +1366,24 @@ public class Seguimiento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        detalleIngreso.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("ACIMA GLOBAL SPA")) {
-            try {
-                String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-                        + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                        + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-                        + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                        + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                        + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                        + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
-                PreparedStatement pst;
-                pst = cn.prepareStatement(query);
-                pst.setString(1, jComboBox1.getSelectedItem().toString());
-                ResultSet rs = pst.executeQuery();
-                tblNV.setModel(DbUtils.resultSetToTableModel(rs));
-            } catch (SQLException ex) {
-                Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            try {
-                String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-                        + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                        + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-                        + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                        + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                        + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
-                        + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
-                PreparedStatement pst;
-                pst = cn.prepareStatement(query);
-                pst.setString(1, jComboBox1.getSelectedItem().toString());
-                ResultSet rs = pst.executeQuery();
-                tblNV.setModel(DbUtils.resultSetToTableModel(rs));
-            } catch (SQLException ex) {
-                Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
+                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
+                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
+            PreparedStatement pst;
+            pst = cn.prepareStatement(query);
+            pst.setString(1, jComboBox1.getSelectedItem().toString());
+            ResultSet rs = pst.executeQuery();
+            tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
@@ -1409,15 +1394,17 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.codigoOrdenCompra RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtCodigoOrdenCompra.getText());
             ResultSet rs = pst.executeQuery();
             tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarOCActionPerformed
 
@@ -1428,15 +1415,17 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.numFactura RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtNumFactura.getText());
             ResultSet rs = pst.executeQuery();
             tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarFacturaActionPerformed
 
@@ -1447,15 +1436,17 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.ordenTransporte RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtOrdenTransporte.getText());
             ResultSet rs = pst.executeQuery();
             tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnOrdenTransporteActionPerformed
 
@@ -1480,7 +1471,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
                     + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "left join salida sal on sal.idOrdenTrabajo = ot.idOrdenTrabajo\n"
+                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
                     + "left join transporte tr on tr.idTransporte = sal.idTransporte \n"
                     + "WHERE LEFT(OT.FECHAENVIOOC,10) LIKE ?;";
             PreparedStatement pst;
@@ -1488,8 +1479,10 @@ public class Seguimiento extends javax.swing.JFrame {
             pst.setString(1, recons);
             ResultSet rs = pst.executeQuery();
             tblNV.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
-            Logger.getLogger(Seguimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Seguimiento.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarFechaActionPerformed
 
