@@ -15,9 +15,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
+import net.proteanit.sql.DbUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -48,6 +51,11 @@ public class ConsultaMP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Homologacion = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblHomologacion = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblProductoAHomologar = new javax.swing.JTable();
         panelConsultaMPFrame = new javax.swing.JLayeredPane();
         jPanel3 = new javax.swing.JPanel();
         panelConsultaMP = new javax.swing.JPanel();
@@ -122,6 +130,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         txtFormaPago = new javax.swing.JTextField();
         txtContactoOC = new javax.swing.JTextField();
         txtObservacion = new javax.swing.JTextField();
+        btnHomologacion = new javax.swing.JButton();
         btnVolver7 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         lblEstadoOrdenCompra = new javax.swing.JLabel();
@@ -129,6 +138,55 @@ public class ConsultaMP extends javax.swing.JFrame {
         b_Titulo = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
         lblFondoConsultaMP = new javax.swing.JLabel();
+
+        Homologacion.setMaximumSize(new java.awt.Dimension(1118, 299));
+        Homologacion.setMinimumSize(new java.awt.Dimension(1118, 299));
+        Homologacion.setResizable(false);
+        Homologacion.setSize(new java.awt.Dimension(1118, 299));
+
+        tblHomologacion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblHomologacion);
+
+        tblProductoAHomologar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null}
+            },
+            new String [] {
+                "Producto a homologar"
+            }
+        ));
+        jScrollPane2.setViewportView(tblProductoAHomologar);
+
+        javax.swing.GroupLayout HomologacionLayout = new javax.swing.GroupLayout(Homologacion.getContentPane());
+        Homologacion.getContentPane().setLayout(HomologacionLayout);
+        HomologacionLayout.setHorizontalGroup(
+            HomologacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomologacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        HomologacionLayout.setVerticalGroup(
+            HomologacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomologacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(HomologacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -281,7 +339,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(txtCargos)
                     .addComponent(txtDcto)
                     .addComponent(txtNeto, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                .addGap(346, 986, Short.MAX_VALUE))
+                .addGap(346, 1024, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +372,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Totales", jPanel2);
@@ -363,25 +421,36 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtObservacion.setText("-");
 
+        btnHomologacion.setText("Homologación de Productos");
+        btnHomologacion.setEnabled(false);
+        btnHomologacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomologacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtProveedor)
-                    .addComponent(txtDireccionProveedor)
-                    .addComponent(txtRutProveedor))
+                .addContainerGap()
+                .addComponent(btnHomologacion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtProveedor)
+                            .addComponent(txtDireccionProveedor)
+                            .addComponent(txtRutProveedor)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,31 +500,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addComponent(jLabel23)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel27))
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTelefonoDemandante)
-                            .addComponent(txtRutComprador)
-                            .addComponent(txtDireccionDemandante)
-                            .addComponent(txtEmailContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel62)
                             .addComponent(jLabel32))
@@ -463,9 +507,31 @@ public class ConsultaMP extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtObservacionDespacho, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
                             .addComponent(txtObservacion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardarOrden)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGuardarOrden))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel27))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTelefonoDemandante)
+                                    .addComponent(txtRutComprador)
+                                    .addComponent(txtDireccionDemandante)
+                                    .addComponent(txtEmailContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,8 +600,10 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addComponent(jLabel14)
                             .addComponent(txtFechaEnvioOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnHomologacion)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32)
                             .addComponent(txtObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -954,6 +1022,27 @@ public class ConsultaMP extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarOrdenActionPerformed
 
+    private void btnHomologacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomologacionActionPerformed
+
+        try {
+            int index = tblMP.getSelectedRow();
+            tblProductoAHomologar.setValueAt(tblMP.getValueAt(index, 1).toString(), index, 0);
+
+            String busqueda = tblProductoAHomologar.getValueAt(0, 0).toString();
+            System.out.println("Busqueda: " + busqueda);
+            Homologacion.setVisible(true);
+            String queryProducto = "select producto from productos\n"
+                    + "where MATCH(producto) AGAINST ( ? WITH QUERY EXPANSION);";
+            PreparedStatement pstProducto = cn.prepareStatement(queryProducto);
+            pstProducto.setString(1, busqueda);
+            java.sql.ResultSet rs2 = pstProducto.executeQuery();
+            tblHomologacion.setModel(DbUtils.resultSetToTableModel(rs2));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha Ocurrido un error: " + ex);
+        }
+
+    }//GEN-LAST:event_btnHomologacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -995,9 +1084,11 @@ public class ConsultaMP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame Homologacion;
     private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnConsultaOC;
     private javax.swing.JButton btnGuardarOrden;
+    private javax.swing.JButton btnHomologacion;
     private javax.swing.JButton btnVolver7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1037,6 +1128,8 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1045,7 +1138,9 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JLabel lblFondoConsultaMP;
     private javax.swing.JPanel panelConsultaMP;
     private javax.swing.JLayeredPane panelConsultaMPFrame;
+    private javax.swing.JTable tblHomologacion;
     private javax.swing.JTable tblMP;
+    private javax.swing.JTable tblProductoAHomologar;
     private javax.swing.JTextField txtCargos;
     private javax.swing.JTextField txtContactoOC;
     private javax.swing.JTextField txtContactoPago;

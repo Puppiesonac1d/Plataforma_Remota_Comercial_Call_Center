@@ -912,7 +912,7 @@ public class BuscarProducto extends javax.swing.JFrame {
                 btnBorrarProductoActionPerformed(evt);
             }
         });
-        panelCotizacion.add(btnBorrarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 239, -1));
+        panelCotizacion.add(btnBorrarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 570, 210, -1));
 
         tblCotizacion_2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
