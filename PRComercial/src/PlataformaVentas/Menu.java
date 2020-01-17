@@ -426,7 +426,6 @@ public class Menu extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
     }//GEN-LAST:event_btnStatusActionPerformed
 
     private void btnClientesRecientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesRecientes1ActionPerformed

@@ -43,18 +43,22 @@ public class NotaVenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         AgregarProductoOT = new javax.swing.JFrame();
         jLayeredPane13 = new javax.swing.JLayeredPane();
         jTabbedPane16 = new javax.swing.JTabbedPane();
         jPanel40 = new javax.swing.JPanel();
         lblNombreProducto = new javax.swing.JLabel();
         txtNombreProducto = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jPanel41 = new javax.swing.JPanel();
         jLabel80 = new javax.swing.JLabel();
         txtIDProducto = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jPanel42 = new javax.swing.JPanel();
         jLabel85 = new javax.swing.JLabel();
         txtSKU = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
         jTabbedPane14 = new javax.swing.JTabbedPane();
         jScrollPane20 = new javax.swing.JScrollPane();
         tblAgregarProdOT = new javax.swing.JTable();
@@ -70,7 +74,7 @@ public class NotaVenta extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         txtEspecificacionProveedor = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
-        txtCargos = new javax.swing.JTextField();
+        txtCargos1 = new javax.swing.JTextField();
         txtDescuento = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
@@ -78,8 +82,9 @@ public class NotaVenta extends javax.swing.JFrame {
         btnCalcularValores = new javax.swing.JButton();
         btnBorrarProducto1 = new javax.swing.JButton();
         btnAgregarProdOT = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel65 = new javax.swing.JLabel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jPanel33 = new javax.swing.JPanel();
         btnVolver4 = new javax.swing.JButton();
@@ -193,6 +198,14 @@ public class NotaVenta extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
         jPanel40.setLayout(jPanel40Layout);
         jPanel40Layout.setHorizontalGroup(
@@ -201,8 +214,10 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(lblNombreProducto)
                 .addGap(30, 30, 30)
-                .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtNombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
         jPanel40Layout.setVerticalGroup(
             jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,8 +225,9 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreProducto)
-                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(43, 43, 43))
         );
 
         jTabbedPane16.addTab("Buscar Por Nombre", jPanel40);
@@ -226,6 +242,14 @@ public class NotaVenta extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
@@ -234,8 +258,10 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel80)
                 .addGap(30, 30, 30)
-                .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtIDProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap())
         );
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +269,8 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addGap(44, 44, 44))
         );
 
@@ -259,6 +286,15 @@ public class NotaVenta extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton4.setText("Buscar");
+        jButton4.setToolTipText("");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
         jPanel42.setLayout(jPanel42Layout);
         jPanel42Layout.setHorizontalGroup(
@@ -267,8 +303,10 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel85)
                 .addGap(30, 30, 30)
-                .addComponent(txtSKU, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtSKU, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
         jPanel42Layout.setVerticalGroup(
             jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +314,8 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSKU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
                 .addGap(44, 44, 44))
         );
 
@@ -368,8 +407,8 @@ public class NotaVenta extends javax.swing.JFrame {
         txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtCantidad.setToolTipText("");
 
-        txtCargos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        txtCargos.setToolTipText("");
+        txtCargos1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtCargos1.setToolTipText("");
 
         txtDescuento.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtDescuento.setToolTipText("");
@@ -404,7 +443,7 @@ public class NotaVenta extends javax.swing.JFrame {
                     .addComponent(txtEspecificacionComprador, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(txtEspecificacionProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-                    .addComponent(txtCargos, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(txtCargos1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -431,7 +470,7 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel66)
-                    .addComponent(txtCargos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCargos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel71)
@@ -474,6 +513,22 @@ public class NotaVenta extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton1.setText("Volver y cancelar toda la operación");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton5.setText("Reiniciar Filtros");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
 
         javax.swing.GroupLayout jLayeredPane13Layout = new javax.swing.GroupLayout(jLayeredPane13);
@@ -482,19 +537,24 @@ public class NotaVenta extends javax.swing.JFrame {
             jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane13Layout.createSequentialGroup()
-                        .addComponent(jTabbedPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarProdOT, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBorrarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCalcularValores, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTabbedPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jLayeredPane13Layout.createSequentialGroup()
-                        .addComponent(jTabbedPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConfirmarVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jLayeredPane13Layout.createSequentialGroup()
+                            .addComponent(jTabbedPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnAgregarProdOT, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                .addComponent(btnBorrarProducto1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                .addComponent(btnCalcularValores, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
+                        .addGroup(jLayeredPane13Layout.createSequentialGroup()
+                            .addComponent(jTabbedPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton5))
+                        .addGroup(jLayeredPane13Layout.createSequentialGroup()
+                            .addComponent(jTabbedPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnConfirmarVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane13Layout.createSequentialGroup()
@@ -510,14 +570,14 @@ public class NotaVenta extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnConfirmarVolver))
                     .addGroup(jLayeredPane13Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTabbedPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5))
                         .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane13Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jTabbedPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTabbedPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTabbedPane14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane13Layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
+                                .addGap(38, 38, 38)
                                 .addComponent(btnAgregarProdOT)
                                 .addGap(5, 5, 5)
                                 .addComponent(btnBorrarProducto1)
@@ -525,7 +585,9 @@ public class NotaVenta extends javax.swing.JFrame {
                                 .addComponent(btnCalcularValores)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(470, 470, 470))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(438, 438, 438))
             .addGroup(jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane13Layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -539,6 +601,8 @@ public class NotaVenta extends javax.swing.JFrame {
         jLayeredPane13.setLayer(btnCalcularValores, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane13.setLayer(btnBorrarProducto1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane13.setLayer(btnAgregarProdOT, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane13.setLayer(jLabel65, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout AgregarProductoOTLayout = new javax.swing.GroupLayout(AgregarProductoOT.getContentPane());
@@ -1115,13 +1179,13 @@ public class NotaVenta extends javax.swing.JFrame {
         jPanel33Layout.setHorizontalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
-                .addContainerGap(1140, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVolver4)
                 .addContainerGap())
             .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel33Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1275, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel33Layout.setVerticalGroup(
@@ -1149,8 +1213,8 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jLayeredPane4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jLayeredPane4Layout.setVerticalGroup(
             jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1236,7 +1300,7 @@ public class NotaVenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Producto borrado de Orden de Compra");
             btnBorrarProducto.setEnabled(true);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: No se ha seleccionado un producto" + ex.getMessage());
         }
     }//GEN-LAST:event_btnBorrarProductoActionPerformed
 
@@ -1333,60 +1397,116 @@ public class NotaVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConsultarOCActionPerformed
 
+    private void btnCalculoTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoTotalesActionPerformed
+        try {
+            if (tblProductosOrdenCompra.getValueAt(0, 5).toString().equals("CLP")) {
+                int neto = Integer.parseInt(txtNetoOC.getText().substring(1).replace(".", ""));
+                int descuento = Integer.parseInt(txtDCTOOC.getText());
+                int cargo = Integer.parseInt(txtCargosOC.getText());
+                System.out.println("Neto: " + neto);
+                System.out.println("Descuento: " + descuento);
+                int subtotal = neto + cargo - descuento;
+                double iva = subtotal * 0.19;
+                int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText());
+                int total = (int) (iva + impuesto_especifico + subtotal);
+                //Formateo
+                txtDCTOOC.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
+                txtCargosOC.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
+                txtSubtotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
+                txtIVAOC.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
+                txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
+                txtTotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
+
+                txtDCTOOC.setText(txtDCTOOC.getText().substring(2));
+                txtCargosOC.setText(txtCargosOC.getText().substring(2));
+                txtSubtotalOC.setText(txtSubtotalOC.getText().substring(2));
+                txtIVAOC.setText(txtIVAOC.getText().substring(2));
+                txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
+                txtTotalOC.setText(txtTotalOC.getText().substring(2));
+
+            } else {
+                double neto = Double.parseDouble(txtNetoOC.getText().substring(1).replace(".", "").replace(",", "."));
+                double descuento = Double.parseDouble(txtDCTOOC.getText());
+                double cargo = Double.parseDouble(txtCargosOC.getText());
+                System.out.println("Neto: " + neto);
+                System.out.println("Descuento: " + descuento);
+                double subtotal = neto + cargo - descuento;
+                double iva = subtotal * 0.19;
+                double impuesto_especifico = Double.parseDouble(txtImpuestoEspecifico.getText());
+                double total = (iva + impuesto_especifico + subtotal);
+                //Formateo
+                txtDCTOOC.setText(new DecimalFormat("$#,##0.00").format(descuento));
+                txtCargosOC.setText(new DecimalFormat("$#,##0.00").format(cargo));
+                txtSubtotalOC.setText(new DecimalFormat("$#,##0.00").format(subtotal));
+                txtIVAOC.setText(new DecimalFormat("$#,##0.00").format(iva));
+                txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
+                txtTotalOC.setText(new DecimalFormat("$#,##0.00").format(total));
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: debe ingresar un valor correspondiente a la moneda" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCalculoTotalesActionPerformed
+
     private void txtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductoActionPerformed
 
     }//GEN-LAST:event_txtNombreProductoActionPerformed
 
     private void txtNombreProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoKeyPressed
-        try {
-            String query = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
-                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado',\n"
-                    + "inv.stock as 'Stock en la bodega', b.nombreBodega as 'Nombre de Bodega'\n"
-                    + "FROM inventario inv join bodega b on inv.idBodega = b.idBodega\n"
-                    + "where inv.nombreProducto RLIKE 'a';";
-            String param = txtNombreProducto.getText();
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, "%" + param + "%");
-            ResultSet rs = pst.executeQuery();
-            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
-        }
+
     }//GEN-LAST:event_txtNombreProductoKeyPressed
 
-    private void txtIDProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDProductoKeyPressed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            String query = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
-                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado',\n"
-                    + "inv.stock as 'Stock en la bodega', b.nombreBodega as 'Nombre de Bodega'\n"
-                    + "FROM inventario inv join bodega b on inv.idBodega = b.idBodega\n"
-                    + "where inv.idProducto RLIKE 'a';";
-            String param = txtIDProducto.getText();
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, "%" + param + "%");
-            ResultSet rs = pst.executeQuery();
-            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rs));
+            String queryProducto = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
+                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado', inv.stock as 'Stock en la bodega'\n"
+                    + "FROM inventario inv where inv.nombreProducto RLIKE ?;";
+            String param = txtNombreProducto.getText();
+            PreparedStatement pstProducto = cn.prepareStatement(queryProducto);
+            pstProducto.setString(1, param);
+            ResultSet rsProducto = pstProducto.executeQuery();
+            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rsProducto));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtIDProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDProductoKeyPressed
+
     }//GEN-LAST:event_txtIDProductoKeyPressed
 
-    private void txtSKUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSKUKeyPressed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            String query = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
-                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado',\n"
-                    + "inv.stock as 'Stock en la bodega', b.nombreBodega as 'Nombre de Bodega'\n"
-                    + "FROM inventario inv join bodega b on inv.idBodega = b.idBodega\n"
-                    + "where inv.SKU RLIKE 'a';";
-            String param = txtSKU.getText();
-            PreparedStatement pst = cn.prepareStatement(query);
-            pst.setString(1, "%" + param + "%");
-            ResultSet rs = pst.executeQuery();
-            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rs));
+            String queryProducto = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
+                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado', inv.stock as 'Stock en la bodega'\n"
+                    + "FROM inventario inv WHERE inv.idProducto RLIKE ?;";
+            String param = txtNombreProducto.getText();
+            PreparedStatement pstProducto = cn.prepareStatement(queryProducto);
+            pstProducto.setInt(1, Integer.parseInt(param));
+            ResultSet rsProducto = pstProducto.executeQuery();
+            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rsProducto));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtSKUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSKUKeyPressed
+
     }//GEN-LAST:event_txtSKUKeyPressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            String queryProducto = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
+                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado', inv.stock as 'Stock en la bodega'\n"
+                    + "FROM inventario inv WHERE inv.SKU rlike ?;";
+            String param = txtSKU.getText();
+            PreparedStatement pstProducto = cn.prepareStatement(queryProducto);
+            pstProducto.setString(1, param);
+            ResultSet rsProducto = pstProducto.executeQuery();
+            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rsProducto));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tblAgregarProdOTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgregarProdOTMouseClicked
         btnCalcularValores.setEnabled(false);
@@ -1410,16 +1530,16 @@ public class NotaVenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabbedPane14MouseClicked
 
-    private void btnConfirmarVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVolverActionPerformed
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+    private void btnConfirmarVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVolverActionPerformed
         try {
             TableModel cotizacion = tblProdadd.getModel();
             int indexs = tblProdadd.getRowCount();
-
             Object[] row = new Object[15];
-
             DefaultTableModel modeloNuevo = (DefaultTableModel) tblProductosOrdenCompra.getModel();
-
             for (int i = 0; i < indexs; i++) {
                 row[0] = cotizacion.getValueAt(i, 0);
                 row[1] = cotizacion.getValueAt(i, 1);
@@ -1432,9 +1552,7 @@ public class NotaVenta extends javax.swing.JFrame {
                 row[8] = cotizacion.getValueAt(i, 9);
                 row[9] = cotizacion.getValueAt(i, 10);
                 modeloNuevo.addRow(row);
-
             }
-
             int index2 = tblProductosOrdenCompra.getRowCount();
             System.out.println("Valor " + modeloNuevo.getValueAt(0, 5).toString());
 
@@ -1455,14 +1573,12 @@ public class NotaVenta extends javax.swing.JFrame {
                     txtNetoOC.setText(new DecimalFormat("$#,##0.00").format(subTotal));
                 }
             }
-
             AgregarProductoOT.dispose();
             this.setVisible(true);
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se han agregado productos o información: " + ex.getMessage());
         }
-
     }//GEN-LAST:event_btnConfirmarVolverActionPerformed
 
     private void btnCalcularValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularValoresActionPerformed
@@ -1482,7 +1598,7 @@ public class NotaVenta extends javax.swing.JFrame {
 
                 System.out.println(moneda);
                 String descuento = txtDescuento.getText();
-                String cargos = txtCargos.getText();
+                String cargos = txtCargos1.getText();
                 int descuentoTabla = Integer.parseInt(descuento);
                 int cantidadProd = Integer.parseInt(cantidad);
                 int precioUnitarioProd = 0;
@@ -1531,7 +1647,7 @@ public class NotaVenta extends javax.swing.JFrame {
 
                 System.out.println(moneda);
                 String descuento = txtDescuento.getText();
-                String cargos = txtCargos.getText();
+                String cargos = txtCargos1.getText();
                 double descuentoTabla = Double.parseDouble(descuento);
                 double cantidadProd = Double.parseDouble(cantidad);
                 double precioUnitarioProd = 0;
@@ -1572,8 +1688,9 @@ public class NotaVenta extends javax.swing.JFrame {
 
                 }
             }
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage() + " debe ingresar la información requerida de los productos");
         }
     }//GEN-LAST:event_btnCalcularValoresActionPerformed
 
@@ -1616,59 +1733,24 @@ public class NotaVenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarProdOTActionPerformed
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AgregarProductoOT.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnCalculoTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoTotalesActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            if (tblProductosOrdenCompra.getValueAt(0, 5).toString().equals("CLP")) {
-                int neto = Integer.parseInt(txtNetoOC.getText().substring(1).replace(".", ""));
-                int descuento = Integer.parseInt(txtDCTOOC.getText());
-                int cargo = Integer.parseInt(txtCargosOC.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                int subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText());
-                int total = (int) (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDCTOOC.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
-                txtCargosOC.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
-                txtSubtotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
-                txtIVAOC.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
-                txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
-                txtTotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
 
-                txtDCTOOC.setText(txtDCTOOC.getText().substring(2));
-                txtCargosOC.setText(txtCargosOC.getText().substring(2));
-                txtSubtotalOC.setText(txtSubtotalOC.getText().substring(2));
-                txtIVAOC.setText(txtIVAOC.getText().substring(2));
-                txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
-                txtTotalOC.setText(txtTotalOC.getText().substring(2));
-
-            } else {
-                double neto = Double.parseDouble(txtNetoOC.getText().substring(1).replace(".", "").replace(",", "."));
-                double descuento = Double.parseDouble(txtDCTOOC.getText());
-                double cargo = Double.parseDouble(txtCargosOC.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                double subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                double impuesto_especifico = Double.parseDouble(txtImpuestoEspecifico.getText());
-                double total = (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDCTOOC.setText(new DecimalFormat("$#,##0.00").format(descuento));
-                txtCargosOC.setText(new DecimalFormat("$#,##0.00").format(cargo));
-                txtSubtotalOC.setText(new DecimalFormat("$#,##0.00").format(subtotal));
-                txtIVAOC.setText(new DecimalFormat("$#,##0.00").format(iva));
-                txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
-                txtTotalOC.setText(new DecimalFormat("$#,##0.00").format(total));
-            }
+            String queryProducto = "Select inv.idProducto as 'ID producto', inv.SKU, inv.categoria as 'Categoría', inv.nombreProducto as 'Producto',\n"
+                    + "inv.descripcion as 'Descripción' ,inv.precioVenta as 'Precio Venta',inv.StatusProducto as 'Estado', inv.stock as 'Stock en la bodega'\n"
+                    + "FROM inventario inv;";
+            PreparedStatement pstProducto = cn.prepareStatement(queryProducto);
+            ResultSet rsProducto = pstProducto.executeQuery();
+            tblAgregarProdOT.setModel(DbUtils.resultSetToTableModel(rsProducto));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnCalculoTotalesActionPerformed
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1722,6 +1804,11 @@ public class NotaVenta extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarOrden1;
     private javax.swing.JButton btnVolver4;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel100;
@@ -1795,7 +1882,7 @@ public class NotaVenta extends javax.swing.JFrame {
     private javax.swing.JTable tblProdadd;
     private javax.swing.JTable tblProductosOrdenCompra;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCargos;
+    private javax.swing.JTextField txtCargos1;
     private javax.swing.JTextField txtCargosOC;
     private javax.swing.JTextField txtCodigoOCOT;
     public javax.swing.JTextField txtConsultarOC;
