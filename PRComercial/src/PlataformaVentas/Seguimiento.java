@@ -411,39 +411,41 @@ public class Seguimiento extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3)
+                .addGap(12, 12, 12))
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNumeroNVSalida)
-                                    .addComponent(lblTransporteSalida)))
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNumeroFacturaSalida)
-                                    .addComponent(lblIVATransporte)
-                                    .addComponent(lblNetoTransporte)
-                                    .addComponent(lblTotalTransporte)
-                                    .addComponent(lblFechaSalida)
-                                    .addComponent(lblDetalleTransporte)
-                                    .addComponent(lblOrdenTransporte)))
-                            .addComponent(jLabel24))
-                        .addGap(0, 914, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3)))
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNumeroNVSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTransporteSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDetalleTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblOrdenTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIVATransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNetoTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotalTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNumeroFacturaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel24))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,20 +500,19 @@ public class Seguimiento extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(1134, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCerrar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                .addComponent(jScrollPane4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrar)
                 .addContainerGap())
@@ -1009,11 +1010,12 @@ public class Seguimiento extends javax.swing.JFrame {
                 ordenTrabajo.txtIVAOC.setText(rs.getString("iva"));
                 ordenTrabajo.txtImpuestoEspecifico.setText(rs.getString("impuestoEspecifico"));
                 ordenTrabajo.txtTotalOC.setText(rs.getString("total"));
+
             }
             String queryProducto = "Select doc.codigoProducto as 'Código de Producto',\n"
                     + "SUBSTRING_INDEX(doc.nombreProducto, ')', -1) as 'Nombre de Producto',doc.cantidad as 'Cantidad',\n"
-                    + "oc.especificacionComprador as 'Especificación de Comprador',oc.especificacionProveedor as 'Especificación de Proveedor',\n"
-                    + "oc.moneda,doc.precioUnitario as 'Precio Unitario', doc.descuento as 'Descuento',\n"
+                    + "'Información no disponible actualmente' as 'Especificación de Comprador','Información no disponible actualmente' as 'Especificación de Proveedor',\n"
+                    + "'Información no disponible actualmente' as 'Moneda',doc.precioUnitario as 'Precio Unitario', doc.descuento as 'Descuento',\n"
                     + "doc.cargos as 'Cargos', doc.valorTotal as 'Valor Total' from detalleordentrabajo doc\n"
                     + "join ordentrabajo oc on doc.codigoordencompra = oc.codigoordencompra\n"
                     + "where oc.CodigoOrdenCompra=?";
@@ -1058,10 +1060,11 @@ public class Seguimiento extends javax.swing.JFrame {
             detalle.lblIva.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblIva.getText())));
             detalle.lblTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(detalle.lblTotal.getText())));
 
-            String query2 = "SELECT SKU, CODIGOPRODUCTO AS 'CODIGO DE PRODUCTO', CATEGORIA AS 'CATEGORÍA', NOMBRE AS 'NOMBRE DE PRODUCTO',CANTIDAD AS 'CANTIDAD',PRECIOUNITARIO AS 'PRECIOUNITARIO',PRECIOTOTALNETO AS 'PRECIO TOTAL NETO'\n"
-                    + "FROM detalle_abastecimiento WHERE IDABASTECIMIENTO = ?;";
+            String query2 = "SELECT SKU, CODIGOPRODUCTO AS 'CODIGO DE PRODUCTO', CATEGORIA AS 'CATEGORÍA', NOMBRE AS 'NOMBRE DE PRODUCTO',\n"
+                    + "CANTIDAD AS 'CANTIDAD',PRECIOUNITARIO AS 'PRECIOUNITARIO',PRECIOTOTALNETO AS 'PRECIO TOTAL NETO'\n"
+                    + "FROM detalle_abastecimiento WHERE codigoOrdenCompra = ?;";
             PreparedStatement pst2 = cn.prepareStatement(query2);
-            pst2.setInt(1, Integer.parseInt(detalle.lblNumeroCotizacion.getText()));
+            pst2.setString(1, detalle.lblCodigoOC.getText());
             ResultSet rs2 = pst2.executeQuery();
             detalle.tblProductos.setModel(DbUtils.resultSetToTableModel(rs2));
 
@@ -1128,7 +1131,7 @@ public class Seguimiento extends javax.swing.JFrame {
             int index = tblNV.getSelectedRow();
             String valor = tblNV.getValueAt(index, 0).toString();
 
-            String query = "SELECT * FROM salida sa left join ordenTrabajo ot on ot.idOrdenTrabajo = sa.idOrdenTrabajo\n"
+            String query = "SELECT * FROM salida sa left join ordenTrabajo ot on ot.codigoOrdenCompra = sa.codigoOrdenCompra\n"
                     + "left join transporte ta on ta.idTransporte = sa.idTransporte where ot.codigoOrdenCompra = ?;";
             PreparedStatement pst = cn.prepareStatement(query);
             pst.setString(1, valor);
@@ -1145,21 +1148,34 @@ public class Seguimiento extends javax.swing.JFrame {
                 lblNumeroFacturaSalida.setText(Integer.toString(rs.getInt("sa.NumFactura")));
             }
             String queryProducto = "SELECT inv.idProducto as 'ID de Producto',INV.SKU,INV.NOMBREPRODUCTO as 'Nombre de Producto',\n"
-                    + "             BU.CODIGOBULTO AS 'Código de Bulto', bu.cantidad as 'Cantidad de Producto en Bulto', bu.largo as 'Largo',bu.ancho as 'Ancho',bu.alto as 'Alto',bu.peso as 'Peso'\n"
-                    + "             from detalleSalida ds left join inventario inv on inv.IDproducto = ds.idProducto\n"
-                    + "             left join ordentrabajo ot on ot.codigoOrdenCompra = ds.codigoOrdenCompra\n"
-                    + "             left join salida sa on sa.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "             left join bulto bu on bu.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "             where ot.codigoOrdenCompra = ?;";
+                    + "BU.CODIGOBULTO AS 'Código de Bulto', bu.cantidad as 'Cantidad de Producto en Bulto', bu.largo as 'Largo',bu.ancho as 'Ancho',bu.alto as 'Alto',bu.peso as 'Peso'\n"
+                    + "from detalleSalida ds left join inventario inv on inv.IDproducto = ds.idProducto\n"
+                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ds.codigoOrdenCompra\n"
+                    + "left join salida sa on sa.codigoOrdenCompra = ot.codigoOrdenCompra\n"
+                    + "left join bulto bu on bu.codigoOrdenCompra = ot.codigoOrdenCompra where ot.codigoOrdenCompra = ?;";
             PreparedStatement pstProd = cn.prepareStatement(queryProducto);
             pstProd.setString(1, valor);
             ResultSet rsProd = pstProd.executeQuery();
             tblProductosSalida.setModel(DbUtils.resultSetToTableModel(rsProd));
             System.out.println("La consulta fue realizada con éxito");
 
-            lblIVATransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblIVATransporte.getText())));
-            lblNetoTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblNetoTransporte.getText())));
-            lblTotalTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblTotalTransporte.getText())));
+            if (lblIVATransporte.getText() == null) {
+                lblIVATransporte.setText("$0");
+            } else {
+                lblIVATransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblIVATransporte.getText())));
+            }
+
+            if (lblNetoTransporte.getText() == null) {
+                lblNetoTransporte.setText("$0");
+            } else {
+                lblNetoTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblNetoTransporte.getText())));
+            }
+
+            if (lblTotalTransporte.getText() == null) {
+                lblTotalTransporte.setText("$0");
+            } else {
+                lblTotalTransporte.setText(java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(lblTotalTransporte.getText())));
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Seguimiento.class
@@ -1511,6 +1527,8 @@ public class Seguimiento extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Seguimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
