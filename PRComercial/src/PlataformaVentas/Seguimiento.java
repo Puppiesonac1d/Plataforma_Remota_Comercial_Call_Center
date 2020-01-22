@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PlataformaVentas;
-
 import clases.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -1079,15 +1071,15 @@ public class Seguimiento extends javax.swing.JFrame {
             String valor = tblNV.getValueAt(index, 0).toString();
 
             detalleIngreso.setVisible(true);
-            String query = "SELECT * FROM ingreso ing join abastecimiento ab on ing.numeroCotizacion = ab.numeroCotizacion\n"
-                    + "join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra \n"
-                    + "join bodega bo on bo.idBodega = ing.idBodega where ot.codigoOrdenCompra = ? ";
+            String query = "SELECT * FROM ingreso ing \n"
+                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ing.numeroCotizacion\n"
+                    + "left join bodega bo on bo.idBodega = ing.idBodega where ot.codigoOrdenCompra = ? ";
             PreparedStatement pst = cn.prepareStatement(query);
             pst.setString(1, valor);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 lblNumeroIngreso.setText(Integer.toString(rs.getInt("ing.idIngreso")));
-                lblNumeroCotizacion.setText(Integer.toString(rs.getInt("ab.numeroCotizacion")));
+                lblNumeroCotizacion.setText("-");
                 lblCodigoOrdenCompra.setText(rs.getString("ot.codigoOrdenCompra"));
                 lblDistribuidor.setText(rs.getString("ing.nombreDistribuidor"));
                 lblTransporte.setText(rs.getString("ing.tipoTransporte"));
@@ -1098,26 +1090,17 @@ public class Seguimiento extends javax.swing.JFrame {
 
             String queryProducto = "SELECT inv.idProducto as 'ID de Producto', inv.SKU, inv.nombreProducto as 'Nombre de Producto',inv.PrecioVenta as 'Precio de Venta',\n"
                     + "inv.precioCosto as 'PrecioCosto', ing.stockIngresado as 'Stock Ingresado',inv.stock as 'Stock en Bodega', \n"
-                    + "pro.nombre_proveedor as 'Proveedor'\n"
-                    + "FROM ingreso ing left join inventario inv on ing.idProducto = inv.IDproducto\n"
-                    + "left join proveedores pro on pro.cod_proveedor = inv.cod_proveedor\n"
-                    + "left join abastecimiento ab on ab.numeroCotizacion = ing.numeroCotizacion\n"
-                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "where ot.codigoOrdenCompra = ?;";
+                    + "'-' as 'Proveedor'\n"
+                    + "FROM ingreso ing \n"
+                    + "left join inventario inv on ing.idProducto = inv.IDproducto \n"
+                    + "left join ordentrabajo ot on ot.codigoOrdenCompra = ing.numeroCotizacion\n"
+                    + "where ot.codigoOrdenCompra =  ?;";
             PreparedStatement pstProd = cn.prepareStatement(queryProducto);
             pstProd.setString(1, valor);
             ResultSet rsProd = pstProd.executeQuery();
             tblProductosIngreso.setModel(DbUtils.resultSetToTableModel(rsProd));
             System.out.println("La consulta fue realizada con éxito");
 
-            int rowCount = tblProductosIngreso.getRowCount();
-            for (int i = 0; i < rowCount; i++) {
-                String precioVenta = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 3).toString()));
-                tblProductosIngreso.setValueAt(precioVenta, i, 3);
-                String precioCosto = java.text.NumberFormat.getCurrencyInstance().format(Integer.parseInt(tblProductosIngreso.getValueAt(i, 4).toString()));
-                tblProductosIngreso.setValueAt(precioVenta, i, 4);
-
-            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Seguimiento.class
@@ -1267,7 +1250,8 @@ public class Seguimiento extends javax.swing.JFrame {
 
             //Ingreso
             try {
-                String queryIngreso = "SELECT cotizacion.codigoOrdenCompra, LEFT(fechaIngreso,10) FROM ingreso i  join abastecimiento cotizacion on i.numeroCotizacion=cotizacion.numeroCotizacion where ?;";
+                String queryIngreso = "select ot.codigoOrdenCompra, LEFT(fechaIngreso,10) from ingreso i "
+                        + "join ordentrabajo ot on i.numeroCotizacion = ot.codigoOrdenCompra where ot.codigoOrdenCompra = ?";
                 PreparedStatement pstIngreso = cn.prepareStatement(queryIngreso);
                 pstIngreso.setString(1, oc);
                 ResultSet rsIngreso = pstIngreso.executeQuery();
@@ -1370,9 +1354,9 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte;";
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte ;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -1388,9 +1372,10 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.nombre_proveedor RLIKE ?;";
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte\n"
+                    + " where ot.nombre_proveedor RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, jComboBox1.getSelectedItem().toString());
@@ -1409,9 +1394,10 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where ot.codigoOrdenCompra RLIKE ?;";
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte\n"
+                    + " where ot.codigoOrdenCompra RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtCodigoOrdenCompra.getText());
@@ -1430,9 +1416,10 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.numFactura RLIKE ?;";
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte\n"
+                    + " where sal.numFactura RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtNumFactura.getText());
@@ -1451,9 +1438,10 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
                     + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte where sal.ordenTransporte RLIKE ?;";
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte\n"
+                    + " where sal.ordenTransporte RLIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtOrdenTransporte.getText());
@@ -1480,15 +1468,13 @@ public class Seguimiento extends javax.swing.JFrame {
 
             String recons = anio + "-" + mes + "-" + dia;
             System.out.println(recons);
-            String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra'\n"
-                    + ", ot.nombre_proveedor as 'Empresa',\n"
+            String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
                     + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' \n"
-                    + "from ordenTrabajo ot\n"
+                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
                     + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ab.numeroCotizacion\n"
+                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
                     + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte \n"
+                    + "left join transporte tr on tr.idTransporte = sal.idTransporte\n"
                     + "WHERE LEFT(OT.FECHAENVIOOC,10) LIKE ?;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
@@ -1527,6 +1513,10 @@ public class Seguimiento extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Seguimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
