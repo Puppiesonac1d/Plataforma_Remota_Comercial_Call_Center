@@ -38,7 +38,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         jPanel3.setBackground(new Color(0, 0, 0, 30));
         jPanel2.revalidate();
         jPanel3.repaint();
-        btnNVParcializada.setEnabled(false);
+       
     }
 
     /**
@@ -200,7 +200,6 @@ public class ConsultaMP extends javax.swing.JFrame {
         txtObservacion = new javax.swing.JTextField();
         btnVolver7 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        chkParcializada = new javax.swing.JCheckBox();
         lblEstadoOrdenCompra = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -679,11 +678,11 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Producto", "Cantidad"
+                "Código / ID licitación", "Producto", "Cantidad", "Especificación de comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -705,7 +704,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Codigo Orden Compra", "Producto", "Cantidad", "Guia Despacho"
+                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane28.setViewportView(tblProdsAgregadosNV);
@@ -776,7 +775,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Codigo Orden Compra", "Producto", "Cantidad", "Guia Despacho"
+                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane2.setViewportView(tblPaso);
@@ -914,8 +913,9 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         jLabel27.setText("Email de contacto:");
 
+        btnGuardarOrden.setBackground(new java.awt.Color(0, 204, 0));
         btnGuardarOrden.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnGuardarOrden.setText("Generar Nota de Venta");
+        btnGuardarOrden.setText("2-Generar Nota de Venta");
         btnGuardarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarOrdenActionPerformed(evt);
@@ -1131,8 +1131,9 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnNVParcializada.setBackground(new java.awt.Color(0, 204, 0));
         btnNVParcializada.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnNVParcializada.setText("Definir Entrega Parcializada y Guías de Despacho");
+        btnNVParcializada.setText("1-Definir Entrega Parcializada y Guías de Despacho");
         btnNVParcializada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNVParcializadaActionPerformed(evt);
@@ -1167,7 +1168,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Codigo Orden Compra", "Producto", "Cantidad", "Guia Despacho"
+                "N° de NV", "Codigo Orden Compra", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane5.setViewportView(tblResumenParcializada);
@@ -1232,10 +1233,6 @@ public class ConsultaMP extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnGuardarOrden)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1331,7 +1328,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGuardarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1442,14 +1443,6 @@ public class ConsultaMP extends javax.swing.JFrame {
             }
         });
 
-        chkParcializada.setSelected(true);
-        chkParcializada.setText("Nota de Venta Parcializada");
-        chkParcializada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkParcializadaActionPerformed(evt);
-            }
-        });
-
         jLabel15.setText("Estado de cotización:");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1458,12 +1451,9 @@ public class ConsultaMP extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkParcializada)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1472,9 +1462,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblEstadoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkParcializada)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelConsultaMPLayout = new javax.swing.GroupLayout(panelConsultaMP);
@@ -1778,55 +1766,32 @@ public class ConsultaMP extends javax.swing.JFrame {
                 String msgConfirmacion = JOptionPane.showInputDialog("Ingrese Código de Autorización");
                 String validar = msgConfirmacion;
                 if (validar.equals(lblCodigo.getText())) {
-                    int selectedRows = tblMP.getRowCount();
+                    int selectedRows = tblResumenParcializada.getRowCount();
 
-                    int selectedRows2 = tblMP.getRowCount();
+                    int selectedRows2 = tblResumenParcializada.getRowCount();
                     for (int i = 0; i < selectedRows; i++) {
-                        String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordentrabajo` (codigoOrdenCompra,`codigoProducto`, `nombreProducto`, `cantidad`,`moneda`,"
+                        String queryDetalle = "INSERT INTO `acimabasededatos`.`detalleordentrabajo` (idOrden,codigoOrdenCompra,`codigoProducto`, `nombreProducto`, `cantidad`,`moneda`,"
                                 + " `precioUnitario`, `descuento`, `cargos`, `valorTotal`) "
-                                + " VALUES(?,?,?,?,?,?,?,?,?);";
+                                + " VALUES(?,?,?,?,?,?,?,?,?,?);";
                         PreparedStatement pstDetalle = cn.prepareStatement(queryDetalle);
-                        pstDetalle.setString(1, txtOC.getText());
-                        pstDetalle.setString(2, tblMP.getValueAt(i, 0).toString());
-                        pstDetalle.setString(3, (tblMP.getValueAt(i, 1).toString()));
-                        pstDetalle.setString(4, (tblMP.getValueAt(i, 2).toString()));
-                        pstDetalle.setString(5, (tblMP.getValueAt(i, 5).toString()));
-                        pstDetalle.setString(6, (tblMP.getValueAt(i, 6).toString()));
-                        pstDetalle.setString(7, (tblMP.getValueAt(i, 7).toString()));
-                        pstDetalle.setString(8, (tblMP.getValueAt(i, 8).toString()));
-                        pstDetalle.setString(9, tblMP.getValueAt(i, 9).toString());
+                        pstDetalle.setString(1, tblResumenParcializada.getValueAt(i, 0).toString());
+                        pstDetalle.setString(2, txtOC.getText());
+                        pstDetalle.setString(3, tblResumenParcializada.getValueAt(i, 2).toString());
+                        pstDetalle.setString(4, (tblResumenParcializada.getValueAt(i, 3).toString()));
+                        pstDetalle.setString(5, (tblResumenParcializada.getValueAt(i, 4).toString()));
+                        pstDetalle.setString(6, (tblResumenParcializada.getValueAt(i, 7).toString()));
+                        pstDetalle.setString(7, (tblResumenParcializada.getValueAt(i, 8).toString()));
+                        pstDetalle.setString(8, tblResumenParcializada.getValueAt(i, 9).toString());
+                        pstDetalle.setString(9, tblResumenParcializada.getValueAt(i, 10).toString());
+                        pstDetalle.setString(10, tblResumenParcializada.getValueAt(i, 11).toString());
                         int x2 = pstDetalle.executeUpdate();
                     }
                     JOptionPane.showMessageDialog(null, "Se ha ingresado la nota de venta para la Orden de Compra");
                     JOptionPane.showMessageDialog(null, "Nota de Venta almacenada");
-                    //Solo actualizar 
-
-                    String queryUpNV2 = "UPDATE detalleOrdentrabajo\n"
-                            + "        INNER JOIN\n"
-                            + "    ordentrabajo ON ordentrabajo.codigoOrdenCompra = detalleordentrabajo.codigoOrdenCompra\n"
-                            + "SET \n"
-                            + "    detalleOrdenTrabajo.idOrden = ordentrabajo.idOrden;";
-                    PreparedStatement pstUp2 = cn.prepareStatement(queryUpNV2);
-                    int x4 = pstUp2.executeUpdate();
-
-                    int selectedRows3 = tblResumenParcializada.getRowCount();
-                    for (int i = 0; i < selectedRows3; i++) {
-                        String queryParcializada = "INSERT INTO `acimabasededatos`.`parcializacion_nv` (idOrden,codigoOrdenCompra,producto,cantidad,guiaDespacho) "
-                                + " VALUES(?,?,?,?,?);";
-                        PreparedStatement pstParcializada = cn.prepareStatement(queryParcializada);
-                        pstParcializada.setInt(1, Integer.parseInt(tblResumenParcializada.getValueAt(i, 0).toString()));
-                        pstParcializada.setString(2, tblResumenParcializada.getValueAt(i, 1).toString());
-                        pstParcializada.setString(3, tblResumenParcializada.getValueAt(i, 2).toString());
-                        pstParcializada.setString(4, tblResumenParcializada.getValueAt(i, 3).toString());
-                        pstParcializada.setString(5, "Pendiente");
-
-                        int x3 = pstParcializada.executeUpdate();
-                    }
-
+                    this.dispose();
                 }
-
             }
-            this.dispose();
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha Ocurrido un error: " + ex);
         }
@@ -2272,22 +2237,21 @@ public class ConsultaMP extends javax.swing.JFrame {
         Object[] row = new Object[14];
 
         for (int i = 0; i < index; i++) {
-            row[0] = tblMP.getValueAt(i, 1).toString();
-            row[1] = tblMP.getValueAt(i, 2).toString();
-
+            row[0] = tblMP.getValueAt(i, 0).toString();
+            row[1] = tblMP.getValueAt(i, 1).toString();
+            row[2] = tblMP.getValueAt(i, 2).toString();
+            row[3] = tblMP.getValueAt(i, 3).toString();
+            row[4] = tblMP.getValueAt(i, 4).toString();
+            row[5] = tblMP.getValueAt(i, 5).toString();
+            row[6] = tblMP.getValueAt(i, 6).toString();
+            row[7] = tblMP.getValueAt(i, 7).toString();
+            row[8] = tblMP.getValueAt(i, 8).toString();
+            row[9] = tblMP.getValueAt(i, 9).toString();
             modeloPendientes.addRow(row);
         }
 
 
     }//GEN-LAST:event_btnNVParcializadaActionPerformed
-
-    private void chkParcializadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkParcializadaActionPerformed
-        if (chkParcializada.isSelected()) {
-            btnNVParcializada.setEnabled(true);
-        } else {
-            btnNVParcializada.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkParcializadaActionPerformed
 
     private void btnAgregarNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNVActionPerformed
         try {
@@ -2307,7 +2271,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             //Variable que resta
             int cantidadInicial = 0;
-            cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 1).toString());
+            cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 2).toString());
             System.out.println(cantidadInicial);
 
             if (Integer.parseInt(txtQty.getText()) < 0) {
@@ -2323,10 +2287,17 @@ public class ConsultaMP extends javax.swing.JFrame {
                             row[0] = "No se ha asignado una nota de venta";
                             row[1] = txtOC.getText();
                             row[2] = productosSinNV.getValueAt(indexs[i], 0);
-                            row[3] = cantidad;
-                            row[4] = "";
+                            row[3] = productosSinNV.getValueAt(indexs[i], 1);
+                            row[4] = cantidad;
+                            row[5] = productosSinNV.getValueAt(indexs[i], 3);
+                            row[6] = productosSinNV.getValueAt(indexs[i], 4);
+                            row[7] = productosSinNV.getValueAt(indexs[i], 5);
+                            row[8] = productosSinNV.getValueAt(indexs[i], 6);
+                            row[9] = productosSinNV.getValueAt(indexs[i], 7);
+                            row[10] = productosSinNV.getValueAt(indexs[i], 8);
+                            row[11] = productosSinNV.getValueAt(indexs[i], 9);
                             modeloNuevo.addRow(row);
-                            modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 1);
+                            modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
                         }
                     }
                     txtQty.setText("");
@@ -2430,6 +2401,14 @@ public class ConsultaMP extends javax.swing.JFrame {
                             row2[2] = modeloPaso.getValueAt(p, 2);
                             row2[3] = modeloPaso.getValueAt(p, 3);
                             row2[4] = modeloPaso.getValueAt(p, 4);
+                            row2[5] = modeloPaso.getValueAt(p, 5);
+                            row2[6] = modeloPaso.getValueAt(p, 6);
+                            row2[7] = modeloPaso.getValueAt(p, 7);
+                            row2[8] = modeloPaso.getValueAt(p, 8);
+                            row2[9] = modeloPaso.getValueAt(p, 9);
+                            row2[10] = modeloPaso.getValueAt(p, 10);
+                            row2[11] = modeloPaso.getValueAt(p, 11);
+
                             modeloProds.addRow(row2);
                         }
 
@@ -2460,7 +2439,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         int cuenta = 0;
 
         for (int i = 0; i < index; i++) {
-            if (tblProductosPendientes.getValueAt(i, 1).toString().equals("0")) {
+            if (tblProductosPendientes.getValueAt(i, 2).toString().equals("0")) {
                 cuenta = cuenta + 1;
             }
         }
@@ -2489,6 +2468,13 @@ public class ConsultaMP extends javax.swing.JFrame {
                 row2[2] = tblProdsAgregadosNV.getValueAt(p, 2).toString();
                 row2[3] = tblProdsAgregadosNV.getValueAt(p, 3).toString();
                 row2[4] = tblProdsAgregadosNV.getValueAt(p, 4).toString();
+                row2[5] = tblProdsAgregadosNV.getValueAt(p, 5).toString();
+                row2[6] = tblProdsAgregadosNV.getValueAt(p, 6).toString();
+                row2[7] = tblProdsAgregadosNV.getValueAt(p, 7).toString();
+                row2[8] = tblProdsAgregadosNV.getValueAt(p, 8).toString();
+                row2[9] = tblProdsAgregadosNV.getValueAt(p, 9).toString();
+                row2[10] = tblProdsAgregadosNV.getValueAt(p, 10).toString();
+                row2[11] = tblProdsAgregadosNV.getValueAt(p, 11).toString();
                 modeloResumen.addRow(row2);
             }
 
@@ -2577,7 +2563,6 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JButton btnNVParcializada;
     private javax.swing.JButton btnVolver7;
     private javax.swing.JFrame bultos;
-    private javax.swing.JCheckBox chkParcializada;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;

@@ -876,13 +876,61 @@
                         <Component class="javax.swing.JTable" name="tblProductosPendientes">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="2" rowCount="0">
+                              <Table columnCount="10" rowCount="0">
+                                <Column editable="false" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
                                 <Column editable="false" title="Producto" type="java.lang.Object"/>
-                                <Column editable="false" title="Cantidad" type="java.lang.Object"/>
+                                <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de comprador" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de Proveedor" type="java.lang.Object"/>
+                                <Column editable="true" title="Moneda" type="java.lang.Object"/>
+                                <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
+                                <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                                <Column editable="true" title="Cargos" type="java.lang.Object"/>
+                                <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -923,16 +971,58 @@
                         <Component class="javax.swing.JTable" name="tblProdsAgregadosNV">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="5" rowCount="0">
+                              <Table columnCount="12" rowCount="0">
                                 <Column editable="true" title="N&#xb0; de NV" type="java.lang.Object"/>
-                                <Column editable="true" title="Codigo Orden Compra" type="java.lang.Object"/>
+                                <Column editable="true" title="C&#xf3;digo de OC" type="java.lang.Object"/>
+                                <Column editable="true" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
                                 <Column editable="true" title="Producto" type="java.lang.Object"/>
                                 <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                <Column editable="true" title="Guia Despacho" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de Comprador" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de Proveedor" type="java.lang.Object"/>
+                                <Column editable="true" title="Moneda" type="java.lang.Object"/>
+                                <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
+                                <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                                <Column editable="true" title="Cargos" type="java.lang.Object"/>
+                                <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -1055,16 +1145,58 @@
                         <Component class="javax.swing.JTable" name="tblPaso">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="5" rowCount="0">
+                              <Table columnCount="12" rowCount="0">
                                 <Column editable="true" title="N&#xb0; de NV" type="java.lang.Object"/>
-                                <Column editable="true" title="Codigo Orden Compra" type="java.lang.Object"/>
+                                <Column editable="true" title="C&#xf3;digo de OC" type="java.lang.Object"/>
+                                <Column editable="true" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
                                 <Column editable="true" title="Producto" type="java.lang.Object"/>
                                 <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                <Column editable="true" title="Guia Despacho" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de Comprador" type="java.lang.Object"/>
+                                <Column editable="true" title="Especificaci&#xf3;n de Proveedor" type="java.lang.Object"/>
+                                <Column editable="true" title="Moneda" type="java.lang.Object"/>
+                                <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
+                                <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                                <Column editable="true" title="Cargos" type="java.lang.Object"/>
+                                <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -1340,11 +1472,6 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnGuardarOrden" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
@@ -1467,7 +1594,12 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnGuardarOrden" min="-2" pref="1157" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1711,10 +1843,13 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="btnGuardarOrden">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="cc" red="0" type="rgb"/>
+                            </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="20" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Generar Nota de Venta"/>
+                            <Property name="text" type="java.lang.String" value="2-Generar Nota de Venta"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarOrdenActionPerformed"/>
@@ -2208,10 +2343,13 @@
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="btnNVParcializada">
                               <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="cc" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Tahoma" size="20" style="1"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Definir Entrega Parcializada y Gu&#xed;as de Despacho"/>
+                                <Property name="text" type="java.lang.String" value="1-Definir Entrega Parcializada y Gu&#xed;as de Despacho"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNVParcializadaActionPerformed"/>
@@ -2268,16 +2406,58 @@
                                 <Component class="javax.swing.JTable" name="tblResumenParcializada">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="5" rowCount="0">
+                                      <Table columnCount="12" rowCount="0">
                                         <Column editable="true" title="N&#xb0; de NV" type="java.lang.Object"/>
                                         <Column editable="true" title="Codigo Orden Compra" type="java.lang.Object"/>
+                                        <Column editable="true" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
                                         <Column editable="true" title="Producto" type="java.lang.Object"/>
                                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                        <Column editable="true" title="Guia Despacho" type="java.lang.Object"/>
+                                        <Column editable="true" title="Especificaci&#xf3;n de Comprador" type="java.lang.Object"/>
+                                        <Column editable="true" title="Especificaci&#xf3;n de Proveedor" type="java.lang.Object"/>
+                                        <Column editable="true" title="Moneda" type="java.lang.Object"/>
+                                        <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
+                                        <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                                        <Column editable="true" title="Cargos" type="java.lang.Object"/>
+                                        <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                           <Title/>
                                           <Editor/>
@@ -2403,14 +2583,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="chkParcializada" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblEstadoOrdenCompra" min="-2" pref="153" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblEstadoOrdenCompra" min="-2" pref="153" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2422,23 +2597,12 @@
                                   <Component id="lblEstadoOrdenCompra" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="chkParcializada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="34" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JCheckBox" name="chkParcializada">
-                      <Properties>
-                        <Property name="selected" type="boolean" value="true"/>
-                        <Property name="text" type="java.lang.String" value="Nota de Venta Parcializada"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkParcializadaActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="lblEstadoOrdenCompra">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
