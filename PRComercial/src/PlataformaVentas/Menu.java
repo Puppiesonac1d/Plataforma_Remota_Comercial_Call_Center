@@ -205,7 +205,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnSeguimiento.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSeguimiento.setText("Seguimiento de OC");
-        btnSeguimiento.setEnabled(false);
         btnSeguimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeguimientoActionPerformed(evt);

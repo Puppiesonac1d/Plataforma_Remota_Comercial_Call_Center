@@ -1,10 +1,28 @@
 package PlataformaVentas;
 
 import clases.Conexion;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
@@ -15,9 +33,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -2178,9 +2200,202 @@ public class ConsultaMP extends javax.swing.JFrame {
                         pstDetalle.setString(9, tblResumenParcializada.getValueAt(i, 10).toString());
                         pstDetalle.setString(10, tblResumenParcializada.getValueAt(i, 11).toString());
                         int x2 = pstDetalle.executeUpdate();
+
                     }
                     JOptionPane.showMessageDialog(null, "Se ha ingresado la nota de venta para la Orden de Compra");
                     JOptionPane.showMessageDialog(null, "Nota de Venta almacenada");
+
+                    String ruta = "";
+
+                    JFileChooser dlg = new JFileChooser();
+                    dlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                    int option = dlg.showOpenDialog(this);
+
+                    if (option == JFileChooser.APPROVE_OPTION) {
+                        File f = dlg.getSelectedFile();
+                        ruta = f.toString();
+                    }
+
+                    //Fecha
+                    Date sistFecha = new Date();
+                    SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-YYYY");
+                    //Crear PDF
+                    try {
+                        Document doc = new Document(PageSize.A3);
+
+                        Date sistHora = new Date();
+                        String pmAm = "hh:mm a";
+                        SimpleDateFormat format = new SimpleDateFormat(pmAm);
+                        Calendar hoy = Calendar.getInstance();
+                        String hora = (String.format(format.format(sistHora), hoy));
+                        hora = hora.replace(":", "-");
+                        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + txtOC.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Cotizacion_" + ".pdf"));
+
+                        doc.open();
+                        //Añadir la imagen
+                        try {
+                            Image logoAcima = Image.getInstance("src\\PlataformaVentas\\Imagenes\\acima-logo-200p.png");
+                            logoAcima.scaleAbsolute(210, 112);
+                            doc.add(logoAcima);
+
+                            Paragraph separacion01 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
+                            doc.add(separacion01);
+
+                        } catch (BadElementException ex) {
+                            Logger.getLogger(OrdenTrabajo.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(OrdenTrabajo.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        doc.add(titulo);
+
+                        PdfPTable tableDatos = new PdfPTable(2);
+                        tableDatos.setWidthPercentage(100);
+                        tableDatos.addCell(new Phrase("Rut del Demandante: " + txtRutComprador.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.addCell(new Phrase("Demandante: " + txtDemandante.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.addCell(new Phrase("Dirección del Demandante: " + txtDireccionDemandante.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.addCell(new Phrase("Unidad de Compra: " + txtUnidadCompra.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.addCell(new Phrase("Teléfono del Demandante: " + txtTelefonoDemandante.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.addCell(new Phrase("Fecha de Envío de Nota de OC: " + txtFechaEnvioOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos.setSpacingBefore(15f);
+                        tableDatos.setWidthPercentage(100);
+                        Paragraph alineaDatos = new Paragraph();
+                        alineaDatos.add(tableDatos);
+                        doc.add(alineaDatos);
+
+                        Paragraph separacion6 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
+                        doc.add(separacion6);
+
+                        Paragraph titulo2 = new Paragraph("Información de la empresa", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        doc.add(titulo2);
+
+                        Paragraph proveedor = new Paragraph("Proveedor: " + txtProveedor.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        proveedor.setAlignment(Paragraph.ALIGN_LEFT);
+                        doc.add(proveedor);
+
+                        Paragraph separacion2 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
+                        doc.add(separacion2);
+
+                        Paragraph titulo3 = new Paragraph("Información de orden", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        doc.add(titulo);
+
+                        PdfPTable tableDatos2 = new PdfPTable(2);
+                        tableDatos2.setWidthPercentage(100);
+                        tableDatos2.addCell(new Phrase("Nombre de la Orden de Compra: " + txtNombreOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Metodo de Despacho: " + txtMetodoDespacho.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Fecha de aceptación: " + txtFechaAceptacion.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Forma de Pago: " + txtFormaPago.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Direcciones de despacho: " + txtDireccionDespacho.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Contacto de pago: " + txtContactoPago.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Direcciones de envio de factura: " + txtDireccionEnvioFactura.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Contacto de OC: " + txtContactoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Mail de Envío de Factura: " + txtEmailContacto.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.addCell(new Phrase("Código de Orden de Compra: " + txtOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+                        tableDatos2.setSpacingBefore(15f);
+                        tableDatos2.setWidthPercentage(100);
+                        Paragraph alineaDatos2 = new Paragraph();
+                        alineaDatos2.add(tableDatos2);
+                        doc.add(alineaDatos2);
+
+                        Paragraph tablas = new Paragraph("Información de productos en la orden ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
+                        doc.add(tablas);
+                        PdfPTable pdfTable = new PdfPTable(tblMP.getColumnCount());
+                        pdfTable.setSpacingBefore(15f);
+                        pdfTable.setWidthPercentage(100);
+                        for (int i = 0; i < tblMP.getColumnCount(); i++) {
+                            pdfTable.addCell(new Phrase(tblMP.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        }
+                        for (int rows = 0; rows < tblMP.getRowCount(); rows++) {
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        }
+                        doc.add(pdfTable);
+
+                        Paragraph neto = new Paragraph("Neto: " + txtNeto.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        neto.setAlignment(Paragraph.ALIGN_RIGHT);
+                        Paragraph iva = new Paragraph("IVA: " + txtIva.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        iva.setAlignment(Paragraph.ALIGN_RIGHT);
+                        Paragraph total = new Paragraph("Total: " + txtTotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        total.setAlignment(Paragraph.ALIGN_RIGHT);
+                        doc.add(neto);
+                        doc.add(iva);
+                        doc.add(total);
+
+                        //Para las notas de venta
+                        Paragraph tablas2 = new Paragraph("Información de productos en notas de venta ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
+                        doc.add(tablas2);
+                        PdfPTable pdfTable2 = new PdfPTable(tblResumenParcializada.getColumnCount());
+                        pdfTable2.setSpacingBefore(15f);
+                        pdfTable2.setWidthPercentage(100);
+                        for (int i = 0; i < tblResumenParcializada.getColumnCount(); i++) {
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        }
+                        for (int rows = 0; rows < tblResumenParcializada.getRowCount(); rows++) {
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 10).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 11).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        }
+                        doc.add(pdfTable2);
+
+                        Paragraph separacion3 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
+                        separacion3.setSpacingBefore(15f);
+                        separacion3.setSpacingBefore(15f);
+                        doc.add(separacion3);
+                        //Iconos
+                        try {
+                            PdfPTable table = new PdfPTable(2);
+                            table.setWidths(new int[]{1, 12});
+                            table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+                            //D:\Plataforma Operaciones\src\imagenes\465892689e(1).png
+                            Image img1 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\phone-icon-11-64.png");
+                            Image img2 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\mail-64.png");
+                            table.addCell(new PdfPCell(img1, true));
+                            table.addCell(new Phrase("Central telefónica: +56-232 107 900", FontFactory.getFont(FontFactory.TIMES, 12)));
+                            table.addCell(new PdfPCell(img2, true));
+                            table.addCell(new Phrase("ventas@acima.cl - comercial@acima.cl - gerencia@acima.cl", FontFactory.getFont(FontFactory.TIMES, 12)));
+                            Paragraph tableFooter = new Paragraph();
+                            tableFooter.add(table);
+                            tableFooter.setSpacingBefore(15f);
+                            tableFooter.setSpacingBefore(15f);
+                            tableFooter.setAlignment(Paragraph.ALIGN_RIGHT);
+                            doc.add(tableFooter);
+
+                            doc.close();
+                            JOptionPane.showMessageDialog(null, "PDF Generado Correctamente");
+
+                        } catch (BadElementException | IOException ex) {
+                            Logger.getLogger(OrdenTrabajo.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+
+                        }
+                    } catch (DocumentException ex) {
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error: sss" + ex.getMessage());
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(OrdenTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ingrese el código de autorización correcto");
