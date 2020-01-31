@@ -3183,7 +3183,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             try {
                 String queryINV = "INSERT INTO inventario(`idBodega`,`idProducto`,`sku`,`nombreProducto`,codigoConvenio,`categoria`,"
                         + "`precioventa`,`precioCosto`,`iddistribuidor`,`descripcion`,`regiones`,`condiciondespacho`,`diashabiles`,"
-                        + "`statusproducto`,`stock`,`codigoqr`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                        + "`statusproducto`,`stock`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
                 PreparedStatement pstINV = cn.prepareStatement(queryINV);
                 pstINV.setInt(1, cmbBodega2.getSelectedIndex());
                 pstINV.setString(2, txtIDproductoIngreso1.getText());
@@ -3200,7 +3200,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 pstINV.setString(13, txtDiasHabilesIngreso1.getText());
                 pstINV.setString(14, cmbStatusProdIngreso1.getSelectedItem().toString());
                 pstINV.setInt(15, Integer.parseInt(txtStockIngresado1.getText()));
-                pstINV.setString(16, "-");
+                
                 int upINV = pstINV.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Producto Ingresado");
