@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,11 +45,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import net.proteanit.sql.DbUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -2019,8 +2022,14 @@ public class ConsultaMP extends javax.swing.JFrame {
             System.out.println(url);
             //Se crea un obj de tipo url con el cual se realizará el request
             URL obj = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            int responseCode = con.getResponseCode();
+            HttpURLConnection con;
+
+            con = (HttpURLConnection) obj.openConnection();
+
+            int responseCode;
+
+            responseCode = con.getResponseCode();
+
             //Por motivos de Debug, se necesita el codigo de respuesta
             System.out.println("Código de Respuesta : " + responseCode);
             StringBuffer response;
@@ -2101,41 +2110,45 @@ public class ConsultaMP extends javax.swing.JFrame {
                 // success
             }
 
-            try {
-                NodeList flowList0 = doc.getElementsByTagName("Listado");
-                Element err1 = (Element) flowList0.item(0);
-                int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
-                System.out.println(num + "");
-                NodeList flowList1 = doc.getElementsByTagName("Listado");
-                DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
+            NodeList flowList0 = doc.getElementsByTagName("Listado");
+            Element err1 = (Element) flowList0.item(0);
+            int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
+            System.out.println(num + "");
+            NodeList flowList1 = doc.getElementsByTagName("Listado");
+            DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
 
-                for (int m = 0; m < tblMP.getRowCount(); m++) {
-                    modelo.removeRow(m);
-                }
-                modelo.setRowCount(num);
-                for (int x = 0; x < num; x++) {
-                    System.out.println("Listado " + flowList1.getLength());
+            for (int m = 0; m < tblMP.getRowCount(); m++) {
+                modelo.removeRow(m);
+            }
+            modelo.setRowCount(num);
+            for (int x = 0; x < num; x++) {
+                System.out.println("Listado " + flowList1.getLength());
 
-                    NodeList flowList = doc.getElementsByTagName("Item");
-                    for (int i = 0; i < flowList.getLength(); i++) {
-                        Element err = (Element) flowList.item(x);
-                        String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
+                NodeList flowList = doc.getElementsByTagName("Item");
+                for (int i = 0; i < flowList.getLength(); i++) {
+                    Element err = (Element) flowList.item(x);
+
+                    String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
+                    if (str.contains("(") && str.contains(")")) {
+                        //Contiene o no
                         String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
                         modelo.setValueAt(answer, x, 0);
-                        modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
-                        modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
-                        modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
-                        modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
-                        modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
-                        modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
-                        modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
-                        modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
-                        modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
+                    } else {
+                        modelo.setValueAt("-", x, 0);
                     }
+
+                    modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
+                    modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
+                    modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
+                    modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
+                    modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
+                    modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
+                    modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
+                    modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
+                    modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
                 }
-            } catch (Exception ex) {
-                System.out.println("Ha ocurrido un error: " + ex);
             }
+
             NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
 
             if (detalleMontos.getLength()
@@ -2164,9 +2177,17 @@ public class ConsultaMP extends javax.swing.JFrame {
             System.out.println(
                     "La consulta fue realizada con éxito");
 
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_btnConsultaOCActionPerformed
 
     private void btnVolver7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver7ActionPerformed
@@ -3200,7 +3221,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 pstINV.setString(13, txtDiasHabilesIngreso1.getText());
                 pstINV.setString(14, cmbStatusProdIngreso1.getSelectedItem().toString());
                 pstINV.setInt(15, Integer.parseInt(txtStockIngresado1.getText()));
-                
+
                 int upINV = pstINV.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Producto Ingresado");
