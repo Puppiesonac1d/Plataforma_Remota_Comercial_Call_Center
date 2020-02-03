@@ -436,8 +436,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-
-            JOptionPane.showMessageDialog(null, "Cargando Información");
             HistorialOC HISTORIALOC = new HistorialOC();
             HISTORIALOC.lblCodigoMenu.setText(codigoMenu.getText());
             HISTORIALOC.setVisible(true);
