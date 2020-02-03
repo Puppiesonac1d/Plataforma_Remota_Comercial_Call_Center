@@ -28,6 +28,7 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -2034,7 +2035,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             System.out.println("Código de Respuesta : " + responseCode);
             StringBuffer response;
             try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
+                    new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
                 String inputLine;
                 response = new StringBuffer();
                 while ((inputLine = in.readLine()) != null) {
