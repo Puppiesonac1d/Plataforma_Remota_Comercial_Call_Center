@@ -898,7 +898,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addComponent(jScrollPane28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)
                             .addComponent(jScrollPane26, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel157, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 14, Short.MAX_VALUE))
+                        .addGap(10, 29, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -994,9 +994,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         );
 
         InventarioPorBodega.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        InventarioPorBodega.setMaximumSize(new java.awt.Dimension(1280, 740));
         InventarioPorBodega.setMinimumSize(new java.awt.Dimension(1280, 740));
-        InventarioPorBodega.setPreferredSize(new java.awt.Dimension(1280, 740));
         InventarioPorBodega.setResizable(false);
 
         jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -2423,7 +2421,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Ingrese el código de autorización correcto");
                 }
             }
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha Ocurrido un error: " + ex);
         }
@@ -3065,9 +3062,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                         + " `subtotal`, "
                         + "`iva`,"
                         + " `impuestoEspecifico`,"
-                        + " `total`,"
+                        + " `total`,observacion,observacion_despacho,"
                         + "`codigo_autorizacion`)"
-                        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement pst2;
 
                 pst2 = cn.prepareStatement(query2);
@@ -3096,7 +3093,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                 pst2.setString(22, txtIva.getText());
                 pst2.setString(23, txtImpuestoEspecifico.getText());
                 pst2.setString(24, txtTotal.getText());
-                pst2.setInt(25, Integer.parseInt(lblCodigo.getText()));
+                pst2.setString(25, txtObservacion.getText());
+                pst2.setString(26, txtObservacionDespacho.getText());
+                pst2.setInt(27, Integer.parseInt(lblCodigo.getText()));
                 int x1 = pst2.executeUpdate();
 
                 //Actualizar el idOrden

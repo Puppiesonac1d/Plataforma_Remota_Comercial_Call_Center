@@ -846,7 +846,7 @@
                                                   <Component id="jScrollPane26" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel157" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="10" pref="14" max="32767" attributes="0"/>
+                                              <EmptySpace min="10" pref="29" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
