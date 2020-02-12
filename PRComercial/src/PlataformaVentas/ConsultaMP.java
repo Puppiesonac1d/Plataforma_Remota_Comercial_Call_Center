@@ -42,7 +42,10 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -1654,7 +1657,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 1157, Short.MAX_VALUE)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, Short.MAX_VALUE)
                         .addGap(6, 6, 6))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -2219,6 +2222,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                         pstDetalle.setString(8, tblResumenParcializada.getValueAt(i, 9).toString());
                         pstDetalle.setString(9, tblResumenParcializada.getValueAt(i, 10).toString());
                         pstDetalle.setString(10, tblResumenParcializada.getValueAt(i, 11).toString());
+
                         int x2 = pstDetalle.executeUpdate();
 
                     }
@@ -2901,6 +2905,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                             row[9] = productosSinNV.getValueAt(indexs[i], 7);
                             row[10] = productosSinNV.getValueAt(indexs[i], 8);
                             row[11] = productosSinNV.getValueAt(indexs[i], 9);
+
                             modeloNuevo.addRow(row);
 
                             modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
@@ -2987,6 +2992,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     row2[9] = tblProdsAgregadosNV.getValueAt(p, 9).toString();
                     row2[10] = tblProdsAgregadosNV.getValueAt(p, 10).toString();
                     row2[11] = tblProdsAgregadosNV.getValueAt(p, 11).toString();
+
                     modeloResumen.addRow(row2);
                 }
 
@@ -3038,6 +3044,20 @@ public class ConsultaMP extends javax.swing.JFrame {
             int dialogResult = JOptionPane.showConfirmDialog(null, "¿Confirma los productos para la nota de venta actual?", "Alerta", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 //Ingresar la orden como nota de venta genérica
+
+                Object[] options = {"Aceptar"};
+                JPanel panelAlto = new JPanel();
+                JLabel lblAlto = new JLabel("Confirme dirección de despacho: ");
+                JTextField txtAlto = new JTextField(10);
+                txtAlto.setText(txtDireccionDespacho.getText());
+                panelAlto.add(lblAlto);
+                panelAlto.add(txtAlto);
+                int selectedOptionAlto = JOptionPane.showOptionDialog(null, panelAlto, "Direcciones de despacho", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                String text = "";
+                if (selectedOptionAlto == 0) {
+                    text = txtAlto.getText();
+                }
+
                 String query2 = "INSERT INTO `acimabasededatos`.`ordentrabajo` ("
                         + "`codigoOrdenCompra`,"
                         + "`nombre_proveedor` ,"
@@ -3094,7 +3114,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 pst2.setString(23, txtImpuestoEspecifico.getText());
                 pst2.setString(24, txtTotal.getText());
                 pst2.setString(25, txtObservacion.getText());
-                pst2.setString(26, txtObservacionDespacho.getText());
+                pst2.setString(26, text);
                 pst2.setInt(27, Integer.parseInt(lblCodigo.getText()));
                 int x1 = pst2.executeUpdate();
 
@@ -3112,6 +3132,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 while (rsNV.next()) {
                     max = rsNV.getInt(1);
                 }
+
                 int filas = tblPaso.getRowCount();
                 for (int x = 0; x < filas; x++) {
                     tblPaso.setValueAt(max, x, 0);
@@ -3139,7 +3160,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                     row2[9] = modeloPaso.getValueAt(p, 9);
                     row2[10] = modeloPaso.getValueAt(p, 10);
                     row2[11] = modeloPaso.getValueAt(p, 11);
-
                     modeloProds.addRow(row2);
                 }
 
