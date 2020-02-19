@@ -58,8 +58,8 @@ public class ClientesRecientes extends javax.swing.JFrame {
         panelREgionComuna = new javax.swing.JPanel();
         lbRegion = new javax.swing.JLabel();
         lbComuna = new javax.swing.JLabel();
-        cboRegion4 = new javax.swing.JComboBox<String>();
-        cboComuna4 = new javax.swing.JComboBox<String>();
+        cboRegion4 = new javax.swing.JComboBox<>();
+        cboComuna4 = new javax.swing.JComboBox<>();
         panelOrganizacion = new javax.swing.JPanel();
         lbOrganizacion = new javax.swing.JLabel();
         txtOrganizacion = new javax.swing.JTextField();
@@ -160,7 +160,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
         lbComuna.setText("Comuna:");
 
         cboRegion4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cboRegion4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Región", "Todas las regiones" }));
+        cboRegion4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Región", "Todas las regiones" }));
         cboRegion4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboRegion4ItemStateChanged(evt);
@@ -168,7 +168,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
         });
 
         cboComuna4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cboComuna4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione su comuna" }));
+        cboComuna4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione su comuna" }));
         cboComuna4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboComuna4ItemStateChanged(evt);
@@ -349,6 +349,9 @@ public class ClientesRecientes extends javax.swing.JFrame {
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
 
+        jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(Fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
@@ -371,8 +374,6 @@ public class ClientesRecientes extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 686, Short.MAX_VALUE))
         );
-        jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(Fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
