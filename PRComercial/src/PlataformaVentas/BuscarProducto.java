@@ -255,7 +255,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        cmbCM = new javax.swing.JComboBox<String>();
+        cmbCM = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         lblNombreProducto = new javax.swing.JLabel();
         txtNombreProducto = new javax.swing.JTextField();
@@ -267,10 +267,10 @@ public class BuscarProducto extends javax.swing.JFrame {
         txtSKU = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        cmbCategoria = new javax.swing.JComboBox<String>();
+        cmbCategoria = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        cmbDistribuidor = new javax.swing.JComboBox<String>();
+        cmbDistribuidor = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblResultado_2 = new javax.swing.JTable();
@@ -436,7 +436,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         jLabel2.setText("Buscando:");
 
         cmbCM.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        cmbCM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos los Productos" }));
+        cmbCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Productos" }));
         cmbCM.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCMItemStateChanged(evt);
@@ -577,7 +577,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         jLabel13.setText("Buscando:");
 
         cmbCategoria.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos los Productos" }));
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Productos" }));
         cmbCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCategoriaItemStateChanged(evt);
@@ -611,7 +611,7 @@ public class BuscarProducto extends javax.swing.JFrame {
         jLabel15.setText("Buscando:");
 
         cmbDistribuidor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cmbDistribuidor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos los Productos" }));
+        cmbDistribuidor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Productos" }));
         cmbDistribuidor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbDistribuidorItemStateChanged(evt);

@@ -96,7 +96,7 @@ public class ConsultarOrdenCompra extends javax.swing.JFrame {
         txt_NombreOC = new javax.swing.JTextField();
         jPnl_Empresa = new javax.swing.JPanel();
         lb_Empresa = new javax.swing.JLabel();
-        cb_Empresa = new javax.swing.JComboBox<String>();
+        cb_Empresa = new javax.swing.JComboBox<>();
         jPnl_Rut = new javax.swing.JPanel();
         lb_Rut = new javax.swing.JLabel();
         txt_Rut = new javax.swing.JTextField();
@@ -214,7 +214,7 @@ public class ConsultarOrdenCompra extends javax.swing.JFrame {
         lb_Empresa.setText("Proveedor");
 
         cb_Empresa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cb_Empresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Proveedor", "Acima Soluciones Integrales", "ACIMA GLOBAL SPA" }));
+        cb_Empresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Proveedor", "Acima Soluciones Integrales", "ACIMA GLOBAL SPA" }));
         cb_Empresa.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_EmpresaItemStateChanged(evt);
@@ -441,6 +441,9 @@ public class ConsultarOrdenCompra extends javax.swing.JFrame {
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
 
+        jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(Fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
@@ -463,8 +466,6 @@ public class ConsultarOrdenCompra extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(402, 402, 402))
         );
-        jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(Fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

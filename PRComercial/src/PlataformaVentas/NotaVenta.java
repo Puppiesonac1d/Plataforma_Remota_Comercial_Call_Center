@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import static jdk.nashorn.internal.objects.NativeMath.round;
 import net.proteanit.sql.DbUtils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author The_S
@@ -531,6 +531,17 @@ public class NotaVenta extends javax.swing.JFrame {
 
         jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
 
+        jLayeredPane13.setLayer(jTabbedPane16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jTabbedPane14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jTabbedPane17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(btnConfirmarVolver, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(btnCalcularValores, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(btnBorrarProducto1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(btnAgregarProdOT, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane13.setLayer(jLabel65, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane13Layout = new javax.swing.GroupLayout(jLayeredPane13);
         jLayeredPane13.setLayout(jLayeredPane13Layout);
         jLayeredPane13Layout.setHorizontalGroup(
@@ -594,16 +605,6 @@ public class NotaVenta extends javax.swing.JFrame {
                     .addComponent(jLabel65)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jLayeredPane13.setLayer(jTabbedPane16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(jTabbedPane14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(jTabbedPane17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(btnConfirmarVolver, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(btnCalcularValores, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(btnBorrarProducto1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(btnAgregarProdOT, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane13.setLayer(jLabel65, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout AgregarProductoOTLayout = new javax.swing.GroupLayout(AgregarProductoOT.getContentPane());
         AgregarProductoOT.getContentPane().setLayout(AgregarProductoOTLayout);
@@ -862,7 +863,7 @@ public class NotaVenta extends javax.swing.JFrame {
                     .addComponent(txtNombreOrdenCompra, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMailEnvioFactura))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel37Layout.createSequentialGroup()
                         .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel110)
@@ -877,8 +878,8 @@ public class NotaVenta extends javax.swing.JFrame {
                             .addComponent(txtMetodoDespachoOC)))
                     .addGroup(jPanel37Layout.createSequentialGroup()
                         .addComponent(jLabel42)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigoOCOT)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCodigoOCOT, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel37Layout.setVerticalGroup(
@@ -942,18 +943,25 @@ public class NotaVenta extends javax.swing.JFrame {
         jLabel121.setText("Total:");
 
         txtImpuestoEspecifico.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtImpuestoEspecifico.setText("$0");
 
         txtIVAOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtIVAOC.setText("$0");
 
         txtSubtotalOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtSubtotalOC.setText("$0");
 
         txtCargosOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtCargosOC.setText("$0");
 
         txtDCTOOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtDCTOOC.setText("$0");
 
         txtNetoOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtNetoOC.setText("$0");
 
         txtTotalOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtTotalOC.setText("$0");
 
         btnCalculoTotales.setText("Calcular valores");
         btnCalculoTotales.addActionListener(new java.awt.event.ActionListener() {
@@ -1043,6 +1051,9 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(btnGenerarOrden1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                                 .addComponent(jLabel113)
@@ -1066,10 +1077,12 @@ public class NotaVenta extends javax.swing.JFrame {
                                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addComponent(btnGenerarOrden1)
-                    .addComponent(jLabel103)
-                    .addComponent(jLabel102)
-                    .addComponent(jLabel93)))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel103)
+                            .addComponent(jLabel102)
+                            .addComponent(jLabel93))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1098,14 +1111,14 @@ public class NotaVenta extends javax.swing.JFrame {
                         .addComponent(jLabel77))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcionOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel113))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGenerarOrden1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel38.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1142,11 +1155,11 @@ public class NotaVenta extends javax.swing.JFrame {
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel38Layout.createSequentialGroup()
                 .addComponent(lblCodigo)
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigoOCTitulo)
                     .addComponent(txtConsultarOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -1158,7 +1171,7 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(79, 79, 79))
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1193,7 +1206,7 @@ public class NotaVenta extends javax.swing.JFrame {
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVolver4)
-                .addContainerGap(622, Short.MAX_VALUE))
+                .addContainerGap(624, Short.MAX_VALUE))
             .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
                     .addGap(46, 46, 46)
@@ -1203,6 +1216,9 @@ public class NotaVenta extends javax.swing.JFrame {
 
         lblFondoOrdenTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFondoOrdenTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
+
+        jLayeredPane4.setLayer(jPanel33, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(lblFondoOrdenTrabajo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
         jLayeredPane4.setLayout(jLayeredPane4Layout);
@@ -1226,8 +1242,6 @@ public class NotaVenta extends javax.swing.JFrame {
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jLayeredPane4.setLayer(jPanel33, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(lblFondoOrdenTrabajo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1399,48 +1413,62 @@ public class NotaVenta extends javax.swing.JFrame {
 
     private void btnCalculoTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoTotalesActionPerformed
         try {
+            int netoTabla = 0;
             if (tblProductosOrdenCompra.getValueAt(0, 5).toString().equals("CLP")) {
-                int neto = Integer.parseInt(txtNetoOC.getText().substring(1).replace(".", ""));
-                int descuento = Integer.parseInt(txtDCTOOC.getText());
-                int cargo = Integer.parseInt(txtCargosOC.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                int subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText());
-                int total = (int) (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDCTOOC.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
-                txtCargosOC.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
-                txtSubtotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
-                txtIVAOC.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
-                txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
-                txtTotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
+                for (int i = 0; i < tblProductosOrdenCompra.getRowCount(); i++) {
 
-                txtDCTOOC.setText(txtDCTOOC.getText().substring(2));
-                txtCargosOC.setText(txtCargosOC.getText().substring(2));
-                txtSubtotalOC.setText(txtSubtotalOC.getText().substring(2));
-                txtIVAOC.setText(txtIVAOC.getText().substring(2));
-                txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
-                txtTotalOC.setText(txtTotalOC.getText().substring(2));
+                    int descuento = Integer.parseInt(txtDCTOOC.getText().replace("$", "").replace(".", ""));
+                    int cargo = Integer.parseInt(txtCargosOC.getText().replace("$", "").replace(".", ""));
+
+                    netoTabla = netoTabla + Integer.parseInt(tblProductosOrdenCompra.getValueAt(i, 9).toString().replace("$", "").replace(".", ""));
+
+                    int subtotal = netoTabla;
+                    double iva = netoTabla * 0.19;
+                    int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
+                    int total = (int) (iva + impuesto_especifico + subtotal - descuento);
+                    //Formateo
+
+                    txtNetoOC.setText(java.text.NumberFormat.getCurrencyInstance().format(netoTabla));
+                    txtDCTOOC.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
+                    txtCargosOC.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
+                    txtSubtotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
+                    txtIVAOC.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
+                    txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
+                    txtTotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
+
+                    txtNetoOC.setText(txtNetoOC.getText().substring(2));
+                    txtDCTOOC.setText(txtDCTOOC.getText().substring(2));
+                    txtCargosOC.setText(txtCargosOC.getText().substring(2));
+                    txtSubtotalOC.setText(txtSubtotalOC.getText().substring(2));
+                    txtIVAOC.setText(txtIVAOC.getText().substring(2));
+                    txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
+                    txtTotalOC.setText(txtTotalOC.getText().substring(2));
+                }
 
             } else {
-                double neto = Double.parseDouble(txtNetoOC.getText().substring(1).replace(".", "").replace(",", "."));
-                double descuento = Double.parseDouble(txtDCTOOC.getText());
-                double cargo = Double.parseDouble(txtCargosOC.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                double subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                double impuesto_especifico = Double.parseDouble(txtImpuestoEspecifico.getText());
-                double total = (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDCTOOC.setText(new DecimalFormat("$#,##0.00").format(descuento));
-                txtCargosOC.setText(new DecimalFormat("$#,##0.00").format(cargo));
-                txtSubtotalOC.setText(new DecimalFormat("$#,##0.00").format(subtotal));
-                txtIVAOC.setText(new DecimalFormat("$#,##0.00").format(iva));
-                txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
-                txtTotalOC.setText(new DecimalFormat("$#,##0.00").format(total));
+
+                for (int i = 0; i < tblProductosOrdenCompra.getRowCount(); i++) {
+
+                    int descuento = Integer.parseInt(txtDCTOOC.getText().replace("$", "").replace(".", ""));
+                    int cargo = Integer.parseInt(txtCargosOC.getText().replace("$", "").replace(".", ""));
+
+                    netoTabla = netoTabla + Integer.parseInt(tblProductosOrdenCompra.getValueAt(i, 9).toString().replace("$", "").replace(".", ""));
+
+                    int subtotal = netoTabla;
+                    double iva = netoTabla * 0.19;
+                    int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
+                    int total = (int) (iva + impuesto_especifico + subtotal - descuento);
+
+                    //Formateo
+                    txtNetoOC.setText(new DecimalFormat("$#,##0.00").format(netoTabla));
+                    txtDCTOOC.setText(new DecimalFormat("$#,##0.00").format(descuento));
+                    txtCargosOC.setText(new DecimalFormat("$#,##0.00").format(cargo));
+                    txtSubtotalOC.setText(new DecimalFormat("$#,##0.00").format(subtotal));
+                    txtIVAOC.setText(new DecimalFormat("$#,##0.00").format(iva));
+                    txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
+                    txtTotalOC.setText(new DecimalFormat("$#,##0.00").format(total));
+                }
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: debe ingresar un valor correspondiente a la moneda" + ex.getMessage());
@@ -1575,7 +1603,7 @@ public class NotaVenta extends javax.swing.JFrame {
             }
             AgregarProductoOT.dispose();
             this.setVisible(true);
-
+            btnCalculoTotales.doClick();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se han agregado productos o información: " + ex.getMessage());
         }

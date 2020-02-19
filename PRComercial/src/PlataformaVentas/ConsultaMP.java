@@ -2,6 +2,7 @@ package PlataformaVentas;
 
 import clases.Conexion;
 import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -11,9 +12,11 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.awt.Color;
@@ -2016,177 +2019,371 @@ public class ConsultaMP extends javax.swing.JFrame {
     private void btnConsultaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaOCActionPerformed
 
         try {
+            String query = "select codigoOrdenCompra from ordenTrabajo where codigoOrdenCompra = ?";
+            String param = txtOC.getText();
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, param);
+            ResultSet rs = pst.executeQuery();
+            String oc = "";
+            while (rs.next()) {
+                oc = rs.getString(1);
+            }
+            if (txtOC.getText().equalsIgnoreCase(oc)) {
+                int resp = JOptionPane.showConfirmDialog(null, "Esta orden de compra ya se encuentra registrada ¿Esta seguro(a) de ingresarla nuevamente?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (resp == 0) {
+                    try {
+                        //Consulta de BD
+                        //En esta sección se ingresa el Request para que la "API", digamosle así xd y posteriormente entrega el resultado del mismo.
+                        String format = "xml";
+                        String url = "http://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.xml?codigo=" + txtOC.getText().toUpperCase() + "&ticket=210555F9-8B7E-48ED-93ED-2504CAD3B155";
+                        System.out.println(url);
+                        //Se crea un obj de tipo url con el cual se realizará el request
+                        URL obj = new URL(url);
+                        HttpURLConnection con;
 
-            //Consulta de BD
-            //En esta sección se ingresa el Request para que la "API", digamosle así xd y posteriormente entrega el resultado del mismo.
-            String format = "xml";
-            String url = "http://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.xml?codigo=" + txtOC.getText().toUpperCase() + "&ticket=210555F9-8B7E-48ED-93ED-2504CAD3B155";
-            System.out.println(url);
-            //Se crea un obj de tipo url con el cual se realizará el request
-            URL obj = new URL(url);
-            HttpURLConnection con;
+                        con = (HttpURLConnection) obj.openConnection();
 
-            con = (HttpURLConnection) obj.openConnection();
+                        int responseCode;
 
-            int responseCode;
+                        responseCode = con.getResponseCode();
 
-            responseCode = con.getResponseCode();
+                        //Por motivos de Debug, se necesita el codigo de respuesta
+                        System.out.println("Código de Respuesta : " + responseCode);
+                        StringBuffer response;
+                        try (BufferedReader in = new BufferedReader(
+                                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
+                            String inputLine;
+                            response = new StringBuffer();
+                            while ((inputLine = in.readLine()) != null) {
+                                response.append(inputLine);
+                            }
+                        }
+                        //print in String
+                        // System.out.println(response.toString());
+                        org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
+                        //Aqui segun el TAG del XML va a poder obtener los elementos...
+                        //Obedeciendo el orden del documento, los tags son los siguientes...
 
-            //Por motivos de Debug, se necesita el codigo de respuesta
-            System.out.println("Código de Respuesta : " + responseCode);
-            StringBuffer response;
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-                String inputLine;
-                response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
+                        NodeList ordenes = doc.getElementsByTagName("Ordenes");
+                        if (ordenes.getLength() > 0) {
+                            Element err = (Element) ordenes.item(0);
+                            txtFechaEnvioOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
+                            lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
+                            txtUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
+
+                        } else {
+                            // success
+                        }
+
+                        NodeList comprador = doc.getElementsByTagName("Comprador");
+                        if (comprador.getLength() > 0) {
+                            Element err = (Element) comprador.item(0);
+                            txtRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
+                            txtDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
+                            txtDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
+                            txtTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+                            txtEmailContacto.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
+                        } else {
+                            // success
+                        }
+
+                        NodeList proveedor = doc.getElementsByTagName("Proveedor");
+                        if (proveedor.getLength() > 0) {
+                            Element err = (Element) proveedor.item(0);
+                            txtProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                            txtDireccionProveedor.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
+                            txtRutProveedor.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
+                            txtNombreProveedor.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                            txtFonoProveedor.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+                        } else {
+                            // success
+                        }
+
+                        NodeList fechas = doc.getElementsByTagName("Fechas");
+                        if (fechas.getLength() > 0) {
+                            Element err = (Element) fechas.item(0);
+                            txtFechaEnvioOC.setText(err.getElementsByTagName("FechaCreacion").item(0).getTextContent());
+                            txtFechaAceptacion.setText(err.getElementsByTagName("FechaAceptacion").item(0).getTextContent());
+                        } else {
+                            // success
+                        }
+
+                        NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
+                        if (detalleOrden.getLength() > 0) {
+                            Element err = (Element) detalleOrden.item(0);
+                            txtNombreOC.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                            txtDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                                    + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                            txtDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                                    + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
+                                    + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                            txtMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
+                            txtContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
+                                    + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
+                                    + err.getElementsByTagName("MailContacto").item(0).getTextContent());
+                            txtFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
+                            txtContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                        } else {
+                            // success
+                        }
+
+                        NodeList flowList0 = doc.getElementsByTagName("Listado");
+                        Element err1 = (Element) flowList0.item(0);
+                        int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
+                        System.out.println(num + "");
+                        NodeList flowList1 = doc.getElementsByTagName("Listado");
+                        DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
+
+                        for (int m = 0; m < tblMP.getRowCount(); m++) {
+                            modelo.removeRow(m);
+                        }
+                        modelo.setRowCount(num);
+                        for (int x = 0; x < num; x++) {
+                            System.out.println("Listado " + flowList1.getLength());
+
+                            NodeList flowList = doc.getElementsByTagName("Item");
+                            for (int i = 0; i < flowList.getLength(); i++) {
+                                Element err = (Element) flowList.item(x);
+
+                                String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
+                                if (str.contains("(") && str.contains(")")) {
+                                    //Contiene o no
+                                    String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
+                                    modelo.setValueAt(answer, x, 0);
+                                } else {
+                                    modelo.setValueAt("-", x, 0);
+                                }
+
+                                modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
+                                modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
+                                modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
+                                modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
+                                modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
+                                modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
+                                modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
+                                modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
+                                modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
+                            }
+                        }
+
+                        NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
+
+                        if (detalleMontos.getLength()
+                                > 0) {
+                            Element err = (Element) detalleMontos.item(0);
+                            txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                            txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                            txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                            txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
+                            txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                            txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                            txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+
+                        } else {
+                            // success
+                        }
+                        NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
+
+                        if (descripcion.getLength()
+                                > 0) {
+                            Element err = (Element) descripcion.item(0);
+                            txtObservacion.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
+                        } else {
+                            // success
+                        }
+                        System.out.println(
+                                "La consulta fue realizada con éxito");
+
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParserConfigurationException ex) {
+                        Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SAXException ex) {
+                        Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese una orden de compra diferente");
                 }
-            }
-            //print in String
-            // System.out.println(response.toString());
-            org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
-            //Aqui segun el TAG del XML va a poder obtener los elementos...
-            //Obedeciendo el orden del documento, los tags son los siguientes...
-
-            NodeList ordenes = doc.getElementsByTagName("Ordenes");
-            if (ordenes.getLength() > 0) {
-                Element err = (Element) ordenes.item(0);
-                txtFechaEnvioOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
-                lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
-                txtUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
 
             } else {
-                // success
-            }
+                try {
+                    //Consulta de BD
+                    //En esta sección se ingresa el Request para que la "API", digamosle así xd y posteriormente entrega el resultado del mismo.
+                    String format = "xml";
+                    String url = "http://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.xml?codigo=" + txtOC.getText().toUpperCase() + "&ticket=210555F9-8B7E-48ED-93ED-2504CAD3B155";
+                    System.out.println(url);
+                    //Se crea un obj de tipo url con el cual se realizará el request
+                    URL obj = new URL(url);
+                    HttpURLConnection con;
 
-            NodeList comprador = doc.getElementsByTagName("Comprador");
-            if (comprador.getLength() > 0) {
-                Element err = (Element) comprador.item(0);
-                txtRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
-                txtDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
-                txtDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
-                txtTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-                txtEmailContacto.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
-            } else {
-                // success
-            }
+                    con = (HttpURLConnection) obj.openConnection();
 
-            NodeList proveedor = doc.getElementsByTagName("Proveedor");
-            if (proveedor.getLength() > 0) {
-                Element err = (Element) proveedor.item(0);
-                txtProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-                txtDireccionProveedor.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
-                txtRutProveedor.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
-                txtNombreProveedor.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-                txtFonoProveedor.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
-            } else {
-                // success
-            }
+                    int responseCode;
 
-            NodeList fechas = doc.getElementsByTagName("Fechas");
-            if (fechas.getLength() > 0) {
-                Element err = (Element) fechas.item(0);
-                txtFechaEnvioOC.setText(err.getElementsByTagName("FechaCreacion").item(0).getTextContent());
-                txtFechaAceptacion.setText(err.getElementsByTagName("FechaAceptacion").item(0).getTextContent());
-            } else {
-                // success
-            }
+                    responseCode = con.getResponseCode();
 
-            NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
-            if (detalleOrden.getLength() > 0) {
-                Element err = (Element) detalleOrden.item(0);
-                txtNombreOC.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
-                txtDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-                txtDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
-                txtMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
-                txtContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
-                        + err.getElementsByTagName("MailContacto").item(0).getTextContent());
-                txtFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
-                txtContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
-            } else {
-                // success
-            }
+                    //Por motivos de Debug, se necesita el codigo de respuesta
+                    System.out.println("Código de Respuesta : " + responseCode);
+                    StringBuffer response;
+                    try (BufferedReader in = new BufferedReader(
+                            new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
+                        String inputLine;
+                        response = new StringBuffer();
+                        while ((inputLine = in.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+                    }
+                    //print in String
+                    // System.out.println(response.toString());
+                    org.w3c.dom.Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response.toString())));
+                    //Aqui segun el TAG del XML va a poder obtener los elementos...
+                    //Obedeciendo el orden del documento, los tags son los siguientes...
 
-            NodeList flowList0 = doc.getElementsByTagName("Listado");
-            Element err1 = (Element) flowList0.item(0);
-            int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
-            System.out.println(num + "");
-            NodeList flowList1 = doc.getElementsByTagName("Listado");
-            DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
+                    NodeList ordenes = doc.getElementsByTagName("Ordenes");
+                    if (ordenes.getLength() > 0) {
+                        Element err = (Element) ordenes.item(0);
+                        txtFechaEnvioOC.setText((err.getElementsByTagName("FechaCreacion").item(0).getTextContent()));
+                        lblEstadoOrdenCompra.setText(err.getElementsByTagName("Estado").item(0).getTextContent());
+                        txtUnidadCompra.setText(err.getElementsByTagName("NombreUnidad").item(0).getTextContent());
 
-            for (int m = 0; m < tblMP.getRowCount(); m++) {
-                modelo.removeRow(m);
-            }
-            modelo.setRowCount(num);
-            for (int x = 0; x < num; x++) {
-                System.out.println("Listado " + flowList1.getLength());
-
-                NodeList flowList = doc.getElementsByTagName("Item");
-                for (int i = 0; i < flowList.getLength(); i++) {
-                    Element err = (Element) flowList.item(x);
-
-                    String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
-                    if (str.contains("(") && str.contains(")")) {
-                        //Contiene o no
-                        String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
-                        modelo.setValueAt(answer, x, 0);
                     } else {
-                        modelo.setValueAt("-", x, 0);
+                        // success
                     }
 
-                    modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
-                    modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
-                    modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
-                    modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
-                    modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
-                    modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
-                    modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
-                    modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
-                    modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
+                    NodeList comprador = doc.getElementsByTagName("Comprador");
+                    if (comprador.getLength() > 0) {
+                        Element err = (Element) comprador.item(0);
+                        txtRutComprador.setText(err.getElementsByTagName("RutUnidad").item(0).getTextContent());
+                        txtDireccionDemandante.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent());
+                        txtDemandante.setText(err.getElementsByTagName("NombreOrganismo").item(0).getTextContent());
+                        txtTelefonoDemandante.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+                        txtEmailContacto.setText(err.getElementsByTagName("MailContacto").item(0).getTextContent());
+                    } else {
+                        // success
+                    }
+
+                    NodeList proveedor = doc.getElementsByTagName("Proveedor");
+                    if (proveedor.getLength() > 0) {
+                        Element err = (Element) proveedor.item(0);
+                        txtProveedor.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                        txtDireccionProveedor.setText(err.getElementsByTagName("Direccion").item(0).getTextContent());
+                        txtRutProveedor.setText(err.getElementsByTagName("RutSucursal").item(0).getTextContent());
+                        txtNombreProveedor.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                        txtFonoProveedor.setText(err.getElementsByTagName("FonoContacto").item(0).getTextContent());
+                    } else {
+                        // success
+                    }
+
+                    NodeList fechas = doc.getElementsByTagName("Fechas");
+                    if (fechas.getLength() > 0) {
+                        Element err = (Element) fechas.item(0);
+                        txtFechaEnvioOC.setText(err.getElementsByTagName("FechaCreacion").item(0).getTextContent());
+                        txtFechaAceptacion.setText(err.getElementsByTagName("FechaAceptacion").item(0).getTextContent());
+                    } else {
+                        // success
+                    }
+
+                    NodeList detalleOrden = doc.getElementsByTagName("OrdenCompra");
+                    if (detalleOrden.getLength() > 0) {
+                        Element err = (Element) detalleOrden.item(0);
+                        txtNombreOC.setText(err.getElementsByTagName("Nombre").item(0).getTextContent());
+                        txtDireccionDespacho.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " " + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                        txtDireccionEnvioFactura.setText(err.getElementsByTagName("DireccionUnidad").item(0).getTextContent() + " "
+                                + err.getElementsByTagName("ComunaUnidad").item(0).getTextContent() + " "
+                                + err.getElementsByTagName("RegionUnidad").item(0).getTextContent());
+                        txtMetodoDespacho.setText(err.getElementsByTagName("TipoDespacho").item(0).getTextContent());
+                        txtContactoPago.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent() + " "
+                                + err.getElementsByTagName("FonoContacto").item(0).getTextContent() + " "
+                                + err.getElementsByTagName("MailContacto").item(0).getTextContent());
+                        txtFormaPago.setText(err.getElementsByTagName("FormaPago").item(0).getTextContent());
+                        txtContactoOC.setText(err.getElementsByTagName("NombreContacto").item(0).getTextContent());
+                    } else {
+                        // success
+                    }
+
+                    NodeList flowList0 = doc.getElementsByTagName("Listado");
+                    Element err1 = (Element) flowList0.item(0);
+                    int num = Integer.parseInt(err1.getElementsByTagName("Cantidad").item(0).getTextContent());
+                    System.out.println(num + "");
+                    NodeList flowList1 = doc.getElementsByTagName("Listado");
+                    DefaultTableModel modelo = (DefaultTableModel) tblMP.getModel();
+
+                    for (int m = 0; m < tblMP.getRowCount(); m++) {
+                        modelo.removeRow(m);
+                    }
+                    modelo.setRowCount(num);
+                    for (int x = 0; x < num; x++) {
+                        System.out.println("Listado " + flowList1.getLength());
+
+                        NodeList flowList = doc.getElementsByTagName("Item");
+                        for (int i = 0; i < flowList.getLength(); i++) {
+                            Element err = (Element) flowList.item(x);
+
+                            String str = err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent();
+                            if (str.contains("(") && str.contains(")")) {
+                                //Contiene o no
+                                String answer = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
+                                modelo.setValueAt(answer, x, 0);
+                            } else {
+                                modelo.setValueAt("-", x, 0);
+                            }
+
+                            modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
+                            modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
+                            modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
+                            modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
+                            modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
+                            modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
+                            modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
+                            modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
+                            modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
+                        }
+                    }
+
+                    NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
+
+                    if (detalleMontos.getLength()
+                            > 0) {
+                        Element err = (Element) detalleMontos.item(0);
+                        txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                        txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                        txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                        txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
+                        txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                        txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                        txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+
+                    } else {
+                        // success
+                    }
+                    NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
+
+                    if (descripcion.getLength()
+                            > 0) {
+                        Element err = (Element) descripcion.item(0);
+                        txtObservacion.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
+                    } else {
+                        // success
+                    }
+                    System.out.println(
+                            "La consulta fue realizada con éxito");
+
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
-            NodeList detalleMontos = doc.getElementsByTagName("OrdenCompra");
-
-            if (detalleMontos.getLength()
-                    > 0) {
-                Element err = (Element) detalleMontos.item(0);
-                txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
-                txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
-                txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-                txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
-                txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
-                txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
-                txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
-
-            } else {
-                // success
-            }
-            NodeList descripcion = doc.getElementsByTagName("OrdenCompra");
-
-            if (descripcion.getLength()
-                    > 0) {
-                Element err = (Element) descripcion.item(0);
-                txtObservacion.setText(err.getElementsByTagName("Descripcion").item(0).getTextContent());
-            } else {
-                // success
-            }
-            System.out.println(
-                    "La consulta fue realizada con éxito");
-
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
         }
 
 
@@ -2195,6 +2392,13 @@ public class ConsultaMP extends javax.swing.JFrame {
     private void btnVolver7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver7ActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVolver7ActionPerformed
+
+    public class RotateEvent extends PdfPageEventHelper {
+
+        public void onStartPage(PdfWriter writer, Document document) {
+            writer.addPageDictEntry(PdfName.ROTATE, PdfPage.SEASCAPE);
+        }
+    }
 
     private void btnGuardarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOrdenActionPerformed
         try {
@@ -2246,7 +2450,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-YYYY");
                     //Crear PDF
                     try {
-                        Document doc = new Document(PageSize.A3);
+                        Document doc = new Document(PageSize.A4);
 
                         Date sistHora = new Date();
                         String pmAm = "hh:mm a";
@@ -2254,17 +2458,27 @@ public class ConsultaMP extends javax.swing.JFrame {
                         Calendar hoy = Calendar.getInstance();
                         String hora = (String.format(format.format(sistHora), hoy));
                         hora = hora.replace(":", "-");
-                        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + txtOC.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Cotizacion_" + ".pdf"));
+                        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + txtOC.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Nota_de_Venta_" + ".pdf"));
+
+                        //Separador
+                        PdfPTable myTable = new PdfPTable(1);
+                        myTable.setWidthPercentage(100.0f);
+                        PdfPCell myCell = new PdfPCell(new Paragraph(""));
+                        myCell.setBorder(Rectangle.BOTTOM);
+                        myTable.addCell(myCell);
+                        myTable.setSpacingAfter(10f);
+                        myTable.setSpacingBefore(10f);
 
                         doc.open();
+
                         //Añadir la imagen
                         try {
                             Image logoAcima = Image.getInstance("src\\PlataformaVentas\\Imagenes\\acima-logo-200p.png");
-                            logoAcima.scaleAbsolute(210, 112);
+                            logoAcima.scaleAbsolute(126, 67);
+                            logoAcima.setAlignment(Paragraph.ALIGN_RIGHT);
                             doc.add(logoAcima);
 
-                            Paragraph separacion01 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                            doc.add(separacion01);
+                            doc.add(myTable);
 
                         } catch (BadElementException ex) {
                             Logger.getLogger(OrdenTrabajo.class
@@ -2275,7 +2489,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                                     .getName()).log(Level.SEVERE, null, ex);
                         }
 
-                        Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(titulo);
 
                         PdfPTable tableDatos = new PdfPTable(2);
@@ -2292,18 +2506,16 @@ public class ConsultaMP extends javax.swing.JFrame {
                         alineaDatos.add(tableDatos);
                         doc.add(alineaDatos);
 
-                        Paragraph separacion6 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                        doc.add(separacion6);
+                        doc.add(myTable);
 
-                        Paragraph titulo2 = new Paragraph("Información de la empresa", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        Paragraph titulo2 = new Paragraph("Información de la empresa", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(titulo2);
 
                         Paragraph proveedor = new Paragraph("Proveedor: " + txtProveedor.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                         proveedor.setAlignment(Paragraph.ALIGN_LEFT);
                         doc.add(proveedor);
 
-                        Paragraph separacion2 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                        doc.add(separacion2);
+                        doc.add(myTable);
 
                         Paragraph titulo3 = new Paragraph("Información de orden", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                         doc.add(titulo);
@@ -2326,6 +2538,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                         alineaDatos2.add(tableDatos2);
                         doc.add(alineaDatos2);
 
+                        // doc.setPageSize(PageSize.A4.rotate());
+                        doc.newPage();
+
                         Paragraph tablas = new Paragraph("Información de productos en la orden ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(tablas);
                         PdfPTable pdfTable = new PdfPTable(tblMP.getColumnCount());
@@ -2346,6 +2561,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         }
+
                         doc.add(pdfTable);
 
                         Paragraph neto = new Paragraph("Neto: " + txtNeto.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
@@ -2357,6 +2573,10 @@ public class ConsultaMP extends javax.swing.JFrame {
                         doc.add(neto);
                         doc.add(iva);
                         doc.add(total);
+
+                        doc.add(myTable);
+
+                        doc.newPage();
 
                         //Para las notas de venta
                         Paragraph tablas2 = new Paragraph("Información de productos en notas de venta ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
@@ -2383,10 +2603,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                         }
                         doc.add(pdfTable2);
 
-                        Paragraph separacion3 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                        separacion3.setSpacingBefore(15f);
-                        separacion3.setSpacingBefore(15f);
-                        doc.add(separacion3);
+                        doc.add(myTable);
                         //Iconos
                         try {
                             PdfPTable table = new PdfPTable(2);
@@ -2395,9 +2612,20 @@ public class ConsultaMP extends javax.swing.JFrame {
                             //D:\Plataforma Operaciones\src\imagenes\465892689e(1).png
                             Image img1 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\phone-icon-11-64.png");
                             Image img2 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\mail-64.png");
-                            table.addCell(new PdfPCell(img1, true));
+
+                            PdfPCell imagen1 = new PdfPCell(img1, false);
+                            imagen1.setBorder(Rectangle.NO_BORDER);
+                            imagen1.setBackgroundColor(BaseColor.WHITE);
+                            imagen1.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+
+                            PdfPCell imagen2 = new PdfPCell(img2, false);
+                            imagen2.setBorder(Rectangle.NO_BORDER);
+                            imagen2.setBackgroundColor(BaseColor.WHITE);
+                            imagen2.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+
+                            table.addCell(imagen1);
                             table.addCell(new Phrase("Central telefónica: +56-232 107 900", FontFactory.getFont(FontFactory.TIMES, 12)));
-                            table.addCell(new PdfPCell(img2, true));
+                            table.addCell(imagen2);
                             table.addCell(new Phrase("ventas@acima.cl - comercial@acima.cl - gerencia@acima.cl", FontFactory.getFont(FontFactory.TIMES, 12)));
                             Paragraph tableFooter = new Paragraph();
                             tableFooter.add(table);
@@ -2520,7 +2748,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             AgregarProductoOT.dispose();
             this.setVisible(true);
-
+            btnCalculoTotales.doClick();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se han agregado productos o información: " + ex.getMessage());
         }
@@ -2713,48 +2941,62 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnCalculoTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoTotalesActionPerformed
         try {
+            int netoTabla = 0;
             if (tblMP.getValueAt(0, 5).toString().equals("CLP")) {
-                int neto = Integer.parseInt(txtNeto.getText().substring(1).replace(".", ""));
-                int descuento = Integer.parseInt(txtDcto.getText());
-                int cargo = Integer.parseInt(txtCargos.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                int subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText());
-                int total = (int) (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDcto.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
-                txtCargos.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
-                txtSubTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
-                txtIva.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
-                txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
-                txtTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
+                for (int i = 0; i < tblMP.getRowCount(); i++) {
 
-                txtDcto.setText(txtDcto.getText().substring(2));
-                txtCargos.setText(txtCargos.getText().substring(2));
-                txtSubTotal.setText(txtSubTotal.getText().substring(2));
-                txtIva.setText(txtIva.getText().substring(2));
-                txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
-                txtTotal.setText(txtTotal.getText().substring(2));
+                    int descuento = Integer.parseInt(txtDcto.getText().replace("$", "").replace(".", ""));
+                    int cargo = Integer.parseInt(txtCargos.getText().replace("$", "").replace(".", ""));
+
+                    netoTabla = netoTabla + Integer.parseInt(tblMP.getValueAt(i, 9).toString().replace("$", "").replace(".", ""));
+
+                    int subtotal = netoTabla;
+                    double iva = netoTabla * 0.19;
+                    int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
+                    int total = (int) (iva + impuesto_especifico + subtotal - descuento);
+                    //Formateo
+
+                    txtNeto.setText(java.text.NumberFormat.getCurrencyInstance().format(netoTabla));
+                    txtDcto.setText(java.text.NumberFormat.getCurrencyInstance().format(descuento));
+                    txtCargos.setText(java.text.NumberFormat.getCurrencyInstance().format(cargo));
+                    txtSubTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotal));
+                    txtIva.setText(java.text.NumberFormat.getCurrencyInstance().format(iva));
+                    txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuesto_especifico));
+                    txtTotal.setText(java.text.NumberFormat.getCurrencyInstance().format(total));
+
+                    txtNeto.setText(txtNeto.getText().substring(2));
+                    txtDcto.setText(txtDcto.getText().substring(2));
+                    txtCargos.setText(txtCargos.getText().substring(2));
+                    txtSubTotal.setText(txtSubTotal.getText().substring(2));
+                    txtIva.setText(txtIva.getText().substring(2));
+                    txtImpuestoEspecifico.setText(txtImpuestoEspecifico.getText().substring(2));
+                    txtTotal.setText(txtTotal.getText().substring(2));
+                }
 
             } else {
-                double neto = Double.parseDouble(txtNeto.getText().substring(1).replace(".", "").replace(",", "."));
-                double descuento = Double.parseDouble(txtDcto.getText());
-                double cargo = Double.parseDouble(txtCargos.getText());
-                System.out.println("Neto: " + neto);
-                System.out.println("Descuento: " + descuento);
-                double subtotal = neto + cargo - descuento;
-                double iva = subtotal * 0.19;
-                double impuesto_especifico = Double.parseDouble(txtImpuestoEspecifico.getText());
-                double total = (iva + impuesto_especifico + subtotal);
-                //Formateo
-                txtDcto.setText(new DecimalFormat("$#,##0.00").format(descuento));
-                txtCargos.setText(new DecimalFormat("$#,##0.00").format(cargo));
-                txtSubTotal.setText(new DecimalFormat("$#,##0.00").format(subtotal));
-                txtIva.setText(new DecimalFormat("$#,##0.00").format(iva));
-                txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
-                txtTotal.setText(new DecimalFormat("$#,##0.00").format(total));
+
+                for (int i = 0; i < tblMP.getRowCount(); i++) {
+
+                    int descuento = Integer.parseInt(txtDcto.getText().replace("$", "").replace(".", ""));
+                    int cargo = Integer.parseInt(txtCargos.getText().replace("$", "").replace(".", ""));
+
+                    netoTabla = netoTabla + Integer.parseInt(tblMP.getValueAt(i, 9).toString().replace("$", "").replace(".", ""));
+
+                    int subtotal = netoTabla;
+                    double iva = netoTabla * 0.19;
+                    int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
+                    int total = (int) (iva + impuesto_especifico + subtotal - descuento);
+
+                    //Formateo
+                    txtNeto.setText(new DecimalFormat("$#,##0.00").format(netoTabla));
+                    txtDcto.setText(new DecimalFormat("$#,##0.00").format(descuento));
+                    txtCargos.setText(new DecimalFormat("$#,##0.00").format(cargo));
+                    txtSubTotal.setText(new DecimalFormat("$#,##0.00").format(subtotal));
+                    txtIva.setText(new DecimalFormat("$#,##0.00").format(iva));
+                    txtImpuestoEspecifico.setText(new DecimalFormat("$#,##0.00").format(impuesto_especifico));
+                    txtTotal.setText(new DecimalFormat("$#,##0.00").format(total));
+                }
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: debe ingresar un valor correspondiente a la moneda" + ex.getMessage());

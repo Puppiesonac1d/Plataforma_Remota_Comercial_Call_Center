@@ -858,7 +858,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnVolver4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="622" max="32767" attributes="0"/>
+                      <EmptySpace pref="624" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -926,7 +926,7 @@
                                       <Component id="jPanel38" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jPanel21" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -958,6 +958,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="btnGenerarOrden1" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="1" attributes="0">
@@ -991,10 +995,14 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="btnGenerarOrden1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel103" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel102" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel93" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel103" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel102" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel93" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1028,7 +1036,7 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jPanel22" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="-141" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1038,7 +1046,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnGenerarOrden1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1374,7 +1382,7 @@
                                               <Component id="txtMailEnvioFactura" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel110" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1392,8 +1400,8 @@
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="txtCodigoOCOT" max="32767" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="txtCodigoOCOT" pref="399" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -1684,6 +1692,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtIVAOC">
@@ -1691,6 +1700,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtSubtotalOC">
@@ -1698,6 +1708,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtCargosOC">
@@ -1705,6 +1716,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtDCTOOC">
@@ -1712,6 +1724,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtNetoOC">
@@ -1719,6 +1732,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtTotalOC">
@@ -1726,6 +1740,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="0"/>
                                     </Property>
+                                    <Property name="text" type="java.lang.String" value="$0"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel78">
@@ -1780,12 +1795,12 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblCodigo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblCodigoOCTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtConsultarOC" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
