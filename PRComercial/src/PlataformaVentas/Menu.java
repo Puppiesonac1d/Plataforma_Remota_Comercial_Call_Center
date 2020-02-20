@@ -69,6 +69,12 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        autorizacion = new javax.swing.JFrame();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
@@ -82,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
         btnStatus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnSeguimiento = new javax.swing.JButton();
+        btnGestionarNV = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -96,6 +103,55 @@ public class Menu extends javax.swing.JFrame {
         codigoMenu = new javax.swing.JMenu();
         credencialMenu = new javax.swing.JMenu();
         idMenu = new javax.swing.JMenu();
+
+        autorizacion.setMaximumSize(new java.awt.Dimension(400, 150));
+        autorizacion.setMinimumSize(new java.awt.Dimension(400, 150));
+        autorizacion.setSize(new java.awt.Dimension(400, 97));
+
+        jButton2.setText("Comprobar Credenciales");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Correo:");
+
+        jLabel2.setText("Contraseña:");
+
+        javax.swing.GroupLayout autorizacionLayout = new javax.swing.GroupLayout(autorizacion.getContentPane());
+        autorizacion.getContentPane().setLayout(autorizacionLayout);
+        autorizacionLayout.setHorizontalGroup(
+            autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(autorizacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(autorizacionLayout.createSequentialGroup()
+                        .addGroup(autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPass)
+                            .addComponent(txtCorreo))))
+                .addContainerGap())
+        );
+        autorizacionLayout.setVerticalGroup(
+            autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autorizacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(autorizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
@@ -212,6 +268,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel2.add(btnSeguimiento);
 
+        btnGestionarNV.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnGestionarNV.setText("Gestionar Notas de Venta");
+        btnGestionarNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarNVActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnGestionarNV);
+
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/exit_icon-icons.com_70975.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -310,6 +375,7 @@ public class Menu extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleName("Menú Principal");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaContactosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaContactosActionPerformed
@@ -478,6 +544,38 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSeguimientoActionPerformed
 
+    private void btnGestionarNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarNVActionPerformed
+        autorizacion.setVisible(true);
+    }//GEN-LAST:event_btnGestionarNVActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            String correo = "";
+            String pass = "";
+
+            String query = "SELECT correoUsuario, pass from usuario where idUsuario = 8";
+            PreparedStatement pst;
+            pst = cn.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                correo = rs.getString(1);
+                pass = rs.getString(2);
+            }
+
+            if (txtCorreo.getText().equals(correo) && txtPass.getText().equals(pass)) {
+                Notas_Venta_Sin_Stock nv = new Notas_Venta_Sin_Stock();
+                nv.setVisible(true);
+
+                txtCorreo.setText("");
+                txtPass.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se han introducido las credenciales correctas");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -520,10 +618,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame autorizacion;
     private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnAgregarCliente;
     private javax.swing.JButton btnClientesRecientes;
     private javax.swing.JButton btnClientesRecientes1;
+    private javax.swing.JButton btnGestionarNV;
     private javax.swing.JButton btnListaContactos;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeguimiento;
@@ -533,6 +633,9 @@ public class Menu extends javax.swing.JFrame {
     public javax.swing.JMenu credencialMenu;
     public javax.swing.JMenu idMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -547,5 +650,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu menuFecha;
     private javax.swing.JMenu menuHora;
     public javax.swing.JMenu menuUsuario;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

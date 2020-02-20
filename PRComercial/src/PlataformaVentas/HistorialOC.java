@@ -7,14 +7,29 @@ package PlataformaVentas;
 
 import clases.Conexion;
 import java.awt.Color;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -46,6 +61,7 @@ public class HistorialOC extends javax.swing.JFrame {
         jPanel46 = new javax.swing.JPanel();
         jScrollPane22 = new javax.swing.JScrollPane();
         tblHistorialOC3 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         btnVolverMenu9 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -100,6 +116,14 @@ public class HistorialOC extends javax.swing.JFrame {
         ));
         jScrollPane22.setViewportView(tblHistorialOC3);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton3.setText("Exportar Excel");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jButton11.setText("Consultar Mercado Público");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +154,13 @@ public class HistorialOC extends javax.swing.JFrame {
             jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel46Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+                .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVolverMenu9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnVolverMenu9, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel46Layout.setVerticalGroup(
@@ -148,6 +173,8 @@ public class HistorialOC extends javax.swing.JFrame {
                         .addComponent(jButton11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVolverMenu9)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -325,7 +352,7 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,16 +369,18 @@ public class HistorialOC extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(b_Titulo)
-                .addGap(83, 83, 83)
-                .addComponent(lblCodigoMenu)
-                .addContainerGap(310, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(b_Titulo)
+                        .addGap(83, 83, 83)
+                        .addComponent(lblCodigoMenu)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -373,10 +402,10 @@ public class HistorialOC extends javax.swing.JFrame {
                             .addComponent(lblCodigoMenu))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(316, Short.MAX_VALUE)
+                    .addContainerGap(318, Short.MAX_VALUE)
                     .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(24, 24, 24)))
         );
@@ -515,6 +544,86 @@ public class HistorialOC extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+
+            String ruta = "";
+
+            JFileChooser dlg = new JFileChooser();
+            dlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int option = dlg.showOpenDialog(this);
+
+            if (option == JFileChooser.APPROVE_OPTION) {
+                File f = dlg.getSelectedFile();
+                ruta = f.toString();
+            }
+            //Fecha
+            Date sistFecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-YYYY");
+            Date sistHora = new Date();
+            String pmAm = "hh:mm a";
+            SimpleDateFormat format = new SimpleDateFormat(pmAm);
+            Calendar hoy = Calendar.getInstance();
+            String hora = (String.format(format.format(sistHora), hoy));
+            hora = hora.replace(":", "-");
+
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Notas de Venta");
+
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            for (int i = 0; i < tblHistorialOC3.getColumnCount(); i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(tblHistorialOC3.getColumnName(i));
+                cell.setCellStyle(headerCellStyle);
+            }
+
+            // Create Other rows and cells with contacts data
+            int rowNum = 1;
+
+            for (int i = 0; i < tblHistorialOC3.getRowCount(); i++) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(tblHistorialOC3.getValueAt(i, 0).toString());
+                row.createCell(1).setCellValue(tblHistorialOC3.getValueAt(i, 1).toString());
+                row.createCell(2).setCellValue(tblHistorialOC3.getValueAt(i, 2).toString());
+                row.createCell(3).setCellValue(tblHistorialOC3.getValueAt(i, 3).toString());
+                row.createCell(4).setCellValue(tblHistorialOC3.getValueAt(i, 4).toString());
+                row.createCell(5).setCellValue(tblHistorialOC3.getValueAt(i, 5).toString());
+                row.createCell(6).setCellValue(tblHistorialOC3.getValueAt(i, 6).toString());
+                row.createCell(7).setCellValue(tblHistorialOC3.getValueAt(i, 7).toString());
+                row.createCell(8).setCellValue(tblHistorialOC3.getValueAt(i, 8).toString());
+                row.createCell(9).setCellValue(tblHistorialOC3.getValueAt(i, 9).toString());
+                row.createCell(10).setCellValue(tblHistorialOC3.getValueAt(i, 10).toString());
+                row.createCell(11).setCellValue(tblHistorialOC3.getValueAt(i, 11).toString());
+
+            }
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < tblHistorialOC3.getColumnCount(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            try ( // Write the output to a file
+                    FileOutputStream fileOut = new FileOutputStream(ruta + "\\" + "reporte_notas_venta_fecha_" + formato.format(sistFecha) + "_hora_" + hora + ".xlsx")) {
+                workbook.write(fileOut);
+            }
+            JOptionPane.showMessageDialog(null, "Documento Creado");
+        } catch (HeadlessException | IOException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -560,6 +669,7 @@ public class HistorialOC extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

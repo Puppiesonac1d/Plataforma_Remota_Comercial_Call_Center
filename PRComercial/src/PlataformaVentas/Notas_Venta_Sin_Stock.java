@@ -95,7 +95,10 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNV = new javax.swing.JTextField();
         btnBuscarNV = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         btnReiniciarFiltros = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,14 +113,25 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblNotasVenta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblNotasVenta);
 
-        btnVolver.setText("jButton1");
+        btnVolver.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("Código de Orden de Compra:");
 
+        txtOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        btnBuscarOC.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnBuscarOC.setText("Buscar");
         btnBuscarOC.setToolTipText("");
         btnBuscarOC.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +151,7 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                 .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarOC)
-                .addContainerGap(600, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,13 +161,17 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarOC))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buscar por Orden de Compra", jPanel1);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("Número de Nota de Venta:");
 
+        txtNV.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        btnBuscarNV.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnBuscarNV.setText("Buscar");
         btnBuscarNV.setToolTipText("");
         btnBuscarNV.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +191,7 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                 .addComponent(txtNV, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarNV)
-                .addContainerGap(615, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,15 +201,53 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarNV))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buscar por Orden de Compra", jPanel2);
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Estado", "Sin Stock", "Canceladas" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(868, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+
+        jTabbedPane1.addTab("Notas de Venta Sin Stock / Canceladas", jPanel3);
+
+        btnReiniciarFiltros.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnReiniciarFiltros.setText("Reiniciar Filtros");
         btnReiniciarFiltros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReiniciarFiltrosActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jButton1.setText("Cancelar Orden de Compra");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -203,31 +259,33 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1092, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 178, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnVolver))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1092, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnReiniciarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10))))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReiniciarFiltros)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVolver)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReiniciarFiltros))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addGap(10, 10, 10))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReiniciarFiltros)
+                    .addComponent(jButton1)
+                    .addComponent(btnVolver))
+                .addContainerGap())
         );
 
         pack();
@@ -330,6 +388,89 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarNVActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int resp = JOptionPane.showConfirmDialog(null, "¿Desea cancelar la orden de compra?", null, JOptionPane.YES_NO_OPTION);
+            if (resp == 0) {
+                int index = tblNotasVenta.getSelectedRow();
+                String query = "update detalleOrdenTrabajo set disponibilidad = 'Cancelada' where idOrden = ? and codigoOrdenCompra = ?;";
+                PreparedStatement preparedStmt = cn.prepareStatement(query);
+                preparedStmt.setInt(1, Integer.parseInt(tblNotasVenta.getValueAt(index, 0).toString()));
+                preparedStmt.setString(2, tblNotasVenta.getValueAt(index, 1).toString());
+                preparedStmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Se ha cancelado la orden de compra : " + tblNotasVenta.getValueAt(index, 1).toString());
+                btnReiniciarFiltros.doClick();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha realizado ninguna operación");
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+
+        try {
+            if (jComboBox1.getSelectedItem().toString().equals("Canceladas")) {
+                String query = "SELECT \n"
+                        + "    pa.idOrden AS 'Numero de Nota de Venta',\n"
+                        + "    pa.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
+                        + "    ot.nombre_proveedor AS 'Empresa',\n"
+                        + "    pa.codigoProducto AS 'SKU',\n"
+                        + "    pa.nombreproducto AS 'Producto Solicitado',\n"
+                        + "    pa.cantidad AS 'Cantidad Solicitada',\n"
+                        + "    i.stock AS 'Stock en Inventario',\n"
+                        + "    pa.disponibilidad AS 'Disponibilidad de Producto'\n"
+                        + "FROM\n"
+                        + "    detalleordentrabajo pa\n"
+                        + "        LEFT JOIN\n"
+                        + "    ordentrabajo ot ON pa.idOrden = ot.idOrden\n"
+                        + "        LEFT JOIN\n"
+                        + "    inventario i ON pa.codigoProducto = i.idProducto\n"
+                        + "WHERE\n"
+                        + "    pa.disponibilidad = 'Cancelada' AND i.idProducto = pa.codigoProducto;";
+                PreparedStatement pst;
+                pst = cn.prepareStatement(query);
+
+                java.sql.ResultSet rs = pst.executeQuery();
+                tblNotasVenta.setModel(DbUtils.resultSetToTableModel(rs));
+                ajusteTabla();
+            } else if (jComboBox1.getSelectedItem().toString().equals("Sin Stock")) {
+                //'Sin Stock de Proveedor'
+                String query = "SELECT \n"
+                        + "    pa.idOrden AS 'Numero de Nota de Venta',\n"
+                        + "    pa.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
+                        + "    ot.nombre_proveedor AS 'Empresa',\n"
+                        + "    pa.codigoProducto AS 'SKU',\n"
+                        + "    pa.nombreproducto AS 'Producto Solicitado',\n"
+                        + "    pa.cantidad AS 'Cantidad Solicitada',\n"
+                        + "    i.stock AS 'Stock en Inventario',\n"
+                        + "    pa.disponibilidad AS 'Disponibilidad de Producto'\n"
+                        + "FROM\n"
+                        + "    detalleordentrabajo pa\n"
+                        + "        LEFT JOIN\n"
+                        + "    ordentrabajo ot ON pa.idOrden = ot.idOrden\n"
+                        + "        LEFT JOIN\n"
+                        + "    inventario i ON pa.codigoProducto = i.idProducto\n"
+                        + "WHERE\n"
+                        + "    pa.disponibilidad = 'Sin Stock de Proveedor' AND i.idProducto = pa.codigoProducto;";
+                PreparedStatement pst;
+                pst = cn.prepareStatement(query);
+
+                java.sql.ResultSet rs = pst.executeQuery();
+                tblNotasVenta.setModel(DbUtils.resultSetToTableModel(rs));
+                ajusteTabla();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -370,10 +511,13 @@ public class Notas_Venta_Sin_Stock extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarOC;
     private javax.swing.JButton btnReiniciarFiltros;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblNotasVenta;
