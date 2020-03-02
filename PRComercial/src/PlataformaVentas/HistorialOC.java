@@ -32,6 +32,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,8 +40,11 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -116,6 +120,8 @@ public class HistorialOC extends javax.swing.JFrame {
         btnGenerarPDFNV = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBDD = new javax.swing.JTable();
+        btnDetalleNV = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 740));
@@ -141,6 +147,7 @@ public class HistorialOC extends javax.swing.JFrame {
         ));
         jScrollPane22.setViewportView(tblHistorialOC3);
 
+        jButton3.setBackground(new java.awt.Color(0, 153, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jButton3.setText("Exportar Excel");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +172,7 @@ public class HistorialOC extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(27, 195, 225));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jButton2.setText("Crear Nota de Venta Privada");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -177,13 +185,13 @@ public class HistorialOC extends javax.swing.JFrame {
 
         tblOC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código / ID licitación CM", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
+                "Código / ID licitación CM", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         tblOC.getTableHeader().setReorderingAllowed(false);
@@ -218,7 +226,7 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addComponent(txtFiltrarOC, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarPorOC)
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addContainerGap(533, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +262,7 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addComponent(txtNombreDemandante, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarNombreDemandante)
-                .addContainerGap(524, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +298,7 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addComponent(txtNombreEjecutivo, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarPorNombreEjecutivo)
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +335,7 @@ public class HistorialOC extends javax.swing.JFrame {
                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarFecha)
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(610, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,15 +383,30 @@ public class HistorialOC extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblBDD);
 
+        btnDetalleNV.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnDetalleNV.setText("Detalle de Nota de Venta");
+        btnDetalleNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalleNVActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jButton4.setText("Modificar Dirección de Despacho");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(14, 14, 14)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,14 +416,16 @@ public class HistorialOC extends javax.swing.JFrame {
                         .addComponent(jScrollPane22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnVolverMenu9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGenerarPDFNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(lblCodigoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDetalleNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGenerarPDFNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVolverMenu9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -420,18 +445,21 @@ public class HistorialOC extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDetalleNV)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnGenerarPDFNV)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVolverMenu9)
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCodigoMenu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCodigoMenu))
                     .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -811,13 +839,11 @@ public class HistorialOC extends javax.swing.JFrame {
 
                     modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 1);
                     modelo.setValueAt(err.getElementsByTagName("Cantidad").item(0).getTextContent(), x, 2);
-                    modelo.setValueAt(err.getElementsByTagName("EspecificacionComprador").item(0).getTextContent(), x, 3);
-                    modelo.setValueAt(err.getElementsByTagName("EspecificacionProveedor").item(0).getTextContent(), x, 4);
-                    modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 5);
-                    modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 6);
-                    modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 7);
-                    modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 8);
-                    modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 9);
+                    modelo.setValueAt(err.getElementsByTagName("Moneda").item(0).getTextContent(), x, 3);
+                    modelo.setValueAt(err.getElementsByTagName("PrecioNeto").item(0).getTextContent(), x, 4);
+                    modelo.setValueAt(err.getElementsByTagName("TotalDescuentos").item(0).getTextContent(), x, 5);
+                    modelo.setValueAt(err.getElementsByTagName("TotalCargos").item(0).getTextContent(), x, 6);
+                    modelo.setValueAt(err.getElementsByTagName("Total").item(0).getTextContent(), x, 7);
                 }
             }
 
@@ -856,8 +882,6 @@ public class HistorialOC extends javax.swing.JFrame {
                         + "nombreProducto as 'Producto',\n"
                         + "cantidad as 'Cantidad',\n"
                         + "moneda as 'Moneda',\n"
-                        + "'N/A' as 'Especificación Comprador',\n"
-                        + "'N/A' as 'Especificación Proveedor',\n"
                         + "precioUnitario as 'Precio Unitario',\n"
                         + "descuento as 'Descuento',\n"
                         + "cargos as 'Cargos',\n"
@@ -980,8 +1004,10 @@ public class HistorialOC extends javax.swing.JFrame {
                 alineaDatos2.add(tableDatos2);
                 docPDF.add(alineaDatos2);
 
-                docPDF.setPageSize(PageSize.A4.rotate());
-                docPDF.newPage();
+                docPDF.add(myTable);
+
+                //docPDF.setPageSize(PageSize.A4.rotate());
+                //docPDF.newPage();
                 Paragraph tablas = new Paragraph("Información de productos en la orden ", FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.BOLD, null));
                 docPDF.add(tablas);
                 PdfPTable pdfTable = new PdfPTable(tblOC.getColumnCount());
@@ -995,21 +1021,49 @@ public class HistorialOC extends javax.swing.JFrame {
                     pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable.addCell(new Phrase(tblOC.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int precio = Integer.parseInt(tblOC.getModel().getValueAt(rows, 4).toString());
+                    String precioFormat = (java.text.NumberFormat.getCurrencyInstance().format(precio));
+                    precioFormat = precioFormat.substring(2);
+
+                    pdfTable.addCell(new Phrase(precioFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int descuento = Integer.parseInt(tblOC.getModel().getValueAt(rows, 5).toString());
+                    String descuentoFormat = (java.text.NumberFormat.getCurrencyInstance().format(descuento));
+                    descuentoFormat = descuentoFormat.substring(2);
+
+                    pdfTable.addCell(new Phrase(descuentoFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int cargo = Integer.parseInt(tblOC.getModel().getValueAt(rows, 6).toString());
+                    String cargoFormat = (java.text.NumberFormat.getCurrencyInstance().format(cargo));
+                    cargoFormat = cargoFormat.substring(2);
+
+                    pdfTable.addCell(new Phrase(cargoFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int total = Integer.parseInt(tblOC.getModel().getValueAt(rows, 7).toString());
+                    String totalFormat = (java.text.NumberFormat.getCurrencyInstance().format(total));
+                    totalFormat = totalFormat.substring(2);
+
+                    pdfTable.addCell(new Phrase(totalFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
                 }
 
                 docPDF.add(pdfTable);
 
-                Paragraph neto = new Paragraph("Neto: " + netoOC, FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
+                int netoF = Integer.parseInt(netoOC.replace("$", ""));
+                String formatNeto = java.text.NumberFormat.getCurrencyInstance().format(netoF);
+
+                int ivaF = Integer.parseInt(ivaOC.replace("$", ""));
+                String formatIva = java.text.NumberFormat.getCurrencyInstance().format(ivaF);
+
+                int totalF = Integer.parseInt(totalOC.replace("$", ""));
+                String formatTotal = java.text.NumberFormat.getCurrencyInstance().format(totalF);
+
+                Paragraph neto = new Paragraph("Neto: " + formatNeto.substring(2), FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
                 neto.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph iva = new Paragraph("IVA: " + ivaOC, FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
+                Paragraph iva = new Paragraph("IVA: " + formatIva.substring(2), FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
                 iva.setAlignment(Paragraph.ALIGN_RIGHT);
-                Paragraph total = new Paragraph("Total: " + totalOC, FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
+                Paragraph total = new Paragraph("Total: " + formatTotal.substring(2), FontFactory.getFont(FontFactory.TIMES, 12, com.itextpdf.text.Font.NORMAL, null));
                 total.setAlignment(Paragraph.ALIGN_RIGHT);
                 docPDF.add(neto);
                 docPDF.add(iva);
@@ -1034,12 +1088,31 @@ public class HistorialOC extends javax.swing.JFrame {
                     pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                     pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 10).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                    pdfTable2.addCell(new Phrase(tblBDD.getModel().getValueAt(rows, 11).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int precio = Integer.parseInt(tblBDD.getModel().getValueAt(rows, 6).toString());
+                    String precioFormat = (java.text.NumberFormat.getCurrencyInstance().format(precio));
+                    precioFormat = precioFormat.substring(2);
+
+                    pdfTable2.addCell(new Phrase(precioFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int descuento = Integer.parseInt(tblBDD.getModel().getValueAt(rows, 7).toString());
+                    String descuentoFormat = (java.text.NumberFormat.getCurrencyInstance().format(descuento));
+                    descuentoFormat = descuentoFormat.substring(2);
+
+                    pdfTable2.addCell(new Phrase(descuentoFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int cargos = Integer.parseInt(tblBDD.getModel().getValueAt(rows, 8).toString());
+                    String cargosFormat = (java.text.NumberFormat.getCurrencyInstance().format(cargos));
+                    cargosFormat = cargosFormat.substring(2);
+
+                    pdfTable2.addCell(new Phrase(cargosFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+                    int totalProd = Integer.parseInt(tblBDD.getModel().getValueAt(rows, 9).toString());
+                    String totalFormat = (java.text.NumberFormat.getCurrencyInstance().format(totalProd));
+                    totalFormat = totalFormat.substring(2);
+
+                    pdfTable2.addCell(new Phrase(totalFormat, FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
                 }
                 docPDF.add(pdfTable2);
 
@@ -1092,6 +1165,163 @@ public class HistorialOC extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGenerarPDFNVActionPerformed
 
+    private void btnDetalleNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleNVActionPerformed
+        try {
+            int index = tblHistorialOC3.getSelectedRow();
+            String valor = tblHistorialOC3.getValueAt(index, 1).toString();
+            String valor2 = tblHistorialOC3.getValueAt(index, 0).toString();
+            DetalleNotaVenta detalle = new DetalleNotaVenta();
+            detalle.setVisible(true);
+            detalle.txtConsultarOC.setText(valor);
+            this.dispose();
+
+            String tipoOrden = "";
+            //JOptionPane.showMessageDialog(null, "La Orden de Compra se encuentra en la base de datos");
+            //Consulta de BD
+            String query = "SELECT * FROM acimabasededatos.ordentrabajo oc join detalleordentrabajo doc on oc.codigoordencompra = doc.codigoordencompra\n"
+                    + "where oc.codigoOrdenCompra=?;";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, detalle.txtConsultarOC.getText());
+            java.sql.ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                detalle.txtProveedorOC.setText(rs.getString("nombre_proveedor"));
+                detalle.txtRutCompradorOC.setText(rs.getString("rutCliente"));
+                detalle.txtDireccionDemandanteOC.setText(rs.getString("direcciondemandante"));
+                detalle.txtTelefonoComprador.setText(rs.getString("telefono"));
+                detalle.txtNombreDemandanteOC.setText(rs.getString("demandante"));
+                detalle.txtUnidadCompraCliente.setText(rs.getString("unidadcompra"));
+                detalle.txtFechaEnvioOc.setText(rs.getString("fechaenviooc"));
+                detalle.txtEstadoOC.setText(rs.getString("codigoestado"));
+                detalle.txtCodigoOCOT.setText(rs.getString("codigoordencompra"));
+                detalle.txtNombreOrdenCompra.setText(rs.getString("nombreordencompra"));
+                detalle.txtFechaAceptacion.setText(rs.getString("fechaAceptacion"));
+                detalle.txtDireccionesDespachoOC.setText(rs.getString("direccionesdespacho"));
+                detalle.txtDireccionEnvioFacturaOC.setText(rs.getString("direccionEnvioFactura"));
+                detalle.txtMetodoDespachoOC.setText(rs.getString("tipoDespacho"));
+                detalle.txtContactoPagoOC.setText(rs.getString("contactoPago"));
+                detalle.txtFormaPagoOC.setText(rs.getString("FormaPago"));
+                detalle.txtContactoOC.setText(rs.getString("contactoOC"));
+                detalle.txtMailEnvioFactura.setText(rs.getString("emailEnvioFactura"));
+                detalle.txtCargosOC.setText(rs.getString("doc.cargos"));
+                detalle.txtNetoOC.setText(rs.getString("neto"));
+                detalle.txtDCTOOC.setText(rs.getString("dcto"));
+                detalle.txtSubtotalOC.setText(rs.getString("subtotal"));
+                detalle.txtIVAOC.setText(rs.getString("iva"));
+                detalle.txtImpuestoEspecifico.setText(rs.getString("impuestoEspecifico"));
+                detalle.txtTotalOC.setText(rs.getString("total"));
+            }
+
+            int cargosOC = Integer.parseInt(detalle.txtCargosOC.getText().replace("$", ""));
+            detalle.txtCargosOC.setText(java.text.NumberFormat.getCurrencyInstance().format(cargosOC));
+            detalle.txtCargosOC.setText(detalle.txtCargosOC.getText().substring(2));
+
+            int netoOC = Integer.parseInt(detalle.txtNetoOC.getText().replace("$", ""));
+            detalle.txtNetoOC.setText(java.text.NumberFormat.getCurrencyInstance().format(netoOC));
+            detalle.txtNetoOC.setText(detalle.txtNetoOC.getText().substring(2));
+
+            int dctoOC = Integer.parseInt(detalle.txtDCTOOC.getText().replace("$", ""));
+            detalle.txtDCTOOC.setText(java.text.NumberFormat.getCurrencyInstance().format(dctoOC));
+            detalle.txtDCTOOC.setText(detalle.txtDCTOOC.getText().substring(2));
+
+            int subtotalOC = Integer.parseInt(detalle.txtSubtotalOC.getText().replace("$", ""));
+            detalle.txtSubtotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(subtotalOC));
+            detalle.txtSubtotalOC.setText(detalle.txtSubtotalOC.getText().substring(2));
+
+            int ivaOC = Integer.parseInt(detalle.txtIVAOC.getText().replace("$", ""));
+            detalle.txtIVAOC.setText(java.text.NumberFormat.getCurrencyInstance().format(ivaOC));
+            detalle.txtIVAOC.setText(detalle.txtIVAOC.getText().substring(2));
+
+            int impuestoEspecificoOC = Integer.parseInt(detalle.txtImpuestoEspecifico.getText().replace("$", ""));
+            detalle.txtImpuestoEspecifico.setText(java.text.NumberFormat.getCurrencyInstance().format(impuestoEspecificoOC));
+            detalle.txtImpuestoEspecifico.setText(detalle.txtImpuestoEspecifico.getText().substring(2));
+
+            int totalOC = Integer.parseInt(detalle.txtTotalOC.getText().replace("$", ""));
+            detalle.txtTotalOC.setText(java.text.NumberFormat.getCurrencyInstance().format(totalOC));
+            detalle.txtTotalOC.setText(detalle.txtTotalOC.getText().substring(2));
+
+            String queryProducto = "Select idOrden as 'N° de NV', \n"
+                    + "codigoOrdenCompra as 'Código Orden Compra',\n"
+                    + "codigoProducto as 'Código / ID licitación',\n"
+                    + "nombreProducto as 'Producto',\n"
+                    + "cantidad as 'Cantidad',\n"
+                    + "moneda as 'Moneda',\n"
+                    + "precioUnitario as 'Precio Unitario',\n"
+                    + "descuento as 'Descuento',\n"
+                    + "cargos as 'Cargos',\n"
+                    + "valorTotal as 'Total'\n"
+                    + "from detalleordentrabajo\n"
+                    + "where idOrden = ?;";
+            PreparedStatement pstProd = cn.prepareStatement(queryProducto);
+            pstProd.setInt(1, Integer.parseInt(valor2));
+            java.sql.ResultSet rsProd = pstProd.executeQuery();
+            detalle.tblResumenParcializada.setModel(DbUtils.resultSetToTableModel(rsProd));
+
+            int precioUnitario = 0;
+            int descuentoProducto = 0;
+            int cargosProducto = 0;
+            int totalProducto = 0;
+
+            String pUnitarioFormat = "";
+            String descFormat = "";
+            String cargosProductoFormat = "";
+            String totalProductoFormat = "";
+            for (int x = 0; x < detalle.tblResumenParcializada.getRowCount(); x++) {
+                precioUnitario = Integer.parseInt(detalle.tblResumenParcializada.getValueAt(x, 6).toString());
+                pUnitarioFormat = java.text.NumberFormat.getCurrencyInstance().format(precioUnitario);
+                detalle.tblResumenParcializada.setValueAt(pUnitarioFormat.substring(2), x, 6);
+
+                descuentoProducto = Integer.parseInt(detalle.tblResumenParcializada.getValueAt(x, 7).toString());
+                descFormat = java.text.NumberFormat.getCurrencyInstance().format(descuentoProducto);
+                detalle.tblResumenParcializada.setValueAt(descFormat.substring(2), x, 7);
+
+                cargosProducto = Integer.parseInt(detalle.tblResumenParcializada.getValueAt(x, 8).toString());
+                cargosProductoFormat = java.text.NumberFormat.getCurrencyInstance().format(cargosProducto);
+                detalle.tblResumenParcializada.setValueAt(cargosProductoFormat.substring(2), x, 8);
+
+                totalProducto = Integer.parseInt(detalle.tblResumenParcializada.getValueAt(x, 9).toString());
+                totalProductoFormat = java.text.NumberFormat.getCurrencyInstance().format(totalProducto);
+                detalle.tblResumenParcializada.setValueAt(totalProductoFormat.substring(2), x, 9);
+            }
+
+            System.out.println("La consulta fue realizada con éxito");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una nota de venta de la lista" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnDetalleNVActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+
+            int index = tblHistorialOC3.getSelectedRow();
+            int valor = Integer.parseInt(tblHistorialOC3.getValueAt(index, 0).toString());
+
+            String direccionOriginal = "";
+
+            String queryDireccion = "Select direccionesDespacho from ordenTrabajo where idOrden = ?;";
+            PreparedStatement pstProd = cn.prepareStatement(queryDireccion);
+            pstProd.setInt(1, valor);
+            java.sql.ResultSet rsProd = pstProd.executeQuery();
+            while (rsProd.next()) {
+                direccionOriginal = rsProd.getString(1);
+            }
+
+            String direccion = JOptionPane.showInputDialog("Dirección de despacho original: " + direccionOriginal);
+
+            // create the java mysql update preparedstatement
+            String query = "update ordentrabajo set direccionesDespacho = ? where idOrden = ?;";
+            PreparedStatement preparedStmt = cn.prepareStatement(query);
+            preparedStmt.setString(1, direccion);
+            preparedStmt.setInt(2, valor);
+            // execute the java preparedstatement
+            preparedStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha modificado la dirección de despacho a: " + direccion);
+        } catch (SQLException ex) {
+            Logger.getLogger(HistorialOC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1141,12 +1371,14 @@ public class HistorialOC extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarNombreDemandante;
     private javax.swing.JButton btnBuscarPorNombreEjecutivo;
     private javax.swing.JButton btnBuscarPorOC;
+    private javax.swing.JButton btnDetalleNV;
     private javax.swing.JButton btnGenerarPDFNV;
     private javax.swing.JButton btnVolverMenu9;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

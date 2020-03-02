@@ -414,10 +414,10 @@ public class OrdenTrabajo extends javax.swing.JFrame {
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtContactoOC)
                     .addComponent(txtContactoPagoOC)
-                    .addComponent(txtFormaPagoOC, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(txtFormaPagoOC, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                     .addComponent(txtMetodoDespachoOC)
                     .addComponent(txtCodigoOCOT))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -673,6 +673,8 @@ public class OrdenTrabajo extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        jLayeredPane4.setLayer(panelElementos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
         jLayeredPane4.setLayout(jLayeredPane4Layout);
         jLayeredPane4Layout.setHorizontalGroup(
@@ -687,7 +689,6 @@ public class OrdenTrabajo extends javax.swing.JFrame {
                 .addComponent(panelElementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 110, Short.MAX_VALUE))
         );
-        jLayeredPane4.setLayer(panelElementos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 16, 1270, -1));
 

@@ -7,6 +7,7 @@ package PlataformaVentas;
 
 import clases.Conexion;
 import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.DocumentException;
@@ -123,8 +124,8 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
         jLabel103 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
         jTabbedPane9 = new javax.swing.JTabbedPane();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        tblProductosOrdenCompra = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblResumenParcializada = new javax.swing.JTable();
         txtDescripcionOC = new javax.swing.JTextField();
         btnGuardarNV = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
@@ -148,7 +149,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
         jPanel37 = new javax.swing.JPanel();
         jLabel104 = new javax.swing.JLabel();
         txtNombreOrdenCompra = new javax.swing.JTextField();
-        txtFechaEntregaProductoOC = new javax.swing.JTextField();
+        txtFechaAceptacion = new javax.swing.JTextField();
         jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
         txtDireccionesDespachoOC = new javax.swing.JTextField();
@@ -221,22 +222,17 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
         jLabel113.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel113.setText("Detalle de Orden:");
 
-        tblProductosOrdenCompra = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int celIndex){
-                return false;
-            }
-        };
-        tblProductosOrdenCompra.setModel(new javax.swing.table.DefaultTableModel(
+        tblResumenParcializada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código de Producto", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Cargos", "Descuento", "Valor Total"
+                "N° de NV", "Codigo Orden Compra", "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
-        jScrollPane13.setViewportView(tblProductosOrdenCompra);
+        jScrollPane5.setViewportView(tblResumenParcializada);
 
-        jTabbedPane9.addTab("Información de Productos", jScrollPane13);
+        jTabbedPane9.addTab("Información de Productos", jScrollPane5);
 
         btnGuardarNV.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnGuardarNV.setText("Imprimir Nota de Venta");
@@ -400,7 +396,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtDireccionEnvioFacturaOC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(txtDireccionesDespachoOC, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFechaEntregaProductoOC, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFechaAceptacion, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombreOrdenCompra, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMailEnvioFactura))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -430,7 +426,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
                     .addComponent(txtMetodoDespachoOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFechaEntregaProductoOC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaAceptacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel105)
                         .addComponent(txtFormaPagoOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -489,7 +485,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
                     .addComponent(jLabel117)
                     .addComponent(jLabel116)
                     .addComponent(jLabel115))
-                .addGap(59, 59, 59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCargosOC)
                     .addComponent(txtSubtotalOC)
@@ -545,9 +541,6 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane9)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                        .addGap(10, 605, Short.MAX_VALUE)
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel21Layout.createSequentialGroup()
@@ -560,8 +553,11 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
                             .addComponent(jLabel93)
                             .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 67, Short.MAX_VALUE))
+                    .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -749,35 +745,38 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
             Calendar hoy = Calendar.getInstance();
             String hora = (String.format(format.format(sistHora), hoy));
             hora = hora.replace(":", "-");
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + txtConsultarOC.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Cotizacion_" + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(ruta + "\\" + txtCodigoOCOT.getText() + "_Fecha_" + formato.format(sistFecha) + "_hora_" + hora + "_Nota_de_Venta_" + ".pdf"));
 
-            Rotate rotation = new Rotate();
-            writer.setPageEvent(rotation);
-            rotation.setRotation(PdfPage.PORTRAIT);
+            //Separador
+            PdfPTable myTable = new PdfPTable(1);
+            myTable.setWidthPercentage(100.0f);
+            PdfPCell myCell = new PdfPCell(new Paragraph(""));
+            myCell.setBorder(Rectangle.BOTTOM);
+            myTable.addCell(myCell);
+            myTable.setSpacingAfter(10f);
+            myTable.setSpacingBefore(10f);
+
             doc.open();
+
             //Añadir la imagen
             try {
-                Image logoAcima = Image.getInstance("src\\Imagenes\\acima-logo-200p.png");
-                logoAcima.scaleAbsolute(210, 112);
+                Image logoAcima = Image.getInstance("src\\PlataformaVentas\\Imagenes\\acima-logo-200p.png");
+                logoAcima.scaleAbsolute(126, 67);
+                logoAcima.setAlignment(Paragraph.ALIGN_RIGHT);
                 doc.add(logoAcima);
-                Paragraph separacion0 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                doc.add(separacion0);
-                Paragraph nro = new Paragraph("Fecha de consulta: ", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
-                nro.setAlignment(Paragraph.ALIGN_RIGHT);
-                doc.add(nro);
-                Paragraph separacion01 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-                doc.add(separacion01);
+
+                doc.add(myTable);
 
             } catch (BadElementException ex) {
-                Logger.getLogger(DetalleNotaVenta.class
+                Logger.getLogger(OrdenTrabajo.class
                         .getName()).log(Level.SEVERE, null, ex);
 
             } catch (IOException ex) {
-                Logger.getLogger(DetalleNotaVenta.class
+                Logger.getLogger(OrdenTrabajo.class
                         .getName()).log(Level.SEVERE, null, ex);
             }
 
-            Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+            Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
             doc.add(titulo);
 
             PdfPTable tableDatos = new PdfPTable(2);
@@ -794,18 +793,16 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
             alineaDatos.add(tableDatos);
             doc.add(alineaDatos);
 
-            Paragraph separacion6 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-            doc.add(separacion6);
+            doc.add(myTable);
 
-            Paragraph titulo2 = new Paragraph("Información de la empresa", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+            Paragraph titulo2 = new Paragraph("Información de la empresa", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
             doc.add(titulo2);
 
             Paragraph proveedor = new Paragraph("Proveedor: " + txtProveedorOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
             proveedor.setAlignment(Paragraph.ALIGN_LEFT);
             doc.add(proveedor);
 
-            Paragraph separacion2 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-            doc.add(separacion2);
+            doc.add(myTable);
 
             Paragraph titulo3 = new Paragraph("Información de orden", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
             doc.add(titulo);
@@ -814,7 +811,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
             tableDatos2.setWidthPercentage(100);
             tableDatos2.addCell(new Phrase("Nombre de la Orden de Compra: " + txtNombreOrdenCompra.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
             tableDatos2.addCell(new Phrase("Metodo de Despacho: " + txtMetodoDespachoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
-            tableDatos2.addCell(new Phrase("Fecha Entrega de Productos: " + txtFechaEntregaProductoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
+            tableDatos2.addCell(new Phrase("Fecha de aceptación: " + txtFechaAceptacion.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
             tableDatos2.addCell(new Phrase("Forma de Pago: " + txtFormaPagoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
             tableDatos2.addCell(new Phrase("Direcciones de despacho: " + txtDireccionesDespachoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
             tableDatos2.addCell(new Phrase("Contacto de pago: " + txtContactoPagoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
@@ -828,28 +825,8 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
             alineaDatos2.add(tableDatos2);
             doc.add(alineaDatos2);
 
-            Paragraph tablas = new Paragraph("Información de productos en la orden ", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
-            doc.add(tablas);
-            PdfPTable pdfTable = new PdfPTable(tblProductosOrdenCompra.getColumnCount());
-            pdfTable.setSpacingBefore(15f);
-            pdfTable.setWidthPercentage(100);
-            for (int i = 0; i < tblProductosOrdenCompra.getColumnCount(); i++) {
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-            }
-            for (int rows = 0; rows < tblProductosOrdenCompra.getRowCount(); rows++) {
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                pdfTable.addCell(new Phrase(tblProductosOrdenCompra.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-            }
-            doc.add(pdfTable);
-
+            // doc.setPageSize(PageSize.A4.rotate());
+            //doc.newPage();
             Paragraph neto = new Paragraph("Neto: " + txtNetoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
             neto.setAlignment(Paragraph.ALIGN_RIGHT);
             Paragraph iva = new Paragraph("IVA: " + txtIVAOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
@@ -860,23 +837,56 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
             doc.add(iva);
             doc.add(total);
 
-            Paragraph nota = new Paragraph("Esta cotización debe ser respondida dentro de 15 días hábiles", FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
-            doc.add(nota);
-            Paragraph separacion3 = new Paragraph("_______________________________________________________________________________________", FontFactory.getFont(FontFactory.TIMES_BOLD, 12, Font.BOLD, null));
-            separacion3.setSpacingBefore(15f);
-            separacion3.setSpacingBefore(15f);
-            doc.add(separacion3);
+            doc.add(myTable);
+
+            //doc.newPage();
+            //Para las notas de venta
+            Paragraph tablas2 = new Paragraph("Información de productos en notas de venta ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
+            doc.add(tablas2);
+            PdfPTable pdfTable2 = new PdfPTable(tblResumenParcializada.getColumnCount());
+            pdfTable2.setSpacingBefore(15f);
+            pdfTable2.setWidthPercentage(100);
+            for (int i = 0; i < tblResumenParcializada.getColumnCount(); i++) {
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+            }
+            for (int rows = 0; rows < tblResumenParcializada.getRowCount(); rows++) {
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 2).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 3).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 4).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 5).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 6).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
+            }
+            doc.add(pdfTable2);
+
+            doc.add(myTable);
             //Iconos
             try {
                 PdfPTable table = new PdfPTable(2);
                 table.setWidths(new int[]{1, 12});
                 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
                 //D:\Plataforma Operaciones\src\imagenes\465892689e(1).png
-                Image img1 = Image.getInstance("src\\Imagenes\\phone-icon-11-64.png");
-                Image img2 = Image.getInstance("src\\Imagenes\\mail-64.png");
-                table.addCell(new PdfPCell(img1, true));
+                Image img1 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\phone-icon-11-64.png");
+                Image img2 = Image.getInstance("src\\PlataformaVentas\\Imagenes\\mail-64.png");
+
+                PdfPCell imagen1 = new PdfPCell(img1, false);
+                imagen1.setBorder(Rectangle.NO_BORDER);
+                imagen1.setBackgroundColor(BaseColor.WHITE);
+                imagen1.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+
+                PdfPCell imagen2 = new PdfPCell(img2, false);
+                imagen2.setBorder(Rectangle.NO_BORDER);
+                imagen2.setBackgroundColor(BaseColor.WHITE);
+                imagen2.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+
+                table.addCell(imagen1);
                 table.addCell(new Phrase("Central telefónica: +56-232 107 900", FontFactory.getFont(FontFactory.TIMES, 12)));
-                table.addCell(new PdfPCell(img2, true));
+                table.addCell(imagen2);
                 table.addCell(new Phrase("ventas@acima.cl - comercial@acima.cl - gerencia@acima.cl", FontFactory.getFont(FontFactory.TIMES, 12)));
                 Paragraph tableFooter = new Paragraph();
                 tableFooter.add(table);
@@ -887,7 +897,6 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
 
                 doc.close();
                 JOptionPane.showMessageDialog(null, "PDF Generado Correctamente");
-
             } catch (BadElementException | IOException ex) {
                 Logger.getLogger(DetalleNotaVenta.class
                         .getName()).log(Level.SEVERE, null, ex);
@@ -993,13 +1002,13 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
-    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane9;
     private javax.swing.JLabel lblCodigoOCTitulo;
     private javax.swing.JPanel panelElementos;
-    public javax.swing.JTable tblProductosOrdenCompra;
+    public javax.swing.JTable tblResumenParcializada;
     public javax.swing.JTextField txtCargosOC;
     public javax.swing.JTextField txtCodigoOCOT;
     public javax.swing.JTextField txtConsultarOC;
@@ -1011,7 +1020,7 @@ public class DetalleNotaVenta extends javax.swing.JFrame {
     public javax.swing.JTextField txtDireccionEnvioFacturaOC;
     public javax.swing.JTextField txtDireccionesDespachoOC;
     public javax.swing.JTextField txtEstadoOC;
-    public javax.swing.JTextField txtFechaEntregaProductoOC;
+    public javax.swing.JTextField txtFechaAceptacion;
     public javax.swing.JTextField txtFechaEnvioOc;
     public javax.swing.JTextField txtFormaPagoOC;
     public javax.swing.JTextField txtIVAOC;

@@ -174,10 +174,6 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jTabbedPane9" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="10" pref="605" max="32767" attributes="0"/>
-                                          <Component id="jPanel22" min="-2" pref="578" max="-2" attributes="0"/>
-                                      </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
@@ -192,9 +188,13 @@
                                               <Component id="jPanel34" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jPanel36" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="67" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel37" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="jPanel22" min="-2" pref="509" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -268,7 +268,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                           <SubComponents>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                               </AuxValues>
@@ -282,19 +282,19 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="tblProductosOrdenCompra">
+                                <Component class="javax.swing.JTable" name="tblResumenParcializada">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="10" rowCount="0">
-                                        <Column editable="true" title="C&#xf3;digo de Producto" type="java.lang.Object"/>
+                                        <Column editable="true" title="N&#xb0; de NV" type="java.lang.Object"/>
+                                        <Column editable="true" title="Codigo Orden Compra" type="java.lang.Object"/>
+                                        <Column editable="true" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
                                         <Column editable="true" title="Producto" type="java.lang.Object"/>
                                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                        <Column editable="true" title="Especificaci&#xf3;n de Comprador" type="java.lang.Object"/>
-                                        <Column editable="true" title="Especificaci&#xf3;n de Proveedor" type="java.lang.Object"/>
                                         <Column editable="true" title="Moneda" type="java.lang.Object"/>
                                         <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
-                                        <Column editable="true" title="Cargos" type="java.lang.Object"/>
                                         <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                                        <Column editable="true" title="Cargos" type="java.lang.Object"/>
                                         <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
@@ -357,7 +357,6 @@
                                     </Property>
                                   </Properties>
                                   <AuxValues>
-                                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tblProductosOrdenCompra = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int rowIndex, int celIndex){&#xa;    return false;&#xa;    }&#xa;};"/>
                                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                                   </AuxValues>
                                 </Component>
@@ -603,7 +602,7 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="txtDireccionEnvioFacturaOC" alignment="0" pref="400" max="32767" attributes="0"/>
                                           <Component id="txtDireccionesDespachoOC" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtFechaEntregaProductoOC" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtFechaAceptacion" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtNombreOrdenCompra" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtMailEnvioFactura" alignment="1" max="32767" attributes="0"/>
                                       </Group>
@@ -639,7 +638,7 @@
                                       </Group>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtFechaEntregaProductoOC" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtFechaAceptacion" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="jLabel105" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtFormaPagoOC" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -686,7 +685,7 @@
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtFechaEntregaProductoOC">
+                            <Component class="javax.swing.JTextField" name="txtFechaAceptacion">
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                               </AuxValues>
@@ -804,7 +803,7 @@
                                           <Component id="jLabel116" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtCargosOC" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtSubtotalOC" alignment="0" max="32767" attributes="0"/>
