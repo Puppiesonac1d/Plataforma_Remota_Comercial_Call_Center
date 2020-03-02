@@ -104,7 +104,6 @@ public class Menu extends javax.swing.JFrame {
         credencialMenu = new javax.swing.JMenu();
         idMenu = new javax.swing.JMenu();
 
-        autorizacion.setMaximumSize(new java.awt.Dimension(400, 150));
         autorizacion.setMinimumSize(new java.awt.Dimension(400, 150));
         autorizacion.setSize(new java.awt.Dimension(400, 97));
 
@@ -164,11 +163,13 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(252, 252, 252));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 700));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/acima-logo-200p.png"))); // NOI18N
 
         b_Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        b_Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b_Titulo.setText("<html> <p align=\"center\">Menú<br/>Principal</p>  </html>");
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -176,7 +177,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(100, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel2.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
+        jPanel2.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
 
         btnListaContactos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnListaContactos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/android-contacts_icon-icons.com_50530.png"))); // NOI18N
@@ -299,9 +300,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblLogo)
-                        .addGap(325, 325, 325)
-                        .addComponent(b_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 541, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -312,7 +312,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(b_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -568,6 +568,7 @@ public class Menu extends javax.swing.JFrame {
 
                 txtCorreo.setText("");
                 txtPass.setText("");
+                autorizacion.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "No se han introducido las credenciales correctas");
             }
