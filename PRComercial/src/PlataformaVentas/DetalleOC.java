@@ -89,13 +89,11 @@ public class DetalleOC extends javax.swing.JFrame {
         lblCredencial = new javax.swing.JLabel();
         lbCodigo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalle de Orden de Compra");
         setMaximumSize(new java.awt.Dimension(1280, 740));
         setMinimumSize(new java.awt.Dimension(1280, 740));
-        setPreferredSize(new java.awt.Dimension(1280, 740));
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1280, 686));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1280, 686));
@@ -284,18 +282,6 @@ public class DetalleOC extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_2)
-                                .addGap(84, 84, 84)
-                                .addComponent(RutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(lbl_14)
-                                .addGap(78, 78, 78)
-                                .addComponent(ContactoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(lbl_28)
-                                .addGap(100, 100, 100)
-                                .addComponent(Dcto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_3)
                                 .addGap(11, 11, 11)
                                 .addComponent(DireccionDemandante, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,18 +338,6 @@ public class DetalleOC extends javax.swing.JFrame {
                                 .addGap(49, 49, 49)
                                 .addComponent(DireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_1)
-                                .addGap(84, 84, 84)
-                                .addComponent(CodigoOC, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(lbl_12)
-                                .addGap(26, 26, 26)
-                                .addComponent(DireccionEnvioFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(lbl_27)
-                                .addGap(101, 101, 101)
-                                .addComponent(Neto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_5)
                                 .addGap(71, 71, 71)
                                 .addComponent(Demandante, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,7 +348,35 @@ public class DetalleOC extends javax.swing.JFrame {
                                 .addGap(20, 20, 20)
                                 .addComponent(lbl_31)
                                 .addGap(9, 9, 9)
-                                .addComponent(ImpuestoEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ImpuestoEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_1)
+                                        .addGap(84, 84, 84)
+                                        .addComponent(CodigoOC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_2)
+                                        .addGap(84, 84, 84)
+                                        .addComponent(RutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_14)
+                                        .addGap(78, 78, 78)
+                                        .addComponent(ContactoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(lbl_28)
+                                        .addGap(100, 100, 100)
+                                        .addComponent(Dcto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_12)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(DireccionEnvioFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(lbl_27)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(Neto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblIDUsuario)
                         .addGap(0, 0, 0)
@@ -472,35 +474,24 @@ public class DetalleOC extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/BackgroundNew.png"))); // NOI18N
-        Fondo.setMaximumSize(new java.awt.Dimension(1280, 740));
-        Fondo.setMinimumSize(new java.awt.Dimension(1280, 740));
-        Fondo.setPreferredSize(new java.awt.Dimension(1280, 740));
+        jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
-        jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(Fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -568,7 +559,6 @@ public class DetalleOC extends javax.swing.JFrame {
     public javax.swing.JLabel EspecificacionVendedor;
     public javax.swing.JLabel FechaEntrega;
     public javax.swing.JLabel FechaEnvio;
-    private javax.swing.JLabel Fondo;
     public javax.swing.JLabel IVA;
     public javax.swing.JLabel ImpuestoEspecifico;
     public javax.swing.JLabel MailEnvioFactura;
