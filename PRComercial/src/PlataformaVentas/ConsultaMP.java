@@ -160,7 +160,6 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel123 = new javax.swing.JLabel();
         txtStockIngresado1 = new javax.swing.JTextField();
         jLabel124 = new javax.swing.JLabel();
-        txtSKUIngreso1 = new javax.swing.JTextField();
         jLabel126 = new javax.swing.JLabel();
         jLabel127 = new javax.swing.JLabel();
         jLabel128 = new javax.swing.JLabel();
@@ -189,6 +188,10 @@ public class ConsultaMP extends javax.swing.JFrame {
         cmbSeccionBodega1 = new javax.swing.JComboBox();
         cmbDistribuidorStock0 = new javax.swing.JComboBox();
         cmbConvenioMarco = new javax.swing.JComboBox();
+        cmbCM = new javax.swing.JComboBox<>();
+        cmbMaterial = new javax.swing.JComboBox<>();
+        cmbTalla = new javax.swing.JComboBox<>();
+        txtID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         panelConsultaMP = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -780,10 +783,10 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtQty.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtQty.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtQtyInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1022,9 +1025,6 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel124.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel124.setText("SKU:");
 
-        txtSKUIngreso1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        txtSKUIngreso1.setText("-");
-
         jLabel126.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel126.setText("Nombre de Producto:");
 
@@ -1066,18 +1066,23 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtDescripcionIngreso1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtDescripcionIngreso1.setText("-");
+        txtDescripcionIngreso1.setEnabled(false);
 
         txtRegionesIngreso1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtRegionesIngreso1.setText("-");
+        txtRegionesIngreso1.setEnabled(false);
 
         txtCondicionDespachoIngreso1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtCondicionDespachoIngreso1.setText("-");
+        txtCondicionDespachoIngreso1.setEnabled(false);
 
         txtDiasHabilesIngreso1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtDiasHabilesIngreso1.setText("-");
+        txtDiasHabilesIngreso1.setEnabled(false);
 
         cmbStatusProdIngreso1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         cmbStatusProdIngreso1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sin Stock", "Habilitado" }));
+        cmbStatusProdIngreso1.setEnabled(false);
 
         jLabel148.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel148.setText("Información del Producto:");
@@ -1111,6 +1116,18 @@ public class ConsultaMP extends javax.swing.JFrame {
         cmbConvenioMarco.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         cmbConvenioMarco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Convenio Marco" }));
 
+        cmbCM.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Convenio Marco" }));
+
+        cmbMaterial.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Material" }));
+
+        cmbTalla.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Talla" }));
+
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtID.setText("0");
+
         javax.swing.GroupLayout panelIngresoProducto1Layout = new javax.swing.GroupLayout(panelIngresoProducto1);
         panelIngresoProducto1.setLayout(panelIngresoProducto1Layout);
         panelIngresoProducto1Layout.setHorizontalGroup(
@@ -1137,7 +1154,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addComponent(jLabel149))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSKUIngreso1)
                             .addComponent(txtNombreProductoIngreso1)
                             .addComponent(txtPrecioVentaIngreso1)
                             .addComponent(txtPrecioCostoIngreso1)
@@ -1150,15 +1166,24 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addComponent(cmbDistribuidorStock0, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbConvenioMarco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelIngresoProducto1Layout.createSequentialGroup()
-                                .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(panelIngresoProducto1Layout.createSequentialGroup()
+                                            .addComponent(cmbBodega2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel150)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cmbSeccionBodega1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(txtIDproductoIngreso1)
+                                        .addComponent(cmbTransporte1, 0, 911, Short.MAX_VALUE))
                                     .addGroup(panelIngresoProducto1Layout.createSequentialGroup()
-                                        .addComponent(cmbBodega2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbCM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel150)
+                                        .addComponent(cmbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbSeccionBodega1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(txtIDproductoIngreso1)
-                                    .addComponent(cmbTransporte1, 0, 911, Short.MAX_VALUE))
+                                        .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jLabel148)
                     .addComponent(btnConfirmarInfoProd1))
@@ -1186,7 +1211,10 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel124)
-                    .addComponent(txtSKUIngreso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelIngresoProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel126)
@@ -1242,15 +1270,14 @@ public class ConsultaMP extends javax.swing.JFrame {
         InventarioPorBodega.getContentPane().setLayout(InventarioPorBodegaLayout);
         InventarioPorBodegaLayout.setHorizontalGroup(
             InventarioPorBodegaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-            .addGroup(InventarioPorBodegaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE))
+            .addGroup(InventarioPorBodegaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                .addContainerGap())
         );
         InventarioPorBodegaLayout.setVerticalGroup(
             InventarioPorBodegaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-            .addGroup(InventarioPorBodegaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -3407,6 +3434,36 @@ public class ConsultaMP extends javax.swing.JFrame {
                 cm = rs4.getString("codigoConvenio");
             }
 
+            int idMaterial = 0;
+            String queryMaterial = "select idMaterial from material where material = ?";
+            PreparedStatement pstMat = cn.prepareStatement(queryMaterial);
+            pstMat.setString(1, cmbMaterial.getSelectedItem().toString());
+            ResultSet rsMat = pstMat.executeQuery();
+            while (rsMat.next()) {
+                idMaterial = rsMat.getInt("idMaterial");
+            }
+            System.out.println("Id de material: " + idMaterial);
+
+            int idTalla = 0;
+            String queryTalla = "select id_talla from talla where talla = ?";
+            PreparedStatement pstTalla = cn.prepareStatement(queryTalla);
+            pstTalla.setString(1, cmbTalla.getSelectedItem().toString());
+            ResultSet rsTalla = pstTalla.executeQuery();
+            while (rsTalla.next()) {
+                idTalla = rsTalla.getInt("id_talla");
+            }
+            System.out.println("Id de Talla: " + idTalla);
+
+            int idCategoria = 0;
+            String queryCategoria = "select id from categoria where subcategoria = ?";
+            PreparedStatement pstCategoria = cn.prepareStatement(queryCategoria);
+            pstCategoria.setString(1, cmbCM.getSelectedItem().toString());
+            ResultSet rsCategoria = pstCategoria.executeQuery();
+            while (rsCategoria.next()) {
+                idCategoria = rsCategoria.getInt("id");
+            }
+            System.out.println("Id de Categoria: " + idCategoria);
+
             System.out.println(cmbDistribuidorStock0.getSelectedItem().toString());
 
             try {
@@ -3416,7 +3473,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 PreparedStatement pstINV = cn.prepareStatement(queryINV);
                 pstINV.setInt(1, cmbBodega2.getSelectedIndex());
                 pstINV.setString(2, txtIDproductoIngreso1.getText());
-                pstINV.setString(3, txtSKUIngreso1.getText());
+                pstINV.setString(3, Integer.toString(idCategoria) + Integer.toString(idMaterial) + Integer.toString(idTalla) + txtID.getText());
                 pstINV.setString(4, txtNombreProductoIngreso1.getText());
                 pstINV.setString(5, cm);
                 pstINV.setString(6, cmbConvenioMarco.getSelectedItem().toString());
@@ -3434,13 +3491,13 @@ public class ConsultaMP extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Producto Ingresado");
                 txtIDproductoIngreso1.setText("");
-                txtSKUIngreso1.setText("");
+                //txtSKUIngreso1.setText("");
             } catch (SQLException | NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             cmbBodega2.setSelectedIndex(0);
             txtIDproductoIngreso1.setText("");
-            txtSKUIngreso1.setText("");
+            //txtSKUIngreso1.setText("");
             txtNombreProductoIngreso1.setText("");
             cmbConvenioMarco.setSelectedIndex(0);
             txtPrecioVentaIngreso1.setText("");
@@ -3489,6 +3546,50 @@ public class ConsultaMP extends javax.swing.JFrame {
             while (rs4.next()) {
                 cmbDistribuidorStock0.addItem(rs4.getString(1));
             }
+
+            cmbCM.removeAllItems();
+            String queryCM = "select subcategoria from categoria;";
+            PreparedStatement pstCM = cn.prepareStatement(queryCM);
+            ResultSet rsCM = pstCM.executeQuery();
+            while (rsCM.next()) {
+                cmbCM.addItem(rsCM.getString(1));
+            }
+
+            cmbMaterial.removeAllItems();
+            String queryMat = "select material from material;";
+            PreparedStatement pstMat = cn.prepareStatement(queryMat);
+            ResultSet rsMat = pstMat.executeQuery();
+            while (rsMat.next()) {
+                cmbMaterial.addItem(rsMat.getString(1));
+            }
+            cmbTalla.removeAllItems();
+            String queryTa = "select talla from talla;";
+            PreparedStatement pstTa = cn.prepareStatement(queryTa);
+            ResultSet rsTa = pstTa.executeQuery();
+            while (rsTa.next()) {
+                cmbTalla.addItem(rsTa.getString(1));
+            }
+
+            int idProducto = 0;
+            String queryprod = "SELECT \n"
+                    + "    CASE\n"
+                    + "        WHEN ID IS NULL THEN 1\n"
+                    + "        WHEN ID IS NOT NULL THEN MAX(ID)+1\n"
+                    + "    END\n"
+                    + "FROM\n"
+                    + "    acimabasededatos.inventario;";
+            PreparedStatement pstProd = cn.prepareStatement(queryprod);
+
+            ResultSet rsProd = pstProd.executeQuery();
+            while (rsProd.next()) {
+                idProducto = rsProd.getInt("CASE\n"
+                        + "        WHEN ID IS NULL THEN 1\n"
+                        + "        WHEN ID IS NOT NULL THEN MAX(ID)+1\n"
+                        + "    END");
+            }
+
+            txtID.setText(Integer.toString(idProducto));
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -3597,11 +3698,14 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver7;
     private javax.swing.JFrame bultos;
     public javax.swing.JComboBox<String> cmbBodega2;
+    private javax.swing.JComboBox<String> cmbCM;
     public javax.swing.JComboBox cmbConvenioMarco;
     public javax.swing.JComboBox cmbDistribuidorStock0;
+    private javax.swing.JComboBox<String> cmbMaterial;
     private javax.swing.JComboBox cmbMoneda;
     public javax.swing.JComboBox cmbSeccionBodega1;
     public javax.swing.JComboBox cmbStatusProdIngreso1;
+    private javax.swing.JComboBox<String> cmbTalla;
     private javax.swing.JComboBox<String> cmbTransporte1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
@@ -3746,6 +3850,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaEnvioOC;
     private javax.swing.JTextField txtFonoProveedor;
     private javax.swing.JTextField txtFormaPago;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDProducto;
     private javax.swing.JTextField txtIDproductoIngreso1;
     private javax.swing.JTextField txtImpuestoEspecifico;
@@ -3768,7 +3873,6 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JTextField txtRutComprador;
     private javax.swing.JTextField txtRutProveedor;
     private javax.swing.JTextField txtSKU;
-    private javax.swing.JTextField txtSKUIngreso1;
     private javax.swing.JTextField txtStockIngresado1;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTelefonoDemandante;
