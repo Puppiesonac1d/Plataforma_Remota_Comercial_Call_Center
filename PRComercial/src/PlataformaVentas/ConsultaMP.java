@@ -2164,13 +2164,25 @@ public class ConsultaMP extends javax.swing.JFrame {
                         if (detalleMontos.getLength()
                                 > 0) {
                             Element err = (Element) detalleMontos.item(0);
-                            txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
-                            txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
-                            txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-                            txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
-                            txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
-                            txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
-                            txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                            if (modelo.getValueAt(0, 5).toString().equals("CLP")) {
+                                System.out.println("es en pesos");
+                                txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                                txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                                txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                                txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
+                                txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                                txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                                txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                            } else {
+                                System.out.println("es en dolares");
+                                txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                                txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                                txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                                txtSubTotal.setText(Double.toString(Double.parseDouble(txtNeto.getText().substring(1)) - Double.parseDouble(txtDcto.getText().substring(1))));
+                                txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                                txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                                txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                            }
 
                         } else {
                             // success
@@ -2341,13 +2353,25 @@ public class ConsultaMP extends javax.swing.JFrame {
                     if (detalleMontos.getLength()
                             > 0) {
                         Element err = (Element) detalleMontos.item(0);
-                        txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
-                        txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
-                        txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
-                        txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
-                        txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
-                        txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
-                        txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                        if (modelo.getValueAt(0, 5).toString().equals("CLP")) {
+                            System.out.println("es en pesos");
+                            txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                            txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                            txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                            txtSubTotal.setText(Integer.toString(Integer.parseInt(txtNeto.getText().substring(1)) - Integer.parseInt(txtDcto.getText().substring(1))));
+                            txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                            txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                            txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                        } else {
+                            System.out.println("es en dolares");
+                            txtNeto.setText("$" + err.getElementsByTagName("TotalNeto").item(0).getTextContent());
+                            txtDcto.setText("$" + err.getElementsByTagName("Descuentos").item(0).getTextContent());
+                            txtCargos.setText("$" + err.getElementsByTagName("Cargos").item(0).getTextContent());
+                            txtSubTotal.setText(Double.toString(Double.parseDouble(txtNeto.getText().substring(1)) - Double.parseDouble(txtDcto.getText().substring(1))));
+                            txtIva.setText("$" + err.getElementsByTagName("Impuestos").item(0).getTextContent());
+                            txtImpuestoEspecifico.setText("$" + err.getElementsByTagName("TotalImpuestos").item(0).getTextContent());
+                            txtTotal.setText("$" + err.getElementsByTagName("Total").item(0).getTextContent());
+                        }
 
                     } else {
                         // success
@@ -2952,15 +2976,15 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             for (int i = 0; i < tblMP.getRowCount(); i++) {
 
-                int descuento = Integer.parseInt(txtDcto.getText().replace("$", "").replace(".", ""));
-                int cargo = Integer.parseInt(txtCargos.getText().replace("$", "").replace(".", ""));
+                double descuento = Integer.parseInt(txtDcto.getText().replace("$", "").replace(".", ""));
+                double cargo = Integer.parseInt(txtCargos.getText().replace("$", "").replace(".", ""));
 
                 netoTabla = netoTabla + Integer.parseInt(tblMP.getValueAt(i, 9).toString().replace("$", "").replace(".", ""));
 
-                int subtotal = netoTabla;
+                double subtotal = netoTabla;
                 double iva = netoTabla * 0.19;
-                int impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
-                int total = (int) (iva + impuesto_especifico + subtotal - descuento);
+                double impuesto_especifico = Integer.parseInt(txtImpuestoEspecifico.getText().replace("$", "").replace(".", ""));
+                double total = (int) (iva + impuesto_especifico + subtotal - descuento);
 
                 //Formateo
                 txtNeto.setText(new DecimalFormat("$#,##0.00").format(netoTabla));
