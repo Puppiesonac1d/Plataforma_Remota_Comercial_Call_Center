@@ -763,11 +763,11 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código / ID licitación", "Producto", "Cantidad", "Especificación de comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
+                "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true, true, true
+                false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -838,7 +838,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
+                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane2.setViewportView(tblPaso);
@@ -856,7 +856,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
+                "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane28.setViewportView(tblProdsAgregadosNV);
@@ -915,7 +915,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                                     .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBorrarNV, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -1606,7 +1606,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° de NV", "Codigo Orden Compra", "Código / ID licitación", "Producto", "Cantidad", "Especificación de Comprador", "Especificación de Proveedor", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
+                "N° de NV", "Codigo Orden Compra", "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
         jScrollPane5.setViewportView(tblResumenParcializada);
@@ -1673,7 +1673,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 580, Short.MAX_VALUE)
                 .addGap(6, 603, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2438,11 +2438,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                         pstDetalle.setString(3, tblResumenParcializada.getValueAt(i, 2).toString());
                         pstDetalle.setString(4, (tblResumenParcializada.getValueAt(i, 3).toString()));
                         pstDetalle.setString(5, (tblResumenParcializada.getValueAt(i, 4).toString()));
-                        pstDetalle.setString(6, (tblResumenParcializada.getValueAt(i, 7).toString()));
-                        pstDetalle.setString(7, (tblResumenParcializada.getValueAt(i, 8).toString()));
-                        pstDetalle.setString(8, tblResumenParcializada.getValueAt(i, 9).toString());
-                        pstDetalle.setString(9, tblResumenParcializada.getValueAt(i, 10).toString());
-                        pstDetalle.setString(10, tblResumenParcializada.getValueAt(i, 11).toString());
+                        pstDetalle.setString(6, (tblResumenParcializada.getValueAt(i, 5).toString()));
+                        pstDetalle.setString(7, (tblResumenParcializada.getValueAt(i, 6).toString()));
+                        pstDetalle.setString(8, tblResumenParcializada.getValueAt(i, 7).toString());
+                        pstDetalle.setString(9, tblResumenParcializada.getValueAt(i, 8).toString());
+                        pstDetalle.setString(10, tblResumenParcializada.getValueAt(i, 9).toString());
 
                         int x2 = pstDetalle.executeUpdate();
 
@@ -2490,10 +2490,38 @@ public class ConsultaMP extends javax.swing.JFrame {
 
                         //Añadir la imagen
                         try {
+                            //Establecer imagen y escala
                             Image logoAcima = Image.getInstance("src\\PlataformaVentas\\Imagenes\\acima-logo-200p.png");
                             logoAcima.scaleAbsolute(126, 67);
                             logoAcima.setAlignment(Paragraph.ALIGN_RIGHT);
-                            doc.add(logoAcima);
+                            //Establecer párrafo
+                            Paragraph nro = new Paragraph(txtProveedor.getText() + "\n"
+                                    + txtRutProveedor.getText() + "\n"
+                                    + "AV. 5 de abril 4454, Oficina 31, Estación Central - Santiago de Chile \n"
+                                    + "Venta de articulos al por menor \n"
+                                    + "Fono: 232107900 \n"
+                                    + "www.acima.cl", FontFactory
+                                            .getFont(FontFactory.HELVETICA, 9, Font.NORMAL, null)
+                            );
+                            nro.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+
+                            //Crear Tabla
+                            PdfPTable tableHeader = new PdfPTable(2);
+                            tableHeader.setWidthPercentage(100);
+
+                            PdfPCell cell1 = new PdfPCell(logoAcima, false);
+                            cell1.setBorder(Rectangle.NO_BORDER);
+                            cell1.setBackgroundColor(BaseColor.WHITE);
+                            cell1.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+
+                            PdfPCell cell2 = new PdfPCell(nro);
+                            cell2.setBorder(Rectangle.NO_BORDER);
+                            cell2.setBackgroundColor(BaseColor.WHITE);
+                            cell2.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_JUSTIFIED);
+
+                            tableHeader.addCell(cell2);
+                            tableHeader.addCell(cell1);
+                            doc.add(tableHeader);
 
                             doc.add(myTable);
 
@@ -2505,6 +2533,12 @@ public class ConsultaMP extends javax.swing.JFrame {
                             Logger.getLogger(OrdenTrabajo.class
                                     .getName()).log(Level.SEVERE, null, ex);
                         }
+
+                        Paragraph ordenCompra = new Paragraph("Código de Orden de Compra: " + txtOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
+                        ordenCompra.setAlignment(Paragraph.ALIGN_CENTER);
+                        doc.add(ordenCompra);
+
+                        doc.add(myTable);
 
                         Paragraph titulo = new Paragraph("Información del demandante", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(titulo);
@@ -2548,7 +2582,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                         tableDatos2.addCell(new Phrase("Direcciones de envio de factura: " + txtDireccionEnvioFactura.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
                         tableDatos2.addCell(new Phrase("Contacto de OC: " + txtContactoOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
                         tableDatos2.addCell(new Phrase("Mail de Envío de Factura: " + txtEmailContacto.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
-                        tableDatos2.addCell(new Phrase("Código de Orden de Compra: " + txtOC.getText(), FontFactory.getFont(FontFactory.TIMES, 12)));
                         tableDatos2.setSpacingBefore(15f);
                         tableDatos2.setWidthPercentage(100);
                         Paragraph alineaDatos2 = new Paragraph();
@@ -2559,12 +2592,71 @@ public class ConsultaMP extends javax.swing.JFrame {
                         //doc.newPage();
                         Paragraph tablas = new Paragraph("Información de productos en la orden ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(tablas);
-                        PdfPTable pdfTable = new PdfPTable(tblMP.getColumnCount());
+                        PdfPTable pdfTable = new PdfPTable(10);
                         pdfTable.setSpacingBefore(15f);
                         pdfTable.setWidthPercentage(100);
-                        for (int i = 0; i < tblMP.getColumnCount(); i++) {
-                            pdfTable.addCell(new Phrase(tblMP.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        }
+
+                        PdfPCell cellP0 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(0), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP0.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP0.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP1 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(1), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP1.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP1.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP2 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(2), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP2.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP2.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP3 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(3), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP3.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP3.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP4 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(4), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP4.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP4.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP5 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(5), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP5.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP5.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP6 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(6), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP6.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP6.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP7 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(7), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP7.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP7.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP8 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(8), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP8.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP8.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cellP9 = new PdfPCell(new Phrase(tblMP.getModel().getColumnName(9), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cellP9.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cellP9.setBackgroundColor(BaseColor.ORANGE);
+
+                        pdfTable.addCell(cellP0);
+                        pdfTable.addCell(cellP1);
+                        pdfTable.addCell(cellP2);
+                        pdfTable.addCell(cellP3);
+                        pdfTable.addCell(cellP4);
+                        pdfTable.addCell(cellP5);
+                        pdfTable.addCell(cellP6);
+                        pdfTable.addCell(cellP7);
+                        pdfTable.addCell(cellP8);
+                        pdfTable.addCell(cellP9);
+
                         for (int rows = 0; rows < tblMP.getRowCount(); rows++) {
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
@@ -2577,14 +2669,19 @@ public class ConsultaMP extends javax.swing.JFrame {
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable.addCell(new Phrase(tblMP.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                         }
+                        pdfTable.setWidths(new int[]{1, 2, 1, 1, 1, 1, 1, 1, 1, 1});
 
                         doc.add(pdfTable);
+                        DecimalFormat formatea = new DecimalFormat("###,###.##");
+                        double neto_format = Double.parseDouble(txtNeto.getText().replace("$", "").replace(".", "").replace(",", "."));
+                        double iva_format = Double.parseDouble(txtIva.getText().replace("$", "").replace(".", "").replace(",", "."));
+                        double total_format = Double.parseDouble(txtTotal.getText().replace("$", "").replace(".", "").replace(",", "."));
 
-                        Paragraph neto = new Paragraph("Neto: " + txtNeto.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        Paragraph neto = new Paragraph("Neto: $" + formatea.format(neto_format), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                         neto.setAlignment(Paragraph.ALIGN_RIGHT);
-                        Paragraph iva = new Paragraph("IVA: " + txtIva.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        Paragraph iva = new Paragraph("IVA: $" + formatea.format(iva_format), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                         iva.setAlignment(Paragraph.ALIGN_RIGHT);
-                        Paragraph total = new Paragraph("Total: " + txtTotal.getText(), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
+                        Paragraph total = new Paragraph("Total: $" + formatea.format(total_format), FontFactory.getFont(FontFactory.TIMES, 12, Font.NORMAL, null));
                         total.setAlignment(Paragraph.ALIGN_RIGHT);
                         doc.add(neto);
                         doc.add(iva);
@@ -2596,12 +2693,71 @@ public class ConsultaMP extends javax.swing.JFrame {
                         //Para las notas de venta
                         Paragraph tablas2 = new Paragraph("Información de productos en notas de venta ", FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLD, null));
                         doc.add(tablas2);
-                        PdfPTable pdfTable2 = new PdfPTable(tblResumenParcializada.getColumnCount());
+                        PdfPTable pdfTable2 = new PdfPTable(10);
                         pdfTable2.setSpacingBefore(15f);
                         pdfTable2.setWidthPercentage(100);
-                        for (int i = 0; i < tblResumenParcializada.getColumnCount(); i++) {
-                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                        }
+
+                        PdfPCell cell0 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(0), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell0.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell0.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell1 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(1), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell1.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell1.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell2 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(2), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell2.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell2.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell3 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(3), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell3.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell3.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell4 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(4), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell4.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell4.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell5 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(5), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell5.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell5.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell6 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(6), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell6.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell6.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell7 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(7), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell7.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell7.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell8 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(8), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell8.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell8.setBackgroundColor(BaseColor.ORANGE);
+
+                        PdfPCell cell9 = new PdfPCell(new Phrase(tblResumenParcializada.getColumnName(9), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+                        cell9.setUseBorderPadding(true);
+                        // Setting cell's background color
+                        cell9.setBackgroundColor(BaseColor.ORANGE);
+
+                        pdfTable2.addCell(cell0);
+                        pdfTable2.addCell(cell1);
+                        pdfTable2.addCell(cell2);
+                        pdfTable2.addCell(cell3);
+                        pdfTable2.addCell(cell4);
+                        pdfTable2.addCell(cell5);
+                        pdfTable2.addCell(cell6);
+                        pdfTable2.addCell(cell7);
+                        pdfTable2.addCell(cell8);
+                        pdfTable2.addCell(cell9);
+
                         for (int rows = 0; rows < tblResumenParcializada.getRowCount(); rows++) {
                             pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 0).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 1).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
@@ -2613,9 +2769,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                             pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 7).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 8).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
                             pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 9).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 10).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
-                            pdfTable2.addCell(new Phrase(tblResumenParcializada.getModel().getValueAt(rows, 11).toString(), FontFactory.getFont(FontFactory.HELVETICA, 8)));
+
                         }
+
+                        pdfTable2.setWidths(new int[]{1, 1, 1, 2, 1, 1, 1, 1, 1, 1});
+
                         doc.add(pdfTable2);
 
                         doc.add(myTable);
@@ -3088,13 +3246,12 @@ public class ConsultaMP extends javax.swing.JFrame {
             row[0] = tblMP.getValueAt(i, 0).toString();
             row[1] = tblMP.getValueAt(i, 1).toString();
             row[2] = tblMP.getValueAt(i, 2).toString();
-            row[3] = tblMP.getValueAt(i, 3).toString();
-            row[4] = tblMP.getValueAt(i, 4).toString();
-            row[5] = tblMP.getValueAt(i, 5).toString();
-            row[6] = tblMP.getValueAt(i, 6).toString();
-            row[7] = tblMP.getValueAt(i, 7).toString();
-            row[8] = tblMP.getValueAt(i, 8).toString();
-            row[9] = tblMP.getValueAt(i, 9).toString();
+            row[3] = tblMP.getValueAt(i, 5).toString();
+            row[4] = tblMP.getValueAt(i, 6).toString();
+            row[5] = tblMP.getValueAt(i, 7).toString();
+            row[6] = tblMP.getValueAt(i, 8).toString();
+            row[7] = tblMP.getValueAt(i, 9).toString();
+
             modeloPendientes.addRow(row);
         }
 
@@ -3142,8 +3299,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                             row[7] = productosSinNV.getValueAt(indexs[i], 5);
                             row[8] = productosSinNV.getValueAt(indexs[i], 6);
                             row[9] = productosSinNV.getValueAt(indexs[i], 7);
-                            row[10] = productosSinNV.getValueAt(indexs[i], 8);
-                            row[11] = productosSinNV.getValueAt(indexs[i], 9);
 
                             modeloNuevo.addRow(row);
 
@@ -3161,12 +3316,12 @@ public class ConsultaMP extends javax.swing.JFrame {
 
                     for (int x = 0; x < tblPaso.getRowCount(); x++) {
                         int cantidad = Integer.parseInt(tblPaso.getValueAt(x, 4).toString());
-                        int precioUnitario = Integer.parseInt(tblPaso.getValueAt(x, 8).toString());
-                        int descuento = Integer.parseInt(tblPaso.getValueAt(x, 9).toString());
-                        int cargos = Integer.parseInt(tblPaso.getValueAt(x, 10).toString());
+                        int precioUnitario = Integer.parseInt(tblPaso.getValueAt(x, 6).toString());
+                        int descuento = Integer.parseInt(tblPaso.getValueAt(x, 7).toString());
+                        int cargos = Integer.parseInt(tblPaso.getValueAt(x, 8).toString());
 
                         int calculo = (precioUnitario * cantidad) + descuento + cargos;
-                        tblPaso.setValueAt(calculo, x, 11);
+                        tblPaso.setValueAt(calculo, x, 9);
                     }
 
                     if (sumCantidad == 0) {
@@ -3229,8 +3384,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                     row2[7] = tblProdsAgregadosNV.getValueAt(p, 7).toString();
                     row2[8] = tblProdsAgregadosNV.getValueAt(p, 8).toString();
                     row2[9] = tblProdsAgregadosNV.getValueAt(p, 9).toString();
-                    row2[10] = tblProdsAgregadosNV.getValueAt(p, 10).toString();
-                    row2[11] = tblProdsAgregadosNV.getValueAt(p, 11).toString();
 
                     modeloResumen.addRow(row2);
                 }
@@ -3397,8 +3550,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                     row2[7] = modeloPaso.getValueAt(p, 7);
                     row2[8] = modeloPaso.getValueAt(p, 8);
                     row2[9] = modeloPaso.getValueAt(p, 9);
-                    row2[10] = modeloPaso.getValueAt(p, 10);
-                    row2[11] = modeloPaso.getValueAt(p, 11);
+
                     modeloProds.addRow(row2);
                 }
 
@@ -3532,7 +3684,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             txtCondicionDespachoIngreso1.setText("");
             txtDiasHabilesIngreso1.setText("");
             cmbStatusProdIngreso1.setSelectedItem(0);
-            txtStockIngresado1.setText("");
+            txtStockIngresado1.setText("0");
 
             InventarioPorBodega.dispose();
             btnReiniciarFiltros.doClick();
