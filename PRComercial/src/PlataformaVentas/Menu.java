@@ -519,26 +519,96 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSeguimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguimientoActionPerformed
-        /*
-         SELECT CODIGOORDENCOMPRA AS
-         'Código de Orden de Compra'
-         from ordenTrabajo;
-         */
         try {
             Seguimiento seguimiento = new Seguimiento();
+
             seguimiento.setVisible(true);
-            String query = "SELECT ot.CODIGOORDENCOMPRA AS 'Código de Orden de Compra', ot.nombre_proveedor as 'Empresa',\n"
-                    + "ot.idOrden as 'Número Nota de Venta', ab.idAbastecimiento as 'Número de Cotización',ing.idIngreso as 'Número de Ingreso',sal.idSalida as 'Número de Salida',\n"
-                    + "tr.transporte as 'Transporte',ordenTransporte as 'Orden de Transporte',sal.numFactura as 'Número de Factura' from ordenTrabajo ot\n"
-                    + "left join abastecimiento ab on ot.codigoOrdenCompra = ab.codigoOrdenCompra\n"
-                    + "left join ingreso ing on ing.numeroCotizacion = ot.codigoOrdenCompra\n"
-                    + "left join salida sal on sal.codigoOrdenCompra = ot.codigoOrdenCompra\n"
-                    + "left join transporte tr on tr.idTransporte = sal.idTransporte;";
+            String query = "    \n"
+                    + "SELECT \n"
+                    + "    ot.idOrden AS 'Nota de Venta',\n"
+                    + "    ot.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
+                    + "    ot.nombre_proveedor AS 'Empresa',\n"
+                    + "    CASE\n"
+                    + "        WHEN\n"
+                    + "            EXISTS( SELECT \n"
+                    + "                    idOrden\n"
+                    + "                FROM\n"
+                    + "                    detalle_Abastecimiento\n"
+                    + "                WHERE\n"
+                    + "                    idOrden = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'NOTA DE COMPRA CREADA'\n"
+                    + "        WHEN\n"
+                    + "            NOT EXISTS( SELECT \n"
+                    + "                    idOrden\n"
+                    + "                FROM\n"
+                    + "                    detalle_Abastecimiento\n"
+                    + "                WHERE\n"
+                    + "                    idOrden = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'NOTA DE COMPRA NO CREADA'\n"
+                    + "    END 'NOTAS DE COMPRA',\n"
+                    + "    IFNULL(a.estado, '-') AS 'ESTADO DE PAGO',\n"
+                    + "    CASE\n"
+                    + "        WHEN\n"
+                    + "            EXISTS( SELECT \n"
+                    + "                    notaVenta\n"
+                    + "                FROM\n"
+                    + "                   ingreso\n"
+                    + "                WHERE\n"
+                    + "                    notaVenta = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'MERCADERÍA INGRESADA'\n"
+                    + "        WHEN\n"
+                    + "            NOT EXISTS( SELECT \n"
+                    + "                    notaVenta\n"
+                    + "                FROM\n"
+                    + "                   ingreso\n"
+                    + "                WHERE\n"
+                    + "                    notaVenta = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'MERCADERÍA NO INGRESADA'\n"
+                    + "    END 'INGRESO DE MERCADERIA',\n"
+                    + "    CASE\n"
+                    + "        WHEN\n"
+                    + "            EXISTS( SELECT \n"
+                    + "                    idOrden\n"
+                    + "                FROM\n"
+                    + "                    salida\n"
+                    + "                WHERE\n"
+                    + "                    idOrden = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'SALIDA DE MERCADERÍA REALIZADA'\n"
+                    + "        WHEN\n"
+                    + "            NOT EXISTS( SELECT \n"
+                    + "                    idOrden\n"
+                    + "                FROM\n"
+                    + "                    salida\n"
+                    + "                WHERE\n"
+                    + "                    idOrden = ot.idOrden)\n"
+                    + "        THEN\n"
+                    + "            'SALIDA DE MERCADERÍA NO REALIZADA'\n"
+                    + "    END 'SALIDA DE MERCADERÍA',\n"
+                    + "    IFNULL(sa.numFactura,\n"
+                    + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
+                    + "    IFNULL(sa.ordenTransporte,\n"
+                    + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + "FROM\n"
+                    + "    ordenTrabajo ot\n"
+                    + "        LEFT JOIN\n"
+                    + "    salida sa ON sa.idOrden = ot.idOrden\n"
+                    + "        LEFT JOIN\n"
+                    + "    detalle_abastecimiento da ON da.idOrden = ot.idOrden\n"
+                    + "        LEFT JOIN\n"
+                    + "    abastecimiento a ON a.numeroCotizacion = da.numeroCotizacion\n"
+                    + "GROUP BY ot.idOrden\n"
+                    + "ORDER BY ot.idOrden ASC;\n";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             seguimiento.tblNV.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (Exception ex) {
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage()
             );
         }
