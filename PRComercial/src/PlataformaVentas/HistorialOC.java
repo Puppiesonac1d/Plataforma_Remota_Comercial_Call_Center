@@ -176,7 +176,7 @@ public class HistorialOC extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setVisible(true);
+        jScrollPane1.setVisible(false);
 
         tblOC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -362,7 +362,7 @@ public class HistorialOC extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setVisible(true);
+        jScrollPane2.setVisible(false);
 
         tblBDD.setVisible(true);
         tblBDD.setModel(new javax.swing.table.DefaultTableModel(
