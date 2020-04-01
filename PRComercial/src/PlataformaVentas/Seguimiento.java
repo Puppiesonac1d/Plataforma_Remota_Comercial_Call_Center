@@ -495,10 +495,6 @@ public class Seguimiento extends javax.swing.JFrame {
         lblFechaNotaCompra = new javax.swing.JLabel();
         lblFechaIngreso = new javax.swing.JLabel();
         lblFechaSalidaSeguimiento = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        barraProgreso = new javax.swing.JProgressBar();
-        lblPorcentaje = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNV = new javax.swing.JTable();
@@ -1863,15 +1859,6 @@ public class Seguimiento extends javax.swing.JFrame {
 
         lblFechaSalidaSeguimiento.setText("-");
 
-        jLabel35.setText("Progreso general de la orden de compra");
-        jLabel35.setToolTipText("");
-
-        barraProgreso.setToolTipText("");
-
-        lblPorcentaje.setText("0");
-
-        jLabel37.setText("%");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1880,7 +1867,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCotizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                    .addComponent(btnCotizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1901,42 +1888,22 @@ public class Seguimiento extends javax.swing.JFrame {
                         .addComponent(jLabel31)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblFechaSalidaSeguimiento)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(lblPorcentaje)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel37))
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28)
-                            .addComponent(lblFechaNV))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCotizacion)
-                            .addComponent(jLabel29)
-                            .addComponent(lblFechaNotaCompra))
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel35)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblPorcentaje)
-                                .addComponent(jLabel37)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(lblFechaNV))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCotizacion)
+                    .addComponent(jLabel29)
+                    .addComponent(lblFechaNotaCompra))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngreso)
                     .addComponent(jLabel30)
@@ -2011,7 +1978,7 @@ public class Seguimiento extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2047,7 +2014,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtCodigoOrdenCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarOC)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2086,7 +2053,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtNumFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarFactura)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(358, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2125,7 +2092,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addComponent(txtOrdenTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrdenTransporte)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2147,17 +2114,17 @@ public class Seguimiento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVolver))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReiniciar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReiniciar)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -2644,23 +2611,6 @@ public class Seguimiento extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la operacion de Salida: " + ex.getMessage());
             }
 
-            barraProgreso.setValue(0);
-            lblPorcentaje.setText(Integer.toString(barraProgreso.getValue()));
-            if (boolnv == true) {
-                barraProgreso.setValue((int) (barraProgreso.getValue() + 20));
-            }
-            if (boolcotizacion == true) {
-                barraProgreso.setValue((int) (barraProgreso.getValue() + 20));
-            }
-            if (boolingreso == true) {
-                barraProgreso.setValue((int) (barraProgreso.getValue() + 20));
-            }
-            if (boolsalida == true) {
-                barraProgreso.setValue((int) (barraProgreso.getValue() + 40));
-            }
-
-            lblPorcentaje.setText(barraProgreso.getValue() + "%");
-
         } catch (HeadlessException | NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -2672,8 +2622,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         try {
-            String query = "    \n"
-                    + "SELECT \n"
+            String query = "SELECT \n"
                     + "    ot.idOrden AS 'Nota de Venta',\n"
                     + "    ot.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
                     + "    ot.nombre_proveedor AS 'Empresa',\n"
@@ -2751,7 +2700,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "        LEFT JOIN\n"
                     + "    abastecimiento a ON a.numeroCotizacion = da.numeroCotizacion\n"
                     + "GROUP BY ot.idOrden\n"
-                    + "ORDER BY ot.idOrden ASC;\n";
+                    + "ORDER BY ot.idOrden ASC;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -2763,8 +2712,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         try {
-            String query = "    \n"
-                    + "SELECT \n"
+            String query = "SELECT \n"
                     + "    ot.idOrden AS 'Nota de Venta',\n"
                     + "    ot.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
                     + "    ot.nombre_proveedor AS 'Empresa',\n"
@@ -2858,8 +2806,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
     private void btnBuscarOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOCActionPerformed
         try {
-            String query = "    \n"
-                    + "SELECT \n"
+            String query = "SELECT \n"
                     + "    ot.idOrden AS 'Nota de Venta',\n"
                     + "    ot.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
                     + "    ot.nombre_proveedor AS 'Empresa',\n"
@@ -2938,7 +2885,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "    abastecimiento a ON a.numeroCotizacion = da.numeroCotizacion\n"
                     + "where ot.codigoOrdenCompra RLIKE ? \n"
                     + "GROUP BY ot.idOrden\n"
-                    + "ORDER BY ot.idOrden ASC;\n";
+                    + "ORDER BY ot.idOrden ASC;";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
             pst.setString(1, txtCodigoOrdenCompra.getText());
@@ -2953,8 +2900,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
     private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacturaActionPerformed
         try {
-            String query = "    \n"
-                    + "SELECT \n"
+            String query = "SELECT \n"
                     + "    ot.idOrden AS 'Nota de Venta',\n"
                     + "    ot.codigoOrdenCompra AS 'Código de Orden de Compra',\n"
                     + "    ot.nombre_proveedor AS 'Empresa',\n"
@@ -3265,7 +3211,6 @@ public class Seguimiento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame DetalleNotaCompra;
-    private javax.swing.JProgressBar barraProgreso;
     private javax.swing.JButton btnBuscarFactura;
     private javax.swing.JButton btnBuscarOC;
     private javax.swing.JButton btnCotizacion;
@@ -3326,9 +3271,7 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -3418,7 +3361,6 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumeroIngreso;
     public javax.swing.JLabel lblNumeroNotaVenta;
     public javax.swing.JLabel lblObservaciones;
-    private javax.swing.JLabel lblPorcentaje;
     public javax.swing.JLabel lblPromedio;
     public javax.swing.JLabel lblProveedor;
     public javax.swing.JLabel lblTipoIngreso;

@@ -490,7 +490,7 @@ public class DatosCliente extends javax.swing.JFrame {
                     cargo = txtCargo.getText();
                     razon = txtRazon.getText();
                     unidad = cmbUnidadCompra.getSelectedIndex();
-                    correo = txtCiudad.getText();
+                    correo = txtCorreo.getText();
                     telefono = cmbArea.getSelectedItem().toString() + txtTelefono.getText();
 
                     ciudad = txtCiudad.getText();

@@ -150,6 +150,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         btnBorrarNV = new javax.swing.JButton();
+        btnCalcularVal = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel53 = new javax.swing.JLabel();
         InventarioPorBodega = new javax.swing.JFrame();
@@ -774,6 +775,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblProductosPendientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblProductosPendientesKeyPressed(evt);
+            }
+        });
         jScrollPane26.setViewportView(tblProductosPendientes);
 
         jPanel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -888,6 +894,14 @@ public class ConsultaMP extends javax.swing.JFrame {
             }
         });
 
+        btnCalcularVal.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnCalcularVal.setText("Calcular valores");
+        btnCalcularVal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularValActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -895,13 +909,6 @@ public class ConsultaMP extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)
-                            .addComponent(jScrollPane26, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel157, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 29, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -918,7 +925,16 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBorrarNV, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCalcularVal)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)
+                                .addComponent(jScrollPane26, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel157, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(10, 29, Short.MAX_VALUE))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -930,6 +946,8 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCalcularVal)
+                .addGap(13, 13, 13)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAgregarNV)
@@ -947,7 +965,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jScrollPane6.setViewportView(jPanel11);
@@ -1673,11 +1691,10 @@ public class ConsultaMP extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 580, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addGap(6, 603, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 1166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1753,7 +1770,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(txtFormaPago)
                                 .addComponent(txtContactoOC)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
+                            .addGap(14, 14, 14)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1774,8 +1791,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(txtNombreProveedor))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnGuardarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnGuardarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane1))
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3247,7 +3265,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             row[1] = tblMP.getValueAt(i, 1).toString();
             row[2] = tblMP.getValueAt(i, 2).toString();
             row[3] = tblMP.getValueAt(i, 5).toString();
-            row[4] = tblMP.getValueAt(i, 6).toString();
+            row[4] = "-";
             row[5] = tblMP.getValueAt(i, 7).toString();
             row[6] = tblMP.getValueAt(i, 8).toString();
             row[7] = tblMP.getValueAt(i, 9).toString();
@@ -3274,66 +3292,72 @@ public class ConsultaMP extends javax.swing.JFrame {
             int indice = 0;
             indice = tblProductosPendientes.getSelectedRow();
 
-            //Variable que resta
-            int cantidadInicial = 0;
-            cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 2).toString());
-            System.out.println(cantidadInicial);
-
-            if (Integer.parseInt(txtQty.getText()) < 0) {
-                JOptionPane.showMessageDialog(null, "No debe ser número negativo");
+            if (tblProductosPendientes.getValueAt(indice, 4).toString().equals("-")) {
+                JOptionPane.showMessageDialog(null, "El precio no puede ser nulo");
             } else {
-                if (Integer.parseInt(txtQty.getText()) <= cantidadInicial && Integer.parseInt(txtQty.getText()) != 0) {
-                    //Ciclo que recorre las filas seleccionadas
-                    for (int i = 0; i < indexs.length; i++) {
 
-                        int cantidad = Integer.parseInt(txtQty.getText());
+                //Variable que resta
+                int cantidadInicial = 0;
+                cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 2).toString());
+                System.out.println(cantidadInicial);
 
-                        if (cantidad <= cantidadInicial) {
-                            row[0] = "No se ha asignado una nota de venta";
-                            row[1] = txtOC.getText();
-                            row[2] = productosSinNV.getValueAt(indexs[i], 0);
-                            row[3] = productosSinNV.getValueAt(indexs[i], 1);
-                            row[4] = cantidad;
-                            row[5] = productosSinNV.getValueAt(indexs[i], 3);
-                            row[6] = productosSinNV.getValueAt(indexs[i], 4);
-                            row[7] = productosSinNV.getValueAt(indexs[i], 5);
-                            row[8] = productosSinNV.getValueAt(indexs[i], 6);
-                            row[9] = productosSinNV.getValueAt(indexs[i], 7);
-
-                            modeloNuevo.addRow(row);
-
-                            modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
-                        }
-                    }
-                    txtQty.setText("");
-                    tblProductosPendientes.clearSelection();
-                    tblPaso.clearSelection();
-
-                    int sumCantidad = 0;
-                    for (int i = 0; i < tblProductosPendientes.getRowCount(); i++) {
-                        sumCantidad = sumCantidad + Integer.parseInt(tblProductosPendientes.getValueAt(i, 2).toString());
-                    }
-
-                    for (int x = 0; x < tblPaso.getRowCount(); x++) {
-                        int cantidad = Integer.parseInt(tblPaso.getValueAt(x, 4).toString());
-                        int precioUnitario = Integer.parseInt(tblPaso.getValueAt(x, 6).toString());
-                        int descuento = Integer.parseInt(tblPaso.getValueAt(x, 7).toString());
-                        int cargos = Integer.parseInt(tblPaso.getValueAt(x, 8).toString());
-
-                        int calculo = (precioUnitario * cantidad) + descuento + cargos;
-                        tblPaso.setValueAt(calculo, x, 9);
-                    }
-
-                    if (sumCantidad == 0) {
-                        JOptionPane.showMessageDialog(null, "Ya se llegó al límite de la cantidad seleccionada de productos");
-                    }
-
-                } else if (Integer.parseInt(txtQty.getText()) < 0) {
-                    JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                if (Integer.parseInt(txtQty.getText()) < 0) {
+                    JOptionPane.showMessageDialog(null, "No debe ser número negativo");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                    if (Integer.parseInt(txtQty.getText()) <= cantidadInicial && Integer.parseInt(txtQty.getText()) != 0) {
+                        //Ciclo que recorre las filas seleccionadas
+                        for (int i = 0; i < indexs.length; i++) {
+
+                            int cantidad = Integer.parseInt(txtQty.getText());
+
+                            if (cantidad <= cantidadInicial) {
+                                row[0] = "No se ha asignado una nota de venta";
+                                row[1] = txtOC.getText();
+                                row[2] = productosSinNV.getValueAt(indexs[i], 0);
+                                row[3] = productosSinNV.getValueAt(indexs[i], 1);
+                                row[4] = cantidad;
+                                row[5] = productosSinNV.getValueAt(indexs[i], 3);
+                                row[6] = productosSinNV.getValueAt(indexs[i], 4);
+                                row[7] = productosSinNV.getValueAt(indexs[i], 5);
+                                row[8] = productosSinNV.getValueAt(indexs[i], 6);
+                                row[9] = productosSinNV.getValueAt(indexs[i], 7);
+
+                                modeloNuevo.addRow(row);
+
+                                modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
+                            }
+                        }
+                        txtQty.setText("");
+                        tblProductosPendientes.clearSelection();
+                        tblPaso.clearSelection();
+
+                        int sumCantidad = 0;
+                        for (int i = 0; i < tblProductosPendientes.getRowCount(); i++) {
+                            sumCantidad = sumCantidad + Integer.parseInt(tblProductosPendientes.getValueAt(i, 2).toString());
+                        }
+
+                        for (int x = 0; x < tblPaso.getRowCount(); x++) {
+                            int cantidad = Integer.parseInt(tblPaso.getValueAt(x, 4).toString());
+                            int precioUnitario = Integer.parseInt(tblPaso.getValueAt(x, 6).toString());
+                            int descuento = Integer.parseInt(tblPaso.getValueAt(x, 7).toString());
+                            int cargos = Integer.parseInt(tblPaso.getValueAt(x, 8).toString());
+
+                            int calculo = (precioUnitario * cantidad) + descuento + cargos;
+                            tblPaso.setValueAt(calculo, x, 9);
+                        }
+
+                        if (sumCantidad == 0) {
+                            JOptionPane.showMessageDialog(null, "Ya se llegó al límite de la cantidad seleccionada de productos");
+                        }
+
+                    } else if (Integer.parseInt(txtQty.getText()) < 0) {
+                        JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                    }
                 }
             }
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: Debe seleccionar un producto..." + ex);
         }
@@ -3813,6 +3837,34 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblMPMouseClicked
 
+    private void tblProductosPendientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProductosPendientesKeyPressed
+
+    }//GEN-LAST:event_tblProductosPendientesKeyPressed
+
+    private void btnCalcularValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularValActionPerformed
+        try {
+            int index = tblProductosPendientes.getSelectedRow();
+            int cantidad = Integer.parseInt(tblProductosPendientes.getValueAt(index, 2).toString());
+
+            String precioUnitario = JOptionPane.showInputDialog("Ingrese precio");
+
+            int precioUnitarioFormat = Integer.parseInt(precioUnitario);
+            int descuento = Integer.parseInt(tblProductosPendientes.getValueAt(index, 5).toString());
+            int cargos = Integer.parseInt(tblProductosPendientes.getValueAt(index, 6).toString());
+            int valorTotal = Integer.parseInt(tblProductosPendientes.getValueAt(index, 7).toString());
+
+            int total = ((precioUnitarioFormat + cargos) - descuento) * cantidad;
+
+            tblProductosPendientes.setValueAt(cantidad, index, 2);
+            tblProductosPendientes.setValueAt(precioUnitario, index, 4);
+            tblProductosPendientes.setValueAt(descuento, index, 5);
+            tblProductosPendientes.setValueAt(cargos, index, 6);
+            tblProductosPendientes.setValueAt(total, index, 7);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCalcularValActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3863,6 +3915,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrarNV;
     private javax.swing.JButton btnBorrarProducto;
     private javax.swing.JButton btnBorrarProducto1;
+    private javax.swing.JButton btnCalcularVal;
     private javax.swing.JButton btnCalcularValores;
     private javax.swing.JButton btnCalculoTotales;
     private javax.swing.JButton btnConfirmarInfoProd1;
