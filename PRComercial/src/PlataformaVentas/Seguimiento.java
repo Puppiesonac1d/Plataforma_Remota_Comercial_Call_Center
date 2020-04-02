@@ -1,11 +1,12 @@
 package PlataformaVentas;
 
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import clases.Conexion;
 import java.awt.Component;
 import java.awt.HeadlessException;
@@ -317,6 +318,7 @@ public class Seguimiento extends javax.swing.JFrame {
     private void initComponents() {
 
         detalleIngreso = new javax.swing.JFrame();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -385,7 +387,7 @@ public class Seguimiento extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         tblProductosDesechable = new javax.swing.JTable();
         detalleSalida = new javax.swing.JFrame();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        scrollpanel3 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -409,7 +411,6 @@ public class Seguimiento extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         tblProductosBulto = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
         detalleNotaVenta = new javax.swing.JFrame();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel18 = new javax.swing.JPanel();
@@ -518,6 +519,7 @@ public class Seguimiento extends javax.swing.JFrame {
 
         detalleIngreso.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         detalleIngreso.setMinimumSize(new java.awt.Dimension(1280, 740));
+        detalleIngreso.setSize(new java.awt.Dimension(1280, 740));
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -621,12 +623,12 @@ public class Seguimiento extends javax.swing.JFrame {
                                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblTipoIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel13))
-                        .addGap(443, 443, 443))
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(1145, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -664,11 +666,13 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
+
+        jScrollPane3.setViewportView(jPanel4);
 
         javax.swing.GroupLayout detalleIngresoLayout = new javax.swing.GroupLayout(detalleIngreso.getContentPane());
         detalleIngreso.getContentPane().setLayout(detalleIngresoLayout);
@@ -676,14 +680,14 @@ public class Seguimiento extends javax.swing.JFrame {
             detalleIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detalleIngresoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         detalleIngresoLayout.setVerticalGroup(
             detalleIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detalleIngresoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1117,6 +1121,8 @@ public class Seguimiento extends javax.swing.JFrame {
 
         detalleSalida.setMinimumSize(new java.awt.Dimension(1280, 740));
 
+        scrollpanel3.setMaximumSize(new java.awt.Dimension(1280, 740));
+
         jPanel15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel15.setText("Número de Nota de Venta:");
@@ -1214,8 +1220,9 @@ public class Seguimiento extends javax.swing.JFrame {
                             .addComponent(lblFechaSalida))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))))
+                            .addComponent(jLabel16)
+                            .addComponent(panelScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1316,9 +1323,7 @@ public class Seguimiento extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jScrollPane3.setViewportView(jPanel5);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/acima-logo-200p.png"))); // NOI18N
+        scrollpanel3.setViewportView(jPanel5);
 
         javax.swing.GroupLayout detalleSalidaLayout = new javax.swing.GroupLayout(detalleSalida.getContentPane());
         detalleSalida.getContentPane().setLayout(detalleSalidaLayout);
@@ -1326,20 +1331,14 @@ public class Seguimiento extends javax.swing.JFrame {
             detalleSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detalleSalidaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(detalleSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addGroup(detalleSalidaLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(scrollpanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         detalleSalidaLayout.setVerticalGroup(
             detalleSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detalleSalidaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(scrollpanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2339,7 +2338,10 @@ public class Seguimiento extends javax.swing.JFrame {
                 neto = neto + (Integer.parseInt(tblProductos.getValueAt(i, 6).toString().substring(1).replace(".", "")) * Integer.parseInt(tblProductos.getValueAt(i, 3).toString()));
 
             }
-            lblPromedio.setText(promedioMargen + "%");
+            DecimalFormat df = new DecimalFormat("#.00");
+
+            lblPromedio.setText(df.format(promedioMargen / tblProductos.getRowCount()) + "%");
+
             double descuento = Double.parseDouble(txtDescuento.getText().replace("$", "").replace(".", "").replace(",", "."));
             neto = neto - descuento;
             iva = (int) (neto * 0.19);
@@ -2378,8 +2380,8 @@ public class Seguimiento extends javax.swing.JFrame {
                 lblTipoIngreso.setText(rs.getString("ing.tipoIngreso"));
             }
             String queryProducto = "SELECT \n"
-                    + "    ing.notaVenta,\n"
-                    + "    ing.codigoOrdenCompra,\n"
+                    + "    ing.notaVenta as 'ID de Orden de Compra',\n"
+                    + "    ing.codigoOrdenCompra as 'Código de orden de compra',\n"
                     + "    ot.codigoProducto as 'ID de Producto',\n"
                     + "    inv.SKU,\n"
                     + "    ot.nombreProducto AS 'Nombre de Producto',\n"
@@ -3200,6 +3202,14 @@ public class Seguimiento extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -3287,7 +3297,6 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3368,6 +3377,7 @@ public class Seguimiento extends javax.swing.JFrame {
     private javax.swing.JLabel lblTransporte;
     private javax.swing.JPanel panelSalida;
     private javax.swing.JScrollPane panelScroll;
+    private javax.swing.JScrollPane scrollpanel3;
     private javax.swing.JTable tablaDesechable;
     public javax.swing.JTable tblBultos;
     public javax.swing.JTable tblNV;
