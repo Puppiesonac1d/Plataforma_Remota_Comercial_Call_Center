@@ -68,6 +68,8 @@ public class ClientesRecientes extends javax.swing.JFrame {
         txtRut = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnReiniciarFiltros = new javax.swing.JButton();
+        btnnotadecompra = new javax.swing.JButton();
+        lbCodigoo = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -279,6 +281,16 @@ public class ClientesRecientes extends javax.swing.JFrame {
             }
         });
 
+        btnnotadecompra.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        btnnotadecompra.setText("Crea Nota de Compra");
+        btnnotadecompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnotadecompraActionPerformed(evt);
+            }
+        });
+
+        lbCodigoo.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -287,7 +299,8 @@ public class ClientesRecientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnnotadecompra, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -301,8 +314,13 @@ public class ClientesRecientes extends javax.swing.JFrame {
                                 .addComponent(Filtros, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnReiniciarFiltros)))
-                        .addGap(0, 28, Short.MAX_VALUE)))
+                        .addGap(0, 53, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(596, 596, 596)
+                    .addComponent(lbCodigoo)
+                    .addContainerGap(596, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,9 +339,20 @@ public class ClientesRecientes extends javax.swing.JFrame {
                         .addComponent(btnReiniciarFiltros)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnnotadecompra)
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(582, 582, 582)
+                    .addComponent(lbCodigoo)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -573,7 +602,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
                 tblresultado.setModel(DbUtils.resultSetToTableModel(rs));
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error en comuna todas las comunas: " +ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error en comuna todas las comunas: " + ex.getMessage());
             }
         } else {
             try {
@@ -593,7 +622,7 @@ public class ClientesRecientes extends javax.swing.JFrame {
                 tblresultado.setModel(DbUtils.resultSetToTableModel(rs));
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,"Error en comuna especifica: " +ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error en comuna especifica: " + ex.getMessage());
             }
         }
     }//GEN-LAST:event_cboComuna4ItemStateChanged
@@ -601,6 +630,34 @@ public class ClientesRecientes extends javax.swing.JFrame {
     private void btnReiniciarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarFiltrosActionPerformed
         LlenarTabla();
     }//GEN-LAST:event_btnReiniciarFiltrosActionPerformed
+
+    private void btnnotadecompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnotadecompraActionPerformed
+
+        try {
+            int index = tblresultado.getSelectedRow();
+            String cliente = tblresultado.getValueAt(index, 0).toString();
+            NotaVentapriv pg = new NotaVentapriv();
+            pg.lblCodigo.setText(lbCodigoo.getText());
+            pg.setVisible(true);
+            String query = "select * from cliente as cl join  organizacion as o on cl.IDOrganizacion = o.IDOrganizacion join unidaddecompra as un on cl.idUnidadCompra=un.idUnidadCompra where IDCliente = ?  ;";
+            PreparedStatement pst = cn.prepareStatement(query);
+            pst.setString(1, cliente);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                pg.txtRutCompradorOC.setText(rs.getString("cl.Rut"));
+                pg.txtDireccionDemandanteOC.setText(rs.getString("cl.Direccion"));
+                pg.txtTelefonoComprador.setText(rs.getString("cl.Telefono"));
+                pg.txtEmail.setText(rs.getString("cl.Correo"));
+                pg.txtNombreDemandanteOC.setText(rs.getString("cl.Nombre"));
+                pg.txtUnidadCompraCliente.setText(rs.getString("un.Detalle"));
+                pg.txtrazonsocial.setText(rs.getString("cl.Razon_social"));
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnnotadecompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -643,12 +700,14 @@ public class ClientesRecientes extends javax.swing.JFrame {
     private javax.swing.JLabel b_Titulo;
     private javax.swing.JButton btnReiniciarFiltros;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnnotadecompra;
     private javax.swing.JComboBox<String> cboComuna4;
     private javax.swing.JComboBox<String> cboRegion4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public javax.swing.JLabel lbCodigoo;
     private javax.swing.JLabel lbComuna;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbOrganizacion;

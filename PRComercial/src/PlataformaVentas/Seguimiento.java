@@ -1,7 +1,5 @@
 package PlataformaVentas;
 
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -115,6 +113,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -2693,6 +2692,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -2783,6 +2783,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -2877,6 +2878,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -2971,6 +2973,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -3065,6 +3068,7 @@ public class Seguimiento extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"

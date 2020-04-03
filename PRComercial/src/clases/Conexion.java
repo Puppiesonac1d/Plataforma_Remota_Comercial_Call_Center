@@ -31,9 +31,9 @@ public class Conexion {
      Connection con = null;
      */
     private String driver = "com.mysql.jdbc.Driver";
-    private String cadenaConeccion = "jdbc:mysql://localhost:3306/acimabasededatos";
-    private String usuario = "root";
-    private String pass = "admin";
+    private String cadenaConeccion = "jdbc:mysql://acima:3306/acimabasededatos";
+    private String usuario = "Gonzalo";
+    private String pass = "MiAnCaF31";
     Connection con = null;
 
     public Connection conecta() {

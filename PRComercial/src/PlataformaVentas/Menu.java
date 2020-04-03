@@ -24,14 +24,14 @@ import net.proteanit.sql.DbUtils;
  * @author Diego Alfaro Fierro, Diego González Romàn
  */
 public class Menu extends javax.swing.JFrame {
-    
+
     Conexion con = new Conexion();
     Connection cn = con.conecta();
     LocalDate sistFecha = LocalDate.now();
-    
+
     public Menu() {
         initComponents();
-        
+
         System.out.println(jPanel1.getWidth());
         jPanel1.setBackground(new Color(0, 0, 0, 30));
         jPanel1.revalidate();
@@ -47,9 +47,9 @@ public class Menu extends javax.swing.JFrame {
          btnClientesRecientes.setEnabled(false);
          btnAgregarCliente.setEnabled(false);*/
     }
-    
+
     class horas implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Date sistHora = new Date();
@@ -441,9 +441,9 @@ public class Menu extends javax.swing.JFrame {
             llamado.setVisible(true);
             System.out.println("id previo a query" + llamado.lblIDUsuario.getText());
             int id = Integer.parseInt(llamado.lblIDUsuario.getText());
-            
+
             System.out.println("ID EN QUERY: " + id);
-            
+
             String query1 = "Select co.IDContacto, co.correo AS 'Correo',co.Nombre, co.Numero,\n"
                     + "org.NombreOrganizacion,r.nombreRegion AS 'Region',com.NombreComuna,\n"
                     + "co.EstadoRespuesta as 'Estado de Respuesta' FROM contactos co join region r on co.idRegion = r.idRegion\n"
@@ -455,7 +455,7 @@ public class Menu extends javax.swing.JFrame {
             pst1.setInt(1, id);
             ResultSet rs1 = pst1.executeQuery();
             llamado.tblLlamados.setModel(DbUtils.resultSetToTableModel(rs1));
-            
+
             String query2 = "Select co.IDContacto,co.correo AS 'Correo',co.Nombre,co.Numero,org.NombreOrganizacion,r.nombreRegion AS 'Region',\n"
                     + "com.NombreComuna,co.EstadoRespuesta as 'Estado de Respuesta'\n"
                     + "FROM contactos co join region r on co.idRegion = r.idRegion\n"
@@ -470,7 +470,7 @@ public class Menu extends javax.swing.JFrame {
             pst2.setInt(1, id);
             ResultSet rs2 = pst2.executeQuery();
             llamado.tblNoLlamadosSinRespuesta.setModel(DbUtils.resultSetToTableModel(rs2));
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
@@ -528,7 +528,7 @@ public class Menu extends javax.swing.JFrame {
     private void btnSeguimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguimientoActionPerformed
         try {
             Seguimiento seguimiento = new Seguimiento();
-            
+
             seguimiento.setVisible(true);
             String query = "    \n"
                     + "SELECT \n"
@@ -600,6 +600,7 @@ public class Menu extends javax.swing.JFrame {
                     + "            'NO SE HA ASIGNADO UNA FACTURA') AS 'FACTURA',\n"
                     + "    IFNULL(sa.ordenTransporte,\n"
                     + "            'NO SE HA ASIGNADO UNA ORDEN DE TRANSPORTE') AS 'ORDEN DE TRANSPORTE'\n"
+                    + ", IFNULL(sa.tipoTransporte, '-') AS 'TRANSPORTE' \n"
                     + "FROM\n"
                     + "    ordenTrabajo ot\n"
                     + "        LEFT JOIN\n"
@@ -614,7 +615,7 @@ public class Menu extends javax.swing.JFrame {
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             seguimiento.tblNV.setModel(DbUtils.resultSetToTableModel(rs));
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage()
             );
@@ -629,7 +630,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             String correo = "";
             String pass = "";
-            
+
             String query = "SELECT correoUsuario, pass from usuario where idUsuario = 8";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
@@ -638,11 +639,11 @@ public class Menu extends javax.swing.JFrame {
                 correo = rs.getString(1);
                 pass = rs.getString(2);
             }
-            
+
             if (txtCorreo.getText().equals(correo) && txtPass.getText().equals(pass)) {
                 Notas_Venta_Sin_Stock nv = new Notas_Venta_Sin_Stock();
                 nv.setVisible(true);
-                
+
                 txtCorreo.setText("");
                 txtPass.setText("");
                 autorizacion.dispose();
@@ -673,7 +674,7 @@ public class Menu extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
