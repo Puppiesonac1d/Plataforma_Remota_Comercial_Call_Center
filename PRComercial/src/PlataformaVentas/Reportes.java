@@ -6,12 +6,29 @@
 package PlataformaVentas;
 
 import clases.Conexion;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -45,7 +62,7 @@ public class Reportes extends javax.swing.JFrame {
             PreparedStatement pst1 = cn.prepareStatement(query1);
 
             java.sql.ResultSet rs1 = pst1.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs1));
+            tblProductosVendidos.setModel(DbUtils.resultSetToTableModel(rs1));
         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,12 +79,26 @@ public class Reportes extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductosVendidos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtIDProducto = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnReiniciarID = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNombreProducto = new javax.swing.JTextField();
+        btnBuscarNombre = new javax.swing.JButton();
+        btnReiniciarNombre = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductosVendidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,10 +109,140 @@ public class Reportes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProductosVendidos);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Productos más vendidos");
+
+        jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("ID de producto:");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnReiniciarID.setText("Reiniciar Filtro");
+        btnReiniciarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarIDActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReiniciarID)
+                .addContainerGap(527, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnReiniciarID))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Filtrar por ID de producto", jPanel1);
+
+        jLabel3.setText("Nombre de Producto");
+
+        btnBuscarNombre.setText("Buscar");
+        btnBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarNombreActionPerformed(evt);
+            }
+        });
+
+        btnReiniciarNombre.setText("Reiniciar Filtro");
+        btnReiniciarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarNombreActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReiniciarNombre)
+                .addContainerGap(505, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarNombre)
+                    .addComponent(btnReiniciarNombre))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1122, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Filtrar por Nombre de Producto", jPanel2);
+
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        btnExportar.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnExportar.setText("Exportar a Excel");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +251,14 @@ public class Reportes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExportar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,12 +267,202 @@ public class Reportes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir)
+                    .addComponent(btnExportar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            String query1 = "SELECT \n"
+                    + "    CODIGOPRODUCTO AS 'Código de Producto',\n"
+                    + "    nombreProducto AS 'Nombre de Producto',\n"
+                    + "    SUM(CANTIDAD) AS 'Vendidos',\n"
+                    + "    (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO) AS 'Total de productos',\n"
+                    + "    ((SUM(CANTIDAD) * 100) / (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO)) AS 'PORCENTAJE DE VENDIDOS VS TOTAL DE PRODUCTOS'\n"
+                    + "FROM\n"
+                    + "    detalleordentrabajo\n"
+                    + "    WHERE CODIGOPRODUCTO = ?\n"
+                    + "GROUP BY NOMBREPRODUCTO\n"
+                    + "ORDER BY SUM(CANTIDAD) DESC;";
+            PreparedStatement pst1 = cn.prepareStatement(query1);
+            pst1.setString(1, txtIDProducto.getText());
+            java.sql.ResultSet rs1 = pst1.executeQuery();
+            tblProductosVendidos.setModel(DbUtils.resultSetToTableModel(rs1));
+        } catch (SQLException ex) {
+            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnReiniciarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarIDActionPerformed
+        try {
+            String query1 = "SELECT \n"
+                    + "    CODIGOPRODUCTO AS 'Código de Producto',\n"
+                    + "    nombreProducto AS 'Nombre de Producto',\n"
+                    + "    SUM(CANTIDAD) AS 'Vendidos',\n"
+                    + "    (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO) AS 'Total de productos',\n"
+                    + "    ((SUM(CANTIDAD) * 100) / (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO)) AS 'PORCENTAJE DE VENDIDOS VS TOTAL DE PRODUCTOS'\n"
+                    + "FROM\n"
+                    + "    detalleordentrabajo\n"
+                    + "GROUP BY NOMBREPRODUCTO\n"
+                    + "ORDER BY SUM(CANTIDAD) DESC;";
+            PreparedStatement pst1 = cn.prepareStatement(query1);
+            java.sql.ResultSet rs1 = pst1.executeQuery();
+            tblProductosVendidos.setModel(DbUtils.resultSetToTableModel(rs1));
+        } catch (SQLException ex) {
+            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReiniciarIDActionPerformed
+
+    private void btnBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreActionPerformed
+        try {
+            String query1 = "SELECT \n"
+                    + "    CODIGOPRODUCTO AS 'Código de Producto',\n"
+                    + "    nombreProducto AS 'Nombre de Producto',\n"
+                    + "    SUM(CANTIDAD) AS 'Vendidos',\n"
+                    + "    (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO) AS 'Total de productos',\n"
+                    + "    ((SUM(CANTIDAD) * 100) / (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO)) AS 'PORCENTAJE DE VENDIDOS VS TOTAL DE PRODUCTOS'\n"
+                    + "FROM\n"
+                    + "    detalleordentrabajo\n"
+                    + "    WHERE nombreProducto RLIKE ?\n"
+                    + "GROUP BY NOMBREPRODUCTO\n"
+                    + "ORDER BY SUM(CANTIDAD) DESC;";
+            PreparedStatement pst1 = cn.prepareStatement(query1);
+            pst1.setString(1, txtNombreProducto.getText());
+            java.sql.ResultSet rs1 = pst1.executeQuery();
+            tblProductosVendidos.setModel(DbUtils.resultSetToTableModel(rs1));
+        } catch (SQLException ex) {
+            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarNombreActionPerformed
+
+    private void btnReiniciarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarNombreActionPerformed
+        try {
+            String query1 = "SELECT \n"
+                    + "    CODIGOPRODUCTO AS 'Código de Producto',\n"
+                    + "    nombreProducto AS 'Nombre de Producto',\n"
+                    + "    SUM(CANTIDAD) AS 'Vendidos',\n"
+                    + "    (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO) AS 'Total de productos',\n"
+                    + "    ((SUM(CANTIDAD) * 100) / (SELECT \n"
+                    + "            SUM(CANTIDAD)\n"
+                    + "        FROM\n"
+                    + "            DETALLEORDENTRABAJO)) AS 'PORCENTAJE DE VENDIDOS VS TOTAL DE PRODUCTOS'\n"
+                    + "FROM\n"
+                    + "    detalleordentrabajo\n"
+                    + "GROUP BY NOMBREPRODUCTO\n"
+                    + "ORDER BY SUM(CANTIDAD) DESC;";
+            PreparedStatement pst1 = cn.prepareStatement(query1);
+            java.sql.ResultSet rs1 = pst1.executeQuery();
+            tblProductosVendidos.setModel(DbUtils.resultSetToTableModel(rs1));
+        } catch (SQLException ex) {
+            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReiniciarNombreActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        try {
+
+            String ruta = "";
+
+            JFileChooser dlg = new JFileChooser();
+            dlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int option = dlg.showOpenDialog(this);
+
+            if (option == JFileChooser.APPROVE_OPTION) {
+                File f = dlg.getSelectedFile();
+                ruta = f.toString();
+            }
+            //Fecha
+            Date sistFecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-YYYY");
+            Date sistHora = new Date();
+            String pmAm = "hh:mm a";
+            SimpleDateFormat format = new SimpleDateFormat(pmAm);
+            Calendar hoy = Calendar.getInstance();
+            String hora = (String.format(format.format(sistHora), hoy));
+            hora = hora.replace(":", "-");
+
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Productos más vendidos");
+
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            for (int i = 0; i < tblProductosVendidos.getColumnCount(); i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(tblProductosVendidos.getColumnName(i));
+                cell.setCellStyle(headerCellStyle);
+            }
+
+            // Create Other rows and cells with contacts data
+            int rowNum = 1;
+
+            for (int i = 0; i < tblProductosVendidos.getRowCount(); i++) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(tblProductosVendidos.getValueAt(i, 0).toString());
+                row.createCell(1).setCellValue(tblProductosVendidos.getValueAt(i, 1).toString());
+                row.createCell(2).setCellValue(tblProductosVendidos.getValueAt(i, 2).toString());
+                row.createCell(3).setCellValue(tblProductosVendidos.getValueAt(i, 3).toString());
+                row.createCell(4).setCellValue(tblProductosVendidos.getValueAt(i, 4).toString());
+
+            }
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < tblProductosVendidos.getColumnCount(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            try ( // Write the output to a file
+                    FileOutputStream fileOut = new FileOutputStream(ruta + "\\" + "analisis_ventas_productos" + formato.format(sistFecha) + "_hora_" + hora + ".xlsx")) {
+                workbook.write(fileOut);
+            }
+            JOptionPane.showMessageDialog(null, "Documento Creado");
+        } catch (HeadlessException | IOException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,8 +500,22 @@ public class Reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarNombre;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnReiniciarID;
+    private javax.swing.JButton btnReiniciarNombre;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblProductosVendidos;
+    private javax.swing.JTextField txtIDProducto;
+    private javax.swing.JTextField txtNombreProducto;
     // End of variables declaration//GEN-END:variables
 }

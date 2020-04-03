@@ -24,14 +24,14 @@ import net.proteanit.sql.DbUtils;
  * @author Diego Alfaro Fierro, Diego González Romàn
  */
 public class Menu extends javax.swing.JFrame {
-
+    
     Conexion con = new Conexion();
     Connection cn = con.conecta();
     LocalDate sistFecha = LocalDate.now();
-
+    
     public Menu() {
         initComponents();
-
+        
         System.out.println(jPanel1.getWidth());
         jPanel1.setBackground(new Color(0, 0, 0, 30));
         jPanel1.revalidate();
@@ -47,9 +47,9 @@ public class Menu extends javax.swing.JFrame {
          btnClientesRecientes.setEnabled(false);
          btnAgregarCliente.setEnabled(false);*/
     }
-
+    
     class horas implements ActionListener {
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             Date sistHora = new Date();
@@ -89,6 +89,7 @@ public class Menu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnSeguimiento = new javax.swing.JButton();
         btnGestionarNV = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -177,7 +178,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(100, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel2.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
+        jPanel2.setLayout(new java.awt.GridLayout(6, 10, 10, 10));
 
         btnListaContactos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnListaContactos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/android-contacts_icon-icons.com_50530.png"))); // NOI18N
@@ -277,6 +278,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnGestionarNV);
+
+        btnReportes.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnReportes.setText("Reportes");
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReportes);
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlataformaVentas/Imagenes/exit_icon-icons.com_70975.png"))); // NOI18N
@@ -431,9 +441,9 @@ public class Menu extends javax.swing.JFrame {
             llamado.setVisible(true);
             System.out.println("id previo a query" + llamado.lblIDUsuario.getText());
             int id = Integer.parseInt(llamado.lblIDUsuario.getText());
-
+            
             System.out.println("ID EN QUERY: " + id);
-
+            
             String query1 = "Select co.IDContacto, co.correo AS 'Correo',co.Nombre, co.Numero,\n"
                     + "org.NombreOrganizacion,r.nombreRegion AS 'Region',com.NombreComuna,\n"
                     + "co.EstadoRespuesta as 'Estado de Respuesta' FROM contactos co join region r on co.idRegion = r.idRegion\n"
@@ -445,7 +455,7 @@ public class Menu extends javax.swing.JFrame {
             pst1.setInt(1, id);
             ResultSet rs1 = pst1.executeQuery();
             llamado.tblLlamados.setModel(DbUtils.resultSetToTableModel(rs1));
-
+            
             String query2 = "Select co.IDContacto,co.correo AS 'Correo',co.Nombre,co.Numero,org.NombreOrganizacion,r.nombreRegion AS 'Region',\n"
                     + "com.NombreComuna,co.EstadoRespuesta as 'Estado de Respuesta'\n"
                     + "FROM contactos co join region r on co.idRegion = r.idRegion\n"
@@ -460,7 +470,7 @@ public class Menu extends javax.swing.JFrame {
             pst2.setInt(1, id);
             ResultSet rs2 = pst2.executeQuery();
             llamado.tblNoLlamadosSinRespuesta.setModel(DbUtils.resultSetToTableModel(rs2));
-
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
@@ -518,7 +528,7 @@ public class Menu extends javax.swing.JFrame {
     private void btnSeguimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguimientoActionPerformed
         try {
             Seguimiento seguimiento = new Seguimiento();
-
+            
             seguimiento.setVisible(true);
             String query = "    \n"
                     + "SELECT \n"
@@ -604,7 +614,7 @@ public class Menu extends javax.swing.JFrame {
             pst = cn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             seguimiento.tblNV.setModel(DbUtils.resultSetToTableModel(rs));
-
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage()
             );
@@ -619,7 +629,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             String correo = "";
             String pass = "";
-
+            
             String query = "SELECT correoUsuario, pass from usuario where idUsuario = 8";
             PreparedStatement pst;
             pst = cn.prepareStatement(query);
@@ -628,11 +638,11 @@ public class Menu extends javax.swing.JFrame {
                 correo = rs.getString(1);
                 pass = rs.getString(2);
             }
-
+            
             if (txtCorreo.getText().equals(correo) && txtPass.getText().equals(pass)) {
                 Notas_Venta_Sin_Stock nv = new Notas_Venta_Sin_Stock();
                 nv.setVisible(true);
-
+                
                 txtCorreo.setText("");
                 txtPass.setText("");
                 autorizacion.dispose();
@@ -643,6 +653,11 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.setVisible(true);
+    }//GEN-LAST:event_btnReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -658,7 +673,7 @@ public class Menu extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -693,6 +708,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnClientesRecientes1;
     private javax.swing.JButton btnGestionarNV;
     private javax.swing.JButton btnListaContactos;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeguimiento;
     private javax.swing.JButton btnSeleccionaCotizacion;
