@@ -424,7 +424,6 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnClientesRecientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesRecientesActionPerformed
-
         try {
             CambiarEstadoLlamado llamado = new CambiarEstadoLlamado();
             llamado.lblIDUsuario.setText(idMenu.getText());
@@ -465,8 +464,6 @@ public class Menu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
-
-
     }//GEN-LAST:event_btnClientesRecientesActionPerformed
 
     private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
