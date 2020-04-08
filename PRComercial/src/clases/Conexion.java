@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
 
     /*
-     private String driver = "com.mysql.jdbc.Driver";
+    private String driver = "com.mysql.jdbc.Driver";
     private String cadenaConeccion = "jdbc:mysql://acima:3306/acimabasededatos";
     private String usuario = "Gonzalo";
     private String pass = "MiAnCaF31";

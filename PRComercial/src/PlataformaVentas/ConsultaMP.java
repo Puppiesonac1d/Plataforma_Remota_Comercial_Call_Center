@@ -765,15 +765,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             new String [] {
                 "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tblProductosPendientes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tblProductosPendientesKeyPressed(evt);
@@ -788,10 +780,10 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtQty.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtQty.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtQtyInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtQty.addActionListener(new java.awt.event.ActionListener() {
@@ -846,6 +838,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 "N° de NV", "Código de OC", "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
+        tblPaso.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblPaso);
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -1693,9 +1686,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(txtFechaEnvioOC, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtDireccionEnvioFactura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(158, 158, 158)
-                            .addComponent(txtDireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel16)
@@ -1730,29 +1720,6 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addComponent(jLabel17))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel22)
-                                .addComponent(jLabel21)
-                                .addComponent(jLabel19)
-                                .addComponent(jLabel14))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombreOC, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel26)
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel23)
-                                .addComponent(jLabel20))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(txtMetodoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtFechaAceptacion)
-                                .addComponent(txtFormaPago)
-                                .addComponent(txtContactoOC)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(14, 14, 14)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1775,7 +1742,33 @@ public class ConsultaMP extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(btnGuardarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jTabbedPane1))
+                        .addComponent(jTabbedPane1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel22)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel19)
+                                        .addComponent(jLabel14))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtNombreOC, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel26)
+                                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel23)
+                                        .addComponent(jLabel20)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(158, 158, 158)
+                                    .addComponent(txtDireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFechaAceptacion)
+                                .addComponent(txtFormaPago)
+                                .addComponent(txtContactoOC)
+                                .addComponent(txtMetodoDespacho))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1999,7 +1992,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1260, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -3247,15 +3240,15 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             for (int i = 0; i < index; i++) {
 
-                int precioUnitario = Integer.parseInt(tblMP.getValueAt(i, 6).toString());
+                double precioUnitario = Double.parseDouble(tblMP.getValueAt(i, 6).toString());
 
-                int calcular = (int) (precioUnitario - (precioUnitario * descuento));
+                double calcular = (precioUnitario - (precioUnitario * descuento));
 
-                int total = calcular * Integer.parseInt(tblMP.getValueAt(i, 2).toString());
+                double total = calcular * Double.parseDouble(tblMP.getValueAt(i, 2).toString());
 
                 System.out.println("Calculo: " + calcular);
 
-                row[0] = tblMP.getValueAt(i, 0).toString();
+                row[0] = tblMP.getValueAt(i, 0).toString().replace(" ", "");
                 row[1] = tblMP.getValueAt(i, 1).toString();
                 row[2] = tblMP.getValueAt(i, 2).toString();
                 row[3] = tblMP.getValueAt(i, 5).toString();
@@ -3309,15 +3302,15 @@ public class ConsultaMP extends javax.swing.JFrame {
 
             for (int i = 0; i < index; i++) {
 
-                int precioUnitario = Integer.parseInt(tblMP.getValueAt(i, 6).toString());
+                double precioUnitario = Double.parseDouble(tblMP.getValueAt(i, 6).toString());
 
-                int calcular = (int) (precioUnitario - (precioUnitario * 0));
+                double calcular = (precioUnitario - (precioUnitario * 0));
 
-                int total = calcular * Integer.parseInt(tblMP.getValueAt(i, 2).toString());
+                double total = calcular * Double.parseDouble(tblMP.getValueAt(i, 2).toString());
 
                 System.out.println("Calculo: " + calcular);
 
-                row[0] = tblMP.getValueAt(i, 0).toString();
+                row[0] = tblMP.getValueAt(i, 0).toString().replace(" ", "");
                 row[1] = tblMP.getValueAt(i, 1).toString();
                 row[2] = tblMP.getValueAt(i, 2).toString();
                 row[3] = tblMP.getValueAt(i, 5).toString();
@@ -3387,18 +3380,18 @@ public class ConsultaMP extends javax.swing.JFrame {
                         tblProductosPendientes.clearSelection();
                         tblPaso.clearSelection();
 
-                        int sumCantidad = 0;
+                        double sumCantidad = 0;
                         for (int i = 0; i < tblProductosPendientes.getRowCount(); i++) {
-                            sumCantidad = sumCantidad + Integer.parseInt(tblProductosPendientes.getValueAt(i, 2).toString());
+                            sumCantidad = sumCantidad + Double.parseDouble(tblProductosPendientes.getValueAt(i, 2).toString());
                         }
 
                         for (int x = 0; x < tblPaso.getRowCount(); x++) {
-                            int cantidad = Integer.parseInt(tblPaso.getValueAt(x, 4).toString());
-                            int precioUnitario = Integer.parseInt(tblPaso.getValueAt(x, 6).toString());
-                            int descuento = Integer.parseInt(tblPaso.getValueAt(x, 7).toString());
-                            int cargos = Integer.parseInt(tblPaso.getValueAt(x, 8).toString());
+                            double cantidad = Double.parseDouble(tblPaso.getValueAt(x, 4).toString());
+                            double precioUnitario = Double.parseDouble(tblPaso.getValueAt(x, 6).toString());
+                            double descuento = Double.parseDouble(tblPaso.getValueAt(x, 7).toString());
+                            double cargos = Double.parseDouble(tblPaso.getValueAt(x, 8).toString());
 
-                            int calculo = (precioUnitario * cantidad) + descuento + cargos;
+                            double calculo = (precioUnitario * cantidad) + descuento + cargos;
                             tblPaso.setValueAt(calculo, x, 9);
                         }
 
@@ -3406,7 +3399,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Ya se llegó al límite de la cantidad seleccionada de productos");
                         }
 
-                    } else if (Integer.parseInt(txtQty.getText()) < 0) {
+                    } else if (Double.parseDouble(txtQty.getText()) < 0) {
                         JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
                     } else {
                         JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");

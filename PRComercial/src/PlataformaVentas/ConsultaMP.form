@@ -933,8 +933,8 @@
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="8" rowCount="0">
-                                        <Column editable="false" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
-                                        <Column editable="false" title="Producto" type="java.lang.Object"/>
+                                        <Column editable="true" title="C&#xf3;digo / ID licitaci&#xf3;n" type="java.lang.Object"/>
+                                        <Column editable="true" title="Producto" type="java.lang.Object"/>
                                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
                                         <Column editable="true" title="Moneda" type="java.lang.Object"/>
                                         <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
@@ -1147,7 +1147,7 @@
                                       </TableColumnModel>
                                     </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
                                 </Component>
@@ -2151,10 +2151,6 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="158" pref="158" max="-2" attributes="0"/>
-                                          <Component id="txtDireccionDespacho" min="-2" pref="399" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -2199,34 +2195,6 @@
                                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNombreOC" min="-2" pref="399" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel25" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                              <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="txtMetodoDespacho" min="-2" pref="435" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="txtFechaAceptacion" max="32767" attributes="0"/>
-                                              <Component id="txtFormaPago" max="32767" attributes="0"/>
-                                              <Component id="txtContactoOC" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -2257,6 +2225,39 @@
                                           <Component id="btnGuardarOrden" min="-2" pref="1157" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txtNombreOC" min="-2" pref="399" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel25" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                      <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="158" pref="158" max="-2" attributes="0"/>
+                                                  <Component id="txtDireccionDespacho" min="-2" pref="399" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtFechaAceptacion" max="32767" attributes="0"/>
+                                              <Component id="txtFormaPago" max="32767" attributes="0"/>
+                                              <Component id="txtContactoOC" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtMetodoDespacho" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
