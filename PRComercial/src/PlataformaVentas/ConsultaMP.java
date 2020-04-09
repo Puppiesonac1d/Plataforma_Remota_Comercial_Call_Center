@@ -3845,18 +3845,19 @@ public class ConsultaMP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnBorrarNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarNVActionPerformed
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblPaso.getModel();
+        // Se obtiene el numero de columna seleccionado
         try {
-            DefaultTableModel model = (DefaultTableModel) tblPaso.getModel();
-            int indexNV = tblPaso.getSelectedRow();
-            int cantidad = Integer.parseInt(tblPaso.getValueAt(indexNV, 4).toString());
-            int indexOC = tblProductosPendientes.getSelectedRow();
-            int cantidadOC = Integer.parseInt(tblProductosPendientes.getValueAt(indexOC, 2).toString());
-            cantidadOC = cantidadOC + cantidad;
-            model.removeRow(indexNV);
-            tblProductosPendientes.setValueAt(cantidadOC, indexOC, 2);
+            int seleccion1 = tblPaso.getSelectedRow();
+            modeloTabla.removeRow(seleccion1);
+
+            JOptionPane.showMessageDialog(null, "Producto borrado de Selección");
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
         }
+
+
     }//GEN-LAST:event_btnBorrarNVActionPerformed
 
     private void tblMPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMPMouseClicked
