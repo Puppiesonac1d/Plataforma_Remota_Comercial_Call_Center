@@ -1569,7 +1569,7 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         btnNVParcializada.setBackground(new java.awt.Color(0, 204, 0));
         btnNVParcializada.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnNVParcializada.setText("1-Definir Entrega Parcializada y Guías de Despacho");
+        btnNVParcializada.setText("1.- Parcialización de Orden de Compra");
         btnNVParcializada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNVParcializadaActionPerformed(evt);
@@ -1766,9 +1766,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtFechaAceptacion)
-                                .addComponent(txtFormaPago)
                                 .addComponent(txtContactoOC)
-                                .addComponent(txtMetodoDespacho))))
+                                .addComponent(txtMetodoDespacho)
+                                .addComponent(txtFormaPago))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1831,13 +1831,13 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(txtDireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(txtMetodoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMetodoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(txtDireccionEnvioFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(txtFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -1992,7 +1992,7 @@ public class ConsultaMP extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1260, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -3264,7 +3264,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         }
     }
     private void btnNVParcializadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNVParcializadaActionPerformed
-
+        /*
         String convenio = txtNombreOC.getText();
         boolean isInsumos = convenio.contains("2239-16-LR15");
         String insumos = "2239-16-LR15";
@@ -3292,36 +3292,39 @@ public class ConsultaMP extends javax.swing.JFrame {
         if (isEmergencia) {
             cargarParcializacion(hardware);
         } else if (isInsumos == false && isDidactico == false && isNeumaticos == false && isHardware == false && isEmergencia == false) {
-            //Pasar la información de los productos
-            System.out.println("Encontrado");
-            bultos.setVisible(true);
-            int index = tblMP.getRowCount();
+         }
+         */
 
-            DefaultTableModel modeloPendientes = (DefaultTableModel) tblProductosPendientes.getModel();
-            Object[] row = new Object[14];
+        //Pasar la información de los productos
+        System.out.println("Encontrado");
+        bultos.setVisible(true);
+        int index = tblMP.getRowCount();
 
-            for (int i = 0; i < index; i++) {
+        DefaultTableModel modeloPendientes = (DefaultTableModel) tblProductosPendientes.getModel();
+        Object[] row = new Object[14];
 
-                double precioUnitario = Double.parseDouble(tblMP.getValueAt(i, 6).toString());
+        for (int i = 0; i < index; i++) {
 
-                double calcular = (precioUnitario - (precioUnitario * 0));
+            double precioUnitario = Double.parseDouble(tblMP.getValueAt(i, 6).toString());
 
-                double total = calcular * Double.parseDouble(tblMP.getValueAt(i, 2).toString());
+            double calcular = (precioUnitario - (precioUnitario * 0));
 
-                System.out.println("Calculo: " + calcular);
+            double total = calcular * Double.parseDouble(tblMP.getValueAt(i, 2).toString());
 
-                row[0] = tblMP.getValueAt(i, 0).toString().replace(" ", "");
-                row[1] = tblMP.getValueAt(i, 1).toString();
-                row[2] = tblMP.getValueAt(i, 2).toString();
-                row[3] = tblMP.getValueAt(i, 5).toString();
-                row[4] = calcular;
-                row[5] = tblMP.getValueAt(i, 7).toString();
-                row[6] = tblMP.getValueAt(i, 8).toString();
-                row[7] = total;
+            System.out.println("Calculo: " + calcular);
 
-                modeloPendientes.addRow(row);
-            }
+            row[0] = tblMP.getValueAt(i, 0).toString().replace(" ", "");
+            row[1] = tblMP.getValueAt(i, 1).toString();
+            row[2] = tblMP.getValueAt(i, 2).toString();
+            row[3] = tblMP.getValueAt(i, 5).toString();
+            row[4] = calcular;
+            row[5] = tblMP.getValueAt(i, 7).toString();
+            row[6] = tblMP.getValueAt(i, 8).toString();
+            row[7] = total;
+
+            modeloPendientes.addRow(row);
         }
+
 
     }//GEN-LAST:event_btnNVParcializadaActionPerformed
 
@@ -3848,9 +3851,31 @@ public class ConsultaMP extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel) tblPaso.getModel();
         // Se obtiene el numero de columna seleccionado
         try {
+            //Obtener la fila
             int seleccion1 = tblPaso.getSelectedRow();
-            modeloTabla.removeRow(seleccion1);
 
+            int cantidadTablaPaso = 0;
+            //cantidadPendiente
+            cantidadTablaPaso = Integer.parseInt(tblPaso.getValueAt(seleccion1, 4).toString());
+            System.out.println("Cantidad:" + cantidadTablaPaso);
+
+            String idProducto = tblPaso.getValueAt(seleccion1, 2).toString();
+
+            int cantFilas = tblProductosPendientes.getRowCount();
+
+            for (int i = 0; i < cantFilas; i++) {
+                String idPendiente = tblProductosPendientes.getValueAt(i, 0).toString();
+                int cantidadPendientes = Integer.parseInt(tblProductosPendientes.getValueAt(i, 2).toString());
+                if (idProducto.equals(idPendiente)) {
+                    cantidadPendientes = cantidadPendientes + cantidadTablaPaso;
+                    //SUMA CANTIDADES PENDIENTES
+                    System.out.println("Cantidad de pendientes + el otro valor..." + cantidadPendientes);
+                    tblProductosPendientes.setValueAt(cantidadPendientes, i, 2);
+                }
+            }
+
+            //Borrar el elemento
+            modeloTabla.removeRow(seleccion1);
             JOptionPane.showMessageDialog(null, "Producto borrado de Selección");
 
         } catch (Exception ex) {
