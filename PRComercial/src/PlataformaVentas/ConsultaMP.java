@@ -140,6 +140,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel84 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
+        rdbKit = new javax.swing.JRadioButton();
         btnAgregarNV = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPaso = new javax.swing.JTable();
@@ -800,6 +801,14 @@ public class ConsultaMP extends javax.swing.JFrame {
             }
         });
 
+        rdbKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        rdbKit.setText("Kit");
+        rdbKit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbKitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -809,7 +818,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addComponent(jLabel84)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(620, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rdbKit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -817,8 +828,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel84)
-                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdbKit))
+                .addGap(9, 9, 9))
         );
 
         btnAgregarNV.setBackground(new java.awt.Color(0, 160, 39));
@@ -1827,11 +1839,12 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(jLabel20)
                     .addComponent(txtFechaAceptacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(txtDireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(txtMetodoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMetodoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(txtDireccionDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel23)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
@@ -3304,15 +3317,11 @@ public class ConsultaMP extends javax.swing.JFrame {
         Object[] row = new Object[14];
 
         for (int i = 0; i < index; i++) {
-
+            //Analizar si el item pertenece o no a un KIT
             double precioUnitario = Double.parseDouble(tblMP.getValueAt(i, 6).toString());
-
             double calcular = (precioUnitario - (precioUnitario * 0));
-
             double total = calcular * Double.parseDouble(tblMP.getValueAt(i, 2).toString());
-
             System.out.println("Calculo: " + calcular);
-
             row[0] = tblMP.getValueAt(i, 0).toString().replace(" ", "");
             row[1] = tblMP.getValueAt(i, 1).toString();
             row[2] = tblMP.getValueAt(i, 2).toString();
@@ -3321,7 +3330,6 @@ public class ConsultaMP extends javax.swing.JFrame {
             row[5] = tblMP.getValueAt(i, 7).toString();
             row[6] = tblMP.getValueAt(i, 8).toString();
             row[7] = total;
-
             modeloPendientes.addRow(row);
         }
 
@@ -3916,6 +3924,33 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblProductosPendientesKeyPressed
 
+    private void rdbKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbKitActionPerformed
+        if (rdbKit.isSelected()) {
+            try {
+                String validador = "";
+                int index = tblProductosPendientes.getSelectedRow();
+
+                String query = "SELECT idProducto from kits where idProducto = ?";
+                PreparedStatement pst;
+                pst = cn.prepareStatement(query);
+                pst.setString(1, tblProductosPendientes.getValueAt(index, 0).toString());
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    validador = rs.getString(1);
+                }
+                System.out.println("" + validador);
+
+                if (tblProductosPendientes.getValueAt(index, 0).toString().equals(validador)) {
+                    System.out.println("Existe");
+                } else {
+                    System.out.println("No existe");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_rdbKitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4100,6 +4135,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreProducto;
     private javax.swing.JPanel panelConsultaMP;
     private javax.swing.JPanel panelIngresoProducto1;
+    private javax.swing.JRadioButton rdbKit;
     private javax.swing.JTable tblAgregarProdOT;
     private javax.swing.JTable tblMP;
     private javax.swing.JTable tblPaso;
