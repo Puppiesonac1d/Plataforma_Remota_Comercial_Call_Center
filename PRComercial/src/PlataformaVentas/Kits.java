@@ -85,13 +85,8 @@ public class Kits extends javax.swing.JFrame {
 
         AgregarProducto = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombreProducto = new javax.swing.JTextField();
-        cmbCM = new javax.swing.JComboBox<>();
-        cmbMaterial = new javax.swing.JComboBox<>();
-        cmbTalla = new javax.swing.JComboBox<>();
-        txtIDINV = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPrecioCompra = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -108,36 +103,30 @@ public class Kits extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtNombreKit = new javax.swing.JTextField();
         btnConfirmarKit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbCM = new javax.swing.JComboBox<>();
+        cmbMaterial = new javax.swing.JComboBox<>();
+        cmbTalla = new javax.swing.JComboBox<>();
+        txtIDINV = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        btnBorrar = new javax.swing.JButton();
 
         AgregarProducto.setMinimumSize(new java.awt.Dimension(1148, 260));
         AgregarProducto.setPreferredSize(new java.awt.Dimension(1148, 260));
         AgregarProducto.setResizable(false);
         AgregarProducto.setSize(new java.awt.Dimension(1148, 260));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel2.setText("SKU:");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel3.setText("Nombre de Producto:");
 
         txtNombreProducto.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
-        cmbCM.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        cmbCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Convenio Marco" }));
-
-        cmbMaterial.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        cmbMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Material" }));
-
-        cmbTalla.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        cmbTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Talla" }));
-
-        txtIDINV.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        txtIDINV.setText("0");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel4.setText("Precio de Compra:");
 
         txtPrecioCompra.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtPrecioCompra.setText("0");
+        txtPrecioCompra.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel5.setText("Precio de Venta:");
@@ -153,7 +142,7 @@ public class Kits extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel7.setText("Stock:");
+        jLabel7.setText("Cantidad:");
 
         txtStock.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
@@ -170,40 +159,19 @@ public class Kits extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(cmbCM, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbTalla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIDINV))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreProducto)
-                                    .addComponent(txtPrecioCompra)
-                                    .addComponent(txtPrecioVenta)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecioVenta)
+                            .addComponent(txtPrecioCompra)
+                            .addComponent(txtNombreProducto))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbCM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIDINV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,7 +189,7 @@ public class Kits extends javax.swing.JFrame {
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(btnConfirmar)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AgregarProductoLayout = new javax.swing.GroupLayout(AgregarProducto.getContentPane());
@@ -244,7 +212,7 @@ public class Kits extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel1.setText("ID de Grupo / Kit:");
+        jLabel1.setText("ID de Convenio Marco:");
 
         txtIDKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtIDKit.setToolTipText("");
@@ -254,7 +222,7 @@ public class Kits extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SKU", "Nombre de Producto", "Precio Compra", "Precio Venta", "Stock"
+                "SKU", "Nombre de Producto", "Precio Compra", "Precio Venta", "Cantidad"
             }
         ));
         tblProductos.getTableHeader().setReorderingAllowed(false);
@@ -273,7 +241,7 @@ public class Kits extends javax.swing.JFrame {
         btnVolver.setText("Volver");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel6.setText("Nombre de Grupo / Kit:");
+        jLabel6.setText("Nombre de Kit");
 
         txtNombreKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
@@ -286,6 +254,32 @@ public class Kits extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel2.setText("SKU:");
+
+        cmbCM.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Convenio Marco" }));
+
+        cmbMaterial.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Material" }));
+
+        cmbTalla.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Talla" }));
+
+        txtIDINV.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtIDINV.setText("0");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel8.setText("K-");
+
+        btnBorrar.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnBorrar.setText("Borrar Producto");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,19 +288,32 @@ public class Kits extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConfirmarKit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1348, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregarGrupo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIDKit)
-                            .addComponent(txtNombreKit))))
+                            .addComponent(txtNombreKit)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbCM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIDINV)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -318,6 +325,14 @@ public class Kits extends javax.swing.JFrame {
                     .addComponent(txtIDKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIDINV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtNombreKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -325,7 +340,8 @@ public class Kits extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarGrupo)
-                    .addComponent(btnVolver))
+                    .addComponent(btnVolver)
+                    .addComponent(btnBorrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConfirmarKit)
                 .addContainerGap())
@@ -408,12 +424,15 @@ public class Kits extends javax.swing.JFrame {
         try {
             int rowCount = tblProductos.getRowCount();
             for (int i = 0; i < rowCount; i++) {
+                //Poner el sku previamente ingresado
+                tblProductos.setValueAt("K-" + Integer.toString(cmbCM.getSelectedIndex()) + Integer.toString(cmbMaterial.getSelectedIndex()) + Integer.toString(cmbTalla.getSelectedIndex()) + txtIDINV.getText(),
+                         i, 0);
 
                 String query = "INSERT INTO KITS (idProducto,nombreKit,sku,producto,precioCosto,precioVenta,stock) VALUES (?,?,?,?,?,?,?);";
                 PreparedStatement insert = cn.prepareStatement(query);
                 insert.setString(1, txtIDKit.getText());
                 insert.setString(2, txtNombreKit.getText());
-                insert.setString(3, tblProductos.getValueAt(i, 0).toString());
+                insert.setString(3, "K-" + Integer.toString(cmbCM.getSelectedIndex()) + Integer.toString(cmbMaterial.getSelectedIndex()) + Integer.toString(cmbTalla.getSelectedIndex()) + txtIDINV.getText());
                 insert.setString(4, tblProductos.getValueAt(i, 1).toString());
                 insert.setInt(5, Integer.parseInt(tblProductos.getValueAt(i, 2).toString()));
                 insert.setInt(6, Integer.parseInt(tblProductos.getValueAt(i, 3).toString()));
@@ -422,10 +441,32 @@ public class Kits extends javax.swing.JFrame {
                 int x = insert.executeUpdate();
             }
 
+            JOptionPane.showMessageDialog(null, "Kit " + txtNombreKit.getText() + " registrado.");
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnConfirmarKitActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblProductos.getModel();
+        // Se obtiene el numero de columna seleccionado
+        try {
+            if (tblProductos.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un producto de la lista");
+            } else {
+                //Obtener la fila
+                int seleccion1 = tblProductos.getSelectedRow();
+
+                //Borrar el elemento
+                modeloTabla.removeRow(seleccion1);
+                JOptionPane.showMessageDialog(null, "Producto borrado de Selección");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,6 +506,7 @@ public class Kits extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame AgregarProducto;
     private javax.swing.JButton btnAgregarGrupo;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnConfirmarKit;
     private javax.swing.JButton btnVolver;
@@ -478,6 +520,7 @@ public class Kits extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProductos;

@@ -992,6 +992,7 @@
                                     </Property>
                                   </Properties>
                                   <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblProductosPendientesMouseClicked"/>
                                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tblProductosPendientesKeyPressed"/>
                                   </Events>
                                 </Component>
@@ -1015,7 +1016,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtQty" min="-2" pref="169" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="rdbKit" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Component id="rdbKit" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1061,7 +1062,7 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="20" style="1"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="Kit"/>
+                                    <Property name="text" type="java.lang.String" value="Producto corresponde a Kit"/>
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdbKitActionPerformed"/>

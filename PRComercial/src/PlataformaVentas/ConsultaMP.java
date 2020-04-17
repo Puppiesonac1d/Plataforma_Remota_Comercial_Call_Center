@@ -767,6 +767,11 @@ public class ConsultaMP extends javax.swing.JFrame {
                 "Código / ID licitación", "Producto", "Cantidad", "Moneda", "Precio Unitario", "Descuento", "Cargos", "Valor Total"
             }
         ));
+        tblProductosPendientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosPendientesMouseClicked(evt);
+            }
+        });
         tblProductosPendientes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tblProductosPendientesKeyPressed(evt);
@@ -781,10 +786,10 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtQty.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtQty.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtQtyInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtQty.addActionListener(new java.awt.event.ActionListener() {
@@ -802,7 +807,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         });
 
         rdbKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        rdbKit.setText("Kit");
+        rdbKit.setText("Producto corresponde a Kit");
         rdbKit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbKitActionPerformed(evt);
@@ -819,7 +824,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rdbKit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rdbKit)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -3925,31 +3930,41 @@ public class ConsultaMP extends javax.swing.JFrame {
     }//GEN-LAST:event_tblProductosPendientesKeyPressed
 
     private void rdbKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbKitActionPerformed
-        if (rdbKit.isSelected()) {
-            try {
+        try {
+            if (rdbKit.isSelected()) {
                 String validador = "";
-                int index = tblProductosPendientes.getSelectedRow();
+                int index = 0;
+                index = tblProductosPendientes.getSelectedRow();
+                if (tblProductosPendientes.getSelectionModel().isSelectionEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un kit");
 
-                String query = "SELECT idProducto from kits where idProducto = ?";
-                PreparedStatement pst;
-                pst = cn.prepareStatement(query);
-                pst.setString(1, tblProductosPendientes.getValueAt(index, 0).toString());
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    validador = rs.getString(1);
-                }
-                System.out.println("" + validador);
-
-                if (tblProductosPendientes.getValueAt(index, 0).toString().equals(validador)) {
-                    System.out.println("Existe");
                 } else {
-                    System.out.println("No existe");
+                    String query = "SELECT idProducto from kits where idProducto = ?";
+                    PreparedStatement pst;
+                    pst = cn.prepareStatement(query);
+                    pst.setString(1, tblProductosPendientes.getValueAt(index, 0).toString());
+                    ResultSet rs = pst.executeQuery();
+                    while (rs.next()) {
+                        validador = rs.getString(1);
+                    }
+                    System.out.println("" + validador);
+
+                    if (tblProductosPendientes.getValueAt(index, 0).toString().equals(validador)) {
+                        System.out.println("Existe");
+                    } else {
+                        System.out.println("No existe");
+                    }
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
+
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_rdbKitActionPerformed
+
+    private void tblProductosPendientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosPendientesMouseClicked
+        rdbKit.setSelected(false);
+    }//GEN-LAST:event_tblProductosPendientesMouseClicked
 
     /**
      * @param args the command line arguments
