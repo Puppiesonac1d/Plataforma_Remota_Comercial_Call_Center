@@ -49,6 +49,13 @@ public class Kits extends javax.swing.JFrame {
             while (rsTa.next()) {
                 cmbTalla.addItem(rsTa.getString(1));
             }
+            cmbConvenioMarco.removeAllItems();
+            String query3 = "select nombreConvenio FROM acimabasededatos.conveniomarco order by codigoConvenio desc;";
+            PreparedStatement pst3 = cn.prepareStatement(query3);
+            java.sql.ResultSet rs3 = pst3.executeQuery();
+            while (rs3.next()) {
+                cmbConvenioMarco.addItem(rs3.getString(1));
+            }
 
             int idProducto = 0;
             String queryprod = "SELECT \n"
@@ -110,9 +117,14 @@ public class Kits extends javax.swing.JFrame {
         txtIDINV = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
+        jLabel127 = new javax.swing.JLabel();
+        cmbConvenioMarco = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        txtPrecioCompraKit = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtPrecioVentaKit = new javax.swing.JTextField();
 
         AgregarProducto.setMinimumSize(new java.awt.Dimension(1148, 260));
-        AgregarProducto.setPreferredSize(new java.awt.Dimension(1148, 260));
         AgregarProducto.setResizable(false);
         AgregarProducto.setSize(new java.awt.Dimension(1148, 260));
 
@@ -280,6 +292,24 @@ public class Kits extends javax.swing.JFrame {
             }
         });
 
+        jLabel127.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel127.setText("Categoría:");
+
+        cmbConvenioMarco.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cmbConvenioMarco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Convenio Marco" }));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel9.setText("Precio Compra:");
+
+        txtPrecioCompraKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtPrecioCompraKit.setText("0");
+        txtPrecioCompraKit.setEnabled(false);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel10.setText("Precio Venta:");
+
+        txtPrecioVentaKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,6 +327,9 @@ public class Kits extends javax.swing.JFrame {
                         .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel127, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -313,7 +346,10 @@ public class Kits extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIDINV)))))
+                                .addComponent(txtIDINV))
+                            .addComponent(txtPrecioCompraKit, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cmbConvenioMarco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPrecioVentaKit))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -335,7 +371,19 @@ public class Kits extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtNombreKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel127)
+                    .addComponent(cmbConvenioMarco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPrecioCompraKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtPrecioVentaKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -423,12 +471,21 @@ public class Kits extends javax.swing.JFrame {
         //Una vez confirmado el kit
         try {
             int rowCount = tblProductos.getRowCount();
+            String cm = "";
+            String queryCM = "select * from convenioMarco where nombreConvenio = ?";
+            PreparedStatement pst4 = cn.prepareStatement(queryCM);
+            pst4.setString(1, cmbConvenioMarco.getSelectedItem().toString());
+            java.sql.ResultSet rs4 = pst4.executeQuery();
+            while (rs4.next()) {
+                cm = rs4.getString("codigoConvenio");
+            }
+
             for (int i = 0; i < rowCount; i++) {
                 //Poner el sku previamente ingresado
                 tblProductos.setValueAt("K-" + Integer.toString(cmbCM.getSelectedIndex()) + Integer.toString(cmbMaterial.getSelectedIndex()) + Integer.toString(cmbTalla.getSelectedIndex()) + txtIDINV.getText(),
-                         i, 0);
+                        i, 0);
 
-                String query = "INSERT INTO KITS (idProducto,nombreKit,sku,producto,precioCosto,precioVenta,stock) VALUES (?,?,?,?,?,?,?);";
+                String query = "INSERT INTO KITS (idProducto,nombreKit,sku,producto,precioCosto,precioVenta,cantidad) VALUES (?,?,?,?,?,?,?);";
                 PreparedStatement insert = cn.prepareStatement(query);
                 insert.setString(1, txtIDKit.getText());
                 insert.setString(2, txtNombreKit.getText());
@@ -440,8 +497,28 @@ public class Kits extends javax.swing.JFrame {
 
                 int x = insert.executeUpdate();
             }
-
+            String queryINV = "INSERT INTO inventario(`idBodega`,`idProducto`,`sku`,`nombreProducto`,codigoConvenio,`categoria`,"
+                    + "`precioventa`,`precioCosto`,`iddistribuidor`,`descripcion`,`regiones`,`condiciondespacho`,`diashabiles`,"
+                    + "`statusproducto`,`stock`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            PreparedStatement pstINV = cn.prepareStatement(queryINV);
+            pstINV.setInt(1, 1);
+            pstINV.setInt(2, Integer.parseInt(txtIDKit.getText()));
+            pstINV.setString(3, "K-" + Integer.toString(cmbCM.getSelectedIndex()) + Integer.toString(cmbMaterial.getSelectedIndex()) + Integer.toString(cmbTalla.getSelectedIndex()) + txtIDINV.getText());
+            pstINV.setString(4, txtNombreKit.getText());
+            pstINV.setString(5, cm);
+            pstINV.setString(6, cmbConvenioMarco.getSelectedItem().toString());
+            pstINV.setInt(7, Integer.parseInt(txtPrecioVentaKit.getText()));
+            pstINV.setInt(8, Integer.parseInt(txtPrecioCompraKit.getText()));
+            pstINV.setInt(9, cmbConvenioMarco.getSelectedIndex() + 1);
+            pstINV.setString(10, "-");
+            pstINV.setString(11, "-");
+            pstINV.setString(12, "-");
+            pstINV.setString(13, "-");
+            pstINV.setString(14, "Sin Stock");
+            pstINV.setInt(15, 0);
+            int x = pstINV.executeUpdate();
             JOptionPane.showMessageDialog(null, "Kit " + txtNombreKit.getText() + " registrado.");
+            this.dispose();
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -511,9 +588,12 @@ public class Kits extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmarKit;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbCM;
+    public javax.swing.JComboBox cmbConvenioMarco;
     private javax.swing.JComboBox<String> cmbMaterial;
     private javax.swing.JComboBox<String> cmbTalla;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel127;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -521,6 +601,7 @@ public class Kits extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProductos;
@@ -529,7 +610,9 @@ public class Kits extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreKit;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioCompra;
+    private javax.swing.JTextField txtPrecioCompraKit;
     private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtPrecioVentaKit;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

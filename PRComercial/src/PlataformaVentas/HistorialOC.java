@@ -125,6 +125,7 @@ public class HistorialOC extends javax.swing.JFrame {
         btnDetalleNV = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        btnKits = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 740));
@@ -403,6 +404,14 @@ public class HistorialOC extends javax.swing.JFrame {
             }
         });
 
+        btnKits.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnKits.setText("Crear Kits de Productos");
+        btnKits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKitsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -432,7 +441,8 @@ public class HistorialOC extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVolverMenu9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnKits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -460,8 +470,10 @@ public class HistorialOC extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnKits)
+                        .addGap(4, 4, 4)
                         .addComponent(btnVolverMenu9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1473,6 +1485,11 @@ public class HistorialOC extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void btnKitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKitsActionPerformed
+        Kits kit = new Kits();
+        kit.setVisible(true);
+    }//GEN-LAST:event_btnKitsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1524,6 +1541,7 @@ public class HistorialOC extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarPorOC;
     private javax.swing.JButton btnDetalleNV;
     private javax.swing.JButton btnGenerarPDFNV;
+    private javax.swing.JButton btnKits;
     private javax.swing.JButton btnVolverMenu9;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;

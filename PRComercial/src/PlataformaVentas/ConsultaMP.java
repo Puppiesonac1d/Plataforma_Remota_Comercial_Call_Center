@@ -141,6 +141,8 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel84 = new javax.swing.JLabel();
         txtQty = new javax.swing.JTextField();
         rdbKit = new javax.swing.JRadioButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tblProductosKit = new javax.swing.JTable();
         btnAgregarNV = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPaso = new javax.swing.JTable();
@@ -786,10 +788,10 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtQty.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtQty.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtQtyInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtQty.addActionListener(new java.awt.event.ActionListener() {
@@ -814,16 +816,32 @@ public class ConsultaMP extends javax.swing.JFrame {
             }
         });
 
+        tblProductosKit.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(tblProductosKit);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel84)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane10)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel84)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
                 .addComponent(rdbKit)
                 .addContainerGap())
         );
@@ -835,7 +853,9 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(jLabel84)
                     .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdbKit))
-                .addGap(9, 9, 9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         btnAgregarNV.setBackground(new java.awt.Color(0, 160, 39));
@@ -3939,23 +3959,49 @@ public class ConsultaMP extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar un kit");
 
                 } else {
-                    String query = "SELECT idProducto from kits where idProducto = ?";
-                    PreparedStatement pst;
-                    pst = cn.prepareStatement(query);
-                    pst.setString(1, tblProductosPendientes.getValueAt(index, 0).toString());
-                    ResultSet rs = pst.executeQuery();
-                    while (rs.next()) {
-                        validador = rs.getString(1);
-                    }
-                    System.out.println("" + validador);
 
-                    if (tblProductosPendientes.getValueAt(index, 0).toString().equals(validador)) {
-                        System.out.println("Existe");
-                    } else {
-                        System.out.println("No existe");
+                    //Se completó la carga de productos...
+                    //Buscar una forma de reemplazar los productos de un KIT...
+                    DefaultTableModel modelo2 = (DefaultTableModel) tblPaso.getModel();
+                    for (int r = 0; r < tblProductosPendientes.getRowCount(); r++) {
+
+                        String id = tblProductosPendientes.getValueAt(r, 0).toString();
+
+                        String query = "SELECT sku,producto,idProducto,precioVenta, cantidad from kits where idProducto = ? ;";
+                        PreparedStatement pstProd2 = cn.prepareStatement(query);
+                        pstProd2.setString(1, id);
+
+                        ResultSet rsProd2 = pstProd2.executeQuery();
+
+                        tblProductosKit.setModel(DbUtils.resultSetToTableModel(rsProd2));
+                        if (tblProductosKit.getRowCount() > 0) {
+                            int dialogo = JOptionPane.showConfirmDialog(null, "Se han detectado uno o varios Kits en la lista de productos, desea realizar un desglose de productos?");
+                            if (dialogo == JOptionPane.YES_OPTION) {
+                                //reemplazar
+                                for (int i = 0; i < tblProductosKit.getRowCount(); i++) {
+                                   
+                                    int cantidad = Integer.parseInt(txtQty.getText());
+
+                                    Object[] row = new Object[15];
+                                    row[0] = "No se ha asignado una nota de venta";
+                                    row[1] = txtOC.getText();
+                                    row[2] = tblProductosKit.getValueAt(i, 2).toString();
+                                    row[3] = tblProductosKit.getValueAt(i, 1).toString();
+                                    row[4] = cantidad;
+                                    row[5] = tblProductosPendientes.getValueAt(i, 3).toString();
+                                    row[6] = tblProductosKit.getValueAt(i, 3).toString();
+                                    row[7] = 0;
+                                    row[8] = 0;
+                                    row[9] = Double.parseDouble(tblProductosKit.getValueAt(i, 4).toString()) * Double.parseDouble(tblProductosKit.getValueAt(i, 3).toString());
+
+                                    modelo2.addRow(row);
+                                }
+                            } else {
+                                //hacer nada
+                            }
+                        }
                     }
                 }
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
@@ -4131,6 +4177,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
@@ -4156,6 +4203,7 @@ public class ConsultaMP extends javax.swing.JFrame {
     private javax.swing.JTable tblPaso;
     private javax.swing.JTable tblProdadd;
     private javax.swing.JTable tblProdsAgregadosNV;
+    private javax.swing.JTable tblProductosKit;
     private javax.swing.JTable tblProductosPendientes;
     private javax.swing.JTable tblResumenParcializada;
     private javax.swing.JTextField txtCantidad;
