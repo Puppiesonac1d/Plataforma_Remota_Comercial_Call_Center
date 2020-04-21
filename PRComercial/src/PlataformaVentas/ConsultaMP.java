@@ -498,6 +498,7 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel37.setText("Especificación de Comprador:");
 
         txtEspecificacionComprador.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtEspecificacionComprador.setText("n/a");
         txtEspecificacionComprador.setToolTipText("");
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -518,15 +519,18 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel71.setText("Descuento:");
 
         txtEspecificacionProveedor.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtEspecificacionProveedor.setText("n/a");
         txtEspecificacionProveedor.setToolTipText("");
 
         txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtCantidad.setToolTipText("");
 
         txtCargos1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtCargos1.setText("0");
         txtCargos1.setToolTipText("");
 
         txtDescuento.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        txtDescuento.setText("0");
         txtDescuento.setToolTipText("");
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -788,10 +792,10 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         txtQty.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtQty.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtQtyInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtQty.addActionListener(new java.awt.event.ActionListener() {
@@ -810,11 +814,8 @@ public class ConsultaMP extends javax.swing.JFrame {
 
         rdbKit.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rdbKit.setText("Producto corresponde a Kit");
-        rdbKit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbKitActionPerformed(evt);
-            }
-        });
+
+        jScrollPane10.setVisible(false);
 
         tblProductosKit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -835,15 +836,15 @@ public class ConsultaMP extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane10)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel84)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel84)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
                 .addComponent(rdbKit)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -854,8 +855,8 @@ public class ConsultaMP extends javax.swing.JFrame {
                     .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdbKit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAgregarNV.setBackground(new java.awt.Color(0, 160, 39));
@@ -946,14 +947,14 @@ public class ConsultaMP extends javax.swing.JFrame {
                                 .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBorrarNV, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE)
                             .addComponent(jScrollPane26, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel157, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 29, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -982,7 +983,7 @@ public class ConsultaMP extends javax.swing.JFrame {
                 .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
 
         jScrollPane6.setViewportView(jPanel11);
@@ -1431,6 +1432,20 @@ public class ConsultaMP extends javax.swing.JFrame {
         jLabel35.setText("*Impuesto Especifico:");
 
         jLabel36.setText("Total:");
+
+        txtImpuestoEspecifico.setText("$0");
+
+        txtIva.setText("$0");
+
+        txtTotal.setText("$0");
+
+        txtSubTotal.setText("$0");
+
+        txtCargos.setText("$0");
+
+        txtDcto.setText("$0");
+
+        txtNeto.setText("$0");
 
         btnCalculoTotales.setText("Calcular valores");
         btnCalculoTotales.addActionListener(new java.awt.event.ActionListener() {
@@ -3351,10 +3366,20 @@ public class ConsultaMP extends javax.swing.JFrame {
             row[1] = tblMP.getValueAt(i, 1).toString();
             row[2] = tblMP.getValueAt(i, 2).toString();
             row[3] = tblMP.getValueAt(i, 5).toString();
-            row[4] = calcular;
+            if (calcular % 1 == 0) {
+                int calculo = (int) calcular;
+                row[4] = calculo;
+            } else {
+                row[4] = calcular;
+            }
             row[5] = tblMP.getValueAt(i, 7).toString();
             row[6] = tblMP.getValueAt(i, 8).toString();
-            row[7] = total;
+            if (total % 1 == 0) {
+                int tot = (int) total;
+                row[7] = tot;
+            } else {
+                row[7] = total;
+            }
             modeloPendientes.addRow(row);
         }
 
@@ -3363,86 +3388,144 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     private void btnAgregarNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNVActionPerformed
         try {
-            //Se clona el modelo de productos pendientes
-            TableModel productosSinNV = tblProductosPendientes.getModel();
-            //Se saca la fila seleccionada
-            int indexs[] = tblProductosPendientes.getSelectedRows();
-            //Se determina la variable de fila
-            Object[] row = new Object[14];
-            //Este es el modelo al que se le pasarán datos
-            DefaultTableModel modeloNuevo = (DefaultTableModel) tblPaso.getModel();
-            //Se resta la cantidad de productos cuando se asignan
-            TableModel modelo = tblProductosPendientes.getModel();
+            if (rdbKit.isSelected()) {
+                String validador = "";
+                int index = 0;
+                index = tblProductosPendientes.getSelectedRow();
+                if (tblProductosPendientes.getSelectionModel().isSelectionEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un kit");
 
-            int indice = 0;
-            indice = tblProductosPendientes.getSelectedRow();
-
-            if (tblProductosPendientes.getValueAt(indice, 4).toString().equals("-")) {
-                JOptionPane.showMessageDialog(null, "El precio no puede ser nulo");
-            } else {
-
-                //Variable que resta
-                int cantidadInicial = 0;
-                cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 2).toString());
-                System.out.println(cantidadInicial);
-
-                if (Integer.parseInt(txtQty.getText()) < 0) {
-                    JOptionPane.showMessageDialog(null, "No debe ser número negativo");
                 } else {
-                    if (Integer.parseInt(txtQty.getText()) <= cantidadInicial && Integer.parseInt(txtQty.getText()) != 0) {
-                        //Ciclo que recorre las filas seleccionadas
-                        for (int i = 0; i < indexs.length; i++) {
 
-                            int cantidad = Integer.parseInt(txtQty.getText());
+                    //Se completó la carga de productos...
+                    //Buscar una forma de reemplazar los productos de un KIT...
+                    DefaultTableModel modelo2 = (DefaultTableModel) tblPaso.getModel();
+                    for (int r = 0; r < tblProductosPendientes.getRowCount(); r++) {
 
-                            if (cantidad <= cantidadInicial) {
-                                row[0] = "No se ha asignado una nota de venta";
-                                row[1] = txtOC.getText();
-                                row[2] = productosSinNV.getValueAt(indexs[i], 0);
-                                row[3] = productosSinNV.getValueAt(indexs[i], 1);
-                                row[4] = cantidad;
-                                row[5] = productosSinNV.getValueAt(indexs[i], 3);
-                                row[6] = productosSinNV.getValueAt(indexs[i], 4);
-                                row[7] = productosSinNV.getValueAt(indexs[i], 5);
-                                row[8] = productosSinNV.getValueAt(indexs[i], 6);
-                                row[9] = productosSinNV.getValueAt(indexs[i], 7);
+                        String id = tblProductosPendientes.getValueAt(r, 0).toString();
 
-                                modeloNuevo.addRow(row);
+                        String query = "SELECT sku,producto,idProducto,precioVenta, cantidad from kits where idProducto = ? ;";
+                        PreparedStatement pstProd2 = cn.prepareStatement(query);
+                        pstProd2.setString(1, id);
 
-                                modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
+                        ResultSet rsProd2 = pstProd2.executeQuery();
+
+                        tblProductosKit.setModel(DbUtils.resultSetToTableModel(rsProd2));
+                        if (tblProductosKit.getRowCount() > 0) {
+                            int dialogo = JOptionPane.showConfirmDialog(null, "Se han detectado uno o varios Kits en la lista de productos, desea realizar un desglose de productos?");
+                            if (dialogo == JOptionPane.YES_OPTION) {
+                                //reemplazar
+                                for (int i = 0; i < tblProductosKit.getRowCount(); i++) {
+
+                                    int cantidad = Integer.parseInt(txtQty.getText());
+
+                                    Object[] row = new Object[15];
+                                    row[0] = "No se ha asignado una nota de venta";
+                                    row[1] = txtOC.getText();
+                                    row[2] = tblProductosKit.getValueAt(i, 2).toString();
+                                    row[3] = tblProductosKit.getValueAt(i, 1).toString();
+                                    row[4] = Integer.parseInt(tblProductosKit.getValueAt(i, 4).toString()) * cantidad;
+                                    row[5] = tblProductosPendientes.getValueAt(i, 3).toString();
+                                    row[6] = tblProductosKit.getValueAt(i, 3).toString();
+                                    row[7] = 0;
+                                    row[8] = 0;
+                                    double total = (Double.parseDouble(tblProductosKit.getValueAt(i, 4).toString()) * cantidad) * Double.parseDouble(tblProductosKit.getValueAt(i, 3).toString());
+                                    if (total % 1 == 0) {
+                                        int tot = (int) total;
+                                        row[9] = tot;
+                                    } else {
+                                        row[9] = total;
+                                    }
+
+                                    modelo2.addRow(row);
+                                }
+                            } else {
+                                //hacer nada
                             }
                         }
-                        txtQty.setText("");
-                        tblProductosPendientes.clearSelection();
-                        tblPaso.clearSelection();
+                    }
+                }
+            } else {
+                //Se clona el modelo de productos pendientes
+                TableModel productosSinNV = tblProductosPendientes.getModel();
+                //Se saca la fila seleccionada
+                int indexs[] = tblProductosPendientes.getSelectedRows();
+                //Se determina la variable de fila
+                Object[] row = new Object[14];
+                //Este es el modelo al que se le pasarán datos
+                DefaultTableModel modeloNuevo = (DefaultTableModel) tblPaso.getModel();
+                //Se resta la cantidad de productos cuando se asignan
+                TableModel modelo = tblProductosPendientes.getModel();
 
-                        double sumCantidad = 0;
-                        for (int i = 0; i < tblProductosPendientes.getRowCount(); i++) {
-                            sumCantidad = sumCantidad + Double.parseDouble(tblProductosPendientes.getValueAt(i, 2).toString());
-                        }
+                int indice = 0;
+                indice = tblProductosPendientes.getSelectedRow();
 
-                        for (int x = 0; x < tblPaso.getRowCount(); x++) {
-                            double cantidad = Double.parseDouble(tblPaso.getValueAt(x, 4).toString());
-                            double precioUnitario = Double.parseDouble(tblPaso.getValueAt(x, 6).toString());
-                            double descuento = Double.parseDouble(tblPaso.getValueAt(x, 7).toString());
-                            double cargos = Double.parseDouble(tblPaso.getValueAt(x, 8).toString());
+                if (tblProductosPendientes.getValueAt(indice, 4).toString().equals("-")) {
+                    JOptionPane.showMessageDialog(null, "El precio no puede ser nulo");
+                } else {
 
-                            double calculo = (precioUnitario * cantidad) + descuento + cargos;
-                            tblPaso.setValueAt(calculo, x, 9);
-                        }
+                    //Variable que resta
+                    int cantidadInicial = 0;
+                    cantidadInicial = Integer.parseInt(tblProductosPendientes.getValueAt(indice, 2).toString());
+                    System.out.println(cantidadInicial);
 
-                        if (sumCantidad == 0) {
-                            JOptionPane.showMessageDialog(null, "Ya se llegó al límite de la cantidad seleccionada de productos");
-                        }
-
-                    } else if (Double.parseDouble(txtQty.getText()) < 0) {
-                        JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                    if (Integer.parseInt(txtQty.getText()) < 0) {
+                        JOptionPane.showMessageDialog(null, "No debe ser número negativo");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                        if (Integer.parseInt(txtQty.getText()) <= cantidadInicial && Integer.parseInt(txtQty.getText()) != 0) {
+                            //Ciclo que recorre las filas seleccionadas
+                            for (int i = 0; i < indexs.length; i++) {
+
+                                int cantidad = Integer.parseInt(txtQty.getText());
+
+                                if (cantidad <= cantidadInicial) {
+                                    row[0] = "No se ha asignado una nota de venta";
+                                    row[1] = txtOC.getText();
+                                    row[2] = productosSinNV.getValueAt(indexs[i], 0);
+                                    row[3] = productosSinNV.getValueAt(indexs[i], 1);
+                                    row[4] = cantidad;
+                                    row[5] = productosSinNV.getValueAt(indexs[i], 3);
+                                    row[6] = productosSinNV.getValueAt(indexs[i], 4);
+                                    row[7] = productosSinNV.getValueAt(indexs[i], 5);
+                                    row[8] = productosSinNV.getValueAt(indexs[i], 6);
+                                    row[9] = productosSinNV.getValueAt(indexs[i], 7);
+
+                                    modeloNuevo.addRow(row);
+
+                                    modelo.setValueAt((cantidadInicial - cantidad), indexs[i], 2);
+                                }
+                            }
+                            txtQty.setText("");
+                            tblProductosPendientes.clearSelection();
+                            tblPaso.clearSelection();
+
+                            double sumCantidad = 0;
+                            for (int i = 0; i < tblProductosPendientes.getRowCount(); i++) {
+                                sumCantidad = sumCantidad + Double.parseDouble(tblProductosPendientes.getValueAt(i, 2).toString());
+                            }
+
+                            for (int x = 0; x < tblPaso.getRowCount(); x++) {
+                                double cantidad = Double.parseDouble(tblPaso.getValueAt(x, 4).toString());
+                                double precioUnitario = Double.parseDouble(tblPaso.getValueAt(x, 6).toString());
+                                double descuento = Double.parseDouble(tblPaso.getValueAt(x, 7).toString());
+                                double cargos = Double.parseDouble(tblPaso.getValueAt(x, 8).toString());
+
+                                double calculo = (precioUnitario * cantidad) + descuento + cargos;
+                                tblPaso.setValueAt(calculo, x, 9);
+                            }
+
+                            if (sumCantidad == 0) {
+                                JOptionPane.showMessageDialog(null, "Ya se llegó al límite de la cantidad seleccionada de productos");
+                            }
+
+                        } else if (Double.parseDouble(txtQty.getText()) < 0) {
+                            JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Debe introducir una cantidad menor o igual a la mostrada en la tabla");
+                        }
                     }
                 }
             }
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: Debe seleccionar un producto..." + ex);
         }
@@ -3949,67 +4032,11 @@ public class ConsultaMP extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblProductosPendientesKeyPressed
 
-    private void rdbKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbKitActionPerformed
-        try {
-            if (rdbKit.isSelected()) {
-                String validador = "";
-                int index = 0;
-                index = tblProductosPendientes.getSelectedRow();
-                if (tblProductosPendientes.getSelectionModel().isSelectionEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar un kit");
-
-                } else {
-
-                    //Se completó la carga de productos...
-                    //Buscar una forma de reemplazar los productos de un KIT...
-                    DefaultTableModel modelo2 = (DefaultTableModel) tblPaso.getModel();
-                    for (int r = 0; r < tblProductosPendientes.getRowCount(); r++) {
-
-                        String id = tblProductosPendientes.getValueAt(r, 0).toString();
-
-                        String query = "SELECT sku,producto,idProducto,precioVenta, cantidad from kits where idProducto = ? ;";
-                        PreparedStatement pstProd2 = cn.prepareStatement(query);
-                        pstProd2.setString(1, id);
-
-                        ResultSet rsProd2 = pstProd2.executeQuery();
-
-                        tblProductosKit.setModel(DbUtils.resultSetToTableModel(rsProd2));
-                        if (tblProductosKit.getRowCount() > 0) {
-                            int dialogo = JOptionPane.showConfirmDialog(null, "Se han detectado uno o varios Kits en la lista de productos, desea realizar un desglose de productos?");
-                            if (dialogo == JOptionPane.YES_OPTION) {
-                                //reemplazar
-                                for (int i = 0; i < tblProductosKit.getRowCount(); i++) {
-                                   
-                                    int cantidad = Integer.parseInt(txtQty.getText());
-
-                                    Object[] row = new Object[15];
-                                    row[0] = "No se ha asignado una nota de venta";
-                                    row[1] = txtOC.getText();
-                                    row[2] = tblProductosKit.getValueAt(i, 2).toString();
-                                    row[3] = tblProductosKit.getValueAt(i, 1).toString();
-                                    row[4] = cantidad;
-                                    row[5] = tblProductosPendientes.getValueAt(i, 3).toString();
-                                    row[6] = tblProductosKit.getValueAt(i, 3).toString();
-                                    row[7] = 0;
-                                    row[8] = 0;
-                                    row[9] = Double.parseDouble(tblProductosKit.getValueAt(i, 4).toString()) * Double.parseDouble(tblProductosKit.getValueAt(i, 3).toString());
-
-                                    modelo2.addRow(row);
-                                }
-                            } else {
-                                //hacer nada
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaMP.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_rdbKitActionPerformed
-
     private void tblProductosPendientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosPendientesMouseClicked
         rdbKit.setSelected(false);
+        int index = tblProductosPendientes.getSelectedRow();
+        String cantidad = tblProductosPendientes.getValueAt(index, 2).toString();
+        txtQty.setText(cantidad);
     }//GEN-LAST:event_tblProductosPendientesMouseClicked
 
     /**
