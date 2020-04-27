@@ -44,6 +44,7 @@ public class Reportes extends javax.swing.JFrame {
 
     public Reportes() {
         initComponents();
+
         try {
             String query1 = "SELECT \n"
                     + "    CODIGOPRODUCTO AS 'Código de Producto',\n"
@@ -106,22 +107,34 @@ public class Reportes extends javax.swing.JFrame {
 
         try {
             String query1 = "SELECT \n"
-                    + "    CODIGOORDENCOMPRA AS 'CÓDIGO DE ORDEN DE COMPRA',\n"
+                    + "    ot.CODIGOORDENCOMPRA AS 'CÓDIGO DE ORDEN DE COMPRA',\n"
                     + "    DEMANDANTE AS 'DEMANDANTE',\n"
                     + "    NOMBRE_PROVEEDOR AS 'EMPRESA',\n"
-                    + "    REPLACE(REPLACE(IFNULL(total, 0), '$', ''),\n"
-                    + "        '.',\n"
-                    + "        '') AS 'TOTAL'\n"
+                    + "    dot.moneda AS 'MONEDA',\n"
+                    + "    CASE\n"
+                    + "        WHEN dot.moneda = 'USD' THEN REPLACE(IFNULL(total, 0), '$', '')\n"
+                    + "        WHEN\n"
+                    + "            dot.moneda = 'CLP'\n"
+                    + "        THEN\n"
+                    + "            REPLACE(REPLACE(IFNULL(total, 0), '$', ''),\n"
+                    + "                '.',\n"
+                    + "                '')\n"
+                    + "        ELSE 0\n"
+                    + "    END AS 'TOTAL'\n"
                     + "FROM\n"
-                    + "    ORDENTRABAJO\n"
-                    + "WHERE NOMBRE_PROVEEDOR = 'ACIMA GLOBAL SPA' "
-                    + "GROUP BY CODIGOORDENCOMPRA;";
+                    + "    ORDENTRABAJO ot\n"
+                    + "        JOIN\n"
+                    + "    detalleordentrabajo dot ON ot.idOrden = dot.idOrden\n"
+                    + "WHERE\n"
+                    + "    NOMBRE_PROVEEDOR = 'Acima Soluciones Integrales '\n"
+                    + "GROUP BY ot.CODIGOORDENCOMPRA;";
             PreparedStatement pst1 = cn.prepareStatement(query1);
             ResultSet rs1 = pst1.executeQuery();
             tblFacturacionEmpresa.setModel(DbUtils.resultSetToTableModel(rs1));
         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /*
         try {
 
             String total = "";
@@ -181,6 +194,7 @@ public class Reportes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
+         */
         cmbDistribuidor.setSelectedItem(3);
         //Inventario de productos
         try {
@@ -274,6 +288,8 @@ public class Reportes extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         cmbDistribuidor = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        lblValorDolar = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblTotalFacturacion = new javax.swing.JLabel();
 
@@ -286,6 +302,12 @@ public class Reportes extends javax.swing.JFrame {
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
+            }
+        });
+
+        tabPanelElementos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPanelElementosMouseClicked(evt);
             }
         });
 
@@ -821,16 +843,24 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setText("Valor del Dólar:");
+
+        lblValorDolar.setText("$0");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbDistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(904, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbDistribuidor, 0, 250, Short.MAX_VALUE)
+                    .addComponent(lblValorDolar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(874, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -839,7 +869,11 @@ public class Reportes extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cmbDistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(lblValorDolar))
+                .addContainerGap())
         );
 
         jTabbedPane3.addTab("Filtrar por empresa", jPanel7);
@@ -884,7 +918,7 @@ public class Reportes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -1448,16 +1482,27 @@ public class Reportes extends javax.swing.JFrame {
     private void cmbDistribuidorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbDistribuidorItemStateChanged
         try {
             String query1 = "SELECT \n"
-                    + "    CODIGOORDENCOMPRA AS 'CÓDIGO DE ORDEN DE COMPRA',\n"
+                    + "    ot.CODIGOORDENCOMPRA AS 'CÓDIGO DE ORDEN DE COMPRA',\n"
                     + "    DEMANDANTE AS 'DEMANDANTE',\n"
                     + "    NOMBRE_PROVEEDOR AS 'EMPRESA',\n"
-                    + "    REPLACE(REPLACE(IFNULL(total, 0), '$', ''),\n"
-                    + "        '.',\n"
-                    + "        '') AS 'TOTAL'\n"
+                    + "    dot.moneda AS 'MONEDA',\n"
+                    + "    CASE\n"
+                    + "        WHEN dot.moneda = 'USD' THEN REPLACE(IFNULL(total, 0), '$', '')\n"
+                    + "        WHEN\n"
+                    + "            dot.moneda = 'CLP'\n"
+                    + "        THEN\n"
+                    + "            REPLACE(REPLACE(IFNULL(total, 0), '$', ''),\n"
+                    + "                '.',\n"
+                    + "                '')\n"
+                    + "        ELSE 0\n"
+                    + "    END AS 'TOTAL'\n"
                     + "FROM\n"
-                    + "    ORDENTRABAJO\n"
-                    + "WHERE NOMBRE_PROVEEDOR = ? "
-                    + "GROUP BY CODIGOORDENCOMPRA;";
+                    + "    ORDENTRABAJO ot\n"
+                    + "        JOIN\n"
+                    + "    detalleordentrabajo dot ON ot.idOrden = dot.idOrden\n"
+                    + "WHERE\n"
+                    + "    NOMBRE_PROVEEDOR = ?\n"
+                    + "GROUP BY ot.CODIGOORDENCOMPRA;";
             PreparedStatement pst1 = cn.prepareStatement(query1);
             pst1.setString(1, cmbDistribuidor.getSelectedItem().toString());
             ResultSet rs1 = pst1.executeQuery();
@@ -1465,6 +1510,44 @@ public class Reportes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Camino alternativo
+        double facturacionDolares = 0;
+        double facturacionPesos = 0;
+        double facturacionTotal = 0;
+        String moneda = "";
+        for (int i = 0; i < tblFacturacionEmpresa.getRowCount(); i++) {
+            moneda = tblFacturacionEmpresa.getValueAt(i, 3).toString();
+            System.out.println("Moneda: " + moneda);
+            double valor = 0;
+            double dolares = Double.parseDouble(lblValorDolar.getText().substring(1));
+            if (moneda.equals("USD")) {
+                if (tblFacturacionEmpresa.getValueAt(i, 4).toString().isEmpty()) {
+                    valor = valor + 0;
+                    valor = valor * dolares;
+                    facturacionDolares = facturacionDolares + valor;
+                } else {
+                    valor = Double.parseDouble(tblFacturacionEmpresa.getValueAt(i, 4).toString());
+                    valor = valor * dolares;
+                    facturacionDolares = facturacionDolares + valor;
+                }
+            } else {
+                if (tblFacturacionEmpresa.getValueAt(i, 4).toString().isEmpty()) {
+                    valor = valor + 0;
+
+                    facturacionPesos = facturacionPesos + valor;
+                } else {
+                    valor = Double.parseDouble(tblFacturacionEmpresa.getValueAt(i, 4).toString());
+
+                    facturacionPesos = facturacionPesos + valor;
+                }
+            }
+        }
+        System.out.println("Total: " + facturacionDolares);
+        System.out.println("Total: " + facturacionPesos);
+        facturacionTotal = facturacionDolares + facturacionPesos;
+        System.out.println("Facturacion Total: " + facturacionTotal);
+
+        /*
         try {
 
             String total = "";
@@ -1524,8 +1607,20 @@ public class Reportes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+         */
 
     }//GEN-LAST:event_cmbDistribuidorItemStateChanged
+
+    private void tabPanelElementosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPanelElementosMouseClicked
+        if (lblValorDolar.getText().equals("$0")) {
+            String respuesta = JOptionPane.showInputDialog(null, "Ingrese valor del dolar", "", JOptionPane.QUESTION_MESSAGE);
+            double valorDolar = Double.parseDouble(respuesta);
+            lblValorDolar.setText("$" + valorDolar);
+        } else {
+            //hacer nada
+        }
+    }//GEN-LAST:event_tabPanelElementosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1589,6 +1684,7 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1622,6 +1718,7 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JLabel lblFacturacion;
     private javax.swing.JLabel lblTotalFacturacion;
+    private javax.swing.JLabel lblValorDolar;
     private javax.swing.JPanel panelProductos;
     private javax.swing.JPanel panelVentasEjecutivo;
     private javax.swing.JTabbedPane tabPanelElementos;

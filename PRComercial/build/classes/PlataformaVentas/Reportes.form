@@ -71,6 +71,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="tabPanelElementos">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabPanelElementosMouseClicked"/>
+          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
@@ -961,7 +964,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jTabbedPane3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" pref="661" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" pref="671" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1073,12 +1076,18 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel11" max="32767" attributes="0"/>
+                                      <Component id="jLabel9" max="32767" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbDistribuidor" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <EmptySpace pref="904" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cmbDistribuidor" pref="250" max="32767" attributes="0"/>
+                                      <Component id="lblValorDolar" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="874" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1090,7 +1099,12 @@
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cmbDistribuidor" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblValorDolar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1115,6 +1129,16 @@
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel11">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Valor del D&#xf3;lar:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblValorDolar">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="$0"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
